@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
@@ -7,16 +7,8 @@ import { filter } from 'rxjs/operators';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent{
+
   title = 'logic-programming';
 
-  constructor(private router: Router) {}
-
-  ngOnInit() {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        window.scrollTo(0, 0);
-      });
-  }
 }
