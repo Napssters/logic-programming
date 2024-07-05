@@ -1,0 +1,22 @@
+directories:
+  output: dist_electron
+
+files:
+  - dist/logic-programming/**/*
+  - main.js
+  - loading.html
+  - icono.ico
+
+extraResources:
+  - from: dist/logic-programming
+    to: resources/app
+
+appId: com.logic-programming.electron
+productName: logic-programming
+
+win:
+  target: nsis
+  icon: icono.ico
+
+nodeGypRebuild: false
+npmRebuild: false

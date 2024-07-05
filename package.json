@@ -1,12 +1,18 @@
 {
   "name": "logic-programming",
-  "version": "0.0.0",
+  "main": "main.js",
+  "description": "Pensamiento de Programador: Explorando la Lógica de la Programación",
+  "author": "logic-programming",
+  "sideEffects": false,
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "electron": "electron .",
+    "dist": "electron-builder --config electron-builder.yml"
   },
   "private": true,
   "dependencies": {
@@ -18,6 +24,8 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
+    "primeicons": "^7.0.0",
+    "primeng": "^16.9.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
@@ -27,6 +35,7 @@
     "@angular/cli": "~16.0.0",
     "@angular/compiler-cli": "^16.0.0",
     "@types/jasmine": "~4.3.0",
+    "electron": "^31.1.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -34,5 +43,21 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "typescript": "~5.0.2"
+  },
+  "build": {
+    "appId": "com.logic-programming.electron",
+    "productName": "logic-programming",
+    "directories": {
+      "output": "dist_electron"
+    },
+    "files": [
+      "dist/logic-programming/**/*",
+      "main.js",
+      "icon.ico"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    }
   }
 }
