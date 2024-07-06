@@ -1,0 +1,63 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.open {
+  display: flex;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.close-button {
+  margin-top: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mensaje {
+  margin-bottom: 40px;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+}
+
+.success-icon {
+  font-size: 3em;
+  color: green;
+}
+
+.error-icon {
+  font-size: 3em;
+  color: red;
+}
+
+.confuse-icon {
+  font-size: 3em;
+  color: orange;
+}
+
+.info-icon {
+  font-size: 3em;
+  color: yellow;
+}
+
+.negrita{
+  font-weight: bold;
+}

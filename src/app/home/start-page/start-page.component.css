@@ -18,7 +18,6 @@ mostaza: #f3ae22
   height: 150vh; /* Ajusta la altura de la pantalla */
   min-height: 150vh;
   margin: -0.6%;
-  background: radial-gradient(circle, white, #79a8a0);
   position: relative;
 }
 

@@ -1,0 +1,16 @@
+<div style="z-index: 10000" class="modal" [ngClass]="{'open': display}">
+  <div class="modal-content">
+    <h2>{{ title }}</h2>
+    <div class="icon-container">
+      <i class="pi pi-check-circle success-icon" *ngIf="icon === 'success'"></i>
+      <i class="pi pi-times-circle error-icon" *ngIf="icon === 'error'"></i>
+      <i class="pi pi-question-circle confuse-icon" *ngIf="icon === 'confuse'"></i>
+      <i class="pi pi-exclamation-triangle info-icon" *ngIf="icon === 'info'"></i>
+    </div>
+
+    <p class="mensaje" *ngIf="icon != 'help' && icon != 'code'">{{ message }}</p>
+    <p *ngIf="icon === 'code'" [innerHTML]="message"> </p>
+    <p-button class="close-button" pRipple label="Cerrar" color="#BC66F7" styleClass="p-button-raised" iconPos="right"
+        (click)="hideDialog()"></p-button>
+  </div>
+</div>
