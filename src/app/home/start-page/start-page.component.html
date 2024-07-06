@@ -1,1 +1,26 @@
-<p>start-page works!</p>
+<div class="container">
+  <div class="card central">
+    <div class="ring">
+      <div class="inner-circle">
+        <p>Pensamiento de Programador: </p>
+        <hr>
+        <p>Explorando la Lógica de la Programación</p>
+      </div>
+    </div>
+  </div>
+  <div class="card" *ngFor="let card of cards; let i = index"
+    (click)="redirigir(card.url)"
+    [style.background-color]="card.color"
+    (mouseover)="onMouseOver(i)" (mouseout)="onMouseOut(i)">
+    <div class="inner-card" [class.flipped]="card.isFlipped">
+      <div class="front content">
+        <img alt="img" [src]="card.image">
+        <p class="title">{{ card.title }}</p>
+      </div>
+      <div class="back content">
+        <p class="title">Modulo {{ i + 1 }}</p>
+        <p class="description">{{ card.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+{
+  "cards": [
+    {
+      "title": "Introducción a la Lógica de Programación",
+      "description": "Description for Card 1",
+      "image": "assets/img/provi.png",
+      "url": "/home/crear-db",
+      "color": "#29abb0"
+    },
+    {
+      "title": "Concepto de Variables",
+      "description": "Description for Card 2",
+      "image": "assets/img/provi.png",
+      "url": "/home/crear-db",
+      "color": "#29abb0"
+    },
+    {
+      "title": "Estructuras de Control: Condicionales",
+      "description": "Description for Card 3",
+      "image": "assets/img/provi.png",
+      "url": "/home/crear-db",
+      "color": "#f3ae22"
+    },
+    {
+      "title": "Estructuras de Control: Bucles",
+      "description": "Description for Card 4",
+      "image": "assets/img/provi.png",
+      "url": "/home/crear-db",
+      "color": "#e3576f"
+    },
+    {
+      "title": "Funciones y Modularidad",
+      "description": "Description for Card 5",
+      "image": "assets/img/provi.png",
+      "url": "/home/crear-db",
+      "color": "#f3ae22"
+    },
+    {
+      "title": "Abstracción y Simplificación",
+      "description": "Description for Card 6",
+      "image": "assets/img/provi.png",
+      "url": "/home/crear-db",
+      "color": "#29abb0"
+    },
+    {
+      "title": "Pensamiento Lógico y Deductivo",
+      "description": "Description for Card 7",
+      "image": "assets/img/provi.png",
+      "url": "/home/crear-db",
+      "color": "#f3ae22"
+    },
+    {
+      "title": "Toma de Decisiones y Evaluación de Opciones",
+      "description": "Description for Card 8",
+      "image": "assets/img/provi.png",
+      "url": "/home/crear-db",
+      "color": "#e3576f"
+    },
+    {
+      "title": "Solución Creativa de Problemas",
+      "description": "Description for Card 9",
+      "image": "assets/img/provi.png",
+      "url": "/home/crear-db",
+      "color": "#e3576f"
+    }
+  ]
+}
