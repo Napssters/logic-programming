@@ -3,63 +3,63 @@
     {
       "title": "Introducción a la Lógica de Programación",
       "description": "Fundamentos esenciales para entender cómo funcionan los programas, comparados con recetas detalladas.",
-      "image": "assets/img/provi.png",
+      "image": "assets/img/landing/m1.png",
       "url": "/home/introduccion",
       "color": "#29abb0"
     },
     {
       "title": "Concepto de Variables",
       "description": "Explicación sobre cómo las variables almacenan datos como números, palabras o imágenes, esenciales en programación.",
-      "image": "assets/img/provi.png",
+      "image": "assets/img/landing/m2.png",
       "url": "/home/concepto-variables",
       "color": "#29abb0"
     },
     {
       "title": "Estructuras de Control: Condicionales",
       "description": "Uso de estructuras para tomar decisiones en programas según condiciones específicas.",
-      "image": "assets/img/provi.png",
+      "image": "assets/img/landing/m3.png",
       "url": "/home/condicionales",
       "color": "#f3ae22"
     },
     {
       "title": "Estructuras de Control: Bucles",
       "description": "Repetición eficiente de acciones en programas usando bucles 'for' y 'while'.",
-      "image": "assets/img/provi.png",
+      "image": "assets/img/landing/m4.png",
       "url": "/home/bucles",
       "color": "#e3576f"
     },
     {
       "title": "Funciones y Modularidad",
       "description": "Organización del código mediante funciones para facilitar su mantenimiento y reutilización.",
-      "image": "assets/img/provi.png",
+      "image": "assets/img/landing/m5.png",
       "url": "/home/modularidad",
       "color": "#f3ae22"
     },
     {
       "title": "Abstracción y Simplificación",
       "description": "Métodos para dividir problemas complejos en partes más simples y manejables.",
-      "image": "assets/img/provi.png",
+      "image": "assets/img/landing/m6.png",
       "url": "/home/abstraccion",
       "color": "#29abb0"
     },
     {
       "title": "Pensamiento Lógico y Deductivo",
       "description": "Aplicación de razonamiento lógico para resolver problemas usando premisas y conclusiones.",
-      "image": "assets/img/provi.png",
+      "image": "assets/img/landing/m7.png",
       "url": "/home/pensamiento-logico",
       "color": "#f3ae22"
     },
     {
       "title": "Toma de Decisiones y Evaluación de Opciones",
       "description": "Proceso sistemático para evaluar diferentes opciones y tomar decisiones informadas.",
-      "image": "assets/img/provi.png",
+      "image": "assets/img/landing/m8.png",
       "url": "/home/toma-de-decisiones",
       "color": "#e3576f"
     },
     {
       "title": "Solución Creativa de Problemas",
       "description": "Enfoque práctico y creativo para resolver desafíos mediante ideas originales y efectivas.",
-      "image": "assets/img/provi.png",
+      "image": "assets/img/landing/m9.png",
       "url": "/home/solucion-creativa",
       "color": "#e3576f"
     }
