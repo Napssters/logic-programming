@@ -1,2 +1,9 @@
 
 <router-outlet></router-outlet>
+
+<!-- Componente de navegación flotante - se muestra en todas las páginas excepto en el menú principal -->
+<app-navigation-float
+  *ngIf="showFloatingButton && allModules.length > 0"
+  [currentModuleIndex]="currentModuleIndex"
+  [modules]="allModules">
+</app-navigation-float>

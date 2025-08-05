@@ -1,0 +1,69 @@
+{
+  "variables": {
+    "exercises": [
+      {
+        "id": "exercise-1",
+        "title": "Crear una Variable",
+        "description": "Aprende a crear tu primera variable en programación.",
+        "instructions": "Crea una variable llamada \"nombre\" y asígnale el valor \"Juan\".",
+        "expectedCode": "var nombre = \"Juan\";",
+        "difficulty": "easy",
+        "category": "variables"
+      },
+      {
+        "id": "exercise-2",
+        "title": "Variable Numérica",
+        "description": "Trabaja con variables de tipo número.",
+        "instructions": "Crea una variable llamada \"edad\" y asígnale el valor 25.",
+        "expectedCode": "var edad = 25;",
+        "difficulty": "easy",
+        "category": "variables"
+      },
+      {
+        "id": "exercise-3",
+        "title": "Operación con Variables",
+        "description": "Realiza operaciones matemáticas básicas con variables.",
+        "instructions": "Crea dos variables \"a\" con valor 10 y \"b\" con valor 5. Luego crea una variable \"suma\" que contenga la suma de a y b.",
+        "expectedCode": "var a = 10;\nvar b = 5;\nvar suma = a + b;",
+        "difficulty": "medium",
+        "category": "variables"
+      },
+      {
+        "id": "exercise-4",
+        "title": "Variable Booleana",
+        "description": "Aprende a usar variables booleanas (verdadero/falso).",
+        "instructions": "Crea una variable llamada \"esEstudiante\" y asígnale el valor verdadero.",
+        "expectedCode": "var esEstudiante = true;",
+        "difficulty": "easy",
+        "category": "variables"
+      },
+      {
+        "id": "exercise-5",
+        "title": "Cambiar Valor de Variable",
+        "description": "Aprende a modificar el valor de una variable existente.",
+        "instructions": "Crea una variable \"contador\" con valor 0. Luego cambia su valor a 1.",
+        "expectedCode": "var contador = 0;\ncontador = 1;",
+        "difficulty": "medium",
+        "category": "variables"
+      },
+      {
+        "id": "exercise-6",
+        "title": "Concatenación de Texto",
+        "description": "Une texto usando variables.",
+        "instructions": "Crea una variable \"saludo\" con \"Hola\" y otra \"nombre\" con \"María\". Crea una variable \"mensaje\" que una ambas con un espacio.",
+        "expectedCode": "var saludo = \"Hola\";\nvar nombre = \"María\";\nvar mensaje = saludo + \" \" + nombre;",
+        "difficulty": "medium",
+        "category": "variables"
+      },
+      {
+        "id": "exercise-7",
+        "title": "Cálculo Completo",
+        "description": "Ejercicio completo usando múltiples variables y operaciones.",
+        "instructions": "Crea variables \"precio\" (100), \"descuento\" (20) y \"precioFinal\" que calcule el precio menos el descuento.",
+        "expectedCode": "var precio = 100;\nvar descuento = 20;\nvar precioFinal = precio - descuento;",
+        "difficulty": "hard",
+        "category": "variables"
+      }
+    ]
+  }
+}

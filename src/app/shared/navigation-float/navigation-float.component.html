@@ -1,0 +1,63 @@
+<!-- Área de hover expandida que cubre todos los botones -->
+<div class="fixed bottom-6 right-6 z-50">
+  <div
+    class="absolute -top-20 -left-20 w-40 h-40"
+    (mouseenter)="isExpanded = true"
+    (mouseleave)="isExpanded = false">
+
+    <!-- Botón Anterior - aparece muy poquito más cerca del botón principal -->
+    <div *ngIf="isExpanded" class="absolute top-1 -left-11 group">
+      <button
+        (click)="onPrevious()"
+        [disabled]="!canGoPrevious"
+        [class.opacity-50]="!canGoPrevious"
+        [class.cursor-not-allowed]="!canGoPrevious"
+        class="satellite-btn w-12 h-12 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400 animate-in hover:scale-110"
+        [style.background-color]="canGoPrevious ? '#f3ae22' : ''"
+        [style.border-color]="canGoPrevious ? '#d18c00' : ''">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <!-- Tooltip para botón anterior -->
+      <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+        Anterior
+        <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-gray-800"></div>
+      </div>
+    </div>
+
+    <!-- Botón Menú - aparece muy poquito más cerca del botón principal -->
+    <div *ngIf="isExpanded" class="absolute -top-11 -left-2 group">
+      <button
+        (click)="onMenu()"
+        class="satellite-btn w-12 h-12 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 border-green-800 animate-in">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <!-- Tooltip para botón menú -->
+      <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+        Menú
+        <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-gray-800"></div>
+      </div>
+    </div>
+
+    <!-- Botón flotante principal - funciona como "Siguiente" (en su posición original) -->
+    <button
+      (click)="onNext()"
+      [disabled]="!canGoNext"
+      [class.opacity-50]="!canGoNext"
+      [class.cursor-not-allowed]="!canGoNext"
+      class="floating-btn absolute bottom-20 right-20 w-16 h-16 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 border-blue-500 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400">
+
+      <!-- Icono de navegación (flecha siguiente) -->
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+
+      <!-- Indicador de hover -->
+      <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white shadow-sm animate-pulse"></div>
+    </button>
+
+  </div>
+</div>

@@ -12,12 +12,12 @@ mostaza: #f3ae22
 }
 
 .container {
+  margin-top: -110px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 150vh; /* Ajusta la altura de la pantalla */
   min-height: 150vh;
-  margin: -0.6%;
   position: relative;
 }
 
@@ -161,4 +161,9 @@ mostaza: #f3ae22
   border: none; /* Quita el borde del hr si no es necesario */
   margin-top: -8px;
   margin-bottom: 4px;
+}
+
+.utp {
+  max-width: 45%;
+  height: auto;
 }

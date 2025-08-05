@@ -6,6 +6,9 @@ import { PrimengModule } from '../primeng/primeng.module';
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 import { DialogComponent } from './dialog/dialog.component';
+import { NavigationFloatComponent } from './navigation-float/navigation-float.component';
+import { FlowchartComponent } from './components/flowchart/flowchart.component';
+import { BlocklyExerciseComponent } from './blockly-exercise/blockly-exercise.component';
 
 
 
@@ -14,6 +17,9 @@ import { DialogComponent } from './dialog/dialog.component';
     FooterComponent,
     MenuComponent,
     DialogComponent,
+    NavigationFloatComponent,
+    FlowchartComponent,
+    BlocklyExerciseComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +31,9 @@ import { DialogComponent } from './dialog/dialog.component';
     MenuComponent,
     FooterComponent,
     DialogComponent,
+    NavigationFloatComponent,
+    FlowchartComponent,
+    BlocklyExerciseComponent,
   ]
 })
 export class SharedModule { }

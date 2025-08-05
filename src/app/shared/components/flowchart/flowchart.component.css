@@ -1,0 +1,229 @@
+/* Estilos para el componente de diagrama de flujo */
+.flowchart-container {
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+}
+
+/* Contenedor principal con scroll */
+.flex-1 {
+  flex: 1;
+  min-height: 0; /* Permite que el flex item se encoja */
+}
+
+/* Controles fijos en la parte inferior */
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+/* Scroll suave para el área de contenido */
+.overflow-y-auto {
+  scroll-behavior: smooth;
+}
+
+.step-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Animaciones suaves para los pasos */
+.step-container > div {
+  transition: all 0.3s ease-in-out;
+}
+
+.step-container > div:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+/* Estilos especiales para decisiones */
+.decision-diamond {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Conectores de flujo */
+.flow-connector {
+  background: linear-gradient(to bottom, #9ca3af, #6b7280);
+}
+
+/* Animación de entrada para pasos */
+@keyframes stepAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.8);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-5px) scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.step-animation {
+  animation: stepAppear 0.6s ease-out;
+}
+
+/* Animación para líneas de conexión */
+@keyframes drawLine {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 1.5rem;
+    opacity: 1;
+  }
+}
+
+.animate-draw-line {
+  animation: drawLine 0.4s ease-out;
+}
+
+/* Animación de aparición suave */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Efecto de pulso para el indicador actual */
+@keyframes gentlePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse {
+  animation: gentlePulse 2s ease-in-out infinite;
+}
+
+/* Efecto hover para botones de navegación */
+.step-nav-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Barra de progreso con gradiente animado */
+.progress-bar {
+  background: linear-gradient(90deg, #3b82f6, #10b981);
+  background-size: 200% 100%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .step-container > div {
+    min-width: 120px;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .decision-diamond {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  /* Ajustar botones en móvil */
+  .step-nav-button {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+/* Estilos para la leyenda */
+.legend-item {
+  transition: background-color 0.2s ease;
+}
+
+.legend-item:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* Efectos de sombra para profundidad */
+.flowchart-shadow {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+/* Animación especial para el último paso */
+.completion-celebration {
+  animation: celebrate 0.8s ease-out;
+}
+
+@keyframes celebrate {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1) rotate(5deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(-5deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Estilos para mensajes de estado */
+.status-message {
+  transition: all 0.5s ease-in-out;
+}
+
+/* Mejoras visuales para el panel de control */
+.control-panel {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Indicador de continuación */
+.continuation-indicator {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}

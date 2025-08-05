@@ -1,0 +1,267 @@
+<!-- Contenedor principal con diseño consistente -->
+<div class="w-full" *ngIf="currentExercise">
+
+  <!-- Layout de dos columnas -->
+  <div class="grid grid-cols-12 gap-6 min-h-[600px]">
+
+    <!-- Primera columna: Control de ejercicios -->
+    <div class="col-span-4 flex items-center justify-center relative">
+      <!-- Contenedor del controlador de ejercicios -->
+      <div class="px-4 py-3 w-full max-w-sm">
+        <!-- Título con indicador de dificultad al inicio -->
+        <div class="flex items-center space-x-3 mb-1">
+          <!-- Indicador de dificultad -->
+          <div class="relative group">
+            <div class="w-8 h-8 text-white rounded-full shadow-lg flex items-center justify-center border-2"
+                 [style.background-color]="getDifficultyColor(currentExercise.difficulty)"
+                 [style.border-color]="getDifficultyBorderColor(currentExercise.difficulty)">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path *ngIf="currentExercise.difficulty === 'easy'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                <path *ngIf="currentExercise.difficulty === 'medium'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                <path *ngIf="currentExercise.difficulty === 'hard'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path>
+              </svg>
+            </div>
+            <!-- Tooltip -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 -top-8 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+              {{ getDifficultyText(currentExercise.difficulty) }}
+            </div>
+          </div>
+
+          <!-- Título -->
+          <h2 class="text-xl font-bold text-gray-800">{{ currentExercise.title }}</h2>
+        </div>
+
+        <p class="text-gray-600 text-sm mb-2">{{ currentExercise.description }}</p>
+
+        <!-- Instrucciones compactas -->
+        <div class="bg-blue-50 border-l-4 border-blue-400 p-2 rounded-r-lg mb-4">
+          <h3 class="font-semibold text-blue-800 mb-1 text-sm">📋 Instrucciones:</h3>
+          <p class="text-blue-700 text-sm">{{ currentExercise.instructions }}</p>
+        </div>
+
+        <!-- Línea divisoria horizontal igual que la de ejemplos -->
+        <div class="border-t border-gray-200 w-full"></div>
+
+        <!-- Controlador de navegación (estilo ejemplos) debajo de instrucciones -->
+        <div class="flex justify-between items-center pt-4">
+          <!-- Botón anterior -->
+          <button
+            (click)="onPreviousExercise()"
+            [disabled]="!canGoPrevious"
+            [class.opacity-50]="!canGoPrevious"
+            [class.cursor-not-allowed]="!canGoPrevious"
+            class="w-10 h-10 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400"
+            [style.background-color]="canGoPrevious ? '#f3ae22' : ''"
+            [style.border-color]="canGoPrevious ? '#d18c00' : ''">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+
+          <!-- Contador central -->
+          <span class="text-sm text-green-600 font-bold">
+            {{ currentExerciseIndex + 1 }} de {{ exercises.length }}
+          </span>
+
+          <!-- Botón siguiente -->
+          <button
+            (click)="onNextExercise()"
+            [disabled]="!canGoNext"
+            [class.opacity-50]="!canGoNext"
+            [class.cursor-not-allowed]="!canGoNext"
+            class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 border-blue-800 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Segunda columna: Área de Blockly -->
+    <div class="col-span-8 relative">
+      <div class="overflow-hidden blockly-container" style="height: 600px; overflow: hidden !important;">
+        <div #blocklyDiv id="blocklyDiv" class="w-full h-full blockly-workspace" style="margin: 0; padding: 0; display: block; overflow: hidden !important; scrollbar-width: none; -ms-overflow-style: none;"></div>
+      </div>
+
+      <!-- Controles superpuestos al área de Blockly -->
+      <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-4 z-10">
+        <!-- Botón de reset -->
+        <div class="relative group">
+          <button
+            (click)="resetWorkspace()"
+            class="w-12 h-12 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2"
+            style="background-color: #f3ae22; border-color: #d18c00;">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+          </button>
+          <!-- Tooltip -->
+          <div class="absolute left-1/2 transform -translate-x-1/2 -top-8 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+            Reiniciar
+          </div>
+        </div>
+
+        <!-- Botón de validación -->
+        <div class="relative group">
+          <button
+            (click)="validateSolution()"
+            [disabled]="isValidating"
+            class="w-12 h-12 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 border-blue-800">
+            <svg *ngIf="!isValidating" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <svg *ngIf="isValidating" class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 0 1 4 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </button>
+          <!-- Tooltip -->
+          <div class="absolute left-1/2 transform -translate-x-1/2 -top-8 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+            Validar
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Mensajes de éxito y error centrados -->
+<!-- Mensaje de éxito -->
+<div
+  *ngIf="showSuccess"
+  class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-green-500 text-white px-8 py-6 rounded-xl shadow-2xl transform transition-all duration-500 ease-in-out max-w-md mx-4">
+    <div class="flex items-center space-x-4">
+      <svg class="w-8 h-8 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <div>
+        <p class="font-bold text-lg">¡Perfecto!</p>
+        <p class="text-sm opacity-90">{{ currentMessage }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mensaje de error -->
+<div
+  *ngIf="showError"
+  class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-red-500 text-white px-8 py-6 rounded-xl shadow-2xl transform transition-all duration-500 ease-in-out max-w-md mx-4">
+    <div class="flex items-center space-x-4">
+      <svg class="w-8 h-8 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <div>
+        <p class="font-bold text-lg">Inténtalo de nuevo</p>
+        <p class="text-sm opacity-90">{{ currentMessage }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para crear variable -->
+<div
+  *ngIf="showCreateVariableModal"
+  class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-white px-8 py-6 rounded-xl shadow-2xl transform transition-all duration-300 ease-in-out max-w-md mx-4 w-full">
+    <div class="mb-6">
+      <h3 class="text-xl font-bold text-gray-800 mb-2">Crear Nueva Variable</h3>
+      <p class="text-gray-600 text-sm">Ingresa el nombre para tu nueva variable</p>
+    </div>
+
+    <div class="mb-6">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Nombre de la variable</label>
+      <input
+        #variableNameInput
+        id="variableNameInput"
+        [(ngModel)]="newVariableName"
+        (keyup.enter)="confirmCreateVariable()"
+        (keyup.escape)="cancelCreateVariable()"
+        type="text"
+        placeholder="Ej: edad, nombre, contador..."
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors">
+    </div>
+
+    <div class="flex justify-end space-x-3">
+      <button
+        (click)="cancelCreateVariable()"
+        class="px-4 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors">
+        Cancelar
+      </button>
+      <button
+        (click)="confirmCreateVariable()"
+        [disabled]="!newVariableName?.trim()"
+        class="px-6 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors">
+        Crear Variable
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para renombrar variable -->
+<div
+  *ngIf="showRenameVariableModal"
+  class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-white px-8 py-6 rounded-xl shadow-2xl transform transition-all duration-300 ease-in-out max-w-md mx-4 w-full">
+    <div class="mb-6">
+      <h3 class="text-xl font-bold text-gray-800 mb-2">Renombrar Variable</h3>
+      <p class="text-gray-600 text-sm">Cambia el nombre de la variable "{{ currentVariableName }}"</p>
+    </div>
+
+    <div class="mb-6">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Nuevo nombre de la variable</label>
+      <input
+        #renameVariableInput
+        id="renameVariableInput"
+        [(ngModel)]="newVariableName"
+        (keyup.enter)="confirmRenameVariable()"
+        (keyup.escape)="cancelRenameVariable()"
+        type="text"
+        placeholder="Nuevo nombre..."
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors">
+    </div>
+
+    <div class="flex justify-end space-x-3">
+      <button
+        (click)="cancelRenameVariable()"
+        class="px-4 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors">
+        Cancelar
+      </button>
+      <button
+        (click)="confirmRenameVariable()"
+        [disabled]="!newVariableName?.trim()"
+        class="px-6 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors">
+        Renombrar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de confirmación para eliminar variable -->
+<div
+  *ngIf="showDeleteVariableModal"
+  class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-white px-8 py-6 rounded-xl shadow-2xl transform transition-all duration-300 ease-in-out max-w-md mx-4 w-full">
+    <div class="mb-6">
+      <h3 class="text-xl font-bold text-gray-800 mb-2">Eliminar Variable</h3>
+      <p class="text-gray-600 text-sm">¿Estás seguro de que quieres eliminar la variable "{{ currentVariableName }}"?</p>
+      <p class="text-red-600 text-xs mt-2">Esta acción no se puede deshacer</p>
+    </div>
+
+    <div class="flex justify-end space-x-3">
+      <button
+        (click)="cancelDeleteVariable()"
+        class="px-4 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors">
+        Cancelar
+      </button>
+      <button
+        (click)="confirmDeleteVariable()"
+        class="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-colors">
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,317 @@
-<p>concepto-variables works!</p>
+<!-- Título principal de la página -->
+<div class="text-center mb-8 mt-6">
+  <h1 class="text-3xl font-bold text-gray-800 mb-2 drop-shadow-md">📦 Concepto de Variables</h1>
+  <!-- Separador elegante con gradiente -->
+  <div class="flex items-center justify-center mb-1">
+    <div class="h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent w-96 shadow-sm"></div>
+  </div>
+  <!-- Línea sutil adicional para más profundidad -->
+  <div class="flex items-center justify-center">
+    <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-64 opacity-60"></div>
+  </div>
+</div>
+
+<!-- Contenedor principal sin altura fija -->
+<div class="min-h-screen">
+  <!-- Una sola columna con dos filas -->
+  <div class="flex flex-col gap-6 p-4 mx-8">
+
+    <!-- Primera fila - Sección de información expandida -->
+    <div class="bg-gray-500/20 backdrop-blur-md p-6 rounded-lg border border-gray-400/30 shadow-lg">
+      <div class="mb-6">
+        <h2 class="text-xl font-bold mb-3 text-gray-800">🧠 ¿Qué es una variable?</h2>
+        <p class="text-gray-700 leading-relaxed mb-4 text-justify">
+          En programación, una variable es un espacio de memoria reservado para guardar datos que pueden cambiar durante la ejecución de un programa.
+          Estos datos pueden ser números, textos, imágenes, sonidos, valores booleanos (verdadero/falso), entre otros.
+        </p>
+
+        <!-- Elementos fundamentales en caja de color -->
+        <div class="p-4 bg-teal-50 rounded-lg border-l-4 border-teal-400">
+          <h3 class="text-lg font-semibold text-teal-600 mb-2">🔧 Elementos fundamentales de una variable</h3>
+          <p class="text-gray-700 text-justify mb-3">
+            Una variable tiene tres elementos fundamentales:
+          </p>
+          <div class="bg-white p-3 rounded border text-sm space-y-2">
+            <div><span class="text-teal-600 font-semibold">• Nombre:</span> Es el identificador único de la variable. Como una etiqueta que permite acceder a su contenido.</div>
+            <div><span class="text-teal-600 font-semibold">• Tipo de dato:</span> Define el tipo de información que la variable puede almacenar. Ejemplos: entero, texto, decimal, imagen.</div>
+            <div><span class="text-teal-600 font-semibold">• Valor:</span> Es el contenido actual que guarda la variable.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <h2 class="text-xl font-bold mb-5 text-gray-800">🎓 ¿Por qué se llaman "variables"?</h2>
+
+        <div class="space-y-4">
+          <!-- Por qué variables -->
+          <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+            <h3 class="text-lg font-semibold text-blue-600 mb-2">🔄 Porque su valor puede cambiar</h3>
+            <p class="text-gray-700 text-justify mb-3">
+              Por ejemplo, si declaras una variable llamada edad, podrías modificar su valor así:
+            </p>
+            <div class="bg-white p-3 rounded border font-mono text-sm">
+              <span class="text-blue-600">edad</span> = <span class="text-green-600">15</span><br>
+              <span class="text-gray-500"># Más tarde en el programa...</span><br>
+              <span class="text-blue-600">edad</span> = <span class="text-green-600">16</span>
+            </div>
+          </div>
+
+          <!-- Metáfora -->
+          <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
+            <h3 class="text-lg font-semibold text-green-600 mb-2">📦 Metáfora: Caja con etiqueta</h3>
+            <p class="text-gray-700 text-justify mb-3">
+              Imagina que tienes una caja con una etiqueta que dice "Nombre". Dentro puedes guardar un papel que diga "Camila".
+            </p>
+            <div class="bg-white p-3 rounded border text-sm">
+              <span class="text-green-600">La caja</span> = la variable<br>
+              <span class="text-green-600">La etiqueta</span> = el nombre<br>
+              <span class="text-green-600">El papel dentro</span> = el valor
+            </div>
+          </div>
+
+          <!-- Tabla de ejemplos -->
+          <div class="p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
+            <h3 class="text-lg font-semibold text-yellow-600 mb-2">🧾 Ejemplo con distintos tipos de variables</h3>
+            <div class="bg-white p-3 rounded border overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-3 py-2 text-left font-semibold text-gray-700 border-b">Variable</th>
+                    <th class="px-3 py-2 text-left font-semibold text-gray-700 border-b">Tipo</th>
+                    <th class="px-3 py-2 text-left font-semibold text-gray-700 border-b">Valor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b">
+                    <td class="px-3 py-2 font-mono text-blue-600">nombre</td>
+                    <td class="px-3 py-2 text-gray-700">Texto</td>
+                    <td class="px-3 py-2 font-mono text-red-600">"Lucía"</td>
+                  </tr>
+                  <tr class="border-b">
+                    <td class="px-3 py-2 font-mono text-blue-600">edad</td>
+                    <td class="px-3 py-2 text-gray-700">Número</td>
+                    <td class="px-3 py-2 font-mono text-green-600">21</td>
+                  </tr>
+                  <tr class="border-b">
+                    <td class="px-3 py-2 font-mono text-blue-600">altura</td>
+                    <td class="px-3 py-2 text-gray-700">Decimal</td>
+                    <td class="px-3 py-2 font-mono text-orange-600">1.65</td>
+                  </tr>
+                  <tr>
+                    <td class="px-3 py-2 font-mono text-blue-600">esEstudiante</td>
+                    <td class="px-3 py-2 text-gray-700">Booleano</td>
+                    <td class="px-3 py-2 font-mono text-indigo-600">true</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Usos de variables -->
+          <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-400">
+            <h3 class="text-lg font-semibold text-purple-600 mb-2">🖥 ¿Dónde se usan las variables?</h3>
+            <p class="text-gray-700 text-justify mb-3">
+              Las variables se usan en casi todo dentro de un programa:
+            </p>
+            <div class="bg-white p-3 rounded border text-sm">
+              • Para mostrar información al usuario<br>
+              • Para hacer cálculos<br>
+              • Para guardar respuestas del usuario<br>
+              • Para controlar decisiones<br>
+              • Para contar cosas (ej: puntuación)
+            </div>
+          </div>
+
+          <!-- Importancia -->
+          <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
+            <h3 class="text-lg font-semibold text-red-600 mb-2">🧠 Importancia de las variables</h3>
+            <p class="text-gray-700 text-justify mb-3">
+              Son fundamentales en cualquier lenguaje. Son la base para trabajar con:
+            </p>
+            <div class="bg-white p-3 rounded border text-sm">
+              • Condiciones (if)<br>
+              • Repeticiones (for, while)<br>
+              • Funciones<br>
+              • Entrada y salida de datos
+            </div>
+          </div>
+
+          <!-- Curiosidades -->
+          <div class="p-4 bg-indigo-50 rounded-lg border-l-4 border-indigo-400">
+            <h3 class="text-lg font-semibold text-indigo-600 mb-2">🧪 Curiosidades</h3>
+            <p class="text-gray-700 text-justify mb-3">
+              En Python no necesitas indicar el tipo (dinámico). En Java/C++ sí (estático):
+            </p>
+            <div class="bg-white p-3 rounded border font-mono text-sm">
+              <span class="text-purple-600">int </span> <span class="text-blue-600">edad</span> = <span class="text-green-600">20</span>;<br>
+              <span class="text-purple-600">String </span> <span class="text-blue-600">nombre</span> = <span class="text-red-600">"Ana"</span>;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Segunda sección - Sección dinámica expandida -->
+    <div class="bg-gray-500/20 backdrop-blur-md p-6 rounded-lg border border-gray-400/30 shadow-lg">
+
+      <!-- Título de la sección activa (arriba de todo) -->
+      <div class="mb-6">
+        <h2 *ngIf="activeSection === 'examples'" class="text-xl font-bold text-gray-800">💡 Ejemplos Prácticos</h2>
+        <h2 *ngIf="activeSection === 'practice'" class="text-xl font-bold text-gray-800">🎯 Ejercicios de Práctica</h2>
+      </div>
+
+      <div class="flex min-h-[600px] items-center">
+        <!-- Botones de navegación vertical (lado izquierdo, centrados) -->
+        <div class="flex flex-col items-center justify-center space-y-4 mr-6">
+          <!-- Botón Ejemplos -->
+          <div class="relative group">
+            <button
+              (click)="showExamples()"
+              [class.bg-green-600]="activeSection === 'examples'"
+              [class.bg-blue-600]="activeSection !== 'examples'"
+              [class.hover:bg-green-700]="activeSection === 'examples'"
+              [class.hover:bg-blue-700]="activeSection !== 'examples'"
+              class="w-14 h-14 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2"
+              [class.border-green-800]="activeSection === 'examples'"
+              [class.border-blue-800]="activeSection !== 'examples'">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+              </svg>
+            </button>
+            <!-- Tooltip -->
+            <div class="absolute left-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+              Ejemplos
+            </div>
+          </div>
+
+          <!-- Botón Práctica -->
+          <div class="relative group">
+            <button
+              (click)="showPractice()"
+              [class.bg-green-600]="activeSection === 'practice'"
+              [style.background-color]="activeSection !== 'practice' ? '#f3ae22' : ''"
+              [class.hover:bg-green-700]="activeSection === 'practice'"
+              [class.hover:bg-yellow-600]="activeSection !== 'practice'"
+              class="w-14 h-14 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2"
+              [class.border-green-800]="activeSection === 'practice'"
+              [style.border-color]="activeSection !== 'practice' ? '#d18c00' : ''">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+              </svg>
+            </button>
+            <!-- Tooltip -->
+            <div class="absolute left-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+              Ejercicios
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenido dinámico (lado derecho) -->
+        <div class="flex-1 flex items-center justify-center">
+          <!-- Sección de Ejemplos - Dos columnas -->
+          <div *ngIf="activeSection === 'examples'" class="w-full">
+            <div class="grid grid-cols-2 gap-4 w-full items-center">
+              <!-- Columna 1: Lista de ejemplos -->
+              <div class="min-h-[400px] flex flex-col justify-center">
+
+                <div *ngIf="currentExample" class="space-y-4">
+                  <!-- Título del ejemplo actual -->
+                  <h4 class="text-base font-semibold text-blue-600">{{ currentExample.title }}</h4>
+
+                  <!-- Descripción del ejemplo -->
+                  <p class="text-gray-700 text-justify leading-relaxed text-sm">{{ currentExample.description }}</p>
+
+                  <!-- Pregunta del ejemplo -->
+                  <div class="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-400">
+                    <p class="text-blue-800 font-medium text-sm">{{ currentExample.question }}</p>
+                  </div>
+
+                  <!-- Navegación entre ejemplos -->
+                  <div class="flex justify-between items-center pt-4 border-t border-gray-200">
+                    <button
+                      (click)="previousExample()"
+                      [disabled]="!canGoPreviousExample"
+                      [class.opacity-50]="!canGoPreviousExample"
+                      [class.cursor-not-allowed]="!canGoPreviousExample"
+                      class="w-10 h-10 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400"
+                      [style.background-color]="canGoPreviousExample ? '#f3ae22' : ''"
+                      [style.border-color]="canGoPreviousExample ? '#d18c00' : ''">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                      </svg>
+                    </button>
+
+                    <!-- Contador de ejemplos -->
+                    <span class="text-sm text-green-600 font-bold">
+                      {{ currentExampleIndex + 1 }} de {{ examples.length }}
+                    </span>
+
+                    <button
+                      (click)="nextExample()"
+                      [disabled]="!canGoNextExample"
+                      [class.opacity-50]="!canGoNextExample"
+                      [class.cursor-not-allowed]="!canGoNextExample"
+                      class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 border-blue-800 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Mensaje de carga -->
+                <div *ngIf="!currentExample" class="text-center text-gray-500">
+                  <p>Cargando ejemplos...</p>
+                </div>
+              </div>
+
+              <!-- Columna 2: Diagrama de flujo -->
+              <div class="min-h-[400px]">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">🔄 Paso a Paso</h3>
+
+                <!-- Contenido del diagrama de flujo -->
+                <div *ngIf="currentExample && currentExampleSteps.length > 0" class="min-h-[350px]">
+                  <app-flowchart
+                    #flowchartRef
+                    [steps]="currentExampleSteps"
+                    [title]="currentExample.title">
+                  </app-flowchart>
+                </div>
+
+                <!-- Mensaje cuando no hay ejemplo seleccionado -->
+                <div *ngIf="!currentExample" class="text-center text-gray-500 mt-8">
+                  <p class="text-sm">Selecciona un ejemplo para ver su diagrama de flujo</p>
+                </div>
+
+                <!-- Mensaje cuando no hay pasos disponibles -->
+                <div *ngIf="currentExample && currentExampleSteps.length === 0" class="text-center text-gray-500 mt-8">
+                  <p class="text-sm">No hay pasos disponibles para este ejemplo</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sección de Práctica con Blockly -->
+          <div *ngIf="activeSection === 'practice'" class="w-full">
+            <app-blockly-exercise
+              [exercises]="blocklyExercises"
+              [currentExerciseIndex]="currentBlocklyExerciseIndex"
+              (exerciseCompleted)="onExerciseCompleted($event)"
+              (nextExercise)="onNextBlocklyExercise()"
+              (previousExercise)="onPreviousBlocklyExercise()">
+            </app-blockly-exercise>
+          </div>
+
+          <!-- Estado inicial (ninguna sección seleccionada) -->
+          <div *ngIf="!activeSection" class="text-center w-full">
+            <div class="text-6xl mb-4">🎯</div>
+            <h2 class="text-xl font-bold mb-2 text-gray-800">Selecciona una opción</h2>
+            <p class="text-gray-600">Elige entre ejemplos o ejercicios para comenzar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Espacio adicional al final -->
+  <div class="pb-8"></div>
+</div>

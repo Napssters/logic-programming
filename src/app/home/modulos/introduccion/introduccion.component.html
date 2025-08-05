@@ -1,1 +1,136 @@
-<p>introduccion works!</p>
+<!-- Título principal de la página -->
+<div class="text-center mb-6 mt-6">
+  <h1 class="text-3xl font-bold text-gray-800 mb-2 drop-shadow-md">📘 Introducción a la Lógica de Programación</h1>
+  <!-- Separador elegante con gradiente -->
+  <div class="flex items-center justify-center mb-1">
+    <div class="h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent w-96 shadow-sm"></div>
+  </div>
+  <!-- Línea sutil adicional para más profundidad -->
+  <div class="flex items-center justify-center">
+    <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-64 opacity-60"></div>
+  </div>
+</div>
+
+<!-- Contenedor principal sin altura fija -->
+<div class="min-h-screen">
+  <!-- Una sola columna con dos filas -->
+  <div class="flex flex-col gap-6 p-4 mx-8">
+
+    <!-- Primera fila - Sección 1 (ancho completo) -->
+    <div class="bg-gray-500/20 backdrop-blur-md p-6 rounded-lg border border-gray-400/30 shadow-lg">
+      <div class="mb-6">
+        <h2 class="text-xl font-bold mb-3 text-gray-800">🧠 ¿Qué es la Lógica de Programación?</h2>
+        <p class="text-gray-700 leading-relaxed mb-4 text-justify">
+          La lógica de programación es el conjunto de principios, reglas y procesos mentales que se utilizan para resolver problemas mediante instrucciones precisas y ordenadas que una computadora puede entender. Es el fundamento sobre el cual se construyen los programas informáticos.
+        </p>
+      </div>
+
+      <div class="mb-6">
+        <h2 class="text-xl font-bold mb-3 text-gray-800">🧩 ¿Por qué es importante aprender lógica de programación?</h2>
+        <ul class="list-disc list-inside text-gray-700 space-y-2 text-justify">
+          <li>Permite pensar de forma estructurada y ordenada.</li>
+          <li>Facilita el análisis y resolución de problemas.</li>
+          <li>Es esencial para aprender cualquier lenguaje de programación.</li>
+          <li>Desarrolla el pensamiento algorítmico: pensar paso a paso como una máquina.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold mb-4 text-gray-800">🔄 Conceptos Fundamentales y Módulos del Aplicativo</h2>
+        <div class="space-y-3">
+          <div
+            *ngFor="let module of moduleCards"
+            class="p-3 bg-white/70 rounded-md border-l-4 shadow-lg"
+            [style.border-left-color]="module.color">
+            <h3 class="font-bold text-gray-800">{{ module.title }}</h3>
+            <p class="text-sm text-gray-600 text-justify">{{ module.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Segunda fila - Dos columnas (Sección 2 y Sección 3) -->
+    <div class="grid grid-cols-2 gap-6">
+      <!-- Columna 1: Sección 2 - Ejemplos Prácticos -->
+      <div class="bg-gray-500/20 backdrop-blur-md p-6 rounded-lg border border-gray-400/30 shadow-lg flex flex-col">
+        <h2 class="text-xl font-bold mb-5">🍳 Ejemplos Prácticos de Pensamiento Algorítmico</h2>
+
+        <div *ngIf="currentExample" class="flex-1 flex flex-col justify-center space-y-4">
+          <!-- Título del ejemplo actual -->
+          <h3 class="text-lg font-semibold text-blue-600">{{ currentExample.title }}</h3>
+
+          <!-- Descripción del ejemplo -->
+          <p class="text-gray-700 text-justify leading-relaxed">{{ currentExample.description }}</p>
+
+          <!-- Pregunta del ejemplo -->
+          <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+            <p class="text-blue-800 font-medium">{{ currentExample.question }}</p>
+          </div>
+
+          <!-- Navegación entre ejemplos -->
+          <div class="flex justify-between items-center mt-6 pt-4 border-t border-gray-200">
+            <button
+              (click)="previousExample()"
+              [disabled]="!canGoPreviousExample"
+              [class.opacity-50]="!canGoPreviousExample"
+              [class.cursor-not-allowed]="!canGoPreviousExample"
+              class="w-12 h-12 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400"
+              [style.background-color]="canGoPreviousExample ? '#f3ae22' : ''"
+              [style.border-color]="canGoPreviousExample ? '#d18c00' : ''">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+
+            <!-- Contador de ejemplos -->
+            <span class="text-sm text-green-600 font-bold">
+              {{ currentExampleIndex + 1 }} de {{ examples.length }}
+            </span>
+
+            <button
+              (click)="nextExample()"
+              [disabled]="!canGoNextExample"
+              [class.opacity-50]="!canGoNextExample"
+              [class.cursor-not-allowed]="!canGoNextExample"
+              class="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 border-blue-800 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mensaje de carga -->
+        <div *ngIf="!currentExample" class="flex-1 flex items-center justify-center text-gray-500">
+          <p>Cargando ejemplos...</p>
+        </div>
+      </div>
+
+      <!-- Columna 2: Sección 3 - Diagrama de Flujo -->
+      <div class="bg-gray-500/20 backdrop-blur-md p-6 rounded-lg border border-gray-400/30 shadow-lg">
+        <h2 class="text-xl font-bold mb-4 text-gray-800">🔄 Diagrama de Flujo</h2>
+
+        <!-- Contenido del diagrama de flujo -->
+        <div *ngIf="currentExample && currentExampleSteps.length > 0" class="min-h-[400px]">
+          <app-flowchart
+            #flowchartRef
+            [steps]="currentExampleSteps"
+            [title]="currentExample.title">
+          </app-flowchart>
+        </div>
+
+        <!-- Mensaje cuando no hay ejemplo seleccionado -->
+        <div *ngIf="!currentExample" class="text-center text-gray-500 mt-8">
+          <p>Selecciona un ejemplo de la sección anterior para ver su diagrama de flujo</p>
+        </div>
+
+        <!-- Mensaje cuando no hay pasos disponibles -->
+        <div *ngIf="currentExample && currentExampleSteps.length === 0" class="text-center text-gray-500 mt-8">
+          <p>No hay pasos disponibles para este ejemplo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Espacio adicional al final -->
+  <div class="pb-8"></div>
+</div>

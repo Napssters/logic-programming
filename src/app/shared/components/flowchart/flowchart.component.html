@@ -1,0 +1,168 @@
+<div class="flowchart-container w-full h-full flex flex-col">
+  <!-- Área de contenido con scroll (parte superior) -->
+  <div class="flex-1 overflow-y-auto">
+    <!-- Título del diagrama -->
+    <div *ngIf="title" class="text-center mb-4">
+      <h3 class="text-lg font-bold text-gray-800">{{ title }}</h3>
+      <div class="flex items-center justify-center mt-2">
+        <div class="h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent w-64"></div>
+      </div>
+    </div>
+
+    <!-- Diagrama de flujo progresivo -->
+    <div class="flex flex-col items-center space-y-2 pb-6" *ngIf="visibleSteps.length > 0">
+      <div *ngFor="let step of visibleSteps; let i = index" class="flex flex-col items-center step-animation">
+
+        <!-- Conector simple hacia abajo (excepto para el primero) -->
+        <div *ngIf="i > 0" class="w-0.5 h-6 bg-gray-400 mb-2"></div>
+
+        <!-- Paso del diagrama -->
+        <div class="step-container relative">
+          <!-- Paso normal o decisión -->
+          <div *ngIf="!isDecision(step.type)" [class]="getStepClass(step.type)">
+            <div class="flex items-center justify-center space-x-2">
+              <span class="text-lg">{{ getStepIcon(step.type) }}</span>
+              <span class="font-medium">{{ step.text }}</span>
+            </div>
+          </div>
+
+          <!-- Paso de decisión (rombo) -->
+          <div *ngIf="isDecision(step.type)" class="relative py-2">
+            <div class="w-32 h-32 bg-yellow-100 border-2 border-yellow-400 transform rotate-45 flex items-center justify-center mx-auto">
+              <div class="transform -rotate-45 text-center">
+                <div class="text-lg mb-1">{{ getStepIcon(step.type) }}</div>
+                <div class="text-xs font-medium text-yellow-800 leading-tight">{{ step.text }}</div>
+              </div>
+            </div>
+
+            <!-- Etiquetas Sí/No para decisiones -->
+            <div class="absolute -left-8 top-1/2 transform -translate-y-1/2">
+              <span class="text-xs font-bold text-green-600 bg-white px-1 rounded shadow">No</span>
+            </div>
+            <div class="absolute -right-8 top-1/2 transform -translate-y-1/2">
+              <span class="text-xs font-bold text-red-600 bg-white px-1 rounded shadow">Sí</span>
+            </div>
+          </div>
+
+          <!-- Indicador de paso actual -->
+          <div *ngIf="i === currentStepIndex" class="absolute -top-2 -right-2 z-10">
+            <span class="inline-flex items-center justify-center w-6 h-6 bg-green-500 text-white text-xs font-bold rounded-full animate-pulse">
+              ▶
+            </span>
+          </div>
+        </div>
+
+        <!-- Indicador de continuación si hay más pasos -->
+        <div *ngIf="i === visibleSteps.length - 1 && canGoNext" class="flex flex-col items-center">
+          <div class="w-0.5 h-4 bg-gray-300 opacity-50"></div>
+          <div class="w-6 h-6 border-2 border-dashed border-gray-400 rounded-full flex items-center justify-center">
+            <span class="text-gray-400 text-xs animate-pulse">...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensaje de inicio -->
+    <div *ngIf="visibleSteps.length === 0 && steps.length > 0" class="text-center text-gray-500 py-8">
+      <div class="text-6xl mb-4">🚀</div>
+      <p class="text-lg font-medium">¡Comencemos el diagrama de flujo!</p>
+      <p class="text-sm">Presiona "Siguiente" para ver el primer paso</p>
+    </div>
+
+    <!-- Mensaje de finalización -->
+    <div *ngIf="!canGoNext && visibleSteps.length > 0" class="text-center py-4">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+        <div class="text-4xl mb-2">🎉</div>
+        <p class="text-green-800 font-medium">¡Diagrama de flujo completado!</p>
+        <p class="text-green-600 text-sm">Has visualizado todos los pasos del proceso</p>
+      </div>
+    </div>
+
+    <!-- Leyenda -->
+    <div class="mt-6 p-4 bg-gray-50 rounded-lg border">
+      <div class="text-center mb-4">
+        <h4 class="text-sm font-bold text-gray-700 mb-2">Leyenda</h4>
+        <div class="flex items-center justify-center">
+          <div class="h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent w-32"></div>
+        </div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="grid grid-cols-2 gap-x-24 gap-y-3 text-xs max-w-2xl">
+          <div class="flex items-center space-x-2">
+            <div class="w-4 h-4 bg-green-100 border border-green-400 rounded"></div>
+            <span>🟢 Inicio/Fin</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div class="w-4 h-4 bg-blue-100 border border-blue-400 rounded"></div>
+            <span>📦 Proceso</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div class="w-4 h-4 bg-yellow-100 border border-yellow-400 rounded transform rotate-45"></div>
+            <span>🤔 Decisión</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div class="w-4 h-4 bg-green-100 border border-green-400 rounded"></div>
+            <span>✅ Final</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controles de navegación FIJOS en la parte inferior -->
+  <div class="bg-white/90 backdrop-blur-sm p-3 rounded-lg border border-gray-300 shadow-sm mt-1 flex-shrink-0">
+    <!-- Barra de progreso -->
+    <div class="mb-3">
+      <div class="flex justify-between items-center mb-1">
+        <span class="text-xs font-medium text-gray-700">{{ progressText }}</span>
+        <span class="text-xs font-medium text-green-600">{{ progressPercentage }}%</span>
+      </div>
+      <div class="w-full bg-gray-200 rounded-full h-1.5">
+        <div
+          class="bg-gradient-to-r from-blue-500 to-green-500 h-1.5 rounded-full transition-all duration-500 ease-in-out"
+          [style.width.%]="progressPercentage">
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones de navegación -->
+    <div class="flex justify-center items-center space-x-2">
+      <!-- Botón Anterior -->
+      <button
+        (click)="previousStep()"
+        [disabled]="!canGoPrevious"
+        [class.opacity-50]="!canGoPrevious"
+        [class.cursor-not-allowed]="!canGoPrevious"
+        class="w-8 h-8 text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 ease-in-out flex items-center justify-center border disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400"
+        [style.background-color]="canGoPrevious ? '#f3ae22' : ''"
+        [style.border-color]="canGoPrevious ? '#d18c00' : ''">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+
+      <!-- Botón Reiniciar -->
+      <button
+        (click)="resetSteps()"
+        [disabled]="!canReset"
+        [class.opacity-50]="!canReset"
+        [class.cursor-not-allowed]="!canReset"
+        class="px-3 py-1.5 text-xs font-medium text-white bg-gray-500 rounded-md shadow-md hover:shadow-lg transition-all duration-300 ease-in-out disabled:bg-gray-300 disabled:cursor-not-allowed"
+        [class.hover:bg-gray-600]="canReset">
+        🔄 Reiniciar
+      </button>
+
+      <!-- Botón Siguiente -->
+      <button
+        (click)="nextStep()"
+        [disabled]="!canGoNext"
+        [class.opacity-50]="!canGoNext"
+        [class.cursor-not-allowed]="!canGoNext"
+        class="w-8 h-8 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 ease-in-out flex items-center justify-center border border-blue-800 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

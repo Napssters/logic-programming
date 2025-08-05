@@ -6,6 +6,40 @@
 @import '~primeng/resources/primeng.min.css';
 @import '~primeicons/primeicons.css';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  background: radial-gradient(circle, white, #79a8a0);
+  background: radial-gradient(circle, white, #b6d0ff);
+}
+
+/* Estilos globales para Blockly */
+.blocklySvg {
+  background-color: transparent !important;
+}
+
+.blocklyToolboxDiv {
+  background-color: #f8f9fa !important;
+  border-right: 1px solid #dee2e6 !important;
+}
+
+.blocklyFlyout {
+  background-color: #f8f9fa !important;
+}
+
+.blocklyMainBackground {
+  fill: #ffffff !important;
+}
+
+/* Mejoras visuales para los bloques */
+.blocklyPath {
+  stroke-width: 2px;
+}
+
+/* Estilos para el contenedor principal de Blockly */
+.blockly-workspace {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }

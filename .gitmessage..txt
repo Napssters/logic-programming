@@ -1,0 +1,36 @@
+# ===========================
+# Plantilla de Commit para Git
+# ===========================
+# Formato:
+# <tipo>(opcional-alcance): <breve descripción>
+#
+# Tipos comunes:
+#   feat     -> nueva funcionalidad
+#   fix      -> corrección de bug
+#   docs     -> documentación
+#   style    -> cambios de formato (sin alterar lógica)
+#   refactor -> reestructuración de código sin cambiar funcionalidad
+#   perf     -> mejoras de rendimiento
+#   test     -> cambios o adición de tests
+#   build    -> cambios en la configuración o dependencias
+#   ci       -> cambios en la integración continua
+#
+# Ejemplo:
+# feat(auth): agregar autenticación con JWT
+#
+# ===========================
+# Encabezado (máx 50 caracteres)
+<tipo>(<alcance>): <breve descripción>
+
+# ===========================
+# Cuerpo (opcional, máx 72 caracteres por línea)
+# Explica QUÉ y POR QUÉ hiciste el cambio, no el CÓMO.
+# Usa modo imperativo ("Agrega", "Corrige", "Actualiza").
+# Deja una línea en blanco antes de comenzar el cuerpo.
+
+# ===========================
+# Pie (opcional)
+# Incluye referencias a issues/tickets y cambios importantes.
+# Ejemplos:
+# Closes #45
+# BREAKING CHANGE: descripción del cambio que rompe compatibilidad

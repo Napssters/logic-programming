@@ -1,0 +1,89 @@
+/* Estilos para el botón flotante */
+.navigation-float {
+  z-index: 9999;
+}
+
+/* Botón flotante con sombra fuerte */
+.floating-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.floating-btn:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Animaciones para los botones satélite */
+.animate-in {
+  animation: buttonAppear 0.3s ease-out forwards;
+}
+
+@keyframes buttonAppear {
+  0% {
+    transform: scale(0) rotate(180deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(90deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Efecto de pulsación */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), 0 8px 16px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+/* Sombra personalizada para Tailwind */
+.shadow-3xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Efectos de hover para los botones satélite */
+.satellite-btn {
+  transition: all 0.2s ease-in-out;
+}
+
+.satellite-btn:hover {
+  transform: scale(1.15);
+}
+
+/* Líneas de conexión sutiles (opcional) */
+.connection-line {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  height: 2px;
+  width: 20px;
+  transform-origin: center;
+  transition: opacity 0.3s ease;
+}
+
+.connection-line-left {
+  top: 50%;
+  left: -10px;
+  transform: translateY(-50%);
+}
+
+.connection-line-top {
+  left: 50%;
+  bottom: -10px;
+  width: 2px;
+  height: 20px;
+  transform: translateX(-50%);
+}
