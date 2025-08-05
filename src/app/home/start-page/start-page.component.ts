@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavigationService } from '../../shared/services/navigation.service';
 import StartPage from 'src/assets/jsons-base/start-page.json';
 
 @Component({
@@ -12,13 +13,14 @@ export class StartPageComponent implements OnInit {
   cards: any[] = [];
   isFlipped: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private navigationService: NavigationService
+  ) { }
 
   public redirigir(vista: string) {
-    window.location.href = vista;
-  }
-
-  ngOnInit(): void {
+    this.navigationService.navigateTo(vista);
+  }  ngOnInit(): void {
     this.loadData();
   }
 

@@ -28,18 +28,31 @@ function createMainWindow() {
     height,
     show: false,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: false,
+      contextIsolation: true,
+      enableRemoteModule: false,
+      webSecurity: false
     },
     icon: path.join(__dirname, 'icono.ico')
   });
 
   mainWindow.loadFile(path.join(__dirname, 'dist/logic-programming/index.html'));
 
+  // Abrir DevTools en modo desarrollo
+  if (process.env.NODE_ENV === 'development') {
+    mainWindow.webContents.openDevTools();
+  }
+
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();
     if (loadingWindow) {
       loadingWindow.close();
     }
+  });
+
+  // Manejar errores de carga
+  mainWindow.webContents.on('did-fail-load', (event, errorCode, errorDescription) => {
+    console.error('Failed to load:', errorCode, errorDescription);
   });
 
   mainWindow.on('closed', () => {

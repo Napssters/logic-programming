@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Pensamiento de Programador</title>
+  <base href="/logic-programming/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script>
+    // GitHub Pages SPA redirect for /logic-programming/ path
+    var pathSegmentsToKeep = 1;
+    var l = window.location;
+    var redirect = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      '/logic-programming/?/' +
+      l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+      (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+      l.hash;
+    l.replace(redirect);
+  </script>
+</head>
+<body>
+  <p>Redirecting to Logic Programming app...</p>
+</body>
+</html>

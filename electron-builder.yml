@@ -7,16 +7,24 @@ files:
   - loading.html
   - icono.ico
 
-extraResources:
-  - from: dist/logic-programming
-    to: resources/app
-
 appId: com.logic-programming.electron
-productName: logic-programming
+productName: "Logic Programming"
 
 win:
-  target: nsis
+  target:
+    - target: nsis
+      arch: [x64]
   icon: icono.ico
+  artifactName: "${productName}-Setup-${version}.${ext}"
+
+# Disable code signing to avoid Windows permission errors
+sign: null
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
 
 nodeGypRebuild: false
 npmRebuild: false
