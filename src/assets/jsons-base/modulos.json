@@ -240,5 +240,109 @@
         ]
       }
     ]
+  },
+  "condicionales": {
+    "examples": [
+      {
+        "title": "Ejemplo 1: Carlos y el parque",
+        "description": "Carlos quiere ir al parque. Antes de salir, mira por la ventana: si está lloviendo, se queda en casa; si no llueve, sale a caminar.",
+        "question": "👉 ¿Qué condición debe evaluar Carlos antes de salir?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Carlos quiere ir al parque", "type": "process" },
+          { "id": 3, "text": "Mirar por la ventana", "type": "process" },
+          { "id": 4, "text": "¿Está lloviendo?", "type": "decision" },
+          { "id": 5, "text": "Quedarse en casa", "type": "process" },
+          { "id": 6, "text": "Salir a caminar al parque", "type": "process" },
+          { "id": 7, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 2: Ana en la tienda",
+        "description": "Ana está en una tienda de ropa. Si el vestido que quiere está en su talla, lo compra; si no, busca otra prenda.",
+        "question": "👉 ¿Cuál es la condición que determina si Ana compra el vestido?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Ana encuentra un vestido", "type": "process" },
+          { "id": 3, "text": "Revisar la etiqueta", "type": "process" },
+          { "id": 4, "text": "¿Está en su talla?", "type": "decision" },
+          { "id": 5, "text": "Comprar el vestido", "type": "process" },
+          { "id": 6, "text": "Buscar otra prenda", "type": "process" },
+          { "id": 7, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 3: Luis en bicicleta",
+        "description": "Luis va en bicicleta. Si el semáforo está en verde, sigue pedaleando; si está en rojo, se detiene.",
+        "question": "👉 ¿Qué condición está revisando Luis mientras maneja?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Luis va en bicicleta", "type": "process" },
+          { "id": 3, "text": "Llegar al semáforo", "type": "process" },
+          { "id": 4, "text": "¿El semáforo está en verde?", "type": "decision" },
+          { "id": 5, "text": "Seguir pedaleando", "type": "process" },
+          { "id": 6, "text": "Detenerse", "type": "process" },
+          { "id": 7, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 4: Sofía preparando té",
+        "description": "Sofía quiere preparar té. Si el agua está caliente, agrega la bolsa de té; si no, enciende la estufa para calentarla.",
+        "question": "👉 ¿Qué está evaluando Sofía antes de agregar la bolsa de té?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Sofía quiere preparar té", "type": "process" },
+          { "id": 3, "text": "Revisar el agua", "type": "process" },
+          { "id": 4, "text": "¿El agua está caliente?", "type": "decision" },
+          { "id": 5, "text": "Agregar la bolsa de té", "type": "process" },
+          { "id": 6, "text": "Encender la estufa", "type": "process" },
+          { "id": 7, "text": "Esperar que se caliente", "type": "process" },
+          { "id": 8, "text": "Agregar la bolsa de té", "type": "process" },
+          { "id": 9, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 5: Pedro y la reunión",
+        "description": "Pedro tiene una reunión en línea. Si la hora es la correcta, se conecta; si no, sigue trabajando en otro proyecto.",
+        "question": "👉 ¿Qué condición le indica a Pedro que debe conectarse?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Pedro revisa su calendario", "type": "process" },
+          { "id": 3, "text": "Mirar la hora actual", "type": "process" },
+          { "id": 4, "text": "¿Es la hora de la reunión?", "type": "decision" },
+          { "id": 5, "text": "Conectarse a la reunión", "type": "process" },
+          { "id": 6, "text": "Seguir trabajando en otro proyecto", "type": "process" },
+          { "id": 7, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 6: Mariana y la comida",
+        "description": "Mariana tiene hambre. Si hay pan, hace un sándwich; si no hay, prepara cereal.",
+        "question": "👉 ¿Qué está comprobando Mariana antes de decidir qué comer?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Mariana tiene hambre", "type": "process" },
+          { "id": 3, "text": "Revisar la despensa", "type": "process" },
+          { "id": 4, "text": "¿Hay pan disponible?", "type": "decision" },
+          { "id": 5, "text": "Hacer un sándwich", "type": "process" },
+          { "id": 6, "text": "Preparar cereal", "type": "process" },
+          { "id": 7, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 7: Javier jugando videojuego",
+        "description": "Javier está jugando un videojuego. Si la vida de su personaje es mayor a 0, sigue jugando; si llega a 0, la partida termina.",
+        "question": "👉 ¿Cuál es la condición que indica que Javier ha perdido?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Javier está jugando", "type": "process" },
+          { "id": 3, "text": "Revisar vida del personaje", "type": "process" },
+          { "id": 4, "text": "¿Vida > 0?", "type": "decision" },
+          { "id": 5, "text": "Seguir jugando", "type": "process" },
+          { "id": 6, "text": "La partida termina (Game Over)", "type": "process" },
+          { "id": 7, "text": "Fin", "type": "end" }
+        ]
+      }
+    ]
   }
 }

@@ -1,1 +1,129 @@
-<p>condicionales works</p>
+<!-- Título principal de la página -->
+<div class="text-center mb-6 mt-6">
+  <h1 class="text-3xl font-bold text-gray-800 mb-2 drop-shadow-md">🔀 Estructuras Condicionales</h1>
+  <!-- Separador elegante con gradiente -->
+  <div class="flex items-center justify-center mb-1">
+    <div class="h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent w-96 shadow-sm"></div>
+  </div>
+  <!-- Línea sutil adicional para más profundidad -->
+  <div class="flex items-center justify-center">
+    <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-64 opacity-60"></div>
+  </div>
+</div>
+
+<!-- Contenedor principal sin altura fija -->
+<div class="min-h-screen">
+  <!-- Una sola columna con dos filas -->
+  <div class="flex flex-col gap-6 p-4 mx-8">
+
+    <!-- Primera fila - Sección 1 (ancho completo) -->
+    <div class="bg-gray-500/20 backdrop-blur-md p-6 rounded-lg border border-gray-400/30 shadow-lg">
+      <div class="mb-6">
+        <h2 class="text-xl font-bold mb-3 text-gray-800">🤔 ¿Qué son las Estructuras Condicionales?</h2>
+        <p class="text-gray-700 leading-relaxed mb-4 text-justify">
+          Las estructuras condicionales son construcciones de programación que permiten que un programa tome decisiones y ejecute diferentes bloques de código según se cumplan o no ciertas condiciones. Son fundamentales para crear programas que puedan responder a diferentes situaciones y datos de entrada.
+        </p>
+      </div>
+
+      <div class="mb-6">
+        <h2 class="text-xl font-bold mb-3 text-gray-800">📋 Tipos de Estructuras Condicionales:</h2>
+        <ul class="list-disc list-inside text-gray-700 space-y-2 text-justify">
+          <li><strong>Condicional Simple (if):</strong> Ejecuta un bloque de código solo si se cumple una condición.</li>
+          <li><strong>Condicional Doble (if-else):</strong> Ejecuta un bloque si se cumple la condición, y otro diferente si no se cumple.</li>
+          <li><strong>Condicional Múltiple (if-else if-else):</strong> Permite evaluar múltiples condiciones en secuencia.</li>
+          <li><strong>Condicional Anidado:</strong> Estructuras condicionales dentro de otras estructuras condicionales.</li>
+        </ul>
+      </div>
+
+      <div class="mb-6">
+        <h2 class="text-xl font-bold mb-3 text-gray-800">🎯 Importancia en la Programación:</h2>
+        <p class="text-gray-700 leading-relaxed mb-4 text-justify">
+          Las estructuras condicionales son esenciales porque permiten crear programas inteligentes que pueden:
+        </p>
+        <ul class="list-disc list-inside text-gray-700 space-y-2 text-justify ml-4">
+          <li>Tomar decisiones automáticamente basadas en datos</li>
+          <li>Validar información ingresada por el usuario</li>
+          <li>Controlar el flujo de ejecución del programa</li>
+          <li>Manejar diferentes escenarios y casos especiales</li>
+          <li>Crear lógica compleja mediante combinación de condiciones</li>
+        </ul>
+      </div>
+
+      <div class="mb-6">
+        <h2 class="text-xl font-bold mb-3 text-gray-800">⚡ Operadores de Comparación Comunes:</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-white/50 p-3 rounded border">
+            <code class="text-blue-600 font-semibold">==</code> <span class="text-gray-700">Igual a</span>
+          </div>
+          <div class="bg-white/50 p-3 rounded border">
+            <code class="text-blue-600 font-semibold">!=</code> <span class="text-gray-700">Diferente de</span>
+          </div>
+          <div class="bg-white/50 p-3 rounded border">
+            <code class="text-blue-600 font-semibold">&lt;</code> <span class="text-gray-700">Menor que</span>
+          </div>
+          <div class="bg-white/50 p-3 rounded border">
+            <code class="text-blue-600 font-semibold">&gt;</code> <span class="text-gray-700">Mayor que</span>
+          </div>
+          <div class="bg-white/50 p-3 rounded border">
+            <code class="text-blue-600 font-semibold">&lt;=</code> <span class="text-gray-700">Menor o igual</span>
+          </div>
+          <div class="bg-white/50 p-3 rounded border">
+            <code class="text-blue-600 font-semibold">&gt;=</code> <span class="text-gray-700">Mayor o igual</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Segunda fila - Sección 2 (ancho completo) -->
+    <div class="bg-gray-500/20 backdrop-blur-md p-6 rounded-lg border border-gray-400/30 shadow-lg">
+      <h2 class="text-xl font-bold mb-4 text-gray-800">🧪 Ejemplos Dinámicos</h2>
+      <p class="text-gray-700 mb-6 text-justify">
+        A continuación encontrarás ejemplos interactivos que demuestran cómo funcionan las estructuras condicionales en situaciones cotidianas.
+        Cada ejemplo incluye un diagrama de flujo que puedes visualizar paso a paso.
+      </p>
+
+      <!-- Contenedor de ejemplos con scroll horizontal -->
+      <div class="overflow-x-auto">
+        <div class="flex gap-6 pb-4" style="min-width: max-content;">
+
+          <!-- Generar tarjetas dinámicamente desde el JSON -->
+          <div *ngFor="let example of examples"
+               class="bg-white/60 backdrop-blur-sm p-6 rounded-lg shadow-md border border-gray-300/50 flex flex-col flex-shrink-0"
+               style="width: 300px; height: 300px;">
+
+            <!-- Contenido de la tarjeta -->
+            <div class="flex-grow overflow-hidden">
+              <h3 class="font-bold text-lg text-gray-800 mb-3 line-clamp-2 flex items-center">
+                <span class="text-2xl mr-2">{{ getIconForExample(example.title) }}</span>
+                {{ getCleanTitle(example.title) }}
+              </h3>
+              <p class="text-sm text-gray-600 text-justify mb-4 line-clamp-3">
+                {{ example.description }}
+              </p>
+            </div>
+
+            <!-- Pregunta del ejemplo - ahora abajo también -->
+            <div class="mb-4 p-2 bg-blue-50 rounded border-l-4 border-blue-400">
+              <p class="text-blue-800 text-xs font-medium line-clamp-2">{{ example.question }}</p>
+            </div>
+
+            <!-- Botón siempre en la parte inferior -->
+            <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition-colors duration-200 text-sm font-medium">
+              🚀 Ver Diagrama de Flujo
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Nota informativa -->
+      <div class="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <p class="text-blue-800 text-sm">
+          <strong>💡 Consejo:</strong> Las estructuras condicionales son la base para crear programas que tomen decisiones inteligentes.
+          Observa cómo cada ejemplo evalúa una condición y toma diferentes caminos según el resultado.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
