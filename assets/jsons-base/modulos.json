@@ -1,0 +1,244 @@
+{
+  "introduccion": {
+    "examples": [
+      {
+        "title": "Ejemplo 1: Hervir un huevo",
+        "description": "Juan se despertó temprano para ir al trabajo. Al sentir hambre, fue a la cocina y decidió hervir un huevo para acompañar su desayuno rápido.",
+        "question": "👉 ¿Qué debe hacer Juan para poner a hervir su huevo?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Llenar una olla con agua", "type": "process" },
+          { "id": 3, "text": "Poner la olla al fuego", "type": "process" },
+          { "id": 4, "text": "¿El agua está hirviendo?", "type": "decision" },
+          { "id": 5, "text": "Esperar", "type": "process" },
+          { "id": 6, "text": "Agregar el huevo con cuidado", "type": "process" },
+          { "id": 7, "text": "Cocinar por 8-10 minutos", "type": "process" },
+          { "id": 8, "text": "Retirar el huevo", "type": "process" },
+          { "id": 9, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 2: Preparar café con leche",
+        "description": "Lucía estaba estudiando para sus exámenes y sintió sueño. Fue a la cocina y preparó una taza de café con leche para mantenerse despierta y seguir concentrada.",
+        "question": "👉 ¿Qué pasos debe seguir Lucía para preparar su café con leche?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Hervir agua", "type": "process" },
+          { "id": 3, "text": "Agregar café a la taza", "type": "process" },
+          { "id": 4, "text": "Verter agua caliente", "type": "process" },
+          { "id": 5, "text": "Calentar leche", "type": "process" },
+          { "id": 6, "text": "Agregar leche al café", "type": "process" },
+          { "id": 7, "text": "¿Necesita azúcar?", "type": "decision" },
+          { "id": 8, "text": "Agregar azúcar", "type": "process" },
+          { "id": 9, "text": "Revolver", "type": "process" },
+          { "id": 10, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 3: Hacer una tostada",
+        "description": "Camilo no tenía mucho tiempo antes de salir a clase, así que tomó una rebanada de pan, la puso en la tostadora y luego le untó mantequilla para un desayuno rápido.",
+        "question": "👉 ¿Cómo puede Camilo preparar su tostada paso a paso?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Tomar una rebanada de pan", "type": "process" },
+          { "id": 3, "text": "Poner el pan en la tostadora", "type": "process" },
+          { "id": 4, "text": "Seleccionar nivel de tostado", "type": "process" },
+          { "id": 5, "text": "Encender la tostadora", "type": "process" },
+          { "id": 6, "text": "¿Está listo el pan?", "type": "decision" },
+          { "id": 7, "text": "Esperar", "type": "process" },
+          { "id": 8, "text": "Retirar el pan tostado", "type": "process" },
+          { "id": 9, "text": "Untar mantequilla", "type": "process" },
+          { "id": 10, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 4: Servir cereal con leche",
+        "description": "Martina se levantó tarde un domingo. No quería cocinar, así que simplemente sirvió cereal en un tazón y le agregó leche fría para desayunar mientras veía televisión.",
+        "question": "👉 ¿Qué pasos necesita seguir Martina para servir su cereal con leche?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Tomar un tazón", "type": "process" },
+          { "id": 3, "text": "Servir cereal en el tazón", "type": "process" },
+          { "id": 4, "text": "Abrir el cartón de leche", "type": "process" },
+          { "id": 5, "text": "Verter leche sobre el cereal", "type": "process" },
+          { "id": 6, "text": "¿Suficiente leche?", "type": "decision" },
+          { "id": 7, "text": "Agregar más leche", "type": "process" },
+          { "id": 8, "text": "Tomar una cuchara", "type": "process" },
+          { "id": 9, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 5: Cocinar pasta con salsa",
+        "description": "Daniel llegó cansado del trabajo y tenía mucha hambre. Abrió la despensa, encontró un paquete de pasta y decidió cocinarla con salsa de tomate para cenar.",
+        "question": "👉 ¿Qué debe hacer Daniel para preparar su pasta con salsa?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Llenar una olla con agua", "type": "process" },
+          { "id": 3, "text": "Agregar sal al agua", "type": "process" },
+          { "id": 4, "text": "Poner la olla al fuego", "type": "process" },
+          { "id": 5, "text": "¿El agua está hirviendo?", "type": "decision" },
+          { "id": 6, "text": "Esperar", "type": "process" },
+          { "id": 7, "text": "Agregar la pasta", "type": "process" },
+          { "id": 8, "text": "Cocinar según tiempo del paquete", "type": "process" },
+          { "id": 9, "text": "Escurrir la pasta", "type": "process" },
+          { "id": 10, "text": "Agregar salsa de tomate", "type": "process" },
+          { "id": 11, "text": "Mezclar", "type": "process" },
+          { "id": 12, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 6: Preparar limonada",
+        "description": "Sofía estaba en casa con calor y sed. Fue al refrigerador, sacó limones, agua y azúcar, y preparó una limonada bien fría para refrescarse en la tarde.",
+        "question": "👉 ¿Qué pasos debe seguir Sofía para preparar una limonada refrescante?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Tomar los limones", "type": "process" },
+          { "id": 3, "text": "Lavar los limones", "type": "process" },
+          { "id": 4, "text": "Cortar los limones por la mitad", "type": "process" },
+          { "id": 5, "text": "Exprimir el jugo", "type": "process" },
+          { "id": 6, "text": "Agregar agua fría", "type": "process" },
+          { "id": 7, "text": "Agregar azúcar", "type": "process" },
+          { "id": 8, "text": "¿Está dulce?", "type": "decision" },
+          { "id": 9, "text": "Agregar más azúcar", "type": "process" },
+          { "id": 10, "text": "Revolver bien", "type": "process" },
+          { "id": 11, "text": "Agregar hielo", "type": "process" },
+          { "id": 12, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 7: Freír un huevo",
+        "description": "Sebastián quería algo rápido antes de salir al gimnasio. Rompió un huevo sobre el sartén caliente, le echó sal y lo frió mientras se ponía los tenis.",
+        "question": "👉 ¿Qué acciones realiza Sebastián para freír un huevo correctamente?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Poner el sartén al fuego", "type": "process" },
+          { "id": 3, "text": "Agregar aceite o mantequilla", "type": "process" },
+          { "id": 4, "text": "¿El sartén está caliente?", "type": "decision" },
+          { "id": 5, "text": "Esperar", "type": "process" },
+          { "id": 6, "text": "Romper el huevo en el sartén", "type": "process" },
+          { "id": 7, "text": "Agregar sal y pimienta", "type": "process" },
+          { "id": 8, "text": "Cocinar hasta que cuaje", "type": "process" },
+          { "id": 9, "text": "Retirar del fuego", "type": "process" },
+          { "id": 10, "text": "Fin", "type": "end" }
+        ]
+      }
+    ]
+  },
+  "variables": {
+    "examples": [
+      {
+        "title": "Ejemplo 1: Invitados a la fiesta",
+        "description": "Pedro está organizando una fiesta y necesita saber cuántas personas confirmaron su asistencia. Abre su libreta y escribe el número 25 para recordarlo.",
+        "question": "👉 Si este dato fuera una variable, ¿cómo se llamaría y qué valor tendría?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Pedro organiza una fiesta", "type": "process" },
+          { "id": 3, "text": "Necesita contar invitados", "type": "process" },
+          { "id": 4, "text": "Crear variable: invitadosConfirmados", "type": "process" },
+          { "id": 5, "text": "Asignar valor: invitadosConfirmados = 25", "type": "process" },
+          { "id": 6, "text": "Anotar en la libreta", "type": "process" },
+          { "id": 7, "text": "Variable creada correctamente", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 2: Precio del pan",
+        "description": "Mariana fue a la tienda a comprar pan. El precio total fue de 8.75 pesos, así que lo anotó en su lista de gastos del día.",
+        "question": "👉 ¿Qué nombre le pondrías a esta variable para guardar el precio y qué tipo de número es?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Mariana va a comprar pan", "type": "process" },
+          { "id": 3, "text": "El precio es 8.75 pesos", "type": "process" },
+          { "id": 4, "text": "¿Es número entero o decimal?", "type": "decision" },
+          { "id": 5, "text": "Es decimal (tiene punto)", "type": "process" },
+          { "id": 6, "text": "Crear variable: precioPan", "type": "process" },
+          { "id": 7, "text": "Asignar valor: precioPan = 8.75", "type": "process" },
+          { "id": 8, "text": "Anotar en lista de gastos", "type": "process" },
+          { "id": 9, "text": "Variable decimal creada", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 3: Nombre completo",
+        "description": "Andrés llenó un formulario en línea y escribió su nombre completo: \"Andrés Gómez Ramírez\" en el campo correspondiente.",
+        "question": "👉 Si su nombre se guarda como variable, ¿cuál sería su contenido?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Andrés llena formulario", "type": "process" },
+          { "id": 3, "text": "Campo: Nombre completo", "type": "process" },
+          { "id": 4, "text": "¿Qué tipo de dato es?", "type": "decision" },
+          { "id": 5, "text": "Es texto (cadena de caracteres)", "type": "process" },
+          { "id": 6, "text": "Crear variable: nombreCompleto", "type": "process" },
+          { "id": 7, "text": "Asignar: nombreCompleto = \"Andrés Gómez Ramírez\"", "type": "process" },
+          { "id": 8, "text": "Guardar en formulario", "type": "process" },
+          { "id": 9, "text": "Variable de texto creada", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 4: Descuento activo",
+        "description": "Clara inició sesión en una aplicación de compras. Como tiene una suscripción activa, el sistema marcó su cuenta con \"true\" en la opción tieneDescuento.",
+        "question": "👉 ¿Qué pasaría con esta variable si su suscripción caducara?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Clara inicia sesión", "type": "process" },
+          { "id": 3, "text": "¿Tiene suscripción activa?", "type": "decision" },
+          { "id": 4, "text": "Sí, tiene suscripción", "type": "process" },
+          { "id": 5, "text": "Crear variable: tieneDescuento", "type": "process" },
+          { "id": 6, "text": "Asignar: tieneDescuento = true", "type": "process" },
+          { "id": 7, "text": "¿Caduca la suscripción?", "type": "decision" },
+          { "id": 8, "text": "Cambiar: tieneDescuento = false", "type": "process" },
+          { "id": 9, "text": "Variable booleana actualizada", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 5: Foto de perfil",
+        "description": "Laura cambió su foto de perfil en redes sociales. La nueva imagen quedó guardada en su cuenta para que todos sus amigos la vean.",
+        "question": "👉 ¿Cómo llamarías a la variable que guarda esa foto?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Laura abre redes sociales", "type": "process" },
+          { "id": 3, "text": "Selecciona nueva foto", "type": "process" },
+          { "id": 4, "text": "¿Qué tipo de dato es una imagen?", "type": "decision" },
+          { "id": 5, "text": "Es un archivo/objeto", "type": "process" },
+          { "id": 6, "text": "Crear variable: fotoPerfil", "type": "process" },
+          { "id": 7, "text": "Asignar: fotoPerfil = nueva_imagen.jpg", "type": "process" },
+          { "id": 8, "text": "Guardar en el servidor", "type": "process" },
+          { "id": 9, "text": "Variable de imagen creada", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 6: Perfil de Miguel",
+        "description": "Miguel creó un perfil en una aplicación de música. Su usuario guarda: nombre = \"Miguel Torres\", edad = 20, esPremium = true, y fotoPerfil = 📷",
+        "question": "👉 ¿Qué tipo de variable es cada dato que Miguel tiene guardado?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Miguel crea perfil musical", "type": "process" },
+          { "id": 3, "text": "Crear: nombre = \"Miguel Torres\"", "type": "process" },
+          { "id": 4, "text": "Tipo: texto/cadena", "type": "process" },
+          { "id": 5, "text": "Crear: edad = 20", "type": "process" },
+          { "id": 6, "text": "Tipo: número entero", "type": "process" },
+          { "id": 7, "text": "Crear: esPremium = true", "type": "process" },
+          { "id": 8, "text": "Tipo: booleano", "type": "process" },
+          { "id": 9, "text": "Crear: fotoPerfil = 📷", "type": "process" },
+          { "id": 10, "text": "Tipo: imagen/archivo", "type": "process" },
+          { "id": 11, "text": "Perfil completo con múltiples tipos", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 7: Vidas en el juego",
+        "description": "Sofía comenzó un juego con 3 vidas. Al perder contra el jefe final, su variable vidas pasó de 3 a 2.",
+        "question": "👉 ¿Qué significa que el valor de la variable vidas haya cambiado?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Sofía inicia el juego", "type": "process" },
+          { "id": 3, "text": "Crear variable: vidas = 3", "type": "process" },
+          { "id": 4, "text": "Jugar normalmente", "type": "process" },
+          { "id": 5, "text": "¿Perdió contra el jefe?", "type": "decision" },
+          { "id": 6, "text": "Sí, perdió", "type": "process" },
+          { "id": 7, "text": "Actualizar: vidas = vidas - 1", "type": "process" },
+          { "id": 8, "text": "Nuevo valor: vidas = 2", "type": "process" },
+          { "id": 9, "text": "La variable cambió su valor", "type": "process" },
+          { "id": 10, "text": "Eso es ser \"variable\"", "type": "end" }
+        ]
+      }
+    ]
+  }
+}
