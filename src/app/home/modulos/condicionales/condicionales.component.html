@@ -1,4 +1,4 @@
-<!-- Título principal de la página -->
+<!-- Título principal        <h2 cla          <        <h2 class="text-xl font-bold mb-5 text-gray-800">🎓 ¿Por qué se llaman "condicionales"?</h2>3 class="text-lg font-semibold text-teal-600 mb-2">🔧 Elementos fundamentales de una estructura condicional</h3>s="text-xl font-bold mb-3 text-gray-800">🧠 ¿Qué es una estructura condicional?</h2>de la página -->
 <div class="text-center mb-6 mt-6">
   <h1 class="text-3xl font-bold text-gray-800 mb-2 drop-shadow-md">🔀 Estructuras Condicionales</h1>
   <!-- Separador elegante con gradiente -->
@@ -19,56 +19,99 @@
     <!-- Primera fila - Sección 1 (ancho completo) -->
     <div class="bg-gray-500/20 backdrop-blur-md p-6 rounded-lg border border-gray-400/30 shadow-lg">
       <div class="mb-6">
-        <h2 class="text-xl font-bold mb-3 text-gray-800">🤔 ¿Qué son las Estructuras Condicionales?</h2>
+        <h2 class="text-xl font-bold mb-3 text-gray-800">🧠 ¿Qué es una estructura condicional?</h2>
         <p class="text-gray-700 leading-relaxed mb-4 text-justify">
-          Las estructuras condicionales son construcciones de programación que permiten que un programa tome decisiones y ejecute diferentes bloques de código según se cumplan o no ciertas condiciones. Son fundamentales para crear programas que puedan responder a diferentes situaciones y datos de entrada.
+          En programación, una estructura condicional es una instrucción que permite que el programa tome decisiones dependiendo de si una condición es verdadera o falsa.
         </p>
-      </div>
-
-      <div class="mb-6">
-        <h2 class="text-xl font-bold mb-3 text-gray-800">📋 Tipos de Estructuras Condicionales:</h2>
-        <ul class="list-disc list-inside text-gray-700 space-y-2 text-justify">
-          <li><strong>Condicional Simple (if):</strong> Ejecuta un bloque de código solo si se cumple una condición.</li>
-          <li><strong>Condicional Doble (if-else):</strong> Ejecuta un bloque si se cumple la condición, y otro diferente si no se cumple.</li>
-          <li><strong>Condicional Múltiple (if-else if-else):</strong> Permite evaluar múltiples condiciones en secuencia.</li>
-          <li><strong>Condicional Anidado:</strong> Estructuras condicionales dentro de otras estructuras condicionales.</li>
-        </ul>
-      </div>
-
-      <div class="mb-6">
-        <h2 class="text-xl font-bold mb-3 text-gray-800">🎯 Importancia en la Programación:</h2>
         <p class="text-gray-700 leading-relaxed mb-4 text-justify">
-          Las estructuras condicionales son esenciales porque permiten crear programas inteligentes que pueden:
+          Es como si el programa se encontrara con una pregunta y, según la respuesta, siguiera un camino u otro.
         </p>
-        <ul class="list-disc list-inside text-gray-700 space-y-2 text-justify ml-4">
-          <li>Tomar decisiones automáticamente basadas en datos</li>
-          <li>Validar información ingresada por el usuario</li>
-          <li>Controlar el flujo de ejecución del programa</li>
-          <li>Manejar diferentes escenarios y casos especiales</li>
-          <li>Crear lógica compleja mediante combinación de condiciones</li>
-        </ul>
+        <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-400 mb-4">
+          <p class="text-blue-800 text-sm font-medium mb-2"><strong>Ejemplo:</strong></p>
+          <p class="text-gray-700 text-sm">Si tienes hambre → comes.</p>
+          <p class="text-gray-700 text-sm">Si no tienes hambre → no comes.</p>
+        </div>
       </div>
 
       <div class="mb-6">
-        <h2 class="text-xl font-bold mb-3 text-gray-800">⚡ Operadores de Comparación Comunes:</h2>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="bg-white/50 p-3 rounded border">
-            <code class="text-blue-600 font-semibold">==</code> <span class="text-gray-700">Igual a</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Elementos fundamentales en caja de color -->
+          <div class="p-4 bg-teal-50 rounded-lg border-l-4 border-teal-400">
+            <h3 class="text-lg font-semibold text-teal-600 mb-2">🔧 Elementos fundamentales de una estructura condicional</h3>
+            <div class="bg-white p-3 rounded border text-sm space-y-2">
+              <div><span class="text-teal-600 font-semibold">• Condición:</span> Es una comparación o evaluación que puede dar como resultado verdadero o falso. Ejemplo: edad >= 18 (¿Es la edad mayor o igual a 18?)</div>
+              <div><span class="text-teal-600 font-semibold">• Bloque verdadero:</span> Son las instrucciones que se ejecutan si la condición se cumple (es verdadera).</div>
+              <div><span class="text-teal-600 font-semibold">• Bloque falso:</span> Son las instrucciones que se ejecutan si la condición no se cumple (es falsa).</div>
+              <div><span class="text-teal-600 font-semibold">• Camino alternativo:</span> Algunas estructuras condicionales permiten evaluar más de una condición con else if o condicionales anidados.</div>
+            </div>
           </div>
-          <div class="bg-white/50 p-3 rounded border">
-            <code class="text-blue-600 font-semibold">!=</code> <span class="text-gray-700">Diferente de</span>
+
+          <!-- Por qué condicionales -->
+          <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+            <h3 class="text-lg font-semibold text-blue-600 mb-2">🎓 ¿Por qué se llaman "condicionales"?</h3>
+            <p class="text-gray-700 text-justify mb-3">
+              Porque la ejecución del código depende de una condición que se debe cumplir.
+              Si la condición es verdadera, el programa hace una cosa.
+              Si es falsa, hace otra o no hace nada.
+            </p>
+            <h4 class="text-md font-semibold text-blue-600 mb-2">📍 Ejemplo en la vida real</h4>
+            <div class="bg-white p-3 rounded border text-sm">
+              <p class="text-gray-700 mb-2">Si en el semáforo hay luz verde → avanzas.</p>
+              <p class="text-gray-700">Si no hay luz verde (amarilla o roja) → te detienes o esperas.</p>
+            </div>
           </div>
-          <div class="bg-white/50 p-3 rounded border">
-            <code class="text-blue-600 font-semibold">&lt;</code> <span class="text-gray-700">Menor que</span>
+
+          <!-- Metáfora -->
+          <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-400">
+            <h3 class="text-lg font-semibold text-purple-600 mb-2">📦 Metáfora: Camino con bifurcaciones</h3>
+            <p class="text-gray-700 text-justify mb-3">
+              Imagina que vas caminando y llegas a una bifurcación con dos letreros:
+            </p>
+            <div class="bg-white p-3 rounded border text-sm space-y-1">
+              <p class="text-gray-700">Uno dice "Si está soleado → sigue por aquí hacia el parque".</p>
+              <p class="text-gray-700">Otro dice "Si está lloviendo → sigue por aquí hacia el café".</p>
+              <p class="text-gray-700 mt-2">En ese punto, observas el clima (condición) y tomas el camino según el resultado.
+              El programa hace exactamente lo mismo: evalúa la condición y ejecuta la ruta de instrucciones correspondiente.</p>
+            </div>
           </div>
-          <div class="bg-white/50 p-3 rounded border">
-            <code class="text-blue-600 font-semibold">&gt;</code> <span class="text-gray-700">Mayor que</span>
+
+          <!-- Dónde se usan -->
+          <div class="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-400">
+            <h3 class="text-lg font-semibold text-orange-600 mb-2">🖥 ¿Dónde se usan los condicionales?</h3>
+            <p class="text-gray-700 text-justify mb-3">
+              Los condicionales están en casi todo tipo de programa:
+            </p>
+            <div class="bg-white p-3 rounded border text-sm">
+              • Para verificar permisos de acceso.<br>
+              • Para decidir si un usuario ve cierta información.<br>
+              • Para ejecutar una acción solo si hay datos disponibles.<br>
+              • Para determinar qué mensaje mostrar dependiendo de una respuesta.<br>
+              • Para controlar el flujo de un videojuego (ganar, perder, seguir).
+            </div>
           </div>
-          <div class="bg-white/50 p-3 rounded border">
-            <code class="text-blue-600 font-semibold">&lt;=</code> <span class="text-gray-700">Menor o igual</span>
+
+          <!-- Importancia -->
+          <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
+            <h3 class="text-lg font-semibold text-red-600 mb-2">🧠 Importancia de las estructuras condicionales</h3>
+            <p class="text-gray-700 text-justify mb-3">
+              Las estructuras condicionales son esenciales porque:
+            </p>
+            <div class="bg-white p-3 rounded border text-sm">
+              • Permiten adaptar el comportamiento del programa a diferentes situaciones.<br>
+              • Son la base para tomar decisiones complejas.<br>
+              • Combinadas con variables, bucles y funciones, hacen que el programa sea flexible e interactivo.
+            </div>
           </div>
-          <div class="bg-white/50 p-3 rounded border">
-            <code class="text-blue-600 font-semibold">&gt;=</code> <span class="text-gray-700">Mayor o igual</span>
+
+          <!-- Curiosidades -->
+          <div class="p-4 bg-indigo-50 rounded-lg border-l-4 border-indigo-400">
+            <h3 class="text-lg font-semibold text-indigo-600 mb-2">🧪 Curiosidades</h3>
+            <p class="text-gray-700 text-justify mb-3">
+              Algunos lenguajes permiten condicionales en una sola línea, como en Python:
+            </p>
+            <div class="bg-white p-3 rounded border font-mono text-sm">
+              <span class="text-blue-600">mensaje</span> = <span class="text-red-600">"Mayor de edad"</span> <span class="text-purple-600">if</span> edad >= <span class="text-green-600">18</span> <span class="text-purple-600">else</span> <span class="text-red-600">"Menor de edad"</span>
+            </div>
           </div>
         </div>
       </div>
