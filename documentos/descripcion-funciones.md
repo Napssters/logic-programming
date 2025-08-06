@@ -1,0 +1,1 @@
+Logic Programming es una aplicación educativa de escritorio que integra teoría, ejemplos y ejercicios interactivos con bloques visuales para facilitar el aprendizaje de lógica de programación. Permite avanzar de lo conceptual a lo práctico, adaptándose a distintos niveles y estilos de usuario.

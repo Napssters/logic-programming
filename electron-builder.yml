@@ -5,7 +5,7 @@ files:
   - dist/logic-programming/**/*
   - main.js
   - loading.html
-  - icono.ico
+  - icono-logic-programing.ico
 
 appId: com.logic-programming.electron
 productName: "Logic Programming"
@@ -14,11 +14,9 @@ win:
   target:
     - target: nsis
       arch: [x64]
-  icon: icono.ico
+  icon: icono-logic-programing.ico
   artifactName: "${productName}-Setup-${version}.${ext}"
 
-# Disable code signing to avoid Windows permission errors
-sign: null
 
 nsis:
   oneClick: false
