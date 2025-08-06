@@ -65,5 +65,72 @@
         "category": "variables"
       }
     ]
+  },
+  "condicionales": {
+    "exercises": [
+      {
+        "id": "conditional-1",
+        "title": "Mi Primer Condicional",
+        "description": "Aprende a crear tu primera estructura condicional.",
+        "instructions": "Crea una variable \"edad\" con valor 18. Usa un condicional para mostrar \"Mayor de edad\" si la edad es mayor o igual a 18, sino mostrar \"Menor de edad\".",
+        "expectedCode": "var edad = 18;\nif (edad >= 18) {\n  print(\"Mayor de edad\");\n} else {\n  print(\"Menor de edad\");\n}",
+        "difficulty": "easy",
+        "category": "condicionales"
+      },
+      {
+        "id": "conditional-2",
+        "title": "Condición del Clima",
+        "description": "Decide qué hacer según el clima.",
+        "instructions": "Crea una variable \"llueve\" con valor verdadero. Si llueve, muestra \"Llevar paraguas\", sino muestra \"No necesito paraguas\".",
+        "expectedCode": "var llueve = true;\nif (llueve) {\n  print(\"Llevar paraguas\");\n} else {\n  print(\"No necesito paraguas\");\n}",
+        "difficulty": "easy",
+        "category": "condicionales"
+      },
+      {
+        "id": "conditional-3",
+        "title": "Comparación de Números",
+        "description": "Compara dos números y toma una decisión.",
+        "instructions": "Crea dos variables \"numero1\" (10) y \"numero2\" (5). Si numero1 es mayor que numero2, muestra \"El primer número es mayor\", sino muestra \"El segundo número es mayor o igual\".",
+        "expectedCode": "var numero1 = 10;\nvar numero2 = 5;\nif (numero1 > numero2) {\n  print(\"El primer número es mayor\");\n} else {\n  print(\"El segundo número es mayor o igual\");\n}",
+        "difficulty": "medium",
+        "category": "condicionales"
+      },
+      {
+        "id": "conditional-4",
+        "title": "Calificaciones",
+        "description": "Determina si un estudiante aprobó o reprobó.",
+        "instructions": "Crea una variable \"calificacion\" con valor 75. Si la calificación es mayor o igual a 70, muestra \"Aprobado\", sino muestra \"Reprobado\".",
+        "expectedCode": "var calificacion = 75;\nif (calificacion >= 70) {\n  print(\"Aprobado\");\n} else {\n  print(\"Reprobado\");\n}",
+        "difficulty": "medium",
+        "category": "condicionales"
+      },
+      {
+        "id": "conditional-5",
+        "title": "Múltiples Condiciones",
+        "description": "Usa condicionales anidados para múltiples casos.",
+        "instructions": "Crea una variable \"temperatura\" con valor 25. Si es menor a 15, muestra \"Hace frío\". Si está entre 15 y 30, muestra \"Clima agradable\". Si es mayor a 30, muestra \"Hace calor\".",
+        "expectedCode": "var temperatura = 25;\nif (temperatura < 15) {\n  print(\"Hace frío\");\n} else if (temperatura <= 30) {\n  print(\"Clima agradable\");\n} else {\n  print(\"Hace calor\");\n}",
+        "difficulty": "hard",
+        "category": "condicionales"
+      },
+      {
+        "id": "conditional-6",
+        "title": "Acceso Restringido",
+        "description": "Controla el acceso usando múltiples condiciones.",
+        "instructions": "Crea variables \"usuario\" (\"admin\") y \"contraseña\" (\"123\"). Solo si ambos son correctos, muestra \"Acceso permitido\", sino muestra \"Acceso denegado\".",
+        "expectedCode": "var usuario = \"admin\";\nvar contraseña = \"123\";\nif (usuario == \"admin\" && contraseña == \"123\") {\n  print(\"Acceso permitido\");\n} else {\n  print(\"Acceso denegado\");\n}",
+        "difficulty": "hard",
+        "category": "condicionales"
+      },
+      {
+        "id": "conditional-7",
+        "title": "Sistema de Descuentos",
+        "description": "Calcula descuentos usando condicionales complejos.",
+        "instructions": "Crea variables \"esVip\" (verdadero), \"compra\" (150), y \"descuento\" (0). Si es VIP y la compra es mayor a 100, aplica 20% de descuento (descuento = compra * 0.2), sino si solo es mayor a 100, aplica 10% (descuento = compra * 0.1). Muestra el descuento.",
+        "expectedCode": "var esVip = true;\nvar compra = 150;\nvar descuento = 0;\nif (esVip && compra > 100) {\n  descuento = compra * 0.2;\n} else if (compra > 100) {\n  descuento = compra * 0.1;\n}\nprint(descuento);",
+        "difficulty": "hard",
+        "category": "condicionales"
+      }
+    ]
   }
 }
