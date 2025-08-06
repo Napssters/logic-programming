@@ -12,7 +12,7 @@ fecha: Agosto 2025
 # Portada
 
 <div align="center">
-  <img src="img-documentacion/logotipo-logic-programing.jpeg" alt="Logotipo Logic Programming" width="220"/>
+![Logotipo Logic Programming](img-documentacion/logotipo-logic-programing.jpeg){ width=220px }
 </div>
 
 **Manual Técnico**  
@@ -68,7 +68,7 @@ Logic Programming es una aplicación de escritorio educativa desarrollada en Ang
 3. No requiere instalación adicional ni dependencias externas.
 
 <div align="center">
-  <img src="img-documentacion/image-1754498963284.png" alt="Pantalla de inicio" width="600"/>
+![Pantalla de inicio](img-documentacion/image-1754498963284.png){ width=600px }
 </div>
 
 ---

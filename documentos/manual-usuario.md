@@ -13,7 +13,7 @@ fecha: Agosto 2025
 # Portada
 
 <div align="center">
-  <img src="img-documentacion/logotipo-logic-programing.jpeg" alt="Logotipo Logic Programming" width="220"/>
+![Logotipo Logic Programming](img-documentacion/logotipo-logic-programing.jpeg){ width=220px }
 </div>
 
 **Manual de Usuario**  
@@ -59,7 +59,7 @@ Logic Programming es una aplicación de escritorio interactiva para aprender ló
 Al abrir la aplicación, verás la pantalla de bienvenida con el logotipo y acceso al menú principal. Aquí puedes seleccionar el módulo que deseas explorar. Cada tarjeta representa un módulo temático, mostrando su título, una breve descripción y una imagen ilustrativa.
 
 <div align="center">
-  <img src="img-documentacion/image-1754498963284.png" alt="Pantalla de inicio: menú principal con tarjetas de módulos" width="600"/>
+![Pantalla de inicio: menú principal con tarjetas de módulos](img-documentacion/image-1754498963284.png){ width=600px }
 </div>
 
 Al pasar el mouse sobre una tarjeta, esta se voltea mostrando el número de módulo y una descripción ampliada. Haz clic en la tarjeta para ingresar al módulo seleccionado.
@@ -82,7 +82,7 @@ Una vez dentro de un módulo, la navegación entre módulos se realiza mediante 
 - **Botón Siguiente**: Avanza al siguiente módulo. Está deshabilitado si ya estás en el último módulo.
 
 <div align="center">
-  <img src="img-documentacion/image-1754499163432.png" alt="Botones flotantes de navegación entre módulos" width="600"/>
+![Botones flotantes de navegación entre módulos](img-documentacion/image-1754499163432.png){ width=600px }
 </div>
 
 ---
@@ -100,7 +100,7 @@ Cada módulo está compuesto por tres secciones principales, accesibles desde la
 Presenta los conceptos fundamentales de lógica de programación con explicaciones claras y diagramas. Aquí se visualizan los contenidos teóricos del módulo, navegando entre páginas de teoría usando los botones de avance y retroceso.
 
 <div align="center">
-  <img src="img-documentacion/image-1754498998464.png" alt="Vista de la sección de teoría de un módulo" width="600"/>
+![Vista de la sección de teoría de un módulo](img-documentacion/image-1754498998464.png){ width=600px }
 </div>
 
 
@@ -108,7 +108,7 @@ Presenta los conceptos fundamentales de lógica de programación con explicacion
 Incluye ejemplos cotidianos y diagramas de flujo para ilustrar la aplicación de los conceptos. Al hacer clic en los cards de ejemplo, se abre un modal mostrando el diagrama de flujo correspondiente al ejercicio o ejemplo seleccionado.
 
 <div align="center">
-  <img src="img-documentacion/image-1754499017498.png" alt="Cards para abrir ejemplos y diagramas de flujo" width="600"/>
+![Cards para abrir ejemplos y diagramas de flujo](img-documentacion/image-1754499017498.png){ width=600px }
 </div>
 
 
@@ -129,7 +129,7 @@ En la sección de ejercicios, la pantalla se divide en dos columnas:
 - **Columna izquierda**: Muestra el título, dificultad (con icono y color), descripción, instrucciones y los controles de navegación de ejercicios.
 - **Columna derecha**: Área de trabajo de Blockly para construir la solución.
 <div align="center">
-  <img src="img-documentacion/image-1754499081906.png" alt="Vista general de la sección de ejercicios con Blockly (controles de ejercicios)" width="600"/>
+![Vista general de la sección de ejercicios con Blockly (controles de ejercicios)](img-documentacion/image-1754499081906.png){ width=600px }
 </div>
 
 ### Controles de Ejercicio
@@ -140,7 +140,7 @@ En la sección de ejercicios, la pantalla se divide en dos columnas:
 
 
 <div align="center">
-  <img src="img-documentacion/image-1754499088975.png" alt="Controles de navegación entre ejercicios" width="600"/>
+![Controles de navegación entre ejercicios](img-documentacion/image-1754499088975.png){ width=600px }
 </div>
 
 
@@ -150,7 +150,7 @@ En la sección de ejercicios, la pantalla se divide en dos columnas:
 - **Botón Validar**: Comprueba si la solución es correcta. Si es correcta, muestra un mensaje de éxito; si no, muestra un mensaje de error.
 
 <div align="center">
-  <img src="img-documentacion/image-1754499148064.png" alt="Controles de Blockly: botones de ejecución y reinicio" width="400"/>
+![Controles de Blockly: botones de ejecución y reinicio](img-documentacion/image-1754499148064.png){ width=400px }
 </div>
 
 ### Mensajes y Retroalimentación
@@ -161,11 +161,11 @@ Al validar, pueden aparecer mensajes emergentes:
 - **Mensaje de error**: Fondo rojo, indica que la solución es incorrecta y permite intentar de nuevo.
 
 <div align="center">
-  <img src="img-documentacion/image-1754499196731.png" alt="Mensaje de éxito al validar ejercicio" width="400"/>
+![Mensaje de éxito al validar ejercicio](img-documentacion/image-1754499196731.png){ width=400px }
 </div>
 
 <div align="center">
-  <img src="img-documentacion/image-1754499205206.png" alt="Mensaje de error al validar ejercicio" width="400"/>
+![Mensaje de error al validar ejercicio](img-documentacion/image-1754499205206.png){ width=400px }
 </div>
 
 

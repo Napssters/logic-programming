@@ -14,7 +14,7 @@ fecha: Agosto 2025
 # Portada
 
 <div align="center">
-  <img src="img-documentacion/logotipo-logic-programing.jpeg" alt="Logotipo Logic Programming" width="220"/>
+![Logotipo Logic Programming](img-documentacion/logotipo-logic-programing.jpeg){ width=220px }
 </div>
 
 **Manual de Documentación del Código**  
@@ -48,7 +48,7 @@ Agosto 2025
 El proyecto sigue la arquitectura estándar de Angular, con módulos, componentes, servicios y assets bien organizados. La estructura facilita la escalabilidad y el mantenimiento del código.
 
 <div align="center">
-  <img src="img-documentacion/pantallazo-estructura.png" alt="Estructura de carpetas" width="600"/>
+![Estructura de carpetas](img-documentacion/pantallazo-estructura.png){ width=600px }
 </div>
 
 ---
@@ -91,7 +91,7 @@ initializeWorkspace(element: HTMLElement): Blockly.WorkspaceSvg { ... }
 # Ejemplo Visual de Código
 
 <div align="center">
-  <img src="img-documentacion/ejemplo-blockly-codigo.png" alt="Ejemplo visual de código Blockly" width="600"/>
+![Ejemplo visual de código Blockly](img-documentacion/ejemplo-blockly-codigo.png){ width=600px }
 </div>
 
 ---
