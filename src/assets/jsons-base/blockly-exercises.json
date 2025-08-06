@@ -132,5 +132,72 @@
         "category": "condicionales"
       }
     ]
+  },
+  "bucles": {
+    "exercises": [
+      {
+        "id": "loop-1",
+        "title": "Mi Primer Bucle",
+        "description": "Aprende a crear tu primer bucle con repetición fija.",
+        "instructions": "Crea un bucle que repita 5 veces la acción de mostrar \"Hola mundo\".",
+        "expectedCode": "for (let i = 0; i < 5; i++) {\n  print(\"Hola mundo\");\n}",
+        "difficulty": "easy",
+        "category": "bucles"
+      },
+      {
+        "id": "loop-2",
+        "title": "Contador Ascendente",
+        "description": "Usa un bucle para contar números del 1 al 10.",
+        "instructions": "Crea un bucle que muestre los números del 1 al 10, uno por línea.",
+        "expectedCode": "for (let i = 1; i <= 10; i++) {\n  print(i);\n}",
+        "difficulty": "easy",
+        "category": "bucles"
+      },
+      {
+        "id": "loop-3",
+        "title": "Bucle While Simple",
+        "description": "Aprende a usar bucles while con una condición.",
+        "instructions": "Crea una variable \"contador\" con valor 0. Usa un bucle while para mostrar el contador mientras sea menor que 3, incrementando el contador en cada iteración.",
+        "expectedCode": "let contador = 0;\nwhile (contador < 3) {\n  print(contador);\n  contador = contador + 1;\n}",
+        "difficulty": "medium",
+        "category": "bucles"
+      },
+      {
+        "id": "loop-4",
+        "title": "Suma Acumulativa",
+        "description": "Usa un bucle para calcular la suma de números.",
+        "instructions": "Crea una variable \"suma\" con valor 0. Usa un bucle para sumar los números del 1 al 5 y mostrar el resultado final.",
+        "expectedCode": "let suma = 0;\nfor (let i = 1; i <= 5; i++) {\n  suma = suma + i;\n}\nprint(suma);",
+        "difficulty": "medium",
+        "category": "bucles"
+      },
+      {
+        "id": "loop-5",
+        "title": "Números Pares",
+        "description": "Filtra y muestra solo los números pares usando bucles.",
+        "instructions": "Crea un bucle que recorra los números del 1 al 10, pero solo muestre los números pares.",
+        "expectedCode": "for (let i = 1; i <= 10; i++) {\n  if (i % 2 == 0) {\n    print(i);\n  }\n}",
+        "difficulty": "medium",
+        "category": "bucles"
+      },
+      {
+        "id": "loop-6",
+        "title": "Bucle Anidado",
+        "description": "Aprende a usar bucles dentro de otros bucles.",
+        "instructions": "Crea dos bucles anidados: el exterior va del 1 al 3, el interior del 1 al 2. Muestra cada combinación en formato \"i-j\".",
+        "expectedCode": "for (let i = 1; i <= 3; i++) {\n  for (let j = 1; j <= 2; j++) {\n    print(i + \"-\" + j);\n  }\n}",
+        "difficulty": "hard",
+        "category": "bucles"
+      },
+      {
+        "id": "loop-7",
+        "title": "Búsqueda con Bucle",
+        "description": "Usa un bucle para buscar un número específico.",
+        "instructions": "Crea una variable \"objetivo\" con valor 7 y \"encontrado\" con valor falso. Usa un bucle del 1 al 10 para buscar el objetivo. Cuando lo encuentres, cambia \"encontrado\" a verdadero y muestra \"Número encontrado\", luego sal del bucle.",
+        "expectedCode": "let objetivo = 7;\nlet encontrado = false;\nfor (let i = 1; i <= 10; i++) {\n  if (i == objetivo) {\n    encontrado = true;\n    print(\"Número encontrado\");\n    break;\n  }\n}",
+        "difficulty": "hard",
+        "category": "bucles"
+      }
+    ]
   }
 }

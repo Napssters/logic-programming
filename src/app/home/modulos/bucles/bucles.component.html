@@ -1,1 +1,228 @@
-<p>bucles works!</p>
+<!-- Título principal de la página -->
+<div class="text-center mb-6 mt-6">
+  <h1 class="text-3xl font-bold text-gray-800 mb-2 drop-shadow-md">🔄 Estructuras de Control: Bucles</h1>
+  <!-- Separador elegante con gradiente -->
+  <div class="flex items-center justify-center mb-1">
+    <div class="h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent w-96 shadow-sm"></div>
+  </div>
+  <!-- Línea sutil adicional para más profundidad -->
+  <div class="flex items-center justify-center">
+    <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-64 opacity-60"></div>
+  </div>
+</div>
+
+<!-- Contenedor principal sin altura fija -->
+<div class="min-h-screen">
+  <!-- Una sola columna con dos filas -->
+  <div class="flex flex-col gap-6 p-4 mx-8">
+
+    <!-- Primera fila - Sección 1 (ancho completo) -->
+    <div class="bg-gray-500/20 backdrop-blur-md p-6 rounded-lg border border-gray-400/30 shadow-lg">
+      <div class="mb-6">
+        <h2 class="text-xl font-bold mb-3 text-gray-800">🔁 ¿Qué son los bucles o ciclos?</h2>
+        <p class="text-gray-700 leading-relaxed mb-4 text-justify">
+          Los bucles son estructuras de control que permiten repetir un conjunto de instrucciones múltiples veces de forma automática,
+          evitando tener que escribir el mismo código una y otra vez.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4 text-justify">
+          Es como tener un asistente que hace la misma tarea tantas veces como le indiques, o hasta que se cumpla cierta condición.
+        </p>
+        <div class="bg-red-50 p-3 rounded border-l-4 border-red-400 mb-4">
+          <p class="text-red-800 text-sm font-medium mb-2"><strong>Ejemplo:</strong></p>
+          <p class="text-gray-700 text-sm">En lugar de escribir "Imprimir Hola" 100 veces...</p>
+          <p class="text-gray-700 text-sm">Usas un bucle: "Repetir 100 veces: Imprimir Hola"</p>
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <!-- Tipos de bucles -->
+          <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-400">
+            <h3 class="text-lg font-semibold text-purple-600 mb-2">🎯 Tipos principales de bucles</h3>
+            <div class="bg-white p-3 rounded border text-sm space-y-2">
+              <div><span class="text-purple-600 font-semibold">• For (Para):</span> Se usa cuando sabes exactamente cuántas veces quieres repetir algo. Ejemplo: "Haz ejercicio 20 veces".</div>
+              <div><span class="text-purple-600 font-semibold">• While (Mientras):</span> Se repite mientras una condición sea verdadera. Ejemplo: "Estudia mientras no entiendas el tema".</div>
+              <div><span class="text-purple-600 font-semibold">• Do-While (Hacer-Mientras):</span> Hace algo al menos una vez, luego verifica si debe continuar.</div>
+            </div>
+          </div>
+
+          <!-- Por qué se llaman bucles -->
+          <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+            <h3 class="text-lg font-semibold text-blue-600 mb-2">🌀 ¿Por qué se llaman "bucles"?</h3>
+            <p class="text-gray-700 text-justify mb-3">
+              Se llaman bucles porque el código "da vueltas" o "se enrolla" como un bucle,
+              volviendo al inicio para repetir las mismas instrucciones una y otra vez.
+            </p>
+            <h4 class="text-md font-semibold text-blue-600 mb-2">🔄 Visualización</h4>
+            <div class="bg-white p-3 rounded border text-sm">
+              <p class="text-gray-700">Piensa en una pista circular donde un corredor da vueltas:</p>
+              <p class="text-gray-700">Vuelta 1 → Vuelta 2 → Vuelta 3... hasta completar todas.</p>
+            </div>
+          </div>
+
+          <!-- Metáfora de la vida real -->
+          <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
+            <h3 class="text-lg font-semibold text-green-600 mb-2">🏠 Metáfora: Tareas domésticas</h3>
+            <p class="text-gray-700 text-justify mb-3">
+              Imagina que tu mamá te dice: "Lava todos los platos sucios"
+            </p>
+            <div class="bg-white p-3 rounded border text-sm space-y-1">
+              <p class="text-gray-700"><strong>Paso 1:</strong> Tomar un plato</p>
+              <p class="text-gray-700"><strong>Paso 2:</strong> Lavarlo con jabón</p>
+              <p class="text-gray-700"><strong>Paso 3:</strong> Enjuagarlo</p>
+              <p class="text-gray-700"><strong>Paso 4:</strong> ¿Quedan más platos? Si sí → volver al Paso 1</p>
+              <p class="text-green-600 font-medium">¡Eso es exactamente un bucle while!</p>
+            </div>
+          </div>
+
+          <!-- Cuándo usar bucles -->
+          <div class="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-400">
+            <h3 class="text-lg font-semibold text-orange-600 mb-2">⚡ ¿Cuándo usar bucles?</h3>
+            <p class="text-gray-700 text-justify mb-3">
+              Los bucles son perfectos cuando necesitas:
+            </p>
+            <div class="bg-white p-3 rounded border text-sm">
+              • Procesar listas de elementos (estudiantes, productos, etc.)<br>
+              • Repetir cálculos matemáticos<br>
+              • Validar datos hasta que sean correctos<br>
+              • Crear patrones o secuencias<br>
+              • Automatizar tareas repetitivas
+            </div>
+          </div>
+
+          <!-- Elementos de un bucle -->
+          <div class="p-4 bg-teal-50 rounded-lg border-l-4 border-teal-400">
+            <h3 class="text-lg font-semibold text-teal-600 mb-2">🔧 Elementos de un bucle</h3>
+            <div class="bg-white p-3 rounded border text-sm space-y-2">
+              <div><span class="text-teal-600 font-semibold">• Inicialización:</span> Preparar variables (contador = 0)</div>
+              <div><span class="text-teal-600 font-semibold">• Condición:</span> ¿Cuándo parar? (contador < 10)</div>
+              <div><span class="text-teal-600 font-semibold">• Cuerpo:</span> Qué hacer en cada repetición</div>
+              <div><span class="text-teal-600 font-semibold">• Actualización:</span> Cambiar variables (contador + 1)</div>
+            </div>
+          </div>
+
+          <!-- Importancia de los bucles -->
+          <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
+            <h3 class="text-lg font-semibold text-red-600 mb-2">💎 Importancia de los bucles</h3>
+            <p class="text-gray-700 text-justify mb-3">
+              Los bucles son fundamentales porque:
+            </p>
+            <div class="bg-white p-3 rounded border text-sm">
+              • Ahorran tiempo y líneas de código<br>
+              • Reducen errores de escritura repetitiva<br>
+              • Permiten procesar grandes cantidades de datos<br>
+              • Hacen el código más legible y mantenible<br>
+              • Son la base de la automatización
+            </div>
+          </div>
+
+          <!-- Ejemplos cotidianos -->
+          <div class="p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
+            <h3 class="text-lg font-semibold text-yellow-600 mb-2">🌅 Ejemplos en la vida cotidiana</h3>
+            <div class="bg-white p-3 rounded border text-sm">
+              <p class="text-gray-700 mb-2"><strong>🏃‍♂️ Ejercicio:</strong> "Haz 20 flexiones"</p>
+              <p class="text-gray-700 mb-2"><strong>📚 Estudiar:</strong> "Repasa hasta entender el tema"</p>
+              <p class="text-gray-700 mb-2"><strong>🍳 Cocinar:</strong> "Revuelve la sopa cada 5 minutos hasta que esté lista"</p>
+              <p class="text-gray-700"><strong>🎵 Música:</strong> "Reproduce esta canción en modo repetir"</p>
+            </div>
+          </div>
+
+          <!-- Curiosidades -->
+          <div class="p-4 bg-indigo-50 rounded-lg border-l-4 border-indigo-400">
+            <h3 class="text-lg font-semibold text-indigo-600 mb-2">🧪 Curiosidades sobre bucles</h3>
+            <div class="bg-white p-3 rounded border text-sm space-y-2">
+              <p class="text-gray-700">• Un bucle infinito puede "colgar" un programa si no tiene condición de parada</p>
+              <p class="text-gray-700">• Los bucles anidados (un bucle dentro de otro) pueden crear patrones complejos</p>
+              <p class="text-gray-700">• En algunos lenguajes, puedes "romper" un bucle con la palabra "break"</p>
+              <p class="text-gray-700">• Los videojuegos usan un bucle principal que se ejecuta 60 veces por segundo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Segunda fila - Sección 2 (ancho completo) -->
+    <div class="bg-gray-500/20 backdrop-blur-md p-6 rounded-lg border border-gray-400/30 shadow-lg">
+      <h2 class="text-xl font-bold mb-4 text-gray-800">🧪 Ejemplos Dinámicos</h2>
+      <p class="text-gray-700 mb-6 text-justify">
+        A continuación encontrarás ejemplos interactivos que demuestran cómo funcionan los bucles en situaciones cotidianas.
+        Cada ejemplo incluye un diagrama de flujo que puedes visualizar paso a paso.
+      </p>
+
+      <!-- Contenedor de ejemplos con scroll horizontal -->
+      <div class="overflow-x-auto">
+        <div class="flex gap-6 pb-4" style="min-width: max-content;">
+
+          <div *ngFor="let example of examples"
+               class="flex-shrink-0 bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-200 flex flex-col justify-between"
+               style="width: 350px; height: 350px;">
+
+            <!-- Contenido superior (icono, título y descripción) -->
+            <div class="flex-1 flex flex-col">
+              <!-- Icono y título -->
+              <div class="flex items-center mb-4">
+                <span class="text-3xl mr-3">{{ getIconForExample(example.title) }}</span>
+                <h3 class="text-lg font-semibold text-gray-800 line-clamp-2 leading-tight">{{ getCleanTitle(example.title) }}</h3>
+              </div>
+
+              <!-- Descripción -->
+              <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-4 flex-1">{{ example.description }}</p>
+            </div>
+
+            <!-- Contenido inferior (pregunta y botón) -->
+            <div class="mt-auto">
+              <!-- Pregunta -->
+              <div class="bg-red-50 p-3 rounded-lg border-l-4 border-red-400 mb-4">
+                <p class="text-red-800 text-xs font-medium line-clamp-3">{{ example.question }}</p>
+              </div>
+
+              <!-- Botón siempre en la parte inferior -->
+              <button
+                (click)="openFlowchartModal(example)"
+                class="w-full bg-red-500 hover:bg-red-600 text-white py-3 px-4 rounded transition-colors duration-200 text-sm font-medium shadow-md hover:shadow-lg">
+                🚀 Ver Diagrama de Flujo
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Nota informativa -->
+      <div class="mt-8 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <p class="text-red-800 text-sm">
+          <strong>💡 Consejo:</strong> Los bucles son herramientas poderosas que automatizan tareas repetitivas.
+          Observa cómo cada ejemplo usa diferentes tipos de repetición según la situación.
+        </p>
+      </div>
+    </div>
+
+    <!-- Tercera fila - Sección de Ejercicios (ancho completo) -->
+    <div class="bg-gray-500/20 backdrop-blur-md p-6 rounded-lg border border-gray-400/35 shadow-lg">
+      <h2 class="text-xl font-bold mb-4 text-gray-800">🎯 Ejercicios Prácticos</h2>
+      <p class="text-gray-700 mb-6 text-justify">
+        Ahora es tu turno de practicar. Estos ejercicios te ayudarán a dominar los bucles
+        usando programación visual con Blockly. Cada ejercicio te enseñará un concepto específico.
+      </p>
+
+      <app-blockly-exercise
+        [exercises]="blocklyExercises"
+        [currentExerciseIndex]="currentBlocklyExerciseIndex"
+        (exerciseCompleted)="onBlocklyExerciseCompleted($event)"
+        (nextExercise)="nextBlocklyExercise()"
+        (previousExercise)="previousBlocklyExercise()">
+      </app-blockly-exercise>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal genérico -->
+<app-modal
+  [isVisible]="showModal"
+  [title]="modalTitle"
+  [componentType]="modalComponentType"
+  [componentInputs]="modalComponentInputs"
+  (onClose)="closeModal()">
+</app-modal>

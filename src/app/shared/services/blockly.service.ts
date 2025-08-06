@@ -920,27 +920,18 @@ export class BlocklyService {
     console.log('Código generado original:', JSON.stringify(generatedCode));
     console.log('Código esperado original:', JSON.stringify(expectedCode));
 
-    // Normalizar ambos códigos para comparación
-    const normalize = (code: string) => {
-      return code
-        .replace(/\s+/g, ' ') // Reemplazar múltiples espacios con uno solo
-        .replace(/;\s*$/, '') // Eliminar punto y coma al final si existe
-        .replace(/;/g, '') // Eliminar todos los puntos y comas
-        .trim()
-        .toLowerCase();
-    };
-
-    const normalizedGenerated = normalize(generatedCode);
-    const normalizedExpected = normalize(expectedCode);
+    // Normalizar ambos códigos para comparación más flexible
+    const normalizedGenerated = this.normalizeForComparison(generatedCode);
+    const normalizedExpected = this.normalizeForComparison(expectedCode);
 
     console.log('Código generado normalizado:', JSON.stringify(normalizedGenerated));
     console.log('Código esperado normalizado:', JSON.stringify(normalizedExpected));
 
-    // Comparación exacta
+    // Comparación principal
     const exactMatch = normalizedGenerated === normalizedExpected;
-    console.log('Comparación exacta:', exactMatch);
+    console.log('Comparación normalizada:', exactMatch);
 
-    // También probar comparación más flexible
+    // También probar comparación línea por línea más flexible
     const flexibleMatch = this.flexibleCodeComparison(generatedCode, expectedCode);
     console.log('Comparación flexible:', flexibleMatch);
 
@@ -951,6 +942,25 @@ export class BlocklyService {
     return result;
   }
 
+  // Normalización mejorada para comparación
+  private normalizeForComparison(code: string): string {
+    return code
+      // Reemplazar var con let (ambos son equivalentes educativamente)
+      .replace(/\bvar\b/g, 'let')
+      // Normalizar espacios
+      .replace(/\s+/g, ' ')
+      // Normalizar puntos y comas
+      .replace(/;\s*}/g, ' }')
+      .replace(/;\s*$/gm, '')
+      // Normalizar comillas
+      .replace(/'/g, '"')
+      // Normalizar operadores
+      .replace(/\s*([+\-*/%=<>!&|])\s*/g, ' $1 ')
+      .replace(/\s*([{}();,])\s*/g, '$1')
+      .trim()
+      .toLowerCase();
+  }
+
   // Comparación más flexible para diferentes formatos de código
   private flexibleCodeComparison(generated: string, expected: string): boolean {
     // Dividir en líneas y comparar cada línea por separado
@@ -958,6 +968,7 @@ export class BlocklyService {
     const expectedLines = expected.split('\n').map(line => line.trim()).filter(line => line.length > 0);
 
     if (generatedLines.length !== expectedLines.length) {
+      console.log(`Diferente número de líneas: generado ${generatedLines.length}, esperado ${expectedLines.length}`);
       return false;
     }
 
@@ -967,8 +978,10 @@ export class BlocklyService {
 
       if (genLine !== expLine) {
         console.log(`Línea ${i + 1} no coincide:`);
-        console.log('  Generada:', genLine);
-        console.log('  Esperada:', expLine);
+        console.log('  Generada:', generatedLines[i]);
+        console.log('  Esperada:', expectedLines[i]);
+        console.log('  Gen normalizada:', genLine);
+        console.log('  Esp normalizada:', expLine);
         return false;
       }
     }
@@ -978,8 +991,17 @@ export class BlocklyService {
 
   private normalizeCodeLine(line: string): string {
     return line
+      // Reemplazar var con let
+      .replace(/\bvar\b/g, 'let')
+      // Normalizar espacios
       .replace(/\s+/g, ' ')
+      // Normalizar punto y coma
       .replace(/;$/, '')
+      // Normalizar comillas
+      .replace(/'/g, '"')
+      // Normalizar operadores de comparación
+      .replace(/\s*([=!<>]+)\s*/g, ' $1 ')
+      .replace(/\s*([+\-*/%])\s*/g, ' $1 ')
       .trim()
       .toLowerCase();
   }
