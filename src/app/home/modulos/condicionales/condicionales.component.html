@@ -151,7 +151,9 @@
             </div>
 
             <!-- Botón siempre en la parte inferior -->
-            <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition-colors duration-200 text-sm font-medium">
+            <button
+              (click)="openFlowchartModal(example)"
+              class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition-colors duration-200 text-sm font-medium">
               🚀 Ver Diagrama de Flujo
             </button>
           </div>
@@ -170,3 +172,12 @@
 
   </div>
 </div>
+
+<!-- Modal genérico -->
+<app-modal
+  [isVisible]="showModal"
+  [title]="modalTitle"
+  [componentType]="modalComponentType"
+  [componentInputs]="modalComponentInputs"
+  (onClose)="closeModal()">
+</app-modal>

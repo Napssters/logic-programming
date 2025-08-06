@@ -9,6 +9,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { NavigationFloatComponent } from './navigation-float/navigation-float.component';
 import { FlowchartComponent } from './components/flowchart/flowchart.component';
 import { BlocklyExerciseComponent } from './blockly-exercise/blockly-exercise.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 
 
@@ -20,6 +21,7 @@ import { BlocklyExerciseComponent } from './blockly-exercise/blockly-exercise.co
     NavigationFloatComponent,
     FlowchartComponent,
     BlocklyExerciseComponent,
+    ModalComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { BlocklyExerciseComponent } from './blockly-exercise/blockly-exercise.co
     NavigationFloatComponent,
     FlowchartComponent,
     BlocklyExerciseComponent,
+    ModalComponent,
   ]
 })
 export class SharedModule { }

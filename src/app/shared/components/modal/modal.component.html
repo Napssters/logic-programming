@@ -1,0 +1,45 @@
+<!-- Modal overlay -->
+<div
+  *ngIf="isVisible"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+  (click)="onBackdropClick($event)">
+
+  <!-- Modal container -->
+  <div
+    class="bg-white rounded-lg shadow-xl w-full mx-4 overflow-auto"
+    [class]="maxWidth + ' ' + maxHeight"
+    (click)="onModalContentClick($event)">
+
+    <!-- Header del modal -->
+    <div class="flex justify-between items-center p-6 border-b border-gray-200">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">{{ title }}</h2>
+      </div>
+      <div class="relative">
+        <button
+          (click)="closeModal()"
+          class="w-10 h-10 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 group"
+          style="background-color: #f3ae22; border-color: #d18c00;">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+          <!-- Tooltip personalizado -->
+          <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-50">
+            Cerrar modal
+            <!-- Flecha del tooltip -->
+            <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-4 border-transparent border-t-gray-800"></div>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Contenido dinámico del modal -->
+    <div class="p-6">
+      <div class="min-h-[400px]">
+        <!-- Contenedor para el componente dinámico -->
+        <ng-container #dynamicComponentContainer></ng-container>
+      </div>
+    </div>
+
+  </div>
+</div>

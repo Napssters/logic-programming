@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Type } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FlowchartStep } from '../../../shared/interfaces/flowchart.interface';
+import { FlowchartComponent } from '../../../shared/components/flowchart/flowchart.component';
 
 interface Example {
   title: string;
   description: string;
   question: string;
-  steps: any[];
+  steps: FlowchartStep[];
 }
 
 interface CondicionalesData {
@@ -22,6 +24,12 @@ interface CondicionalesData {
 export class CondicionalesComponent implements OnInit {
 
   examples: Example[] = [];
+
+  // Propiedades para el modal genérico
+  showModal: boolean = false;
+  modalTitle: string = '';
+  modalComponentType: Type<any> | null = null;
+  modalComponentInputs: any = {};
 
   constructor(private http: HttpClient) { }
 
@@ -55,5 +63,24 @@ export class CondicionalesComponent implements OnInit {
   // Función para limpiar el título quitando "Ejemplo #:"
   getCleanTitle(title: string): string {
     return title.replace(/^Ejemplo \d+:\s*/, '');
+  }
+
+  // Función para abrir el modal del diagrama de flujo
+  openFlowchartModal(example: Example): void {
+    this.modalTitle = `🔄 Diagrama de Flujo - ${this.getCleanTitle(example.title)}`;
+    this.modalComponentType = FlowchartComponent;
+    this.modalComponentInputs = {
+      steps: example.steps || [],
+      title: example.title
+    };
+    this.showModal = true;
+  }
+
+  // Función para cerrar el modal
+  closeModal(): void {
+    this.showModal = false;
+    this.modalTitle = '';
+    this.modalComponentType = null;
+    this.modalComponentInputs = {};
   }
 }
