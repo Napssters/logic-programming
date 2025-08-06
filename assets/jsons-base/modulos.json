@@ -344,5 +344,112 @@
         ]
       }
     ]
+  },
+  "bucles": {
+    "examples": [
+      {
+        "title": "Rutina de ejercicio diaria",
+        "description": "Imagina que tu entrenador te dice: 'Haz 20 flexiones'. Necesitas repetir el mismo movimiento 20 veces exactamente.",
+        "question": "👉 ¿Cómo programarías un bucle para contar las flexiones y asegurarte de hacer exactamente 20?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "flexiones_hechas = 0", "type": "process" },
+          { "id": 3, "text": "¿flexiones_hechas < 20?", "type": "decision" },
+          { "id": 4, "text": "Hacer una flexión", "type": "process" },
+          { "id": 5, "text": "flexiones_hechas = flexiones_hechas + 1", "type": "process" },
+          { "id": 6, "text": "Mostrar: 'Flexión #' + flexiones_hechas", "type": "process" },
+          { "id": 7, "text": "Descansar 2 segundos", "type": "process" },
+          { "id": 8, "text": "Mostrar: 'Rutina completada: 20 flexiones'", "type": "process" },
+          { "id": 9, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Lavado de platos",
+        "description": "Tu mamá te pide lavar todos los platos sucios. No sabes cuántos hay exactamente, pero sabes que debes lavarlos hasta que no quede ninguno.",
+        "question": "👉 ¿Cómo usarías un bucle while para lavar platos hasta que no queden más?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Ir al fregadero", "type": "process" },
+          { "id": 3, "text": "¿Hay platos sucios?", "type": "decision" },
+          { "id": 4, "text": "Tomar un plato sucio", "type": "process" },
+          { "id": 5, "text": "Aplicar jabón", "type": "process" },
+          { "id": 6, "text": "Frotar con esponja", "type": "process" },
+          { "id": 7, "text": "Enjuagar con agua", "type": "process" },
+          { "id": 8, "text": "Colocar en escurridor", "type": "process" },
+          { "id": 9, "text": "Mostrar: 'Todos los platos están limpios'", "type": "process" },
+          { "id": 10, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Contador de números pares",
+        "description": "Necesitas mostrar todos los números pares del 2 al 20 para una tarea de matemáticas. Es como contar de dos en dos.",
+        "question": "👉 ¿Cómo crearías un bucle que muestre solo los números pares en ese rango?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "numero = 2", "type": "process" },
+          { "id": 3, "text": "¿numero <= 20?", "type": "decision" },
+          { "id": 4, "text": "Mostrar numero", "type": "process" },
+          { "id": 5, "text": "Agregar a la lista de pares", "type": "process" },
+          { "id": 6, "text": "numero = numero + 2", "type": "process" },
+          { "id": 7, "text": "Mostrar: 'Lista completa: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20'", "type": "process" },
+          { "id": 8, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Sistema de calificaciones",
+        "description": "Un profesor necesita ingresar las calificaciones de todos sus estudiantes. Sabe que tiene exactamente 25 estudiantes en su clase.",
+        "question": "👉 ¿Cómo diseñarías un bucle para capturar las 25 calificaciones de manera ordenada?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "estudiante_actual = 1", "type": "process" },
+          { "id": 3, "text": "calificaciones = []", "type": "process" },
+          { "id": 4, "text": "¿estudiante_actual <= 25?", "type": "decision" },
+          { "id": 5, "text": "Mostrar: 'Ingrese calificación del estudiante #' + estudiante_actual", "type": "process" },
+          { "id": 6, "text": "Leer calificación", "type": "process" },
+          { "id": 7, "text": "Guardar calificación en la lista", "type": "process" },
+          { "id": 8, "text": "estudiante_actual = estudiante_actual + 1", "type": "process" },
+          { "id": 9, "text": "Mostrar: 'Todas las calificaciones ingresadas'", "type": "process" },
+          { "id": 10, "text": "Calcular promedio general", "type": "process" },
+          { "id": 11, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ahorro de dinero semanal",
+        "description": "Sofia quiere ahorrar $5,000 para comprar una bicicleta. Cada semana puede ahorrar $200. Quiere saber cuántas semanas le tomará.",
+        "question": "👉 ¿Cómo simularías el proceso de ahorro de Sofia semana a semana?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "ahorro_total = 0", "type": "process" },
+          { "id": 3, "text": "semana = 1", "type": "process" },
+          { "id": 4, "text": "meta = 5000", "type": "process" },
+          { "id": 5, "text": "¿ahorro_total < meta?", "type": "decision" },
+          { "id": 6, "text": "Ahorrar $200 esta semana", "type": "process" },
+          { "id": 7, "text": "ahorro_total = ahorro_total + 200", "type": "process" },
+          { "id": 8, "text": "Mostrar: 'Semana ' + semana + ': $' + ahorro_total", "type": "process" },
+          { "id": 9, "text": "semana = semana + 1", "type": "process" },
+          { "id": 10, "text": "Mostrar: '¡Meta alcanzada en ' + (semana-1) + ' semanas!'", "type": "process" },
+          { "id": 11, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Juego de adivinanza",
+        "description": "Creaste un juego donde el usuario debe adivinar un número del 1 al 10. El juego continuará hasta que acierte o se rinda.",
+        "question": "👉 ¿Cómo programarías un bucle que permita múltiples intentos hasta acertar?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "numero_secreto = 7", "type": "process" },
+          { "id": 3, "text": "adivinado = falso", "type": "process" },
+          { "id": 4, "text": "intentos = 0", "type": "process" },
+          { "id": 5, "text": "¿adivinado == falso?", "type": "decision" },
+          { "id": 6, "text": "Pedir número al usuario", "type": "process" },
+          { "id": 7, "text": "intentos = intentos + 1", "type": "process" },
+          { "id": 8, "text": "¿numero_usuario == numero_secreto?", "type": "decision" },
+          { "id": 9, "text": "adivinado = verdadero", "type": "process" },
+          { "id": 10, "text": "Mostrar: 'Muy alto' o 'Muy bajo'", "type": "process" },
+          { "id": 11, "text": "Mostrar: '¡Felicidades! Lo adivinaste en ' + intentos + ' intentos'", "type": "process" },
+          { "id": 12, "text": "Fin", "type": "end" }
+        ]
+      }
+    ]
   }
 }
