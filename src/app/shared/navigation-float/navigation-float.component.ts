@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation-float',
@@ -9,10 +8,13 @@ import { Router } from '@angular/router';
 export class NavigationFloatComponent {
   @Input() currentModuleIndex: number = 0;
   @Input() modules: any[] = [];
+  @Output() menuClicked = new EventEmitter<void>();
+  @Output() previousClicked = new EventEmitter<void>();
+  @Output() nextClicked = new EventEmitter<void>();
 
   isExpanded = false;
 
-  constructor(private router: Router) {}
+  // No Router needed, navigation handled by parent via Output event
 
   toggleExpanded() {
     this.isExpanded = !this.isExpanded;
@@ -22,24 +24,20 @@ export class NavigationFloatComponent {
   onPrevious() {
     console.log('Previous clicked, current index:', this.currentModuleIndex);
     if (this.currentModuleIndex > 0) {
-      const previousModule = this.modules[this.currentModuleIndex - 1];
-      console.log('Navigating to previous module:', previousModule.url);
-      this.router.navigate([previousModule.url]);
+      this.previousClicked.emit();
     }
   }
 
   onNext() {
     console.log('Next clicked, current index:', this.currentModuleIndex, 'total:', this.modules.length);
     if (this.currentModuleIndex < this.modules.length - 1) {
-      const nextModule = this.modules[this.currentModuleIndex + 1];
-      console.log('Navigating to next module:', nextModule.url);
-      this.router.navigate([nextModule.url]);
+      this.nextClicked.emit();
     }
   }
 
   onMenu() {
     console.log('Menu clicked');
-    this.router.navigate(['/home']);
+    this.menuClicked.emit();
   }
 
   get canGoPrevious(): boolean {

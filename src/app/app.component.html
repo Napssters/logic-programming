@@ -5,5 +5,8 @@
 <app-navigation-float
   *ngIf="showFloatingButton && allModules.length > 0"
   [currentModuleIndex]="currentModuleIndex"
-  [modules]="allModules">
-</app-navigation-float>
+  [modules]="allModules"
+  (menuClicked)="openModulesModalFromMenu()"
+  (previousClicked)="navigateToPreviousModule()"
+  (nextClicked)="navigateToNextModule()"
+></app-navigation-float>
