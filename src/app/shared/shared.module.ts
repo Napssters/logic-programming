@@ -10,6 +10,7 @@ import { NavigationFloatComponent } from './navigation-float/navigation-float.co
 import { FlowchartComponent } from './components/flowchart/flowchart.component';
 import { BlocklyExerciseComponent } from './blockly-exercise/blockly-exercise.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { CardsComponent } from './components/cards/cards.component';
 
 
 
@@ -22,6 +23,7 @@ import { ModalComponent } from './components/modal/modal.component';
     FlowchartComponent,
     BlocklyExerciseComponent,
     ModalComponent,
+    CardsComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +39,7 @@ import { ModalComponent } from './components/modal/modal.component';
     FlowchartComponent,
     BlocklyExerciseComponent,
     ModalComponent,
+    CardsComponent,
   ]
 })
 export class SharedModule { }

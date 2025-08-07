@@ -1,27 +1,35 @@
-<div class="container">
-  <div class="card central">
-    <div class="ring">
-      <div class="inner-circle">
-        <p>Pensamiento de Programador: </p>
-        <hr style="margin: 10px 0;">
-        <p>Explorando la Lógica de la Programación</p>
-        <img class="utp" src="assets/img/landing/utp.png" alt="utp">
-      </div>
-    </div>
+
+
+
+
+
+<section class="min-h-screen w-full bg-gradient-to-br from-cyan-100 via-white to-blue-100 relative overflow-hidden flex flex-col">
+  <div class="absolute inset-0 w-full h-full z-0">
+    <img src="assets/img/landing/logica_de_programacion.jpeg" alt="Lógica de Programación" class="w-full h-full object-cover" />
   </div>
-  <div class="card" *ngFor="let card of cards; let i = index"
-    (click)="redirigir(card.url)"
-    [style.background-color]="card.color"
-    (mouseover)="onMouseOver(i)" (mouseout)="onMouseOut(i)">
-    <div class="inner-card" [class.flipped]="card.isFlipped">
-      <div class="front content">
-        <img alt="img" [src]="card.image">
-        <p class="title">{{ card.title }}</p>
+  <div class="flex flex-col justify-center items-start p-8 z-10 w-full md:w-2/3 relative" style="margin-left:4rem; min-height:100vh; justify-content:center;">
+    <div style="border-radius:2rem;width:87%;max-width:none;max-height:480px;background:rgba(255,255,255,0.18);backdrop-filter:blur(16px);box-shadow:0 8px 32px 0 rgba(31,38,135,0.37);border:1px solid rgba(255,255,255,0.18);padding:2.5rem 2rem;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;margin-left:-2rem;">
+      <div style="margin-left:2rem;margin-right:2rem;">
+      <div class="w-32 h-32 rounded-full shadow-xl mb-6 flex items-center justify-center bg-white/30 animate-bounce">
+        <img src="assets/img/landing/utp.png" alt="utp" class="w-28 h-28 object-contain" />
       </div>
-      <div class="back content">
-        <p class="title">Modulo {{ i + 1 }}</p>
-        <p class="description">{{ card.description }}</p>
-      </div>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg mb-4 leading-tight">Pensamiento básico de Programador</h1>
+      <p class="text-xl md:text-2xl text-white drop-shadow-lg mb-4 font-semibold">Explorando la Lógica de la Programación</p>
+      <p class="text-base text-white drop-shadow-lg mb-6 w-full text-justify">Aprende lógica de programación de forma visual, interactiva y divertida. Descubre los módulos y comienza tu viaje en el pensamiento computacional.</p>
+
+      <button class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-6 rounded-full shadow transition-all duration-300" (click)="openCardsModal()">Comenzar ahora</button>
     </div>
   </div>
 </div>
+
+<!-- Modal para mostrar los cards de módulos -->
+<app-modal
+  [isVisible]="showModal"
+  [title]="modalTitle"
+  [componentType]="modalComponentType"
+  [componentInputs]="{ cards: cards }"
+  (onClose)="closeCardsModal()"
+  [maxWidth]="'max-w-5xl'"
+  [maxHeight]="'max-h-[90vh]'"
+></app-modal>
+</section>

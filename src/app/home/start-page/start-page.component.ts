@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Type } from '@angular/core';
+import { CardsComponent } from '../../shared/components/cards/cards.component';
 import { Router } from '@angular/router';
 import { NavigationService } from '../../shared/services/navigation.service';
 import StartPage from 'src/assets/jsons-base/start-page.json';
@@ -8,10 +9,13 @@ import StartPage from 'src/assets/jsons-base/start-page.json';
   templateUrl: './start-page.component.html',
   styleUrls: ['./start-page.component.css']
 })
-export class StartPageComponent implements OnInit {
 
+
+export class StartPageComponent implements OnInit {
   cards: any[] = [];
-  isFlipped: boolean = false;
+  showModal: boolean = false;
+  modalComponentType: Type<any> = CardsComponent;
+  modalTitle: string = 'Módulos disponibles';
 
   constructor(
     private router: Router,
@@ -20,19 +24,21 @@ export class StartPageComponent implements OnInit {
 
   public redirigir(vista: string) {
     this.navigationService.navigateTo(vista);
-  }  ngOnInit(): void {
+  }
+
+  ngOnInit(): void {
     this.loadData();
   }
 
   public loadData(): void {
-    this.cards = StartPage.cards.map(card => ({ ...card, isFlipped: false }));
+    this.cards = StartPage.cards;
   }
 
-  onMouseOver(index: number) {
-    this.cards[index].isFlipped = true;
+  openCardsModal(): void {
+    this.showModal = true;
   }
 
-  onMouseOut(index: number) {
-    this.cards[index].isFlipped = false;
+  closeCardsModal(): void {
+    this.showModal = false;
   }
 }

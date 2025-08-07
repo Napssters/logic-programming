@@ -14,8 +14,6 @@ import { PensamientoLogicoComponent } from './modulos/pensamiento-logico/pensami
 import { TomaDecisionesComponent } from './modulos/toma-decisiones/toma-decisiones.component';
 import { SolucionCreativaComponent } from './modulos/solucion-creativa/solucion-creativa.component';
 
-
-
 @NgModule({
   declarations: [
     StartPageComponent,
