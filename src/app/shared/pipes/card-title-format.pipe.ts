@@ -10,7 +10,7 @@ export class CardTitleFormatPipe implements PipeTransform {
     if (value.trim().toLowerCase() === 'funciones y modularidad') {
       return 'Funciones/Modularidad';
     }
-    if (value.trim().toLowerCase() === 'abstracción y simplificacion') {
+    if (value.trim().toLowerCase() === 'abstracción y simplificación') {
       return 'Abstracción/Simplificación';
     }
     return value;
