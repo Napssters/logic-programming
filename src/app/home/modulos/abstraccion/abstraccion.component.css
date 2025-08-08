@@ -1,0 +1,25 @@
+.button-with-point::after {
+  content: '';
+  position: absolute;
+  bottom: -8px; /* fuera del botón */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #ef4444; /* color de la punta (red-500) */
+}
+
+.button-with-point::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #ef4444; /* red-500 */
+}

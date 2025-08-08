@@ -11,26 +11,174 @@
   </div>
 </div>
 
+
+<!-- Navbar de opciones para mostrar secciones -->
+<div class="flex flex-col items-center mb-6">
+  <nav class="sticky top-0 z-20 w-auto flex justify-center bg-transparent backdrop-blur-md py-2 rounded-xl">
+    <ul class="flex gap-72">
+      <li>
+        <button class="relative px-4 py-2 rounded-lg font-semibold text-gray-700 hover:text-red-500 transition"
+          [class.border-b-4]="selectedSection === 1" [class.border-red-500]="selectedSection === 1"
+          [ngClass]="{ 'button-with-point': selectedSection === 1 }" (click)="selectedSection = 1">
+          Teoría
+        </button>
+      </li>
+      <li>
+        <button class="relative px-4 py-2 rounded-lg font-semibold text-gray-700 hover:text-red-500 transition"
+          [class.border-b-4]="selectedSection === 2" [class.border-red-500]="selectedSection === 2"
+          [ngClass]="{ 'button-with-point': selectedSection === 2 }" (click)="selectedSection = 2">
+          Ejemplos
+        </button>
+      </li>
+      <li>
+        <button class="relative px-4 py-2 rounded-lg font-semibold text-gray-700 hover:text-red-500 transition"
+          [class.border-b-4]="selectedSection === 3" [class.border-red-500]="selectedSection === 3"
+          [ngClass]="{ 'button-with-point': selectedSection === 3 }" (click)="selectedSection = 3">
+          Ejercicios
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
+
 <!-- Contenedor de las secciones/cards -->
 <div class="flex flex-col gap-6 items-center w-full px-2 md:px-0">
   <!-- Sección 1 -->
+
   <!-- INICIO SECCION 1 -->
-  <section class="bg-gray-500/20 backdrop-blur-md p-6 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-xl">
-    <!-- ...contenido de la sección 1... -->
+  <section *ngIf="selectedSection === 1"
+    class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
+    <!-- Teoría en cards de colores -->
+    <div class="flex flex-col gap-6 mb-8 justify-start items-start">
+      <h2 class="text-xl font-bold text-red-500 mb-2 flex items-center gap-2">🎓 ¿Qué es la Abstracción?</h2>
+      <p class="text-gray-800 ml-8">La abstracción es el proceso de enfocarse en los aspectos más importantes de un problema, ignorando todo lo que no es esencial para resolverlo.</p>
+      <div class="bg-gradient-to-br from-red-100 via-red-50 to-white border-l-4 border-red-400 shadow-lg rounded-xl p-6 w-full">
+        <h3 class="text-lg font-semibold text-gray-700 mt-4 mb-2 flex items-center gap-2">🧩 Explicación:</h3>
+        <p class="text-gray-700">Imagina que explicas cómo llegar a tu casa: das solo los pasos clave y eliminas detalles innecesarios. Así aplicas abstracción, quedándote con lo esencial para no perderse.</p>
+        <h3 class="text-lg font-semibold text-gray-700 mt-4 mb-2 flex items-center gap-2">🏡 Ejemplo cotidiano:</h3>
+        <p class="text-gray-700">Al pensar en “preparar desayuno”, tu mente abstrae y simplifica la acción en pasos importantes, sin cada movimiento exacto.</p>
+      </div>
+      <div class="bg-gradient-to-br from-blue-100 via-blue-50 to-white border-l-4 border-blue-400 shadow-lg rounded-xl p-6 w-full">
+        <h2 class="text-xl font-bold text-blue-500 mb-2 flex items-center gap-2">🛠 ¿Qué es la Simplificación?</h2>
+        <p class="text-gray-800">Simplificación es organizar lo esencial en estructuras claras, reducir la complejidad y hacerlo más fácil de comprender o resolver.</p>
+        <h3 class="text-lg font-semibold text-gray-700 mt-4 mb-2 flex items-center gap-2">🔎 Explicación:</h3>
+        <p class="text-gray-700">Si tienes muchas opciones para preparar el desayuno y lo haces todo a la vez, te enredas. Pero si lo simplificas en una secuencia ordenada, es más fácil y menos propenso a errores.</p>
+        <h3 class="text-lg font-semibold text-gray-700 mt-4 mb-2 flex items-center gap-2">📝 Ejemplo cotidiano:</h3>
+        <p class="text-gray-700">Hacer una lista de tareas es simplificar tu día: organizas qué hacer, en qué orden y con qué prioridad.</p>
+      </div>
+      <div class="bg-gradient-to-br from-green-100 via-green-50 to-white border-l-4 border-green-400 shadow-lg rounded-xl p-6 w-full">
+        <h2 class="text-xl font-bold text-green-600 mb-2 flex items-center gap-2">🧠 ¿Por qué son importantes en programación?</h2>
+        <ul class="list-disc ml-6 text-gray-800 mb-2">
+          <li>Permiten enfocarse en lo que realmente importa.</li>
+          <li>Ayudan a dividir tareas complejas en pasos manejables.</li>
+          <li>El código es más limpio, claro y reutilizable.</li>
+        </ul>
+        <p class="text-gray-700">En programación, abstraer y simplificar hace que los problemas grandes sean más fáciles de entender, resolver y mantener.</p>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-br from-purple-100 via-purple-50 to-white border-l-4 border-purple-400 shadow-lg rounded-xl p-6 w-full mt-2 mb-2">
+      <h2 class="text-2xl font-bold text-purple-600 mb-2 flex items-center gap-2">❓ Preguntas frecuentes y sus respuestas</h2>
+      <div class="space-y-2">
+      <div class="bg-white rounded-lg p-3 max-w-2xl w-[95%] text-justify ml-0 mt-8">
+        <span class="font-semibold">🤔 ¿La abstracción significa ignorar cosas?</span><br>
+        <span class="text-gray-700">Sí, pero solo las cosas que no son necesarias para el problema que estás resolviendo. No se trata de ser descuidado, sino de ser eficiente.<br>
+        Si estás programando un botón para encender una luz, no necesitas saber el color del botón, sino si fue presionado o no.<br><br>
+        Abstraer es priorizar lo esencial y dejar de lado lo que no aporta a la solución. Así tomas decisiones más claras y efectivas, tanto en programación como en la vida diaria.</span>
+      </div>
+      <div class="bg-white rounded-lg p-3 max-w-2xl w-[95%] text-justify ml-auto mt-8">
+        <span class="font-semibold">🤔 ¿Simplificar es lo mismo que hacer algo más fácil?</span><br>
+        <span class="text-gray-700">Casi. Simplificar no significa que el problema en sí sea fácil, sino que lo haces más claro y estructurado, para poder resolverlo paso a paso.<br>
+        Por ejemplo, construir una casa es complejo, pero si lo divides en planos, cimientos, paredes y techos, puedes trabajar por fases. Eso es simplificación.<br><br>
+        Simplificar es dividir lo complejo en partes manejables, para avanzar sin sentirse abrumado y evitar errores innecesarios.</span>
+      </div>
+      <div class="bg-white rounded-lg p-3 max-w-2xl w-[95%] text-justify ml-0 mt-8">
+        <span class="font-semibold">🤔 ¿Puedo aplicar estos conceptos en mi vida diaria?</span><br>
+        <span class="text-gray-700">¡Absolutamente!<br>
+        Cada vez que haces una lista de mercado, organizas tu rutina o das una explicación breve y clara a alguien, estás abstraendo y simplificando.<br>
+        Al contar una historia a un niño, no mencionas todos los detalles ni usas términos complejos. Usas solo lo necesario para que entienda y se mantenga interesado.<br><br>
+        Estos conceptos te ayudan a organizar mejor tus tareas y comunicarte de forma más clara en cualquier situación cotidiana.</span>
+      </div>
+      <div class="bg-white rounded-lg p-3 max-w-2xl w-[95%] text-justify ml-auto mt-8">
+        <span class="font-semibold">🤔 ¿Qué pasa si abstraigo o simplifico demasiado?</span><br>
+        <span class="text-gray-700">Si abstraes o simplificas en exceso, puedes perder información importante que podría ser clave para resolver el problema correctamente. El reto está en encontrar el equilibrio: eliminar lo innecesario, pero conservar lo esencial. En programación, abstraer demasiado puede hacer que el código sea difícil de entender o mantener; simplificar demasiado puede hacer que se pierdan funcionalidades importantes. Por eso, siempre revisa que lo que eliminas no sea fundamental para tu objetivo.</span>
+      </div>
+      <div class="bg-white rounded-lg p-3 max-w-2xl w-[95%] text-justify ml-0 mt-8">
+        <span class="font-semibold">🤔 ¿Cómo sé si estoy abstraiendo o simplificando correctamente?</span><br>
+        <span class="text-gray-700">La mejor señal es que puedes explicar el problema o la solución de forma clara y breve, y que cualquier persona pueda entender los pasos principales sin perderse en detalles. Si al aplicar tu abstracción o simplificación, el resultado sigue siendo útil, funcional y fácil de seguir, vas por buen camino. Si notas que surgen dudas, confusiones o que falta información esencial, es momento de revisar y ajustar tu enfoque. Recuerda: la claridad y la utilidad son tus mejores indicadores.</span>
+      </div>
+      </div>
+    </div>
+
+      <h2 class="text-2xl font-bold text-pink-600 mb-4 mt-4 flex items-center gap-2">🧰 Comparaciones Cotidianas</h2>
+      <div class="overflow-x-auto mb-4">
+        <table class="min-w-full text-sm text-left border-separate border-spacing-0 rounded-xl shadow-lg bg-white">
+          <thead>
+            <tr class="bg-gradient-to-r from-blue-500 via-cyan-400 to-green-300">
+              <th class="py-3 px-6 font-bold text-white rounded-tl-xl text-center">Situación Real</th>
+              <th class="py-3 px-6 font-bold text-white text-center">Abstracción</th>
+              <th class="py-3 px-6 font-bold text-white rounded-tr-xl text-center">Simplificación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hover:bg-red-50 transition">
+              <td class="py-3 px-6 border-b border-gray-200">Preparar una maleta</td>
+              <td class="py-3 px-6 border-b border-gray-200">Llevar solo lo necesario (ropa, documentos)</td>
+              <td class="py-3 px-6 border-b border-gray-200">Doblar y acomodar para que todo quepa</td>
+            </tr>
+            <tr class="hover:bg-blue-50 transition">
+              <td class="py-3 px-6 border-b border-gray-200">Contar cómo llegar a un lugar</td>
+              <td class="py-3 px-6 border-b border-gray-200">Dar solo los pasos relevantes</td>
+              <td class="py-3 px-6 border-b border-gray-200">Ordenar las instrucciones en la mejor secuencia</td>
+            </tr>
+            <tr class="hover:bg-pink-50 transition">
+              <td class="py-3 px-6 border-b border-gray-200">Enseñar a usar una app</td>
+              <td class="py-3 px-6 border-b border-gray-200">Explicar solo las funciones básicas al inicio</td>
+              <td class="py-3 px-6 border-b border-gray-200">Mostrar una pantalla con pocas opciones para no abrumar</td>
+            </tr>
+            <tr class="hover:bg-green-50 transition">
+              <td class="py-3 px-6 border-b border-gray-200">Cocinar una receta</td>
+              <td class="py-3 px-6 border-b border-gray-200">Usar solo ingredientes clave</td>
+              <td class="py-3 px-6 border-b border-gray-200">Organizar los pasos para no mezclar todo sin orden</td>
+            </tr>
+            <tr class="hover:bg-yellow-50 transition">
+              <td class="py-3 px-6">Resolver un problema en grupo</td>
+              <td class="py-3 px-6">Identificar el problema central</td>
+              <td class="py-3 px-6">Asignar tareas específicas a cada miembro</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bg-gradient-to-br from-yellow-100 via-yellow-50 to-white border-l-4 border-yellow-400 shadow-lg rounded-xl mt-6 p-6 w-full">
+        <h2 class="text-xl font-bold text-yellow-600 mb-2 flex items-center gap-2">✨ Frases clave para recordar</h2>
+        <ul class="list-disc ml-6 text-gray-800">
+          <li>"No todo lo que ves es importante. Lo importante es lo que te acerca a la solución."</li>
+          <li>"Si puedes explicarlo con menos pasos, lo estás entendiendo mejor."</li>
+          <li>"La abstracción te da claridad. La simplificación te da control."</li>
+        </ul>
+      </div>
+    <!-- ...existing code... -->
   </section>
   <!-- FIN SECCION 1 -->
 
   <!-- Sección 2 -->
+
   <!-- INICIO SECCION 2 -->
-  <section class="bg-gray-500/20 backdrop-blur-md p-6 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-xl">
+  <section *ngIf="selectedSection === 2"
+    class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
     <!-- ...contenido de la sección 2... -->
+    <h1 class="mt-6">ejemplos</h1>
   </section>
   <!-- FIN SECCION 2 -->
 
   <!-- Sección 3 -->
+
   <!-- INICIO SECCION 3 -->
-  <section class="bg-gray-500/20 backdrop-blur-md p-6 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-xl">
+  <section *ngIf="selectedSection === 3"
+    class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
     <!-- ...contenido de la sección 3... -->
+    <h1 class="mt-6">ejercicios</h1>
   </section>
   <!-- FIN SECCION 3 -->
-</div>
+<!-- ...existing code... -->
