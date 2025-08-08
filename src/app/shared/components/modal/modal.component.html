@@ -10,8 +10,8 @@
     [class]="maxWidth + ' ' + maxHeight"
     (click)="onModalContentClick($event)">
 
-    <!-- Header del modal -->
-    <div class="flex justify-between items-center p-6 border-b border-gray-200">
+    <!-- Header del modal sticky -->
+    <div class="flex justify-between items-center p-6 border-b border-gray-200 sticky top-0 bg-white z-10">
       <div>
         <h2 class="text-2xl font-bold text-gray-800">{{ title }}</h2>
       </div>

@@ -1,9 +1,24 @@
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  <div *ngFor="let card of cards" class="rounded-xl shadow-lg p-6 flex flex-col items-center h-full" [style.background]="card.color">
-    <img [src]="card.image" [alt]="card.title" class="w-20 h-20 mb-4 rounded-full shadow-md" />
-    <h3 class="text-lg font-semibold mb-2 text-white drop-shadow text-left w-full">{{ card.title }}</h3>
-    <p class="text-base text-white mb-4 w-full text-justify">{{ card.description }}</p>
-    <div class="flex-grow"></div>
-    <a [href]="card.url" class="bg-white text-black font-semibold py-2 px-4 rounded-full shadow hover:bg-gray-100 transition max-w-xs w-auto text-center mt-2">Ir al módulo</a>
+
+<div class="grid grid-cols-1 md:grid-cols-3 md:gap-x-0.5 md:gap-y-6 justify-center">
+  <div *ngFor="let card of cards; let i = index" class="card-flip-container">
+    <a [href]="card.url" target="_blank" rel="noopener" class="card-link">
+      <div class="card-flip">
+        <!-- Front Side -->
+      <div class="card-flip-front flex flex-col items-center justify-center rounded-xl shadow-lg p-6 h-[292px] w-[286px] cursor-pointer bg-white">
+        <div class="w-[153px] h-[153px] mb-4 rounded-full shadow-md flex items-center justify-center" [style.background]="card.color">
+          <img [src]="card.image" [alt]="card.title" class="w-[145px] h-[145px] rounded-full object-cover" />
+        </div>
+        <h3
+          [ngClass]="(card.title | cardTitleFormat) === 'Abstracción/Simplificación' ? 'text-left' : 'text-center justify-center mx-auto'"
+          class="text-base font-semibold text-gray-900 drop-shadow max-w-[250px] line-clamp-2 h-12 flex items-center"
+        >{{ card.title | cardTitleFormat }}</h3>
+      </div>
+        <!-- Back Side -->
+      <div class="card-flip-back flex flex-col items-center justify-center rounded-xl shadow-lg p-6 h-[292px] w-[286px] cursor-pointer bg-white/90">
+        <span class="text-sm font-bold text-cyan-700 mb-2">Módulo {{ i + 1 }}</span>
+        <p class="text-base text-gray-800 w-full text-justify">{{ card.description }}</p>
+      </div>
+      </div>
+    </a>
   </div>
 </div>

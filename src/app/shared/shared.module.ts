@@ -11,6 +11,7 @@ import { FlowchartComponent } from './components/flowchart/flowchart.component';
 import { BlocklyExerciseComponent } from './blockly-exercise/blockly-exercise.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { CardsComponent } from './components/cards/cards.component';
+import { CardTitleFormatPipe } from './pipes/card-title-format.pipe';
 
 
 
@@ -24,6 +25,7 @@ import { CardsComponent } from './components/cards/cards.component';
     BlocklyExerciseComponent,
     ModalComponent,
     CardsComponent,
+    CardTitleFormatPipe,
   ],
   imports: [
     CommonModule,
@@ -40,6 +42,7 @@ import { CardsComponent } from './components/cards/cards.component';
     BlocklyExerciseComponent,
     ModalComponent,
     CardsComponent,
+    CardTitleFormatPipe,
   ]
 })
 export class SharedModule { }
