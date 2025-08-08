@@ -8,7 +8,8 @@
         "instructions": "Crea una variable llamada \"nombre\" y asígnale el valor \"Juan\".",
         "expectedCode": "var nombre = \"Juan\";",
         "difficulty": "easy",
-        "category": "variables"
+        "category": "variables",
+        "color": "#38bdf8"
       },
       {
         "id": "exercise-2",
@@ -17,7 +18,8 @@
         "instructions": "Crea una variable llamada \"edad\" y asígnale el valor 25.",
         "expectedCode": "var edad = 25;",
         "difficulty": "easy",
-        "category": "variables"
+        "category": "variables",
+        "color": "#fbbf24"
       },
       {
         "id": "exercise-3",
@@ -26,7 +28,8 @@
         "instructions": "Crea dos variables \"a\" con valor 10 y \"b\" con valor 5. Luego crea una variable \"suma\" que contenga la suma de a y b.",
         "expectedCode": "var a = 10;\nvar b = 5;\nvar suma = a + b;",
         "difficulty": "medium",
-        "category": "variables"
+        "category": "variables",
+        "color": "#34d399"
       },
       {
         "id": "exercise-4",
@@ -35,7 +38,8 @@
         "instructions": "Crea una variable llamada \"esEstudiante\" y asígnale el valor verdadero.",
         "expectedCode": "var esEstudiante = true;",
         "difficulty": "easy",
-        "category": "variables"
+        "category": "variables",
+        "color": "#818cf8"
       },
       {
         "id": "exercise-5",
@@ -44,7 +48,8 @@
         "instructions": "Crea una variable \"contador\" con valor 0. Luego cambia su valor a 1.",
         "expectedCode": "var contador = 0;\ncontador = 1;",
         "difficulty": "medium",
-        "category": "variables"
+        "category": "variables",
+        "color": "#f472b6"
       },
       {
         "id": "exercise-6",
@@ -53,7 +58,8 @@
         "instructions": "Crea una variable \"saludo\" con \"Hola\" y otra \"nombre\" con \"María\". Crea una variable \"mensaje\" que una ambas con un espacio.",
         "expectedCode": "var saludo = \"Hola\";\nvar nombre = \"María\";\nvar mensaje = saludo + \" \" + nombre;",
         "difficulty": "medium",
-        "category": "variables"
+        "category": "variables",
+        "color": "#f87171"
       },
       {
         "id": "exercise-7",
@@ -62,7 +68,8 @@
         "instructions": "Crea variables \"precio\" (100), \"descuento\" (20) y \"precioFinal\" que calcule el precio menos el descuento.",
         "expectedCode": "var precio = 100;\nvar descuento = 20;\nvar precioFinal = precio - descuento;",
         "difficulty": "hard",
-        "category": "variables"
+        "category": "variables",
+        "color": "#10b981"
       }
     ]
   },
@@ -197,6 +204,73 @@
         "expectedCode": "let objetivo = 7;\nlet encontrado = false;\nfor (let i = 1; i <= 10; i++) {\n  if (i == objetivo) {\n    encontrado = true;\n    print(\"Número encontrado\");\n    break;\n  }\n}",
         "difficulty": "hard",
         "category": "bucles"
+      }
+    ]
+  },
+  "funciones": {
+    "exercises": [
+      {
+        "id": "func-1",
+        "title": "Función para sumar tres números",
+        "description": "Crea una función que reciba tres números (a, b, c) y devuelva su suma.",
+        "instructions": "Define una función llamada 'sumarTres' que reciba tres parámetros y retorne la suma.",
+        "expectedCode": "function sumarTres(a, b, c) {\n  return a + b + c;\n}",
+        "difficulty": "easy",
+        "category": "funciones"
+      },
+      {
+        "id": "func-2",
+        "title": "Función para verificar si un número es par",
+        "description": "Crea una función que reciba un número y retorne verdadero si es par, falso si no.",
+        "instructions": "Define una función llamada 'esPar' que reciba un número y retorne true si es par.",
+        "expectedCode": "function esPar(n) {\n  return n % 2 === 0;\n}",
+        "difficulty": "easy",
+        "category": "funciones"
+      },
+      {
+        "id": "func-3",
+        "title": "Función para saludar con nombre",
+        "description": "Crea una función que reciba un nombre y retorne un saludo personalizado.",
+        "instructions": "Define una función 'saludar' que reciba un nombre y retorne 'Hola, [nombre]!'",
+        "expectedCode": "function saludar(nombre) {\n  return \"Hola, \" + nombre + \"!\";\n}",
+        "difficulty": "easy",
+        "category": "funciones"
+      },
+      {
+        "id": "func-4",
+        "title": "Función para calcular el área de un triángulo",
+        "description": "Crea una función que reciba la base y la altura de un triángulo y retorne el área.",
+        "instructions": "Define una función 'areaTriangulo' que reciba base y altura y retorne el área.",
+        "expectedCode": "function areaTriangulo(base, altura) {\n  return (base * altura) / 2;\n}",
+        "difficulty": "medium",
+        "category": "funciones"
+      },
+      {
+        "id": "func-5",
+        "title": "Función para contar vocales en un texto",
+        "description": "Crea una función que reciba un texto y retorne cuántas vocales contiene.",
+        "instructions": "Define una función 'contarVocales' que reciba un texto y retorne el número de vocales.",
+        "expectedCode": "function contarVocales(texto) {\n  let contador = 0;\n  for (let letra of texto) {\n    if (\"aeiouAEIOU\".includes(letra)) {\n      contador++;\n    }\n  }\n  return contador;\n}",
+        "difficulty": "medium",
+        "category": "funciones"
+      },
+      {
+        "id": "func-6",
+        "title": "Función para invertir un arreglo",
+        "description": "Crea una función que reciba un arreglo y retorne uno nuevo con los elementos en orden inverso.",
+        "instructions": "Define una función 'invertirArreglo' que reciba un arreglo y retorne el arreglo invertido.",
+        "expectedCode": "function invertirArreglo(arr) {\n  return arr.reverse();\n}",
+        "difficulty": "medium",
+        "category": "funciones"
+      },
+      {
+        "id": "func-7",
+        "title": "Función para encontrar el mayor de tres números",
+        "description": "Crea una función que reciba tres números y retorne el mayor.",
+        "instructions": "Define una función 'mayorDeTres' que reciba tres números y retorne el mayor.",
+        "expectedCode": "function mayorDeTres(a, b, c) {\n  return Math.max(a, b, c);\n}",
+        "difficulty": "hard",
+        "category": "funciones"
       }
     ]
   }
