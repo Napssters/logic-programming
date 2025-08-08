@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NavigationService } from '../../services/navigation.service';
 
 @Component({
   selector: 'app-cards',
@@ -7,4 +8,10 @@ import { Component, Input } from '@angular/core';
 })
 export class CardsComponent {
   @Input() cards: any[] = [];
+
+  constructor(private navigationService: NavigationService) {}
+
+  public redirigir(vista: string) {
+    this.navigationService.navigateTo(vista);
+  }
 }

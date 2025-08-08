@@ -1,7 +1,7 @@
 
 <div class="grid grid-cols-1 md:grid-cols-3 md:gap-x-0.5 md:gap-y-6 justify-center">
   <div *ngFor="let card of cards; let i = index" class="card-flip-container">
-    <a [href]="card.url" target="_blank" rel="noopener" class="card-link">
+    <button (click)="redirigir(card.url)" class="card-link">
       <div class="card-flip">
         <!-- Front Side -->
       <div class="card-flip-front flex flex-col items-center justify-center rounded-xl shadow-lg p-6 h-[292px] w-[286px] cursor-pointer bg-white">
@@ -19,6 +19,6 @@
         <p class="text-base text-gray-800 w-full text-justify">{{ card.description }}</p>
       </div>
       </div>
-    </a>
+    </button>
   </div>
 </div>
