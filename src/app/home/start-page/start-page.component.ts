@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Type } from '@angular/core';
 import { CardsComponent } from '../../shared/components/cards/cards.component';
+import { TutorialComponent } from '../../shared/components/tutorial/tutorial.component';
 import { Router } from '@angular/router';
 import { NavigationService } from '../../shared/services/navigation.service';
 import { ModalService } from '../../shared/services/modal.service';
@@ -50,6 +51,14 @@ export class StartPageComponent implements OnInit, OnDestroy {
   }
 
   openCardsModal(): void {
+    this.modalComponentType = CardsComponent;
+    this.modalTitle = 'Módulos disponibles';
+    this.showModal = true;
+  }
+
+  openTutorialModal(): void {
+    this.modalComponentType = TutorialComponent;
+    this.modalTitle = 'Tutorial de uso del aplicativo';
     this.showModal = true;
   }
 

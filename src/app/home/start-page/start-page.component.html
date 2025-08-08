@@ -17,7 +17,12 @@
       <p class="text-xl md:text-2xl text-white drop-shadow-lg mb-4 font-semibold">Explorando la Lógica de la Programación</p>
       <p class="text-base text-white drop-shadow-lg mb-6 w-full text-justify">Aprende lógica de programación de forma visual, interactiva y divertida. Descubre los módulos y comienza tu viaje en el pensamiento computacional.</p>
 
-      <button class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-6 rounded-full shadow transition-all duration-300" (click)="openCardsModal()">Comenzar ahora</button>
+      <div class="flex items-center gap-4">
+        <button class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-6 rounded-full shadow transition-all duration-300" (click)="openCardsModal()">Comenzar ahora</button>
+        <div class="flex flex-col items-start">
+          <a class="text-cyan-700 hover:text-white hover:underline font-semibold text-base cursor-pointer" (click)="openTutorialModal()">¿Cómo usar el aplicativo?</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
