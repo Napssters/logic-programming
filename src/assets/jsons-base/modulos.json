@@ -451,5 +451,112 @@
         ]
       }
     ]
+  },
+  "funciones": {
+    "examples": [
+      {
+        "title": "Ejemplo 1: Receta de cocina como función",
+        "icon": "🍳",
+        "description": "Imagina que preparar una tortilla es como ejecutar una función en programación. Tienes ingredientes (parámetros), sigues pasos (instrucciones) y al final obtienes un resultado (valor de retorno). Así, puedes reutilizar la receta cada vez que quieras una tortilla, cambiando los ingredientes según tu gusto.",
+        "question": "👉 ¿Cómo sería el diagrama de flujo para una función que prepara una tortilla?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Recibir ingredientes", "type": "process" },
+          { "id": 3, "text": "Batir huevos", "type": "process" },
+          { "id": 4, "text": "Agregar ingredientes", "type": "process" },
+          { "id": 5, "text": "Cocinar en sartén", "type": "process" },
+          { "id": 6, "text": "¿Está cocida?", "type": "decision" },
+          { "id": 7, "text": "Servir tortilla", "type": "process" },
+          { "id": 8, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 2: Llamar a un electricista",
+        "icon": "🔌",
+        "description": "Cuando tienes un problema eléctrico en casa, llamas a un electricista (función) y le das detalles del problema (parámetros). El electricista sigue un procedimiento y te da una solución (valor de retorno). Así funcionan las funciones en programación: reciben datos, procesan y devuelven resultados.",
+        "question": "👉 ¿Cómo sería el diagrama de flujo para una función que soluciona problemas eléctricos?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Recibir descripción del problema", "type": "process" },
+          { "id": 3, "text": "Diagnosticar", "type": "process" },
+          { "id": 4, "text": "¿Puede solucionarse?", "type": "decision" },
+          { "id": 5, "text": "Reparar", "type": "process" },
+          { "id": 6, "text": "Informar resultado", "type": "process" },
+          { "id": 7, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 3: Función de sumar en la calculadora",
+        "icon": "🧮",
+        "description": "Cuando usas la calculadora para sumar dos números, en realidad estás usando una función. Ingresas los números (parámetros), presionas el botón de suma (llamada a la función) y obtienes el resultado (valor de retorno).",
+        "question": "👉 ¿Cómo sería el diagrama de flujo para una función que suma dos números?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Recibir número A", "type": "process" },
+          { "id": 3, "text": "Recibir número B", "type": "process" },
+          { "id": 4, "text": "Sumar A + B", "type": "process" },
+          { "id": 5, "text": "Mostrar resultado", "type": "process" },
+          { "id": 6, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 4: Función para pedir comida a domicilio",
+        "icon": "🍔",
+        "description": "Pedir comida por una app es como llamar a una función: eliges el restaurante y el platillo (parámetros), la app procesa tu pedido y te entrega la comida (valor de retorno). Puedes pedir diferentes platillos usando la misma función.",
+        "question": "👉 ¿Cómo sería el diagrama de flujo para una función que pide comida?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Seleccionar restaurante", "type": "process" },
+          { "id": 3, "text": "Seleccionar platillo", "type": "process" },
+          { "id": 4, "text": "Procesar pedido", "type": "process" },
+          { "id": 5, "text": "¿Pedido confirmado?", "type": "decision" },
+          { "id": 6, "text": "Recibir comida", "type": "process" },
+          { "id": 7, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 5: Función para calcular el área de una habitación",
+        "icon": "📏",
+        "description": "Cuando quieres saber cuánta pintura necesitas para una habitación, usas una fórmula (función) que recibe el largo y ancho (parámetros) y te da el área (valor de retorno).",
+        "question": "👉 ¿Cómo sería el diagrama de flujo para una función que calcula el área?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Recibir largo", "type": "process" },
+          { "id": 3, "text": "Recibir ancho", "type": "process" },
+          { "id": 4, "text": "Multiplicar largo x ancho", "type": "process" },
+          { "id": 5, "text": "Mostrar área", "type": "process" },
+          { "id": 6, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 6: Función para saludar a una persona",
+        "icon": "👋",
+        "description": "En la vida diaria, saludar a alguien puede verse como una función: recibes el nombre (parámetro), generas el saludo y lo entregas (valor de retorno).",
+        "question": "👉 ¿Cómo sería el diagrama de flujo para una función que saluda?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Recibir nombre", "type": "process" },
+          { "id": 3, "text": "Generar saludo", "type": "process" },
+          { "id": 4, "text": "Mostrar saludo", "type": "process" },
+          { "id": 5, "text": "Fin", "type": "end" }
+        ]
+      },
+      {
+        "title": "Ejemplo 7: Función para organizar una fiesta",
+        "icon": "🎉",
+        "description": "Organizar una fiesta implica muchos pasos, pero puedes verlo como una función: recibes la lista de invitados, el lugar y la fecha (parámetros), organizas todo y al final tienes una fiesta exitosa (valor de retorno).",
+        "question": "👉 ¿Cómo sería el diagrama de flujo para una función que organiza una fiesta?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start" },
+          { "id": 2, "text": "Recibir lista de invitados", "type": "process" },
+          { "id": 3, "text": "Seleccionar lugar", "type": "process" },
+          { "id": 4, "text": "Definir fecha", "type": "process" },
+          { "id": 5, "text": "Preparar decoración y comida", "type": "process" },
+          { "id": 6, "text": "¿Todo listo?", "type": "decision" },
+          { "id": 7, "text": "Realizar fiesta", "type": "process" },
+          { "id": 8, "text": "Fin", "type": "end" }
+        ]
+      }
+    ]
   }
 }

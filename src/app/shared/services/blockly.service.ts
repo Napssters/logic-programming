@@ -405,46 +405,6 @@ export class BlocklyService {
           <field name="DIRECTION">1</field>
         </block>
       </category>
-      <category name="Color" colour="#a5745b">
-        <block type="colour_picker">
-          <field name="COLOUR">#ff0000</field>
-        </block>
-        <block type="colour_random"></block>
-        <block type="colour_rgb">
-          <value name="RED">
-            <shadow type="math_number">
-              <field name="NUM">100</field>
-            </shadow>
-          </value>
-          <value name="GREEN">
-            <shadow type="math_number">
-              <field name="NUM">50</field>
-            </shadow>
-          </value>
-          <value name="BLUE">
-            <shadow type="math_number">
-              <field name="NUM">0</field>
-            </shadow>
-          </value>
-        </block>
-        <block type="colour_blend">
-          <value name="COLOUR1">
-            <shadow type="colour_picker">
-              <field name="COLOUR">#ff0000</field>
-            </shadow>
-          </value>
-          <value name="COLOUR2">
-            <shadow type="colour_picker">
-              <field name="COLOUR">#3333ff</field>
-            </shadow>
-          </value>
-          <value name="RATIO">
-            <shadow type="math_number">
-              <field name="NUM">0.5</field>
-            </shadow>
-          </value>
-        </block>
-      </category>
       <category name="Funciones" colour="#9a5ba5" custom="PROCEDURE">
       </category>
     </xml>
@@ -505,6 +465,84 @@ export class BlocklyService {
 
         console.log('Variables_set - ID:', varId, 'Nombre real:', varName, 'Valor:', value);
         return `var ${varName} = ${value};`;
+
+      case 'procedures_defreturn':
+        // Definición de función con retorno
+        const funcName = block.getFieldValue('NAME');
+        const params = block.getVars ? block.getVars() : [];
+        const paramList = params.join(', ');
+        let funcBody = '';
+        const statementBlock = block.getInputTargetBlock('STACK');
+        if (statementBlock) {
+          let currentBlock = statementBlock;
+          while (currentBlock) {
+            const blockCode = this.blockToCode(currentBlock);
+            if (blockCode) {
+              funcBody += (funcBody ? '\n  ' : '  ') + blockCode;
+            }
+            currentBlock = currentBlock.getNextBlock();
+          }
+        }
+        const returnBlock = block.getInputTargetBlock('RETURN');
+        let returnCode = '';
+        if (returnBlock) {
+          returnCode = this.getBlockValue(returnBlock);
+          funcBody += (funcBody ? '\n  ' : '  ') + `return ${returnCode};`;
+        }
+        return `function ${funcName}(${paramList}) {\n${funcBody}\n}`;
+
+      case 'procedures_defnoreturn':
+        // Definición de función sin retorno
+        const funcNameNoReturn = block.getFieldValue('NAME');
+        const paramsNoReturn = block.getVars ? block.getVars() : [];
+        const paramListNoReturn = paramsNoReturn.join(', ');
+        let funcBodyNoReturn = '';
+        const statementBlockNoReturn = block.getInputTargetBlock('STACK');
+        if (statementBlockNoReturn) {
+          let currentBlock = statementBlockNoReturn;
+          while (currentBlock) {
+            const blockCode = this.blockToCode(currentBlock);
+            if (blockCode) {
+              funcBodyNoReturn += (funcBodyNoReturn ? '\n  ' : '  ') + blockCode;
+            }
+            currentBlock = currentBlock.getNextBlock();
+          }
+        }
+        return `function ${funcNameNoReturn}(${paramListNoReturn}) {\n${funcBodyNoReturn}\n}`;
+
+      case 'procedures_callreturn':
+        // Llamada a función con retorno
+        const callFuncName = block.getFieldValue('NAME');
+        const callArgs = [];
+        if (block.inputList) {
+          for (let i = 0; i < block.inputList.length; i++) {
+            const input = block.inputList[i];
+            if (input.name && input.connection) {
+              const argBlock = input.connection.targetBlock();
+              if (argBlock) {
+                callArgs.push(this.getBlockValue(argBlock));
+              }
+            }
+          }
+        }
+        return `${callFuncName}(${callArgs.join(', ')})`;
+
+      case 'procedures_callnoreturn':
+        // Llamada a función sin retorno
+        const callFuncNameNoReturn = block.getFieldValue('NAME');
+        const callArgsNoReturn = [];
+        if (block.inputList) {
+          for (let i = 0; i < block.inputList.length; i++) {
+            const input = block.inputList[i];
+            if (input.name && input.connection) {
+              const argBlock = input.connection.targetBlock();
+              if (argBlock) {
+                callArgsNoReturn.push(this.getBlockValue(argBlock));
+              }
+            }
+          }
+        }
+        return `${callFuncNameNoReturn}(${callArgsNoReturn.join(', ')});`;
 
       case 'math_number':
         const numValue = block.getFieldValue('NUM');
