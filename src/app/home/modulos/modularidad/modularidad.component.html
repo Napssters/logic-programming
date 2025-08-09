@@ -198,3 +198,12 @@ Es como cuando grabas un mensaje de voz: lo haces una vez y puedes reproducirlo 
     </div>
   </div>
 </div>
+
+  <!-- Modal genérico para diagrama de flujo -->
+  <app-modal
+    [isVisible]="showModal"
+    [title]="modalTitle"
+    [componentType]="modalComponentType"
+    [componentInputs]="modalComponentInputs"
+    (onClose)="closeModal()">
+  </app-modal>

@@ -34,18 +34,15 @@
                 <div class="text-xs font-medium text-yellow-800 leading-tight">{{ step.text }}</div>
               </div>
             </div>
-
-            <!-- Etiquetas Sí/No para decisiones -->
-            <div class="absolute -left-8 top-1/2 transform -translate-y-1/2">
-              <span class="text-xs font-bold text-green-600 bg-white px-1 rounded shadow">No</span>
-            </div>
-            <div class="absolute -right-8 top-1/2 transform -translate-y-1/2">
-              <span class="text-xs font-bold text-red-600 bg-white px-1 rounded shadow">Sí</span>
+            <!-- Botones de decisión solo en el paso actual -->
+            <div *ngIf="i === visibleSteps.length - 1 && currentStepId === step.id" class="flex justify-center gap-4 mt-4">
+              <button (click)="chooseBranch('yes')" class="px-4 py-2 bg-green-500 text-white rounded shadow hover:bg-green-600 font-bold">Sí</button>
+              <button (click)="chooseBranch('no')" class="px-4 py-2 bg-red-500 text-white rounded shadow hover:bg-red-600 font-bold">No</button>
             </div>
           </div>
 
           <!-- Indicador de paso actual -->
-          <div *ngIf="i === currentStepIndex" class="absolute -top-2 -right-2 z-10">
+          <div *ngIf="step.id === currentStepId" class="absolute -top-2 -right-2 z-10">
             <span class="inline-flex items-center justify-center w-6 h-6 bg-green-500 text-white text-xs font-bold rounded-full animate-pulse">
               ▶
             </span>
@@ -53,11 +50,23 @@
         </div>
 
         <!-- Indicador de continuación si hay más pasos -->
-        <div *ngIf="i === visibleSteps.length - 1 && canGoNext" class="flex flex-col items-center">
+  <div *ngIf="i === visibleSteps.length - 1 && !isDecision(step.type) && nextStepAvailable()" class="flex flex-col items-center">
           <div class="w-0.5 h-4 bg-gray-300 opacity-50"></div>
           <div class="w-6 h-6 border-2 border-dashed border-gray-400 rounded-full flex items-center justify-center">
             <span class="text-gray-400 text-xs animate-pulse">...</span>
           </div>
+        </div>
+        <!-- Flecha visual para bucles -->
+        <div *ngIf="step.loopBack && i === visibleSteps.length - 1" class="flex flex-col items-center mt-2">
+          <svg width="40" height="30" viewBox="0 0 40 30" class="mx-auto">
+            <path d="M20 0 Q40 15 20 30" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+            <defs>
+              <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <polygon points="0 0, 6 3, 0 6" fill="#3b82f6" />
+              </marker>
+            </defs>
+          </svg>
+          <span class="text-xs text-blue-600 font-bold">Bucle</span>
         </div>
       </div>
     </div>
@@ -70,7 +79,7 @@
     </div>
 
     <!-- Mensaje de finalización -->
-    <div *ngIf="!canGoNext && visibleSteps.length > 0" class="text-center py-4">
+  <div *ngIf="!nextStepAvailable() && visibleSteps.length > 0" class="text-center py-4">
       <div class="bg-green-50 border border-green-200 rounded-lg p-4">
         <div class="text-4xl mb-2">🎉</div>
         <p class="text-green-800 font-medium">¡Diagrama de flujo completado!</p>
@@ -155,9 +164,9 @@
       <!-- Botón Siguiente -->
       <button
         (click)="nextStep()"
-        [disabled]="!canGoNext"
-        [class.opacity-50]="!canGoNext"
-        [class.cursor-not-allowed]="!canGoNext"
+  [disabled]="!nextStepAvailable()"
+  [class.opacity-50]="!nextStepAvailable()"
+  [class.cursor-not-allowed]="!nextStepAvailable()"
         class="w-8 h-8 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 ease-in-out flex items-center justify-center border border-blue-800 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

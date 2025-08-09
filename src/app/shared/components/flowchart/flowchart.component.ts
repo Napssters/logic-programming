@@ -6,78 +6,144 @@ import { FlowchartStep } from '../../interfaces/flowchart.interface';
   templateUrl: './flowchart.component.html',
   styleUrls: ['./flowchart.component.css']
 })
+
 export class FlowchartComponent implements OnChanges {
+  ngOnInit() {
+    this.resetSteps();
+  }
   @Input() steps: FlowchartStep[] = [];
   @Input() title: string = '';
 
-  // Control de navegación paso a paso
-  currentStepIndex: number = 0;
+  currentStepId: number | null = null;
   visibleSteps: FlowchartStep[] = [];
+  history: number[] = [];
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['steps'] && this.steps) {
-      // Reiniciar la navegación cuando cambien los pasos
-      this.currentStepIndex = 0;
-      this.updateVisibleSteps();
-      console.log('Flowchart steps updated:', this.steps);
+      this.resetSteps();
     }
   }
 
-  // Actualizar los pasos visibles basado en el índice actual
-  updateVisibleSteps(): void {
+  getStepById(id: number): FlowchartStep | undefined {
+    return this.steps.find(s => s.id === id);
+  }
+
+  // Inicializa el diagrama en el primer paso
+  resetSteps(): void {
     if (this.steps.length > 0) {
-      this.visibleSteps = this.steps.slice(0, this.currentStepIndex + 1);
+      this.currentStepId = this.steps[0].id;
+      this.history = [this.currentStepId];
+      this.updateVisibleSteps();
     } else {
+      this.currentStepId = null;
+      this.history = [];
       this.visibleSteps = [];
     }
   }
 
-  // Navegación paso a paso
-  nextStep(): void {
-    if (this.currentStepIndex < this.steps.length - 1) {
-      this.currentStepIndex++;
-      this.updateVisibleSteps();
-    }
+  // Actualiza los pasos visibles según el historial
+  updateVisibleSteps(): void {
+    this.visibleSteps = this.history.map(id => this.getStepById(id)).filter(Boolean) as FlowchartStep[];
   }
 
+  // Navegación hacia atrás
   previousStep(): void {
-    if (this.currentStepIndex > 0) {
-      this.currentStepIndex--;
+    if (this.history.length > 1) {
+      this.history.pop();
+      this.currentStepId = this.history[this.history.length - 1];
       this.updateVisibleSteps();
     }
   }
 
-  // Reiniciar el diagrama
-  resetSteps(): void {
-    this.currentStepIndex = 0;
-    this.updateVisibleSteps();
+  // Navegación normal (proceso, inicio, fin)
+  nextStep(): void {
+    // Si el diagrama es secuencial (sin next/branches/loopBack), avanzar por índice
+    if (!this.steps || this.steps.length === 0 || this.currentStepId === null) return;
+    const currentStep = this.getStepById(this.currentStepId);
+    if (!currentStep) return;
+
+    // Si el paso es decisión, espera la elección
+    if (currentStep.type === 'decision') return;
+
+    // Si el paso tiene next/loopBack, navega por id
+    let nextId: number | null = null;
+    if (typeof currentStep.next === 'number') {
+      nextId = currentStep.next;
+    } else if (typeof currentStep.loopBack === 'number') {
+      nextId = currentStep.loopBack;
+    }
+
+    // Si no tiene next/loopBack, avanzar por índice (compatibilidad secuencial)
+    if (!nextId) {
+      const currentIndex = this.steps.findIndex(s => s.id === this.currentStepId);
+      if (currentIndex < this.steps.length - 1) {
+        nextId = this.steps[currentIndex + 1].id;
+      }
+    }
+
+    if (nextId) {
+      this.currentStepId = nextId;
+      this.history.push(nextId);
+      this.updateVisibleSteps();
+    }
   }
 
-  // Getters para controlar la navegación
-  get canGoNext(): boolean {
-    return this.currentStepIndex < this.steps.length - 1;
+  // Elegir rama en decisión
+  chooseBranch(option: 'yes' | 'no'): void {
+    const currentStep = this.getStepById(this.currentStepId!);
+    if (!currentStep || currentStep.type !== 'decision') return;
+  const branchId = currentStep.branches && typeof currentStep.branches[option] === 'number' ? currentStep.branches[option] : null;
+    if (branchId) {
+      this.currentStepId = branchId;
+      this.history.push(branchId);
+      this.updateVisibleSteps();
+    }
+  }
+
+
+  // Indica si hay un siguiente paso disponible (no es decisión ni fin)
+  nextStepAvailable(): boolean {
+    if (this.currentStepId === null) return false;
+    const currentStep = this.getStepById(this.currentStepId);
+    if (!currentStep) return false;
+    if (currentStep.type === 'decision' || currentStep.type === 'end') return false;
+    // Si tiene next/loopBack, puede avanzar
+    if (typeof currentStep.next === 'number' || typeof currentStep.loopBack === 'number') return true;
+    // Si no tiene, verifica si hay un siguiente paso por índice (secuencial)
+    const currentIndex = this.steps.findIndex(s => s.id === this.currentStepId);
+    return currentIndex < this.steps.length - 1;
   }
 
   get canGoPrevious(): boolean {
-    return this.currentStepIndex > 0;
+    return this.history.length > 1;
   }
 
   get canReset(): boolean {
-    return this.currentStepIndex > 0;
+    return this.history.length > 1;
   }
 
   get progressText(): string {
-    return `Paso ${this.currentStepIndex + 1} de ${this.steps.length}`;
+    const currentStep = this.getStepById(this.currentStepId!);
+    if (currentStep && currentStep.type === 'end') {
+      return `Diagrama completado`;
+    }
+    return `Paso ${this.visibleSteps.length} de ${this.steps.length}`;
   }
 
   get progressPercentage(): number {
     if (this.steps.length === 0) return 0;
-    return Math.round(((this.currentStepIndex + 1) / this.steps.length) * 100);
+    const currentStep = this.getStepById(this.currentStepId!);
+    // Si está en el último paso (tipo 'end'), mostrar 100%
+    if (currentStep && currentStep.type === 'end') {
+      return 100;
+    }
+    // Limitar el progreso máximo a 99% si no ha terminado
+    const percent = Math.round((this.visibleSteps.length / this.steps.length) * 100);
+    return percent > 99 ? 99 : percent;
   }
 
   getStepClass(type: string): string {
     const baseClasses = 'inline-block p-3 rounded-lg shadow-md border-2 mb-3 mx-auto min-w-[150px] text-center transition-all duration-300 hover:shadow-lg';
-
     switch (type) {
       case 'start':
         return `${baseClasses} bg-green-100 border-green-400 text-green-800`;
@@ -109,17 +175,5 @@ export class FlowchartComponent implements OnChanges {
 
   isDecision(type: string): boolean {
     return type === 'decision';
-  }
-
-  getDecisionBranches(currentIndex: number): { yes: number | null, no: number | null } {
-    // Lógica simplificada para decisiones
-    // En una decisión, "Sí" va al siguiente paso, "No" puede saltar o repetir
-    const nextIndex = currentIndex + 1;
-    const hasNext = nextIndex < this.steps.length;
-
-    return {
-      yes: hasNext ? nextIndex + 1 : null,
-      no: currentIndex + 2 < this.steps.length ? currentIndex + 2 : null
-    };
   }
 }

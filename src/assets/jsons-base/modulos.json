@@ -9,11 +9,11 @@
           { "id": 1, "text": "Inicio", "type": "start" },
           { "id": 2, "text": "Llenar una olla con agua", "type": "process" },
           { "id": 3, "text": "Poner la olla al fuego", "type": "process" },
-          { "id": 4, "text": "¿El agua está hirviendo?", "type": "decision" },
-          { "id": 5, "text": "Esperar", "type": "process" },
-          { "id": 6, "text": "Agregar el huevo con cuidado", "type": "process" },
-          { "id": 7, "text": "Cocinar por 8-10 minutos", "type": "process" },
-          { "id": 8, "text": "Retirar el huevo", "type": "process" },
+          { "id": 4, "text": "¿El agua está hirviendo?", "type": "decision", "branches": { "yes": 6, "no": 5 } },
+          { "id": 5, "text": "Esperar", "type": "process", "next": 4 },
+          { "id": 6, "text": "Agregar el huevo con cuidado", "type": "process", "next": 7 },
+          { "id": 7, "text": "Cocinar por 8-10 minutos", "type": "process", "next": 8 },
+          { "id": 8, "text": "Retirar el huevo", "type": "process", "next": 9 },
           { "id": 9, "text": "Fin", "type": "end" }
         ]
       },
@@ -247,101 +247,101 @@
         "title": "Ejemplo 1: Carlos y el parque",
         "description": "Carlos quiere ir al parque. Antes de salir, mira por la ventana: si está lloviendo, se queda en casa; si no llueve, sale a caminar.",
         "question": "👉 ¿Qué condición debe evaluar Carlos antes de salir?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Carlos quiere ir al parque", "type": "process" },
-          { "id": 3, "text": "Mirar por la ventana", "type": "process" },
-          { "id": 4, "text": "¿Está lloviendo?", "type": "decision" },
-          { "id": 5, "text": "Quedarse en casa", "type": "process" },
-          { "id": 6, "text": "Salir a caminar al parque", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Carlos quiere ir al parque", "type": "process", "next": 3 },
+            { "id": 3, "text": "Mirar por la ventana", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿Está lloviendo?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Quedarse en casa", "type": "process", "next": 7 },
+            { "id": 6, "text": "Salir a caminar al parque", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 2: Ana en la tienda",
         "description": "Ana está en una tienda de ropa. Si el vestido que quiere está en su talla, lo compra; si no, busca otra prenda.",
         "question": "👉 ¿Cuál es la condición que determina si Ana compra el vestido?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Ana encuentra un vestido", "type": "process" },
-          { "id": 3, "text": "Revisar la etiqueta", "type": "process" },
-          { "id": 4, "text": "¿Está en su talla?", "type": "decision" },
-          { "id": 5, "text": "Comprar el vestido", "type": "process" },
-          { "id": 6, "text": "Buscar otra prenda", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Ana encuentra un vestido", "type": "process", "next": 3 },
+            { "id": 3, "text": "Revisar la etiqueta", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿Está en su talla?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Comprar el vestido", "type": "process", "next": 7 },
+            { "id": 6, "text": "Buscar otra prenda", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 3: Luis en bicicleta",
         "description": "Luis va en bicicleta. Si el semáforo está en verde, sigue pedaleando; si está en rojo, se detiene.",
         "question": "👉 ¿Qué condición está revisando Luis mientras maneja?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Luis va en bicicleta", "type": "process" },
-          { "id": 3, "text": "Llegar al semáforo", "type": "process" },
-          { "id": 4, "text": "¿El semáforo está en verde?", "type": "decision" },
-          { "id": 5, "text": "Seguir pedaleando", "type": "process" },
-          { "id": 6, "text": "Detenerse", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Luis va en bicicleta", "type": "process", "next": 3 },
+            { "id": 3, "text": "Llegar al semáforo", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿El semáforo está en verde?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Seguir pedaleando", "type": "process", "next": 7 },
+            { "id": 6, "text": "Detenerse", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 4: Sofía preparando té",
         "description": "Sofía quiere preparar té. Si el agua está caliente, agrega la bolsa de té; si no, enciende la estufa para calentarla.",
         "question": "👉 ¿Qué está evaluando Sofía antes de agregar la bolsa de té?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Sofía quiere preparar té", "type": "process" },
-          { "id": 3, "text": "Revisar el agua", "type": "process" },
-          { "id": 4, "text": "¿El agua está caliente?", "type": "decision" },
-          { "id": 5, "text": "Agregar la bolsa de té", "type": "process" },
-          { "id": 6, "text": "Encender la estufa", "type": "process" },
-          { "id": 7, "text": "Esperar que se caliente", "type": "process" },
-          { "id": 8, "text": "Agregar la bolsa de té", "type": "process" },
-          { "id": 9, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Sofía quiere preparar té", "type": "process", "next": 3 },
+            { "id": 3, "text": "Revisar el agua", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿El agua está caliente?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Agregar la bolsa de té", "type": "process", "next": 9 },
+            { "id": 6, "text": "Encender la estufa", "type": "process", "next": 7 },
+            { "id": 7, "text": "Esperar que se caliente", "type": "process", "next": 8 },
+            { "id": 8, "text": "Agregar la bolsa de té", "type": "process", "next": 9 },
+            { "id": 9, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 5: Pedro y la reunión",
         "description": "Pedro tiene una reunión en línea. Si la hora es la correcta, se conecta; si no, sigue trabajando en otro proyecto.",
         "question": "👉 ¿Qué condición le indica a Pedro que debe conectarse?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Pedro revisa su calendario", "type": "process" },
-          { "id": 3, "text": "Mirar la hora actual", "type": "process" },
-          { "id": 4, "text": "¿Es la hora de la reunión?", "type": "decision" },
-          { "id": 5, "text": "Conectarse a la reunión", "type": "process" },
-          { "id": 6, "text": "Seguir trabajando en otro proyecto", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Pedro revisa su calendario", "type": "process", "next": 3 },
+            { "id": 3, "text": "Mirar la hora actual", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿Es la hora de la reunión?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Conectarse a la reunión", "type": "process", "next": 7 },
+            { "id": 6, "text": "Seguir trabajando en otro proyecto", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 6: Mariana y la comida",
         "description": "Mariana tiene hambre. Si hay pan, hace un sándwich; si no hay, prepara cereal.",
         "question": "👉 ¿Qué está comprobando Mariana antes de decidir qué comer?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Mariana tiene hambre", "type": "process" },
-          { "id": 3, "text": "Revisar la despensa", "type": "process" },
-          { "id": 4, "text": "¿Hay pan disponible?", "type": "decision" },
-          { "id": 5, "text": "Hacer un sándwich", "type": "process" },
-          { "id": 6, "text": "Preparar cereal", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Mariana tiene hambre", "type": "process", "next": 3 },
+            { "id": 3, "text": "Revisar la despensa", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿Hay pan disponible?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Hacer un sándwich", "type": "process", "next": 7 },
+            { "id": 6, "text": "Preparar cereal", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 7: Javier jugando videojuego",
         "description": "Javier está jugando un videojuego. Si la vida de su personaje es mayor a 0, sigue jugando; si llega a 0, la partida termina.",
         "question": "👉 ¿Cuál es la condición que indica que Javier ha perdido?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Javier está jugando", "type": "process" },
-          { "id": 3, "text": "Revisar vida del personaje", "type": "process" },
-          { "id": 4, "text": "¿Vida > 0?", "type": "decision" },
-          { "id": 5, "text": "Seguir jugando", "type": "process" },
-          { "id": 6, "text": "La partida termina (Game Over)", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Javier está jugando", "type": "process", "next": 3 },
+            { "id": 3, "text": "Revisar vida del personaje", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿Vida > 0?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Seguir jugando", "type": "process", "next": 7 },
+            { "id": 6, "text": "La partida termina (Game Over)", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       }
     ]
   },
@@ -352,14 +352,14 @@
         "description": "Imagina que tu entrenador te dice: 'Haz 20 flexiones'. Necesitas repetir el mismo movimiento 20 veces exactamente.",
         "question": "👉 ¿Cómo programarías un bucle para contar las flexiones y asegurarte de hacer exactamente 20?",
         "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "flexiones_hechas = 0", "type": "process" },
-          { "id": 3, "text": "¿flexiones_hechas < 20?", "type": "decision" },
-          { "id": 4, "text": "Hacer una flexión", "type": "process" },
-          { "id": 5, "text": "flexiones_hechas = flexiones_hechas + 1", "type": "process" },
-          { "id": 6, "text": "Mostrar: 'Flexión #' + flexiones_hechas", "type": "process" },
-          { "id": 7, "text": "Descansar 2 segundos", "type": "process" },
-          { "id": 8, "text": "Mostrar: 'Rutina completada: 20 flexiones'", "type": "process" },
+          { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+          { "id": 2, "text": "flexiones_hechas = 0", "type": "process", "next": 3 },
+          { "id": 3, "text": "¿flexiones_hechas < 20?", "type": "decision", "branches": { "yes": 4, "no": 8 } },
+          { "id": 4, "text": "Hacer una flexión", "type": "process", "next": 5 },
+          { "id": 5, "text": "flexiones_hechas = flexiones_hechas + 1", "type": "process", "next": 6 },
+          { "id": 6, "text": "Mostrar: 'Flexión #' + flexiones_hechas", "type": "process", "next": 7 },
+          { "id": 7, "text": "Descansar 2 segundos", "type": "process", "next": 3, "loopBack": 3 },
+          { "id": 8, "text": "Mostrar: 'Rutina completada: 20 flexiones'", "type": "process", "next": 9 },
           { "id": 9, "text": "Fin", "type": "end" }
         ]
       },
@@ -367,88 +367,88 @@
         "title": "Lavado de platos",
         "description": "Tu mamá te pide lavar todos los platos sucios. No sabes cuántos hay exactamente, pero sabes que debes lavarlos hasta que no quede ninguno.",
         "question": "👉 ¿Cómo usarías un bucle while para lavar platos hasta que no queden más?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Ir al fregadero", "type": "process" },
-          { "id": 3, "text": "¿Hay platos sucios?", "type": "decision" },
-          { "id": 4, "text": "Tomar un plato sucio", "type": "process" },
-          { "id": 5, "text": "Aplicar jabón", "type": "process" },
-          { "id": 6, "text": "Frotar con esponja", "type": "process" },
-          { "id": 7, "text": "Enjuagar con agua", "type": "process" },
-          { "id": 8, "text": "Colocar en escurridor", "type": "process" },
-          { "id": 9, "text": "Mostrar: 'Todos los platos están limpios'", "type": "process" },
-          { "id": 10, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Ir al fregadero", "type": "process", "next": 3 },
+            { "id": 3, "text": "¿Hay platos sucios?", "type": "decision", "branches": { "yes": 4, "no": 9 } },
+            { "id": 4, "text": "Tomar un plato sucio", "type": "process", "next": 5 },
+            { "id": 5, "text": "Aplicar jabón", "type": "process", "next": 6 },
+            { "id": 6, "text": "Frotar con esponja", "type": "process", "next": 7 },
+            { "id": 7, "text": "Enjuagar con agua", "type": "process", "next": 8 },
+            { "id": 8, "text": "Colocar en escurridor", "type": "process", "next": 3, "loopBack": 3 },
+            { "id": 9, "text": "Mostrar: 'Todos los platos están limpios'", "type": "process", "next": 10 },
+            { "id": 10, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Contador de números pares",
         "description": "Necesitas mostrar todos los números pares del 2 al 20 para una tarea de matemáticas. Es como contar de dos en dos.",
         "question": "👉 ¿Cómo crearías un bucle que muestre solo los números pares en ese rango?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "numero = 2", "type": "process" },
-          { "id": 3, "text": "¿numero <= 20?", "type": "decision" },
-          { "id": 4, "text": "Mostrar numero", "type": "process" },
-          { "id": 5, "text": "Agregar a la lista de pares", "type": "process" },
-          { "id": 6, "text": "numero = numero + 2", "type": "process" },
-          { "id": 7, "text": "Mostrar: 'Lista completa: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20'", "type": "process" },
-          { "id": 8, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "numero = 2", "type": "process", "next": 3 },
+            { "id": 3, "text": "¿numero <= 20?", "type": "decision", "branches": { "yes": 4, "no": 7 } },
+            { "id": 4, "text": "Mostrar numero", "type": "process", "next": 5 },
+            { "id": 5, "text": "Agregar a la lista de pares", "type": "process", "next": 6 },
+            { "id": 6, "text": "numero = numero + 2", "type": "process", "next": 3, "loopBack": 3 },
+            { "id": 7, "text": "Mostrar: 'Lista completa: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20'", "type": "process", "next": 8 },
+            { "id": 8, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Sistema de calificaciones",
         "description": "Un profesor necesita ingresar las calificaciones de todos sus estudiantes. Sabe que tiene exactamente 25 estudiantes en su clase.",
         "question": "👉 ¿Cómo diseñarías un bucle para capturar las 25 calificaciones de manera ordenada?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "estudiante_actual = 1", "type": "process" },
-          { "id": 3, "text": "calificaciones = []", "type": "process" },
-          { "id": 4, "text": "¿estudiante_actual <= 25?", "type": "decision" },
-          { "id": 5, "text": "Mostrar: 'Ingrese calificación del estudiante #' + estudiante_actual", "type": "process" },
-          { "id": 6, "text": "Leer calificación", "type": "process" },
-          { "id": 7, "text": "Guardar calificación en la lista", "type": "process" },
-          { "id": 8, "text": "estudiante_actual = estudiante_actual + 1", "type": "process" },
-          { "id": 9, "text": "Mostrar: 'Todas las calificaciones ingresadas'", "type": "process" },
-          { "id": 10, "text": "Calcular promedio general", "type": "process" },
-          { "id": 11, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "estudiante_actual = 1", "type": "process", "next": 3 },
+            { "id": 3, "text": "calificaciones = []", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿estudiante_actual <= 25?", "type": "decision", "branches": { "yes": 5, "no": 9 } },
+            { "id": 5, "text": "Mostrar: 'Ingrese calificación del estudiante #' + estudiante_actual", "type": "process", "next": 6 },
+            { "id": 6, "text": "Leer calificación", "type": "process", "next": 7 },
+            { "id": 7, "text": "Guardar calificación en la lista", "type": "process", "next": 8 },
+            { "id": 8, "text": "estudiante_actual = estudiante_actual + 1", "type": "process", "next": 4, "loopBack": 4 },
+            { "id": 9, "text": "Mostrar: 'Todas las calificaciones ingresadas'", "type": "process", "next": 10 },
+            { "id": 10, "text": "Calcular promedio general", "type": "process", "next": 11 },
+            { "id": 11, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ahorro de dinero semanal",
         "description": "Sofia quiere ahorrar $5,000 para comprar una bicicleta. Cada semana puede ahorrar $200. Quiere saber cuántas semanas le tomará.",
         "question": "👉 ¿Cómo simularías el proceso de ahorro de Sofia semana a semana?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "ahorro_total = 0", "type": "process" },
-          { "id": 3, "text": "semana = 1", "type": "process" },
-          { "id": 4, "text": "meta = 5000", "type": "process" },
-          { "id": 5, "text": "¿ahorro_total < meta?", "type": "decision" },
-          { "id": 6, "text": "Ahorrar $200 esta semana", "type": "process" },
-          { "id": 7, "text": "ahorro_total = ahorro_total + 200", "type": "process" },
-          { "id": 8, "text": "Mostrar: 'Semana ' + semana + ': $' + ahorro_total", "type": "process" },
-          { "id": 9, "text": "semana = semana + 1", "type": "process" },
-          { "id": 10, "text": "Mostrar: '¡Meta alcanzada en ' + (semana-1) + ' semanas!'", "type": "process" },
-          { "id": 11, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "ahorro_total = 0", "type": "process", "next": 3 },
+            { "id": 3, "text": "semana = 1", "type": "process", "next": 4 },
+            { "id": 4, "text": "meta = 5000", "type": "process", "next": 5 },
+            { "id": 5, "text": "¿ahorro_total < meta?", "type": "decision", "branches": { "yes": 6, "no": 10 } },
+            { "id": 6, "text": "Ahorrar $200 esta semana", "type": "process", "next": 7 },
+            { "id": 7, "text": "ahorro_total = ahorro_total + 200", "type": "process", "next": 8 },
+            { "id": 8, "text": "Mostrar: 'Semana ' + semana + ': $' + ahorro_total", "type": "process", "next": 9 },
+            { "id": 9, "text": "semana = semana + 1", "type": "process", "next": 5, "loopBack": 5 },
+            { "id": 10, "text": "Mostrar: '¡Meta alcanzada en ' + (semana-1) + ' semanas!'", "type": "process", "next": 11 },
+            { "id": 11, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Juego de adivinanza",
         "description": "Creaste un juego donde el usuario debe adivinar un número del 1 al 10. El juego continuará hasta que acierte o se rinda.",
         "question": "👉 ¿Cómo programarías un bucle que permita múltiples intentos hasta acertar?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "numero_secreto = 7", "type": "process" },
-          { "id": 3, "text": "adivinado = falso", "type": "process" },
-          { "id": 4, "text": "intentos = 0", "type": "process" },
-          { "id": 5, "text": "¿adivinado == falso?", "type": "decision" },
-          { "id": 6, "text": "Pedir número al usuario", "type": "process" },
-          { "id": 7, "text": "intentos = intentos + 1", "type": "process" },
-          { "id": 8, "text": "¿numero_usuario == numero_secreto?", "type": "decision" },
-          { "id": 9, "text": "adivinado = verdadero", "type": "process" },
-          { "id": 10, "text": "Mostrar: 'Muy alto' o 'Muy bajo'", "type": "process" },
-          { "id": 11, "text": "Mostrar: '¡Felicidades! Lo adivinaste en ' + intentos + ' intentos'", "type": "process" },
-          { "id": 12, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "numero_secreto = 7", "type": "process", "next": 3 },
+            { "id": 3, "text": "adivinado = falso", "type": "process", "next": 4 },
+            { "id": 4, "text": "intentos = 0", "type": "process", "next": 5 },
+            { "id": 5, "text": "¿adivinado == falso?", "type": "decision", "branches": { "yes": 6, "no": 11 } },
+            { "id": 6, "text": "Pedir número al usuario", "type": "process", "next": 7 },
+            { "id": 7, "text": "intentos = intentos + 1", "type": "process", "next": 8 },
+            { "id": 8, "text": "¿numero_usuario == numero_secreto?", "type": "decision", "branches": { "yes": 9, "no": 10 } },
+            { "id": 9, "text": "adivinado = verdadero", "type": "process", "next": 5 },
+            { "id": 10, "text": "Mostrar: 'Muy alto' o 'Muy bajo'", "type": "process", "next": 5, "loopBack": 5 },
+            { "id": 11, "text": "Mostrar: '¡Felicidades! Lo adivinaste en ' + intentos + ' intentos'", "type": "process", "next": 12 },
+            { "id": 12, "text": "Fin", "type": "end" }
+          ]
       }
     ]
   },
@@ -459,31 +459,31 @@
         "icon": "🍳",
         "description": "Imagina que preparar una tortilla es como ejecutar una función en programación. Tienes ingredientes (parámetros), sigues pasos (instrucciones) y al final obtienes un resultado (valor de retorno). Así, puedes reutilizar la receta cada vez que quieras una tortilla, cambiando los ingredientes según tu gusto.",
         "question": "👉 ¿Cómo sería el diagrama de flujo para una función que prepara una tortilla?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Recibir ingredientes", "type": "process" },
-          { "id": 3, "text": "Batir huevos", "type": "process" },
-          { "id": 4, "text": "Agregar ingredientes", "type": "process" },
-          { "id": 5, "text": "Cocinar en sartén", "type": "process" },
-          { "id": 6, "text": "¿Está cocida?", "type": "decision" },
-          { "id": 7, "text": "Servir tortilla", "type": "process" },
-          { "id": 8, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Recibir ingredientes", "type": "process", "next": 3 },
+            { "id": 3, "text": "Batir huevos", "type": "process", "next": 4 },
+            { "id": 4, "text": "Agregar ingredientes", "type": "process", "next": 5 },
+            { "id": 5, "text": "Cocinar en sartén", "type": "process", "next": 6 },
+            { "id": 6, "text": "¿Está cocida?", "type": "decision", "branches": { "yes": 7, "no": 5 } },
+            { "id": 7, "text": "Servir tortilla", "type": "process", "next": 8 },
+            { "id": 8, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 2: Llamar a un electricista",
         "icon": "🔌",
         "description": "Cuando tienes un problema eléctrico en casa, llamas a un electricista (función) y le das detalles del problema (parámetros). El electricista sigue un procedimiento y te da una solución (valor de retorno). Así funcionan las funciones en programación: reciben datos, procesan y devuelven resultados.",
         "question": "👉 ¿Cómo sería el diagrama de flujo para una función que soluciona problemas eléctricos?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Recibir descripción del problema", "type": "process" },
-          { "id": 3, "text": "Diagnosticar", "type": "process" },
-          { "id": 4, "text": "¿Puede solucionarse?", "type": "decision" },
-          { "id": 5, "text": "Reparar", "type": "process" },
-          { "id": 6, "text": "Informar resultado", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Recibir descripción del problema", "type": "process", "next": 3 },
+            { "id": 3, "text": "Diagnosticar", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿Puede solucionarse?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Reparar", "type": "process", "next": 6 },
+            { "id": 6, "text": "Informar resultado", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 3: Función de sumar en la calculadora",
@@ -491,12 +491,13 @@
         "description": "Cuando usas la calculadora para sumar dos números, en realidad estás usando una función. Ingresas los números (parámetros), presionas el botón de suma (llamada a la función) y obtienes el resultado (valor de retorno).",
         "question": "👉 ¿Cómo sería el diagrama de flujo para una función que suma dos números?",
         "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Recibir número A", "type": "process" },
-          { "id": 3, "text": "Recibir número B", "type": "process" },
-          { "id": 4, "text": "Sumar A + B", "type": "process" },
-          { "id": 5, "text": "Mostrar resultado", "type": "process" },
-          { "id": 6, "text": "Fin", "type": "end" }
+          { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+          { "id": 2, "text": "Recibir número A", "type": "process", "next": 3 },
+          { "id": 3, "text": "Recibir número B", "type": "process", "next": 4 },
+          { "id": 4, "text": "¿A y B son números?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+          { "id": 5, "text": "Sumar A + B", "type": "process", "next": 7 },
+          { "id": 6, "text": "Mostrar error", "type": "process", "next": 7 },
+          { "id": 7, "text": "Fin", "type": "end" }
         ]
       },
       {
@@ -504,15 +505,15 @@
         "icon": "🍔",
         "description": "Pedir comida por una app es como llamar a una función: eliges el restaurante y el platillo (parámetros), la app procesa tu pedido y te entrega la comida (valor de retorno). Puedes pedir diferentes platillos usando la misma función.",
         "question": "👉 ¿Cómo sería el diagrama de flujo para una función que pide comida?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Seleccionar restaurante", "type": "process" },
-          { "id": 3, "text": "Seleccionar platillo", "type": "process" },
-          { "id": 4, "text": "Procesar pedido", "type": "process" },
-          { "id": 5, "text": "¿Pedido confirmado?", "type": "decision" },
-          { "id": 6, "text": "Recibir comida", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Seleccionar restaurante", "type": "process", "next": 3 },
+            { "id": 3, "text": "Seleccionar platillo", "type": "process", "next": 4 },
+            { "id": 4, "text": "Procesar pedido", "type": "process", "next": 5 },
+            { "id": 5, "text": "¿Pedido confirmado?", "type": "decision", "branches": { "yes": 6, "no": 4 } },
+            { "id": 6, "text": "Recibir comida", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 5: Función para calcular el área de una habitación",
@@ -546,16 +547,16 @@
         "icon": "🎉",
         "description": "Organizar una fiesta implica muchos pasos, pero puedes verlo como una función: recibes la lista de invitados, el lugar y la fecha (parámetros), organizas todo y al final tienes una fiesta exitosa (valor de retorno).",
         "question": "👉 ¿Cómo sería el diagrama de flujo para una función que organiza una fiesta?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Recibir lista de invitados", "type": "process" },
-          { "id": 3, "text": "Seleccionar lugar", "type": "process" },
-          { "id": 4, "text": "Definir fecha", "type": "process" },
-          { "id": 5, "text": "Preparar decoración y comida", "type": "process" },
-          { "id": 6, "text": "¿Todo listo?", "type": "decision" },
-          { "id": 7, "text": "Realizar fiesta", "type": "process" },
-          { "id": 8, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Recibir lista de invitados", "type": "process", "next": 3 },
+            { "id": 3, "text": "Seleccionar lugar", "type": "process", "next": 4 },
+            { "id": 4, "text": "Definir fecha", "type": "process", "next": 5 },
+            { "id": 5, "text": "Preparar decoración y comida", "type": "process", "next": 6 },
+            { "id": 6, "text": "¿Todo listo?", "type": "decision", "branches": { "yes": 7, "no": 5 } },
+            { "id": 7, "text": "Realizar fiesta", "type": "process", "next": 8 },
+            { "id": 8, "text": "Fin", "type": "end" }
+          ]
       }
     ]
   }
