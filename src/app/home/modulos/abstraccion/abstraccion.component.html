@@ -177,8 +177,19 @@
   <!-- INICIO SECCION 3 -->
   <section *ngIf="selectedSection === 3"
     class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
-    <!-- ...contenido de la sección 3... -->
-  <app-puzzle [n]="3" [description]="'Resuelve el rompecabezas colocando los bloques en la matriz.'"></app-puzzle>
+    <app-puzzle
+      #puzzleRef
+      [n]="3"
+      [description]="'Resuelve el rompecabezas colocando los bloques en la matriz.'"
+      [blocks]="currentBlocks"
+      [currentExample]="currentExample"
+      [currentExampleIndex]="currentExampleIndex"
+      [examples]="examples"
+      (previousExample)="previousExample()"
+      (nextExample)="nextExample()"
+      [validationResult]="validationResult"
+      (validatePuzzle)="validatePuzzle()"
+    ></app-puzzle>
   </section>
   <!-- FIN SECCION 3 -->
 <!-- ...existing code... -->
