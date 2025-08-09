@@ -11,63 +11,80 @@
 
     <!-- Diagrama de flujo progresivo -->
     <div class="flex flex-col items-center space-y-2 pb-6" *ngIf="visibleSteps.length > 0">
-      <div *ngFor="let step of visibleSteps; let i = index" class="flex flex-col items-center step-animation">
-
-        <!-- Conector simple hacia abajo (excepto para el primero) -->
-        <div *ngIf="i > 0" class="w-0.5 h-6 bg-gray-400 mb-2"></div>
-
-        <!-- Paso del diagrama -->
-        <div class="step-container relative">
-          <!-- Paso normal o decisión -->
-          <div *ngIf="!isDecision(step.type)" [class]="getStepClass(step.type)">
-            <div class="flex items-center justify-center space-x-2">
-              <span class="text-lg">{{ getStepIcon(step.type) }}</span>
-              <span class="font-medium">{{ step.text }}</span>
-            </div>
-          </div>
-
-          <!-- Paso de decisión (rombo) -->
-          <div *ngIf="isDecision(step.type)" class="relative py-2">
-            <div class="w-32 h-32 bg-yellow-100 border-2 border-yellow-400 transform rotate-45 flex items-center justify-center mx-auto">
-              <div class="transform -rotate-45 text-center">
-                <div class="text-lg mb-1">{{ getStepIcon(step.type) }}</div>
-                <div class="text-xs font-medium text-yellow-800 leading-tight">{{ step.text }}</div>
+      <div *ngFor="let step of visibleSteps; let i = index" class="step-animation w-full flex justify-center items-center relative">
+        <!-- Conector hacia abajo para pasos normales -->
+        <ng-container *ngIf="!isDecision(step.type)">
+          <div class="flex flex-col items-center w-1/2">
+            <div *ngIf="i > 0" class="w-0.5 h-6 bg-gray-300 mb-2 mx-auto"></div>
+            <div class="step-container relative">
+              <div [class]="getStepClass(step.type)">
+                <div class="flex items-center justify-center space-x-2">
+                  <span class="text-lg">{{ getStepIcon(step.type) }}</span>
+                  <span class="font-medium">{{ step.text }}</span>
+                </div>
+              </div>
+              <div *ngIf="step.id === currentStepId" class="absolute -top-2 -right-2 z-10">
+                <span class="inline-flex items-center justify-center w-6 h-6 bg-green-500 text-white text-xs font-bold rounded-full animate-pulse">
+                  ▶
+                </span>
               </div>
             </div>
-            <!-- Botones de decisión solo en el paso actual -->
-            <div *ngIf="i === visibleSteps.length - 1 && currentStepId === step.id" class="flex justify-center gap-4 mt-4">
-              <button (click)="chooseBranch('yes')" class="px-4 py-2 bg-green-500 text-white rounded shadow hover:bg-green-600 font-bold">Sí</button>
-              <button (click)="chooseBranch('no')" class="px-4 py-2 bg-red-500 text-white rounded shadow hover:bg-red-600 font-bold">No</button>
+            <!-- Indicador de continuación si hay más pasos -->
+            <div *ngIf="i === visibleSteps.length - 1 && nextStepAvailable()" class="flex flex-col items-center">
+              <svg width="32" height="32" class="mx-auto">
+                <line x1="16" y1="0" x2="16" y2="32" stroke="#60a5fa" stroke-width="2" stroke-dasharray="4" />
+              </svg>
+              <div class="w-6 h-6 border-2 border-dashed border-blue-400 rounded-full flex items-center justify-center">
+                <span class="text-blue-400 text-xs animate-pulse">...</span>
+              </div>
+            </div>
+            <!-- Flecha visual para bucles -->
+            <div *ngIf="step.loopBack && i === visibleSteps.length - 1" class="flex flex-col items-center mt-2">
+              <svg width="60" height="40" viewBox="0 0 60 40" class="mx-auto">
+                <path d="M30 0 Q60 20 30 40 Q0 20 30 0" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                <defs>
+                  <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                    <polygon points="0 0, 6 3, 0 6" fill="#3b82f6" />
+                  </marker>
+                </defs>
+              </svg>
+              <span class="text-xs text-blue-600 font-bold">Bucle</span>
             </div>
           </div>
-
-          <!-- Indicador de paso actual -->
-          <div *ngIf="step.id === currentStepId" class="absolute -top-2 -right-2 z-10">
-            <span class="inline-flex items-center justify-center w-6 h-6 bg-green-500 text-white text-xs font-bold rounded-full animate-pulse">
-              ▶
-            </span>
+        </ng-container>
+        <!-- Paso de decisión con ramas horizontales -->
+        <ng-container *ngIf="isDecision(step.type)">
+          <div class="flex flex-row items-center w-full justify-center">
+            <!-- Rama izquierda (No) -->
+            <div class="flex flex-col items-center w-1/2">
+              <svg width="60" height="32" class="mb-2">
+                <line x1="60" y1="16" x2="0" y2="16" stroke="#f87171" stroke-width="2" />
+              </svg>
+              <button *ngIf="i === visibleSteps.length - 1 && currentStepId === step.id" (click)="chooseBranch('no')" class="px-4 py-2 bg-red-500 text-white rounded shadow hover:bg-red-600 font-bold">No</button>
+            </div>
+            <!-- Rombo de decisión -->
+            <div class="step-container relative">
+              <div class="w-32 h-32 bg-yellow-100 border-2 border-yellow-400 transform rotate-45 flex items-center justify-center mx-auto">
+                <div class="transform -rotate-45 text-center">
+                  <div class="text-lg mb-1">{{ getStepIcon(step.type) }}</div>
+                  <div class="text-xs font-medium text-yellow-800 leading-tight">{{ step.text }}</div>
+                </div>
+              </div>
+              <div *ngIf="step.id === currentStepId" class="absolute -top-2 -right-2 z-10">
+                <span class="inline-flex items-center justify-center w-6 h-6 bg-green-500 text-white text-xs font-bold rounded-full animate-pulse">
+                  ▶
+                </span>
+              </div>
+            </div>
+            <!-- Rama derecha (Sí) -->
+            <div class="flex flex-col items-center w-1/2">
+              <svg width="60" height="32" class="mb-2">
+                <line x1="0" y1="16" x2="60" y2="16" stroke="#34d399" stroke-width="2" />
+              </svg>
+              <button *ngIf="i === visibleSteps.length - 1 && currentStepId === step.id" (click)="chooseBranch('yes')" class="px-4 py-2 bg-green-500 text-white rounded shadow hover:bg-green-600 font-bold">Sí</button>
+            </div>
           </div>
-        </div>
-
-        <!-- Indicador de continuación si hay más pasos -->
-  <div *ngIf="i === visibleSteps.length - 1 && !isDecision(step.type) && nextStepAvailable()" class="flex flex-col items-center">
-          <div class="w-0.5 h-4 bg-gray-300 opacity-50"></div>
-          <div class="w-6 h-6 border-2 border-dashed border-gray-400 rounded-full flex items-center justify-center">
-            <span class="text-gray-400 text-xs animate-pulse">...</span>
-          </div>
-        </div>
-        <!-- Flecha visual para bucles -->
-        <div *ngIf="step.loopBack && i === visibleSteps.length - 1" class="flex flex-col items-center mt-2">
-          <svg width="40" height="30" viewBox="0 0 40 30" class="mx-auto">
-            <path d="M20 0 Q40 15 20 30" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
-            <defs>
-              <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                <polygon points="0 0, 6 3, 0 6" fill="#3b82f6" />
-              </marker>
-            </defs>
-          </svg>
-          <span class="text-xs text-blue-600 font-bold">Bucle</span>
-        </div>
+        </ng-container>
       </div>
     </div>
 

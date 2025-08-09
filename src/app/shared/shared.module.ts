@@ -13,6 +13,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { CardTitleFormatPipe } from './pipes/card-title-format.pipe';
 import { TutorialComponent } from './components/tutorial/tutorial.component';
+import { PuzzleComponent } from './components/puzzle/puzzle.component';
 
 
 
@@ -28,6 +29,7 @@ import { TutorialComponent } from './components/tutorial/tutorial.component';
     CardsComponent,
     CardTitleFormatPipe,
     TutorialComponent,
+  PuzzleComponent
   ],
   imports: [
     CommonModule,
@@ -46,6 +48,7 @@ import { TutorialComponent } from './components/tutorial/tutorial.component';
     CardsComponent,
     CardTitleFormatPipe,
     TutorialComponent,
+  PuzzleComponent
   ]
 })
 export class SharedModule { }

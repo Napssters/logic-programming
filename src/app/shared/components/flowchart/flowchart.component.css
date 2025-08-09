@@ -29,24 +29,30 @@
 }
 
 /* Animaciones suaves para los pasos */
+
 .step-container > div {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
 
 .step-container > div:hover {
-  transform: scale(1.05);
+  transform: scale(1.07);
   z-index: 10;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
 }
 
 /* Estilos especiales para decisiones */
-.decision-diamond {
+
+.decision-diamond, .w-32.h-32 {
   background: linear-gradient(135deg, #fef3c7, #fde68a);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px -1px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
 }
 
 /* Conectores de flujo */
-.flow-connector {
-  background: linear-gradient(to bottom, #9ca3af, #6b7280);
+
+.flow-connector, .bg-gray-300, .bg-gray-400 {
+  background: linear-gradient(to bottom, #dbeafe, #60a5fa);
 }
 
 /* Animación de entrada para pasos */
@@ -65,18 +71,20 @@
   }
 }
 
+
 .step-animation {
-  animation: stepAppear 0.6s ease-out;
+  animation: stepAppear 0.5s cubic-bezier(.4,0,.2,1);
 }
+
 
 /* Animación para líneas de conexión */
 @keyframes drawLine {
   0% {
-    height: 0;
+    stroke-dasharray: 0, 100;
     opacity: 0;
   }
   100% {
-    height: 1.5rem;
+    stroke-dasharray: 100, 0;
     opacity: 1;
   }
 }
