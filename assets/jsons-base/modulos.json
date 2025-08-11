@@ -9,11 +9,11 @@
           { "id": 1, "text": "Inicio", "type": "start" },
           { "id": 2, "text": "Llenar una olla con agua", "type": "process" },
           { "id": 3, "text": "Poner la olla al fuego", "type": "process" },
-          { "id": 4, "text": "¿El agua está hirviendo?", "type": "decision" },
-          { "id": 5, "text": "Esperar", "type": "process" },
-          { "id": 6, "text": "Agregar el huevo con cuidado", "type": "process" },
-          { "id": 7, "text": "Cocinar por 8-10 minutos", "type": "process" },
-          { "id": 8, "text": "Retirar el huevo", "type": "process" },
+          { "id": 4, "text": "¿El agua está hirviendo?", "type": "decision", "branches": { "yes": 6, "no": 5 } },
+          { "id": 5, "text": "Esperar", "type": "process", "next": 4 },
+          { "id": 6, "text": "Agregar el huevo con cuidado", "type": "process", "next": 7 },
+          { "id": 7, "text": "Cocinar por 8-10 minutos", "type": "process", "next": 8 },
+          { "id": 8, "text": "Retirar el huevo", "type": "process", "next": 9 },
           { "id": 9, "text": "Fin", "type": "end" }
         ]
       },
@@ -247,119 +247,119 @@
         "title": "Ejemplo 1: Carlos y el parque",
         "description": "Carlos quiere ir al parque. Antes de salir, mira por la ventana: si está lloviendo, se queda en casa; si no llueve, sale a caminar.",
         "question": "👉 ¿Qué condición debe evaluar Carlos antes de salir?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Carlos quiere ir al parque", "type": "process" },
-          { "id": 3, "text": "Mirar por la ventana", "type": "process" },
-          { "id": 4, "text": "¿Está lloviendo?", "type": "decision" },
-          { "id": 5, "text": "Quedarse en casa", "type": "process" },
-          { "id": 6, "text": "Salir a caminar al parque", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Carlos quiere ir al parque", "type": "process", "next": 3 },
+            { "id": 3, "text": "Mirar por la ventana", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿Está lloviendo?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Quedarse en casa", "type": "process", "next": 7 },
+            { "id": 6, "text": "Salir a caminar al parque", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 2: Ana en la tienda",
         "description": "Ana está en una tienda de ropa. Si el vestido que quiere está en su talla, lo compra; si no, busca otra prenda.",
         "question": "👉 ¿Cuál es la condición que determina si Ana compra el vestido?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Ana encuentra un vestido", "type": "process" },
-          { "id": 3, "text": "Revisar la etiqueta", "type": "process" },
-          { "id": 4, "text": "¿Está en su talla?", "type": "decision" },
-          { "id": 5, "text": "Comprar el vestido", "type": "process" },
-          { "id": 6, "text": "Buscar otra prenda", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Ana encuentra un vestido", "type": "process", "next": 3 },
+            { "id": 3, "text": "Revisar la etiqueta", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿Está en su talla?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Comprar el vestido", "type": "process", "next": 7 },
+            { "id": 6, "text": "Buscar otra prenda", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 3: Luis en bicicleta",
         "description": "Luis va en bicicleta. Si el semáforo está en verde, sigue pedaleando; si está en rojo, se detiene.",
         "question": "👉 ¿Qué condición está revisando Luis mientras maneja?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Luis va en bicicleta", "type": "process" },
-          { "id": 3, "text": "Llegar al semáforo", "type": "process" },
-          { "id": 4, "text": "¿El semáforo está en verde?", "type": "decision" },
-          { "id": 5, "text": "Seguir pedaleando", "type": "process" },
-          { "id": 6, "text": "Detenerse", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Luis va en bicicleta", "type": "process", "next": 3 },
+            { "id": 3, "text": "Llegar al semáforo", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿El semáforo está en verde?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Seguir pedaleando", "type": "process", "next": 7 },
+            { "id": 6, "text": "Detenerse", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 4: Sofía preparando té",
         "description": "Sofía quiere preparar té. Si el agua está caliente, agrega la bolsa de té; si no, enciende la estufa para calentarla.",
         "question": "👉 ¿Qué está evaluando Sofía antes de agregar la bolsa de té?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Sofía quiere preparar té", "type": "process" },
-          { "id": 3, "text": "Revisar el agua", "type": "process" },
-          { "id": 4, "text": "¿El agua está caliente?", "type": "decision" },
-          { "id": 5, "text": "Agregar la bolsa de té", "type": "process" },
-          { "id": 6, "text": "Encender la estufa", "type": "process" },
-          { "id": 7, "text": "Esperar que se caliente", "type": "process" },
-          { "id": 8, "text": "Agregar la bolsa de té", "type": "process" },
-          { "id": 9, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Sofía quiere preparar té", "type": "process", "next": 3 },
+            { "id": 3, "text": "Revisar el agua", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿El agua está caliente?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Agregar la bolsa de té", "type": "process", "next": 9 },
+            { "id": 6, "text": "Encender la estufa", "type": "process", "next": 7 },
+            { "id": 7, "text": "Esperar que se caliente", "type": "process", "next": 8 },
+            { "id": 8, "text": "Agregar la bolsa de té", "type": "process", "next": 9 },
+            { "id": 9, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 5: Pedro y la reunión",
         "description": "Pedro tiene una reunión en línea. Si la hora es la correcta, se conecta; si no, sigue trabajando en otro proyecto.",
         "question": "👉 ¿Qué condición le indica a Pedro que debe conectarse?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Pedro revisa su calendario", "type": "process" },
-          { "id": 3, "text": "Mirar la hora actual", "type": "process" },
-          { "id": 4, "text": "¿Es la hora de la reunión?", "type": "decision" },
-          { "id": 5, "text": "Conectarse a la reunión", "type": "process" },
-          { "id": 6, "text": "Seguir trabajando en otro proyecto", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Pedro revisa su calendario", "type": "process", "next": 3 },
+            { "id": 3, "text": "Mirar la hora actual", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿Es la hora de la reunión?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Conectarse a la reunión", "type": "process", "next": 7 },
+            { "id": 6, "text": "Seguir trabajando en otro proyecto", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 6: Mariana y la comida",
         "description": "Mariana tiene hambre. Si hay pan, hace un sándwich; si no hay, prepara cereal.",
         "question": "👉 ¿Qué está comprobando Mariana antes de decidir qué comer?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Mariana tiene hambre", "type": "process" },
-          { "id": 3, "text": "Revisar la despensa", "type": "process" },
-          { "id": 4, "text": "¿Hay pan disponible?", "type": "decision" },
-          { "id": 5, "text": "Hacer un sándwich", "type": "process" },
-          { "id": 6, "text": "Preparar cereal", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Mariana tiene hambre", "type": "process", "next": 3 },
+            { "id": 3, "text": "Revisar la despensa", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿Hay pan disponible?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Hacer un sándwich", "type": "process", "next": 7 },
+            { "id": 6, "text": "Preparar cereal", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 7: Javier jugando videojuego",
         "description": "Javier está jugando un videojuego. Si la vida de su personaje es mayor a 0, sigue jugando; si llega a 0, la partida termina.",
         "question": "👉 ¿Cuál es la condición que indica que Javier ha perdido?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Javier está jugando", "type": "process" },
-          { "id": 3, "text": "Revisar vida del personaje", "type": "process" },
-          { "id": 4, "text": "¿Vida > 0?", "type": "decision" },
-          { "id": 5, "text": "Seguir jugando", "type": "process" },
-          { "id": 6, "text": "La partida termina (Game Over)", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Javier está jugando", "type": "process", "next": 3 },
+            { "id": 3, "text": "Revisar vida del personaje", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿Vida > 0?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Seguir jugando", "type": "process", "next": 7 },
+            { "id": 6, "text": "La partida termina (Game Over)", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       }
     ]
   },
   "bucles": {
     "examples": [
       {
-        "title": "Rutina de ejercicio diaria",
+        "title": "Rutina de Ejemplo diaria",
         "description": "Imagina que tu entrenador te dice: 'Haz 20 flexiones'. Necesitas repetir el mismo movimiento 20 veces exactamente.",
         "question": "👉 ¿Cómo programarías un bucle para contar las flexiones y asegurarte de hacer exactamente 20?",
         "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "flexiones_hechas = 0", "type": "process" },
-          { "id": 3, "text": "¿flexiones_hechas < 20?", "type": "decision" },
-          { "id": 4, "text": "Hacer una flexión", "type": "process" },
-          { "id": 5, "text": "flexiones_hechas = flexiones_hechas + 1", "type": "process" },
-          { "id": 6, "text": "Mostrar: 'Flexión #' + flexiones_hechas", "type": "process" },
-          { "id": 7, "text": "Descansar 2 segundos", "type": "process" },
-          { "id": 8, "text": "Mostrar: 'Rutina completada: 20 flexiones'", "type": "process" },
+          { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+          { "id": 2, "text": "flexiones_hechas = 0", "type": "process", "next": 3 },
+          { "id": 3, "text": "¿flexiones_hechas < 20?", "type": "decision", "branches": { "yes": 4, "no": 8 } },
+          { "id": 4, "text": "Hacer una flexión", "type": "process", "next": 5 },
+          { "id": 5, "text": "flexiones_hechas = flexiones_hechas + 1", "type": "process", "next": 6 },
+          { "id": 6, "text": "Mostrar: 'Flexión #' + flexiones_hechas", "type": "process", "next": 7 },
+          { "id": 7, "text": "Descansar 2 segundos", "type": "process", "next": 3, "loopBack": 3 },
+          { "id": 8, "text": "Mostrar: 'Rutina completada: 20 flexiones'", "type": "process", "next": 9 },
           { "id": 9, "text": "Fin", "type": "end" }
         ]
       },
@@ -367,88 +367,88 @@
         "title": "Lavado de platos",
         "description": "Tu mamá te pide lavar todos los platos sucios. No sabes cuántos hay exactamente, pero sabes que debes lavarlos hasta que no quede ninguno.",
         "question": "👉 ¿Cómo usarías un bucle while para lavar platos hasta que no queden más?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Ir al fregadero", "type": "process" },
-          { "id": 3, "text": "¿Hay platos sucios?", "type": "decision" },
-          { "id": 4, "text": "Tomar un plato sucio", "type": "process" },
-          { "id": 5, "text": "Aplicar jabón", "type": "process" },
-          { "id": 6, "text": "Frotar con esponja", "type": "process" },
-          { "id": 7, "text": "Enjuagar con agua", "type": "process" },
-          { "id": 8, "text": "Colocar en escurridor", "type": "process" },
-          { "id": 9, "text": "Mostrar: 'Todos los platos están limpios'", "type": "process" },
-          { "id": 10, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Ir al fregadero", "type": "process", "next": 3 },
+            { "id": 3, "text": "¿Hay platos sucios?", "type": "decision", "branches": { "yes": 4, "no": 9 } },
+            { "id": 4, "text": "Tomar un plato sucio", "type": "process", "next": 5 },
+            { "id": 5, "text": "Aplicar jabón", "type": "process", "next": 6 },
+            { "id": 6, "text": "Frotar con esponja", "type": "process", "next": 7 },
+            { "id": 7, "text": "Enjuagar con agua", "type": "process", "next": 8 },
+            { "id": 8, "text": "Colocar en escurridor", "type": "process", "next": 3, "loopBack": 3 },
+            { "id": 9, "text": "Mostrar: 'Todos los platos están limpios'", "type": "process", "next": 10 },
+            { "id": 10, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Contador de números pares",
         "description": "Necesitas mostrar todos los números pares del 2 al 20 para una tarea de matemáticas. Es como contar de dos en dos.",
         "question": "👉 ¿Cómo crearías un bucle que muestre solo los números pares en ese rango?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "numero = 2", "type": "process" },
-          { "id": 3, "text": "¿numero <= 20?", "type": "decision" },
-          { "id": 4, "text": "Mostrar numero", "type": "process" },
-          { "id": 5, "text": "Agregar a la lista de pares", "type": "process" },
-          { "id": 6, "text": "numero = numero + 2", "type": "process" },
-          { "id": 7, "text": "Mostrar: 'Lista completa: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20'", "type": "process" },
-          { "id": 8, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "numero = 2", "type": "process", "next": 3 },
+            { "id": 3, "text": "¿numero <= 20?", "type": "decision", "branches": { "yes": 4, "no": 7 } },
+            { "id": 4, "text": "Mostrar numero", "type": "process", "next": 5 },
+            { "id": 5, "text": "Agregar a la lista de pares", "type": "process", "next": 6 },
+            { "id": 6, "text": "numero = numero + 2", "type": "process", "next": 3, "loopBack": 3 },
+            { "id": 7, "text": "Mostrar: 'Lista completa: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20'", "type": "process", "next": 8 },
+            { "id": 8, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Sistema de calificaciones",
         "description": "Un profesor necesita ingresar las calificaciones de todos sus estudiantes. Sabe que tiene exactamente 25 estudiantes en su clase.",
         "question": "👉 ¿Cómo diseñarías un bucle para capturar las 25 calificaciones de manera ordenada?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "estudiante_actual = 1", "type": "process" },
-          { "id": 3, "text": "calificaciones = []", "type": "process" },
-          { "id": 4, "text": "¿estudiante_actual <= 25?", "type": "decision" },
-          { "id": 5, "text": "Mostrar: 'Ingrese calificación del estudiante #' + estudiante_actual", "type": "process" },
-          { "id": 6, "text": "Leer calificación", "type": "process" },
-          { "id": 7, "text": "Guardar calificación en la lista", "type": "process" },
-          { "id": 8, "text": "estudiante_actual = estudiante_actual + 1", "type": "process" },
-          { "id": 9, "text": "Mostrar: 'Todas las calificaciones ingresadas'", "type": "process" },
-          { "id": 10, "text": "Calcular promedio general", "type": "process" },
-          { "id": 11, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "estudiante_actual = 1", "type": "process", "next": 3 },
+            { "id": 3, "text": "calificaciones = []", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿estudiante_actual <= 25?", "type": "decision", "branches": { "yes": 5, "no": 9 } },
+            { "id": 5, "text": "Mostrar: 'Ingrese calificación del estudiante #' + estudiante_actual", "type": "process", "next": 6 },
+            { "id": 6, "text": "Leer calificación", "type": "process", "next": 7 },
+            { "id": 7, "text": "Guardar calificación en la lista", "type": "process", "next": 8 },
+            { "id": 8, "text": "estudiante_actual = estudiante_actual + 1", "type": "process", "next": 4, "loopBack": 4 },
+            { "id": 9, "text": "Mostrar: 'Todas las calificaciones ingresadas'", "type": "process", "next": 10 },
+            { "id": 10, "text": "Calcular promedio general", "type": "process", "next": 11 },
+            { "id": 11, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ahorro de dinero semanal",
         "description": "Sofia quiere ahorrar $5,000 para comprar una bicicleta. Cada semana puede ahorrar $200. Quiere saber cuántas semanas le tomará.",
         "question": "👉 ¿Cómo simularías el proceso de ahorro de Sofia semana a semana?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "ahorro_total = 0", "type": "process" },
-          { "id": 3, "text": "semana = 1", "type": "process" },
-          { "id": 4, "text": "meta = 5000", "type": "process" },
-          { "id": 5, "text": "¿ahorro_total < meta?", "type": "decision" },
-          { "id": 6, "text": "Ahorrar $200 esta semana", "type": "process" },
-          { "id": 7, "text": "ahorro_total = ahorro_total + 200", "type": "process" },
-          { "id": 8, "text": "Mostrar: 'Semana ' + semana + ': $' + ahorro_total", "type": "process" },
-          { "id": 9, "text": "semana = semana + 1", "type": "process" },
-          { "id": 10, "text": "Mostrar: '¡Meta alcanzada en ' + (semana-1) + ' semanas!'", "type": "process" },
-          { "id": 11, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "ahorro_total = 0", "type": "process", "next": 3 },
+            { "id": 3, "text": "semana = 1", "type": "process", "next": 4 },
+            { "id": 4, "text": "meta = 5000", "type": "process", "next": 5 },
+            { "id": 5, "text": "¿ahorro_total < meta?", "type": "decision", "branches": { "yes": 6, "no": 10 } },
+            { "id": 6, "text": "Ahorrar $200 esta semana", "type": "process", "next": 7 },
+            { "id": 7, "text": "ahorro_total = ahorro_total + 200", "type": "process", "next": 8 },
+            { "id": 8, "text": "Mostrar: 'Semana ' + semana + ': $' + ahorro_total", "type": "process", "next": 9 },
+            { "id": 9, "text": "semana = semana + 1", "type": "process", "next": 5, "loopBack": 5 },
+            { "id": 10, "text": "Mostrar: '¡Meta alcanzada en ' + (semana-1) + ' semanas!'", "type": "process", "next": 11 },
+            { "id": 11, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Juego de adivinanza",
         "description": "Creaste un juego donde el usuario debe adivinar un número del 1 al 10. El juego continuará hasta que acierte o se rinda.",
         "question": "👉 ¿Cómo programarías un bucle que permita múltiples intentos hasta acertar?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "numero_secreto = 7", "type": "process" },
-          { "id": 3, "text": "adivinado = falso", "type": "process" },
-          { "id": 4, "text": "intentos = 0", "type": "process" },
-          { "id": 5, "text": "¿adivinado == falso?", "type": "decision" },
-          { "id": 6, "text": "Pedir número al usuario", "type": "process" },
-          { "id": 7, "text": "intentos = intentos + 1", "type": "process" },
-          { "id": 8, "text": "¿numero_usuario == numero_secreto?", "type": "decision" },
-          { "id": 9, "text": "adivinado = verdadero", "type": "process" },
-          { "id": 10, "text": "Mostrar: 'Muy alto' o 'Muy bajo'", "type": "process" },
-          { "id": 11, "text": "Mostrar: '¡Felicidades! Lo adivinaste en ' + intentos + ' intentos'", "type": "process" },
-          { "id": 12, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "numero_secreto = 7", "type": "process", "next": 3 },
+            { "id": 3, "text": "adivinado = falso", "type": "process", "next": 4 },
+            { "id": 4, "text": "intentos = 0", "type": "process", "next": 5 },
+            { "id": 5, "text": "¿adivinado == falso?", "type": "decision", "branches": { "yes": 6, "no": 11 } },
+            { "id": 6, "text": "Pedir número al usuario", "type": "process", "next": 7 },
+            { "id": 7, "text": "intentos = intentos + 1", "type": "process", "next": 8 },
+            { "id": 8, "text": "¿numero_usuario == numero_secreto?", "type": "decision", "branches": { "yes": 9, "no": 10 } },
+            { "id": 9, "text": "adivinado = verdadero", "type": "process", "next": 5 },
+            { "id": 10, "text": "Mostrar: 'Muy alto' o 'Muy bajo'", "type": "process", "next": 5, "loopBack": 5 },
+            { "id": 11, "text": "Mostrar: '¡Felicidades! Lo adivinaste en ' + intentos + ' intentos'", "type": "process", "next": 12 },
+            { "id": 12, "text": "Fin", "type": "end" }
+          ]
       }
     ]
   },
@@ -459,31 +459,31 @@
         "icon": "🍳",
         "description": "Imagina que preparar una tortilla es como ejecutar una función en programación. Tienes ingredientes (parámetros), sigues pasos (instrucciones) y al final obtienes un resultado (valor de retorno). Así, puedes reutilizar la receta cada vez que quieras una tortilla, cambiando los ingredientes según tu gusto.",
         "question": "👉 ¿Cómo sería el diagrama de flujo para una función que prepara una tortilla?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Recibir ingredientes", "type": "process" },
-          { "id": 3, "text": "Batir huevos", "type": "process" },
-          { "id": 4, "text": "Agregar ingredientes", "type": "process" },
-          { "id": 5, "text": "Cocinar en sartén", "type": "process" },
-          { "id": 6, "text": "¿Está cocida?", "type": "decision" },
-          { "id": 7, "text": "Servir tortilla", "type": "process" },
-          { "id": 8, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Recibir ingredientes", "type": "process", "next": 3 },
+            { "id": 3, "text": "Batir huevos", "type": "process", "next": 4 },
+            { "id": 4, "text": "Agregar ingredientes", "type": "process", "next": 5 },
+            { "id": 5, "text": "Cocinar en sartén", "type": "process", "next": 6 },
+            { "id": 6, "text": "¿Está cocida?", "type": "decision", "branches": { "yes": 7, "no": 5 } },
+            { "id": 7, "text": "Servir tortilla", "type": "process", "next": 8 },
+            { "id": 8, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 2: Llamar a un electricista",
         "icon": "🔌",
         "description": "Cuando tienes un problema eléctrico en casa, llamas a un electricista (función) y le das detalles del problema (parámetros). El electricista sigue un procedimiento y te da una solución (valor de retorno). Así funcionan las funciones en programación: reciben datos, procesan y devuelven resultados.",
         "question": "👉 ¿Cómo sería el diagrama de flujo para una función que soluciona problemas eléctricos?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Recibir descripción del problema", "type": "process" },
-          { "id": 3, "text": "Diagnosticar", "type": "process" },
-          { "id": 4, "text": "¿Puede solucionarse?", "type": "decision" },
-          { "id": 5, "text": "Reparar", "type": "process" },
-          { "id": 6, "text": "Informar resultado", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Recibir descripción del problema", "type": "process", "next": 3 },
+            { "id": 3, "text": "Diagnosticar", "type": "process", "next": 4 },
+            { "id": 4, "text": "¿Puede solucionarse?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+            { "id": 5, "text": "Reparar", "type": "process", "next": 6 },
+            { "id": 6, "text": "Informar resultado", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 3: Función de sumar en la calculadora",
@@ -491,12 +491,13 @@
         "description": "Cuando usas la calculadora para sumar dos números, en realidad estás usando una función. Ingresas los números (parámetros), presionas el botón de suma (llamada a la función) y obtienes el resultado (valor de retorno).",
         "question": "👉 ¿Cómo sería el diagrama de flujo para una función que suma dos números?",
         "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Recibir número A", "type": "process" },
-          { "id": 3, "text": "Recibir número B", "type": "process" },
-          { "id": 4, "text": "Sumar A + B", "type": "process" },
-          { "id": 5, "text": "Mostrar resultado", "type": "process" },
-          { "id": 6, "text": "Fin", "type": "end" }
+          { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+          { "id": 2, "text": "Recibir número A", "type": "process", "next": 3 },
+          { "id": 3, "text": "Recibir número B", "type": "process", "next": 4 },
+          { "id": 4, "text": "¿A y B son números?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
+          { "id": 5, "text": "Sumar A + B", "type": "process", "next": 7 },
+          { "id": 6, "text": "Mostrar error", "type": "process", "next": 7 },
+          { "id": 7, "text": "Fin", "type": "end" }
         ]
       },
       {
@@ -504,15 +505,15 @@
         "icon": "🍔",
         "description": "Pedir comida por una app es como llamar a una función: eliges el restaurante y el platillo (parámetros), la app procesa tu pedido y te entrega la comida (valor de retorno). Puedes pedir diferentes platillos usando la misma función.",
         "question": "👉 ¿Cómo sería el diagrama de flujo para una función que pide comida?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Seleccionar restaurante", "type": "process" },
-          { "id": 3, "text": "Seleccionar platillo", "type": "process" },
-          { "id": 4, "text": "Procesar pedido", "type": "process" },
-          { "id": 5, "text": "¿Pedido confirmado?", "type": "decision" },
-          { "id": 6, "text": "Recibir comida", "type": "process" },
-          { "id": 7, "text": "Fin", "type": "end" }
-        ]
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Seleccionar restaurante", "type": "process", "next": 3 },
+            { "id": 3, "text": "Seleccionar platillo", "type": "process", "next": 4 },
+            { "id": 4, "text": "Procesar pedido", "type": "process", "next": 5 },
+            { "id": 5, "text": "¿Pedido confirmado?", "type": "decision", "branches": { "yes": 6, "no": 4 } },
+            { "id": 6, "text": "Recibir comida", "type": "process", "next": 7 },
+            { "id": 7, "text": "Fin", "type": "end" }
+          ]
       },
       {
         "title": "Ejemplo 5: Función para calcular el área de una habitación",
@@ -546,15 +547,396 @@
         "icon": "🎉",
         "description": "Organizar una fiesta implica muchos pasos, pero puedes verlo como una función: recibes la lista de invitados, el lugar y la fecha (parámetros), organizas todo y al final tienes una fiesta exitosa (valor de retorno).",
         "question": "👉 ¿Cómo sería el diagrama de flujo para una función que organiza una fiesta?",
-        "steps": [
-          { "id": 1, "text": "Inicio", "type": "start" },
-          { "id": 2, "text": "Recibir lista de invitados", "type": "process" },
-          { "id": 3, "text": "Seleccionar lugar", "type": "process" },
-          { "id": 4, "text": "Definir fecha", "type": "process" },
-          { "id": 5, "text": "Preparar decoración y comida", "type": "process" },
-          { "id": 6, "text": "¿Todo listo?", "type": "decision" },
-          { "id": 7, "text": "Realizar fiesta", "type": "process" },
-          { "id": 8, "text": "Fin", "type": "end" }
+          "steps": [
+            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+            { "id": 2, "text": "Recibir lista de invitados", "type": "process", "next": 3 },
+            { "id": 3, "text": "Seleccionar lugar", "type": "process", "next": 4 },
+            { "id": 4, "text": "Definir fecha", "type": "process", "next": 5 },
+            { "id": 5, "text": "Preparar decoración y comida", "type": "process", "next": 6 },
+            { "id": 6, "text": "¿Todo listo?", "type": "decision", "branches": { "yes": 7, "no": 5 } },
+            { "id": 7, "text": "Realizar fiesta", "type": "process", "next": 8 },
+            { "id": 8, "text": "Fin", "type": "end" }
+          ]
+      }
+    ]
+  },
+  "abstraccion": {
+    "examples": [
+      {
+        "title": "Organizar una fiesta de cumpleaños",
+        "description": "Para organizar una fiesta de cumpleaños exitosa, abstrae los pasos esenciales: define la fecha, elige el lugar, haz la lista de invitados, decide la comida y la música, y planifica la logística básica. Deja de lado detalles accesorios para optimizar recursos y evitar gastos innecesarios en el evento y lograr una celebración memorable.",
+        "blocks": [
+          { "id": 1, "text": "Definir la fecha y hora de la fiesta" },
+          { "id": 2, "text": "Hacer la lista de invitados principales" },
+          { "id": 3, "text": "Fijar el presupuesto disponible para el evento" },
+          { "id": 4, "text": "Reservar o elegir el lugar donde se realizará" },
+          { "id": 5, "text": "Decidir y contratar el servicio de comida o catering" },
+          { "id": 6, "text": "Preparar o elegir la música/playlist o DJ" },
+          { "id": 7, "text": "Enviar invitaciones y confirmar asistencia" },
+          { "id": 8, "text": "Planificar el horario o cronograma del evento" },
+          { "id": 9, "text": "Organizar materiales y recuerdos para los invitados" },
+          { "id": 10, "text": "Elegir el color exacto de las servilletas" },
+          { "id": 11, "text": "Pintar la fachada de la casa antes de la fiesta" },
+          { "id": 12, "text": "Comprar un traje nuevo para la mascota" },
+          { "id": 13, "text": "Contratar un mago exclusivo de importación" },
+          { "id": 14, "text": "Mandar hacer camisetas personalizadas para todos" },
+          { "id": 15, "text": "Alquilar una máquina de humo gigante" },
+          { "id": 16, "text": "Comprar platos y cubiertos de una marca de lujo" },
+          { "id": 17, "text": "Encargar una tarta de varios pisos con figuras personalizadas" },
+          { "id": 18, "text": "Contratar un fotógrafo profesional para la fiesta" },
+          { "id": 19, "text": "Organizar una competencia de baile entre los invitados" },
+          { "id": 20, "text": "Comprar una cafetera de lujo para el evento" }
+        ],
+        "answer": [
+          { "blockId": 1, "text": "Definir la fecha y hora de la fiesta" },
+          { "blockId": 2, "text": "Hacer la lista de invitados principales" },
+          { "blockId": 3, "text": "Fijar el presupuesto disponible para el evento" },
+          { "blockId": 4, "text": "Reservar o elegir el lugar donde se realizará" },
+          { "blockId": 5, "text": "Decidir y contratar el servicio de comida o catering" },
+          { "blockId": 6, "text": "Preparar o elegir la música/playlist o DJ" },
+          { "blockId": 7, "text": "Enviar invitaciones y confirmar asistencia" },
+          { "blockId": 8, "text": "Planificar el horario o cronograma del evento" },
+          { "blockId": 9, "text": "Organizar materiales y recuerdos para los invitados"  }
+        ],
+        "explanation": [
+          { "blockId_answer": 1, "description": "Definir la fecha y hora es el primer paso fundamental porque sin este dato no se puede coordinar ningún aspecto de la fiesta. Permite que todos los invitados y proveedores puedan organizarse y garantiza que el evento pueda ocurrir. Es la base sobre la que se construyen los demás pasos." },
+          { "blockId_answer": 2, "description": "Hacer la lista de invitados principales es esencial para saber a quién va dirigida la celebración y poder dimensionar el resto de la organización (comida, lugar, presupuesto). Sin saber quiénes son los invitados clave, no se puede avanzar en la planificación." },
+          { "blockId_answer": 3, "description": "Fijar el presupuesto disponible permite definir los límites de gasto y priorizar recursos. Es un paso lógico porque de él depende la elección del lugar, la comida y otros servicios. Sin presupuesto, la organización puede salirse de control." },
+          { "blockId_answer": 4, "description": "Reservar o elegir el lugar es necesario para tener un espacio físico donde realizar la fiesta. Sin este paso, no se puede informar a los invitados ni contratar servicios. El lugar define la logística y el tipo de evento." },
+          { "blockId_answer": 5, "description": "Decidir y contratar el servicio de comida o catering es clave para la experiencia de los invitados. La comida suele ser uno de los elementos más recordados y debe ajustarse al presupuesto y al tipo de invitados. Sin comida, la fiesta pierde atractivo y funcionalidad." },
+          { "blockId_answer": 6, "description": "Preparar o elegir la música/playlist o DJ es importante para el ambiente y la diversión. La música marca el ritmo del evento y debe ser adecuada para los gustos de los asistentes. Sin música, la fiesta puede resultar aburrida o monótona." },
+          { "blockId_answer": 7, "description": "Enviar invitaciones y confirmar asistencia permite saber cuántas personas realmente asistirán y ajustar la logística. Es un paso lógico porque evita desperdicios y asegura que los recursos estén bien distribuidos." },
+          { "blockId_answer": 8, "description": "Planificar el horario o cronograma del evento ayuda a que todo ocurra en orden y a tiempo. Permite coordinar actividades, comidas y momentos especiales, evitando improvisaciones y retrasos." },
+          { "blockId_answer": 9, "description": "Organizar materiales y recuerdos para los invitados agrega valor y personalización al evento. Es el paso final que asegura que los asistentes tengan una experiencia memorable y se lleven un recuerdo de la celebración." }
+        ]
+      },
+      {
+        "title": "Planificar un viaje de vacaciones",
+        "description": "Planificar un viaje de vacaciones implica abstraer lo esencial: elegir destino, definir fechas, revisar presupuesto, verificar documentos, reservar transporte y alojamiento, y contratar seguro. Ignora detalles accesorios y enfócate en los pasos clave para asegurar que el viaje ocurra sin contratiempos y puedas disfrutar la experiencia de manera eficiente.",
+        "blocks": [
+          { "id": 1, "text": "Elegir el destino y la duración del viaje" },
+          { "id": 2, "text": "Definir las fechas exactas y la flexibilidad posible" },
+          { "id": 3, "text": "Revisar y ajustar el presupuesto disponible" },
+          { "id": 4, "text": "Verificar documentos y requisitos (pasaporte, visados)" },
+          { "id": 5, "text": "Reservar transporte (vuelos, trenes, autos)" },
+          { "id": 6, "text": "Reservar alojamiento adecuado al presupuesto" },
+          { "id": 7, "text": "Contratar seguro de viaje y asistencia médica" },
+          { "id": 8, "text": "Planificar las actividades principales/itinerario" },
+          { "id": 9, "text": "Hacer la lista de cosas esenciales para empacar" },
+          { "id": 10, "text": "Comprar ropa nueva para cada día del viaje" },
+          { "id": 11, "text": "Pintar la maleta de colores llamativos para identificarla" },
+          { "id": 12, "text": "Llevar una máquina de espresso portátil" },
+          { "id": 13, "text": "Aprender un instrumento para tocar en las noches" },
+          { "id": 14, "text": "Contratar un fotógrafo personal para cada salida" },
+          { "id": 15, "text": "Comprar recuerdos de lujo en cada ciudad" },
+          { "id": 16, "text": "Llevar un traje de gala para una cena improvisada" },
+          { "id": 17, "text": "Traer una colección completa de sombreros temáticos" },
+          { "id": 18, "text": "Organizar una fiesta temática en cada destino" },
+          { "id": 19, "text": "Comprar una cámara profesional para fotos de viaje" },
+          { "id": 20, "text": "Reservar un tour privado en cada ciudad visitada" }
+        ],
+        "answer": [
+          { "blockId": 1, "text": "Elegir el destino y la duración del viaje" },
+          { "blockId": 2, "text": "Definir las fechas exactas y la flexibilidad posible" },
+          { "blockId": 3, "text": "Revisar y ajustar el presupuesto disponible" },
+          { "blockId": 4, "text": "Verificar documentos y requisitos (pasaporte, visados)" },
+          { "blockId": 5, "text": "Reservar transporte (vuelos, trenes, autos)" },
+          { "blockId": 6, "text": "Reservar alojamiento adecuado al presupuesto" },
+          { "blockId": 7, "text": "Contratar seguro de viaje y asistencia médica" },
+          { "blockId": 8, "text": "Planificar las actividades principales/itinerario" },
+          { "blockId": 9, "text": "Hacer la lista de cosas esenciales para empacar"  }
+        ],
+          "explanation": [
+            { "blockId_answer": 1, "description": "Elegir el destino y la duración del viaje es el punto de partida, ya que define el objetivo y el alcance de toda la planificación. Sin saber a dónde y por cuánto tiempo se va, no se puede avanzar en reservas ni presupuesto." },
+            { "blockId_answer": 2, "description": "Definir las fechas exactas y la flexibilidad posible permite coordinar reservas, vacaciones laborales y disponibilidad de servicios. Es esencial para evitar conflictos de agenda y aprovechar mejores precios." },
+            { "blockId_answer": 3, "description": "Revisar y ajustar el presupuesto disponible garantiza que el viaje sea viable y ayuda a priorizar gastos. Sin este paso, se corre el riesgo de exceder los recursos y tener problemas durante el viaje." },
+            { "blockId_answer": 4, "description": "Verificar documentos y requisitos (pasaporte, visados) es fundamental para poder viajar legalmente y sin contratiempos. Sin la documentación adecuada, el viaje puede cancelarse o complicarse." },
+            { "blockId_answer": 5, "description": "Reservar transporte (vuelos, trenes, autos) asegura que se pueda llegar al destino y moverse durante el viaje. Es un paso lógico que depende de las fechas y el presupuesto definidos previamente." },
+            { "blockId_answer": 6, "description": "Reservar alojamiento adecuado al presupuesto permite tener un lugar seguro y cómodo para quedarse, ajustado a los recursos disponibles. Sin alojamiento, el viaje no puede realizarse de manera organizada." },
+            { "blockId_answer": 7, "description": "Contratar seguro de viaje y asistencia médica protege ante imprevistos y emergencias. Es una decisión lógica para evitar gastos inesperados y garantizar tranquilidad durante el viaje." },
+            { "blockId_answer": 8, "description": "Planificar las actividades principales/itinerario ayuda a aprovechar el tiempo y los recursos, evitando improvisaciones y asegurando que se cumplan los objetivos del viaje." },
+            { "blockId_answer": 9, "description": "Hacer la lista de cosas esenciales para empacar permite llevar lo necesario y evitar olvidos que puedan afectar la experiencia. Es el paso final que cierra la preparación antes de partir." }
+          ]
+      },
+      {
+        "title": "Hacer las compras del mes",
+        "description": "Para hacer las compras del mes de forma eficiente, abstrae los pasos esenciales: revisa la despensa, planifica el menú, haz una lista organizada, estima cantidades, marca productos esenciales, fija presupuesto, elige el día y tienda, prepara bolsas y revisa comprobantes. Deja de lado compras impulsivas y detalles innecesarios para ahorrar.",
+        "blocks": [
+          { "id": 1, "text": "Revisar la despensa y el refrigerador para saber qué falta" },
+          { "id": 2, "text": "Planificar un menú semanal aproximado para el mes" },
+          { "id": 3, "text": "Hacer una lista de compras organizada por categorías (frutas, carnes, lácteos)" },
+          { "id": 4, "text": "Estimar cantidades según el número de personas y duración" },
+          { "id": 5, "text": "Marcar productos esenciales vs. opcionales en la lista" },
+          { "id": 6, "text": "Fijar un presupuesto máximo para las compras" },
+          { "id": 7, "text": "Elegir el día y la tienda más conveniente para comprar" },
+          { "id": 8, "text": "Preparar bolsas reutilizables y métodos de pago" },
+          { "id": 9, "text": "Revisar y guardar los comprobantes o recibos" },
+          { "id": 10, "text": "Comprar todas las ofertas sin filtrarlas" },
+          { "id": 11, "text": "Probar nuevos restaurantes en vez de cocinar" },
+          { "id": 12, "text": "Redecorar la cocina antes de ir al supermercado" },
+          { "id": 13, "text": "Comprar un electrodoméstico nuevo sin planearlo" },
+          { "id": 14, "text": "Adquirir snacks innecesarios por promoción" },
+          { "id": 15, "text": "Llevar un carrito para acumular cupones" },
+          { "id": 16, "text": "Comprar utensilios de cocina que no necesitas" },
+          { "id": 17, "text": "Hacer fotos de cada estante para comparar precios" },
+          { "id": 18, "text": "Comprar revistas de cocina para inspiración" },
+          { "id": 19, "text": "Organizar una competencia de compras familiares" },
+          { "id": 20, "text": "Comprar una cafetera de lujo para la cocina" }
+        ],
+        "answer": [
+          { "blockId": 1, "text": "Revisar la despensa y el refrigerador para saber qué falta" },
+          { "blockId": 2, "text": "Planificar un menú semanal aproximado para el mes" },
+          { "blockId": 3, "text": "Hacer una lista de compras organizada por categorías (frutas, carnes, lácteos)" },
+          { "blockId": 4, "text": "Estimar cantidades según el número de personas y duración" },
+          { "blockId": 5, "text": "Marcar productos esenciales vs. opcionales en la lista" },
+          { "blockId": 6, "text": "Fijar un presupuesto máximo para las compras" },
+          { "blockId": 7, "text": "Elegir el día y la tienda más conveniente para comprar" },
+          { "blockId": 8, "text": "Preparar bolsas reutilizables y métodos de pago" },
+          { "blockId": 9, "text": "Revisar y guardar los comprobantes o recibos"  }
+        ],
+          "explanation": [
+            { "blockId_answer": 1, "description": "Revisar la despensa y el refrigerador es el primer paso para saber qué productos realmente faltan y evitar compras innecesarias. Permite priorizar lo esencial y ahorrar dinero." },
+            { "blockId_answer": 2, "description": "Planificar un menú semanal ayuda a estimar qué ingredientes se necesitarán y en qué cantidad, evitando improvisaciones y compras impulsivas." },
+            { "blockId_answer": 3, "description": "Hacer una lista de compras organizada por categorías facilita el recorrido en la tienda y asegura que no se olvide ningún producto importante." },
+            { "blockId_answer": 4, "description": "Estimar cantidades según el número de personas y duración permite ajustar la compra a las necesidades reales del hogar, evitando desperdicios o faltantes." },
+            { "blockId_answer": 5, "description": "Marcar productos esenciales vs. opcionales ayuda a priorizar el gasto y a no exceder el presupuesto en cosas innecesarias." },
+            { "blockId_answer": 6, "description": "Fijar un presupuesto máximo para las compras es clave para controlar el gasto y evitar sorpresas al momento de pagar." },
+            { "blockId_answer": 7, "description": "Elegir el día y la tienda más conveniente optimiza tiempo y recursos, permitiendo aprovechar ofertas y evitar aglomeraciones." },
+            { "blockId_answer": 8, "description": "Preparar bolsas reutilizables y métodos de pago es un paso práctico que facilita la compra y contribuye al cuidado del medio ambiente." },
+            { "blockId_answer": 9, "description": "Revisar y guardar los comprobantes o recibos permite controlar el gasto y tener evidencia en caso de devoluciones o reclamos." }
+          ]
+      },
+      {
+        "title": "Estudiar de forma efectiva para un examen importante",
+        "description": "Para estudiar eficazmente para un examen, abstrae los pasos esenciales: delimita temas, recolecta materiales, haz esquemas, prioriza según dificultad, divide en subtemas, establece objetivos, crea cronograma, prepara resúmenes, practica con exámenes anteriores y autoevalúate. Ignora distracciones y enfócate en lo que realmente será evaluado para obtener mejores resultados.",
+        "blocks": [
+          { "id": 1, "text": "Leer el programa oficial y delimitar los temas que entran" },
+          { "id": 2, "text": "Recolectar apuntes, libros y materiales oficiales" },
+          { "id": 3, "text": "Hacer un esquema general con los grandes bloques temáticos" },
+          { "id": 4, "text": "Priorizar los temas según peso y dificultad" },
+          { "id": 5, "text": "Dividir cada tema en subtemas manejables" },
+          { "id": 6, "text": "Establecer objetivos de aprendizaje para cada subtema" },
+          { "id": 7, "text": "Crear un cronograma de estudio con fechas y tiempos" },
+          { "id": 8, "text": "Preparar resúmenes y fichas por cada subtema" },
+          { "id": 9, "text": "Reunir Ejemplos y exámenes anteriores para practicar" },
+          { "id": 10, "text": "Resolver problemas cronometrados en condiciones de examen" },
+          { "id": 11, "text": "Autoevaluarse y registrar errores frecuentes" },
+          { "id": 12, "text": "Reforzar y volver a estudiar los puntos débiles" },
+          { "id": 13, "text": "Hacer repasos espaciados según el cronograma" },
+          { "id": 14, "text": "Realizar sesiones de estudio en grupo para aclarar dudas" },
+          { "id": 15, "text": "Planificar descansos regulares y técnicas de concentración" },
+          { "id": 16, "text": "Preparar todo lo necesario el día anterior al examen" },
+          { "id": 17, "text": "Decorar la mesa de estudio con luces LED" },
+          { "id": 18, "text": "Cambiar la pintura del cuarto antes de estudiar" },
+          { "id": 19, "text": "Comprar una agenda exclusiva para exámenes" },
+          { "id": 20, "text": "Organizar una fiesta de repaso antes del examen" }
+        ],
+        "answer": [
+          { "blockId": 1, "text": "Leer el programa oficial y delimitar los temas que entran" },
+          { "blockId": 2, "text": "Recolectar apuntes, libros y materiales oficiales" },
+          { "blockId": 3, "text": "Hacer un esquema general con los grandes bloques temáticos" },
+          { "blockId": 4, "text": "Priorizar los temas según peso y dificultad" },
+          { "blockId": 5, "text": "Dividir cada tema en subtemas manejables" },
+          { "blockId": 6, "text": "Establecer objetivos de aprendizaje para cada subtema" },
+          { "blockId": 7, "text": "Crear un cronograma de estudio con fechas y tiempos" },
+          { "blockId": 8, "text": "Preparar resúmenes y fichas por cada subtema" },
+          { "blockId": 9, "text": "Reunir Ejemplos y exámenes anteriores para practicar" },
+          { "blockId": 10, "text": "Resolver problemas cronometrados en condiciones de examen" },
+          { "blockId": 11, "text": "Autoevaluarse y registrar errores frecuentes" },
+          { "blockId": 12, "text": "Reforzar y volver a estudiar los puntos débiles" },
+          { "blockId": 13, "text": "Hacer repasos espaciados según el cronograma" },
+          { "blockId": 14, "text": "Realizar sesiones de estudio en grupo para aclarar dudas" },
+          { "blockId": 15, "text": "Planificar descansos regulares y técnicas de concentración" },
+          { "blockId": 16, "text": "Preparar todo lo necesario el día anterior al examen"  }
+        ],
+          "explanation": [
+            { "blockId_answer": 1, "description": "Leer el programa oficial y delimitar los temas que entran permite enfocar el estudio en lo realmente importante y evitar perder tiempo en contenidos que no serán evaluados." },
+            { "blockId_answer": 2, "description": "Recolectar apuntes, libros y materiales oficiales asegura que la información sea confiable y completa para abordar el examen." },
+            { "blockId_answer": 3, "description": "Hacer un esquema general con los grandes bloques temáticos ayuda a organizar el estudio y visualizar la estructura del contenido." },
+            { "blockId_answer": 4, "description": "Priorizar los temas según peso y dificultad permite dedicar más tiempo a lo que tiene mayor relevancia y a lo que resulta más complejo." },
+            { "blockId_answer": 5, "description": "Dividir cada tema en subtemas manejables facilita el aprendizaje y evita la saturación de información." },
+            { "blockId_answer": 6, "description": "Establecer objetivos de aprendizaje para cada subtema ayuda a medir el progreso y a mantener la motivación." },
+            { "blockId_answer": 7, "description": "Crear un cronograma de estudio con fechas y tiempos permite distribuir el esfuerzo y evitar acumulaciones de última hora." },
+            { "blockId_answer": 8, "description": "Preparar resúmenes y fichas por cada subtema facilita la revisión y el repaso rápido antes del examen." },
+            { "blockId_answer": 9, "description": "Reunir Ejemplos y exámenes anteriores para practicar ayuda a familiarizarse con el formato y el tipo de preguntas que pueden aparecer." },
+            { "blockId_answer": 10, "description": "Resolver problemas cronometrados en condiciones de examen entrena la gestión del tiempo y reduce el estrés el día de la prueba." },
+            { "blockId_answer": 11, "description": "Autoevaluarse y registrar errores frecuentes permite identificar debilidades y corregirlas antes del examen real." },
+            { "blockId_answer": 12, "description": "Reforzar y volver a estudiar los puntos débiles asegura que el conocimiento sea sólido y completo." },
+            { "blockId_answer": 13, "description": "Hacer repasos espaciados según el cronograma mejora la retención y evita el olvido de información importante." },
+            { "blockId_answer": 14, "description": "Realizar sesiones de estudio en grupo para aclarar dudas permite compartir conocimientos y resolver inquietudes de manera colaborativa." },
+            { "blockId_answer": 15, "description": "Planificar descansos regulares y técnicas de concentración ayuda a mantener la energía y la atención durante el estudio." },
+            { "blockId_answer": 16, "description": "Preparar todo lo necesario el día anterior al examen reduce el estrés y asegura que nada falte el día de la prueba." }
+          ]
+      },
+      {
+        "title": "Organizar una mudanza eficiente",
+        "description": "Para organizar una mudanza eficiente, abstrae los pasos esenciales: haz inventario, dona lo innecesario, consigue cajas, empaca por habitaciones, etiqueta, reserva transporte, protege objetos frágiles, organiza kit de primera necesidad y notifica cambios de dirección. Deja de lado tareas accesorias para ahorrar tiempo y dinero y facilitar el traslado.",
+        "blocks": [
+          { "id": 1, "text": "Hacer inventario y clasificar objetos por utilidad" },
+          { "id": 2, "text": "Donar o vender lo que no necesitas antes de empaquetar" },
+          { "id": 3, "text": "Conseguir cajas, material de embalaje y etiquetas" },
+          { "id": 4, "text": "Empacar habitación por habitación empezando por lo menos usado" },
+          { "id": 5, "text": "Etiquetar cajas indicando contenido y destino en la nueva casa" },
+          { "id": 6, "text": "Reservar fecha y transportista o furgoneta de mudanza" },
+          { "id": 7, "text": "Proteger muebles y objetos frágiles adecuadamente" },
+          { "id": 8, "text": "Desmontar muebles grandes y almacenarlos ordenadamente" },
+          { "id": 9, "text": "Organizar un kit de 'primera necesidad' para el primer día" },
+          { "id": 10, "text": "Notificar cambios de dirección y gestionar servicios públicos" },
+          { "id": 11, "text": "Confirmar horarios y detalles con la empresa de mudanza" },
+          { "id": 12, "text": "Realizar limpieza final del lugar que dejas" },
+          { "id": 13, "text": "Coordinar la descarga y colocación básica en la nueva casa" },
+          { "id": 14, "text": "Comprobar que todos los servicios funcionan en la nueva dirección" },
+          { "id": 15, "text": "Abrir cajas prioritarias y acomodar lo esencial" },
+          { "id": 16, "text": "Programar la instalación de muebles y arreglos necesarios" },
+          { "id": 17, "text": "Pintar todas las paredes de la nueva casa antes de entrar" },
+          { "id": 18, "text": "Mandar hacer un retrato familiar para la nueva pared" },
+          { "id": 19, "text": "Comprar una cafetera de lujo para la cocina nueva" },
+          { "id": 20, "text": "Organizar una fiesta de bienvenida en la nueva casa" }
+        ],
+        "answer": [
+          { "blockId": 1, "text": "Hacer inventario y clasificar objetos por utilidad" },
+          { "blockId": 2, "text": "Donar o vender lo que no necesitas antes de empaquetar" },
+          { "blockId": 3, "text": "Conseguir cajas, material de embalaje y etiquetas" },
+          { "blockId": 4, "text": "Empacar habitación por habitación empezando por lo menos usado" },
+          { "blockId": 5, "text": "Etiquetar cajas indicando contenido y destino en la nueva casa" },
+          { "blockId": 6, "text": "Reservar fecha y transportista o furgoneta de mudanza" },
+          { "blockId": 7, "text": "Proteger muebles y objetos frágiles adecuadamente" },
+          { "blockId": 8, "text": "Desmontar muebles grandes y almacenarlos ordenadamente" },
+          { "blockId": 9, "text": "Organizar un kit de 'primera necesidad' para el primer día" },
+          { "blockId": 10, "text": "Notificar cambios de dirección y gestionar servicios públicos" },
+          { "blockId": 11, "text": "Confirmar horarios y detalles con la empresa de mudanza" },
+          { "blockId": 12, "text": "Realizar limpieza final del lugar que dejas" },
+          { "blockId": 13, "text": "Coordinar la descarga y colocación básica en la nueva casa" },
+          { "blockId": 14, "text": "Comprobar que todos los servicios funcionan en la nueva dirección" },
+          { "blockId": 15, "text": "Abrir cajas prioritarias y acomodar lo esencial" },
+          { "blockId": 16, "text": "Programar la instalación de muebles y arreglos necesarios"  }
+        ],
+          "explanation": [
+            { "blockId_answer": 1, "description": "Hacer inventario y clasificar objetos por utilidad permite saber qué se tiene y qué realmente se necesita llevar, optimizando espacio y esfuerzo." },
+            { "blockId_answer": 2, "description": "Donar o vender lo que no necesitas antes de empaquetar reduce el volumen de la mudanza y facilita el proceso, además de generar posibles ingresos extra." },
+            { "blockId_answer": 3, "description": "Conseguir cajas, material de embalaje y etiquetas es esencial para proteger los objetos y mantener el orden durante el traslado." },
+            { "blockId_answer": 4, "description": "Empacar habitación por habitación empezando por lo menos usado permite organizar el proceso y evitar olvidos, facilitando la instalación en el nuevo hogar." },
+            { "blockId_answer": 5, "description": "Etiquetar cajas indicando contenido y destino en la nueva casa agiliza la descarga y la ubicación de los objetos, evitando confusiones." },
+            { "blockId_answer": 6, "description": "Reservar fecha y transportista o furgoneta de mudanza asegura que el traslado se realice en el momento adecuado y con los recursos necesarios." },
+            { "blockId_answer": 7, "description": "Proteger muebles y objetos frágiles adecuadamente evita daños y pérdidas durante el traslado, garantizando que todo llegue en buen estado." },
+            { "blockId_answer": 8, "description": "Desmontar muebles grandes y almacenarlos ordenadamente facilita el transporte y reduce el riesgo de daños." },
+            { "blockId_answer": 9, "description": "Organizar un kit de 'primera necesidad' para el primer día permite tener lo esencial a mano y evitar contratiempos al llegar a la nueva casa." },
+            { "blockId_answer": 10, "description": "Notificar cambios de dirección y gestionar servicios públicos es fundamental para que todo funcione correctamente en el nuevo hogar desde el primer día." },
+            { "blockId_answer": 11, "description": "Confirmar horarios y detalles con la empresa de mudanza evita retrasos y problemas logísticos, asegurando que todo salga según lo planeado." },
+            { "blockId_answer": 12, "description": "Realizar limpieza final del lugar que dejas es un acto de responsabilidad y facilita la entrega del inmueble en buenas condiciones." },
+            { "blockId_answer": 13, "description": "Coordinar la descarga y colocación básica en la nueva casa agiliza la instalación y permite empezar a vivir cómodamente desde el primer momento." },
+            { "blockId_answer": 14, "description": "Comprobar que todos los servicios funcionan en la nueva dirección evita sorpresas y permite una transición sin inconvenientes." },
+            { "blockId_answer": 15, "description": "Abrir cajas prioritarias y acomodar lo esencial ayuda a establecer rápidamente un ambiente funcional y cómodo en el nuevo hogar." },
+            { "blockId_answer": 16, "description": "Programar la instalación de muebles y arreglos necesarios permite completar la mudanza y adaptar el espacio a las necesidades personales." }
+          ]
+      },
+      {
+        "title": "Planificar y desarrollar una aplicación simple (MVP)",
+        "description": "Para desarrollar una aplicación simple, abstrae los pasos esenciales: define el problema, establece funcionalidades mínimas, investiga soluciones, diseña el flujo de usuario, crea bocetos, define arquitectura, configura control de versiones, implementa base de datos y backend, crea pantallas principales y lanza la versión funcional. Deja mejoras para después.",
+        "blocks": [
+          { "id": 1, "text": "Definir el problema que resolverá la app y el público objetivo" },
+          { "id": 2, "text": "Establecer las funcionalidades mínimas (MVP) prioritarias" },
+          { "id": 3, "text": "Investigar soluciones existentes y referencias del mercado" },
+          { "id": 4, "text": "Diseñar el flujo básico de usuario (user flow)" },
+          { "id": 5, "text": "Crear bocetos o wireframes de las pantallas principales" },
+          { "id": 6, "text": "Definir la arquitectura técnica y stack tecnológico" },
+          { "id": 7, "text": "Configurar el control de versiones (repositorio) y ramas" },
+          { "id": 8, "text": "Implementar la base de datos y modelos de datos" },
+          { "id": 9, "text": "Desarrollar las APIs o lógica de backend esenciales" },
+          { "id": 10, "text": "Crear las pantallas principales en el frontend" },
+          { "id": 11, "text": "Implementar autenticación básica si es necesaria" },
+          { "id": 12, "text": "Escribir pruebas unitarias y pruebas básicas de integración" },
+          { "id": 13, "text": "Realizar pruebas de usuario y corregir errores críticos" },
+          { "id": 14, "text": "Preparar scripts de despliegue y configuración de servidor" },
+          { "id": 15, "text": "Desplegar la primera versión y monitorizar errores" },
+          { "id": 16, "text": "Recoger feedback de usuarios y planear mejoras iterativas" },
+          { "id": 17, "text": "Contratar una campaña publicitaria masiva antes del lanzamiento" },
+          { "id": 18, "text": "Diseñar merchandising y regalar camisetas promocionales" },
+          { "id": 19, "text": "Organizar una fiesta de lanzamiento con influencers" },
+          { "id": 20, "text": "Comprar una cafetera de lujo para el equipo de desarrollo" }
+        ],
+        "answer": [
+          { "blockId": 1, "text": "Definir el problema que resolverá la app y el público objetivo" },
+          { "blockId": 2, "text": "Establecer las funcionalidades mínimas (MVP) prioritarias" },
+          { "blockId": 3, "text": "Investigar soluciones existentes y referencias del mercado" },
+          { "blockId": 4, "text": "Diseñar el flujo básico de usuario (user flow)" },
+          { "blockId": 5, "text": "Crear bocetos o wireframes de las pantallas principales" },
+          { "blockId": 6, "text": "Definir la arquitectura técnica y stack tecnológico" },
+          { "blockId": 7, "text": "Configurar el control de versiones (repositorio) y ramas" },
+          { "blockId": 8, "text": "Implementar la base de datos y modelos de datos" },
+          { "blockId": 9, "text": "Desarrollar las APIs o lógica de backend esenciales" },
+          { "blockId": 10, "text": "Crear las pantallas principales en el frontend" },
+          { "blockId": 11, "text": "Implementar autenticación básica si es necesaria" },
+          { "blockId": 12, "text": "Escribir pruebas unitarias y pruebas básicas de integración" },
+          { "blockId": 13, "text": "Realizar pruebas de usuario y corregir errores críticos" },
+          { "blockId": 14, "text": "Preparar scripts de despliegue y configuración de servidor" },
+          { "blockId": 15, "text": "Desplegar la primera versión y monitorizar errores" },
+          { "blockId": 16, "text": "Recoger feedback de usuarios y planear mejoras iterativas"  }
+        ],
+          "explanation": [
+            { "blockId_answer": 1, "description": "Definir el problema y el público objetivo es el punto de partida para que la app tenga sentido y resuelva una necesidad real. Sin esto, el desarrollo puede perder foco y utilidad." },
+            { "blockId_answer": 2, "description": "Establecer las funcionalidades mínimas (MVP) permite lanzar una versión funcional rápidamente, validando la idea sin invertir recursos en detalles secundarios." },
+            { "blockId_answer": 3, "description": "Investigar soluciones existentes y referencias del mercado ayuda a evitar errores comunes y a identificar oportunidades de mejora o diferenciación." },
+            { "blockId_answer": 4, "description": "Diseñar el flujo básico de usuario (user flow) facilita la experiencia y asegura que la app sea intuitiva y fácil de usar." },
+            { "blockId_answer": 5, "description": "Crear bocetos o wireframes de las pantallas principales permite visualizar la estructura y detectar posibles problemas antes de programar." },
+            { "blockId_answer": 6, "description": "Definir la arquitectura técnica y stack tecnológico garantiza que la app sea escalable, segura y eficiente desde el inicio." },
+            { "blockId_answer": 7, "description": "Configurar el control de versiones (repositorio) y ramas facilita el trabajo colaborativo y el seguimiento de cambios, evitando pérdidas de información." },
+            { "blockId_answer": 8, "description": "Implementar la base de datos y modelos de datos es esencial para almacenar y gestionar la información de la app de forma estructurada." },
+            { "blockId_answer": 9, "description": "Desarrollar las APIs o lógica de backend esenciales permite que la app funcione correctamente y se comunique con los datos y servicios necesarios." },
+            { "blockId_answer": 10, "description": "Crear las pantallas principales en el frontend es clave para que los usuarios puedan interactuar con la app y acceder a sus funcionalidades." },
+            { "blockId_answer": 11, "description": "Implementar autenticación básica si es necesaria protege la información y restringe el acceso a usuarios autorizados." },
+            { "blockId_answer": 12, "description": "Escribir pruebas unitarias y pruebas básicas de integración asegura que el código sea confiable y que los componentes funcionen correctamente juntos." },
+            { "blockId_answer": 13, "description": "Realizar pruebas de usuario y corregir errores críticos permite validar la experiencia real y mejorar la calidad antes del lanzamiento." },
+            { "blockId_answer": 14, "description": "Preparar scripts de despliegue y configuración de servidor facilita la publicación y el mantenimiento de la app en producción." },
+            { "blockId_answer": 15, "description": "Desplegar la primera versión y monitorizar errores permite detectar y corregir fallos rápidamente, asegurando la estabilidad inicial." },
+            { "blockId_answer": 16, "description": "Recoger feedback de usuarios y planear mejoras iterativas ayuda a evolucionar la app según las necesidades reales y mantenerla competitiva." }
+          ]
+      },
+      {
+        "title": "Cocinar una receta nueva de forma ordenada",
+        "description": "Para cocinar una receta nueva de forma ordenada, abstrae los pasos esenciales: lee y entiende la receta, verifica ingredientes, prepara y mide todo, precalienta hornos o sartenes, sigue los pasos de cocción, ajusta sazón, sirve el plato, limpia mientras cocinas y anota ajustes. Deja de lado detalles accesorios para lograr buenos resultados.",
+        "blocks": [
+          { "id": 1, "text": "Leer y entender completamente la receta antes de comenzar" },
+          { "id": 2, "text": "Verificar que tienes todos los ingredientes y cantidades" },
+          { "id": 3, "text": "Preparar y medir ingredientes (mise en place)" },
+          { "id": 4, "text": "Precalentar hornos o preparar sartenes necesarios" },
+          { "id": 5, "text": "Seguir los pasos de cocción en el orden indicado" },
+          { "id": 6, "text": "Probar y ajustar sazón durante la preparación" },
+          { "id": 7, "text": "Servir y presentar el plato cuidadosamente" },
+          { "id": 8, "text": "Limpiar y ordenar mientras cocinas para no acumular desorden" },
+          { "id": 9, "text": "Anotar ajustes que hiciste para la próxima vez" },
+          { "id": 10, "text": "Comprar todos los utensilios de cocina caros de inmediato" },
+          { "id": 11, "text": "Invitar a muchas personas sin haber practicado la receta" },
+          { "id": 12, "text": "Grabar un video profesional de la preparación" },
+          { "id": 13, "text": "Redecorar la cocina antes de cocinar el plato" },
+          { "id": 14, "text": "Aprender 10 técnicas nuevas antes de intentarlo" },
+          { "id": 15, "text": "Invitar a un crítico gastronómico a la primera prueba" },
+          { "id": 16, "text": "Preparar cinco platos diferentes la primera vez" },
+          { "id": 17, "text": "Comprar ingredientes exóticos no necesarios para la receta" },
+          { "id": 18, "text": "Organizar una competencia de cocina familiar" },
+          { "id": 19, "text": "Comprar una cafetera de lujo para la cocina" },
+          { "id": 20, "text": "Hacer una fiesta temática de comida internacional" }
+        ],
+        "answer": [
+          { "blockId": 1, "text": "Leer y entender completamente la receta antes de comenzar" },
+          { "blockId": 2, "text": "Verificar que tienes todos los ingredientes y cantidades" },
+          { "blockId": 3, "text": "Preparar y medir ingredientes (mise en place)" },
+          { "blockId": 4, "text": "Precalentar hornos o preparar sartenes necesarios" },
+          { "blockId": 5, "text": "Seguir los pasos de cocción en el orden indicado" },
+          { "blockId": 6, "text": "Probar y ajustar sazón durante la preparación" },
+          { "blockId": 7, "text": "Servir y presentar el plato cuidadosamente" },
+          { "blockId": 8, "text": "Limpiar y ordenar mientras cocinas para no acumular desorden" },
+          { "blockId": 9, "text": "Anotar ajustes que hiciste para la próxima vez"  }
+        ],
+        "explanation": [
+          { "blockId_answer": 1, "description": "Leer y entender completamente la receta antes de comenzar es esencial para evitar errores y saber exactamente qué pasos seguir, qué ingredientes usar y cómo organizar el tiempo." },
+          { "blockId_answer": 2, "description": "Verificar que tienes todos los ingredientes y cantidades evita interrupciones y asegura que el resultado final sea el esperado." },
+          { "blockId_answer": 3, "description": "Preparar y medir ingredientes (mise en place) facilita el proceso de cocción y ayuda a mantener el orden en la cocina." },
+          { "blockId_answer": 4, "description": "Precalentar hornos o preparar sartenes necesarios garantiza que los tiempos de cocción sean correctos y que los alimentos se cocinen adecuadamente." },
+          { "blockId_answer": 5, "description": "Seguir los pasos de cocción en el orden indicado permite obtener el resultado deseado y evitar errores que puedan arruinar la receta." },
+          { "blockId_answer": 6, "description": "Ajustar sabores y texturas según el resultado es importante para personalizar el plato y corregir posibles fallos durante la preparación." },
+          { "blockId_answer": 7, "description": "Servir el plato y limpiar la zona de trabajo es el cierre del proceso, asegurando una buena presentación y manteniendo la higiene en la cocina." },
+          { "blockId_answer": 8, "description": "Registrar la experiencia y posibles mejoras ayuda a aprender para futuras ocasiones y perfeccionar la técnica culinaria." }
         ]
       }
     ]
