@@ -45,6 +45,7 @@ function createMainWindow() {
 
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();
+    mainWindow.maximize();
     if (loadingWindow) {
       loadingWindow.close();
     }
