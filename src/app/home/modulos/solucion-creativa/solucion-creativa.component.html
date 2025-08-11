@@ -1,1 +1,115 @@
-<p>solucion-creativa works!</p>
+<div class="text-center mb-6 mt-6">
+  <h1 class="text-3xl font-bold text-gray-800 mb-2 drop-shadow-md">🎨 Solución Creativa de Problemas</h1>
+  <div class="flex items-center justify-center mb-1">
+    <div class="h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent w-96 shadow-sm"></div>
+  </div>
+  <div class="flex items-center justify-center">
+    <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-64 opacity-60"></div>
+  </div>
+</div>
+
+<!-- Navbar de opciones para mostrar secciones -->
+<div class="flex flex-col items-center mb-6">
+  <nav class="sticky top-0 z-20 w-auto flex justify-center bg-transparent backdrop-blur-md py-2 rounded-xl">
+    <ul class="flex gap-72">
+      <li>
+        <button class="relative px-4 py-2 rounded-lg font-semibold text-gray-700 hover:text-green-500 transition"
+          [class.border-b-4]="selectedSection === 1" [class.border-blue-500]="selectedSection === 1"
+          [ngClass]="{ 'button-with-point': selectedSection === 1 }" (click)="selectedSection = 1">
+          Teoría
+        </button>
+      </li>
+      <li>
+        <button class="relative px-4 py-2 rounded-lg font-semibold text-gray-700 hover:text-green-500 transition"
+          [class.border-b-4]="selectedSection === 2" [class.border-blue-500]="selectedSection === 2"
+          [ngClass]="{ 'button-with-point': selectedSection === 2 }" (click)="selectedSection = 2">
+          Ejemplos
+        </button>
+      </li>
+      <li>
+        <button class="relative px-4 py-2 rounded-lg font-semibold text-gray-700 hover:text-green-500 transition"
+          [class.border-b-4]="selectedSection === 3" [class.border-blue-500]="selectedSection === 3"
+          [ngClass]="{ 'button-with-point': selectedSection === 3 }" (click)="selectedSection = 3">
+          Ejercicios
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<!-- Contenedor de las secciones/cards -->
+<div class="flex flex-col gap-6 items-center w-full px-2 md:px-0">
+  <!-- Sección 1 -->
+  <section *ngIf="selectedSection === 1"
+    class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
+    <div class="flex flex-col gap-6 mb-8 justify-start items-start">
+      <h2 class="text-xl font-bold text-blue-500 mb-2 flex items-center gap-2">📍 <b>¿Qué es la solución creativa de problemas?</b></h2>
+      <p class="text-gray-800 ml-8">
+      La solución creativa de problemas es la capacidad de encontrar caminos innovadores para resolver desafíos, combinando pensamiento lógico con imaginación.<br>
+      No se trata únicamente de “pensar diferente” por el simple hecho de ser original, sino de encontrar soluciones que sean originales y, al mismo tiempo, efectivas.</p>
+      <p class="text-gray-800 ml-8">En programación, muchas veces un problema puede resolverse con técnicas ya conocidas, pero cuando estas no funcionan o no son óptimas, entra en juego la creatividad para encontrar un enfoque alternativo.</p>
+      <div class="bg-gradient-to-br from-blue-100 via-blue-50 to-white border-l-4 border-blue-400 shadow-lg rounded-xl p-6 w-full">
+        <h3 class="text-lg font-semibold text-gray-700 mt-4 mb-2 flex items-center gap-2">📦 Metáfora: El chef improvisador</h3>
+        <p class="text-gray-700">Imagina que eres un chef y estás cocinando un plato especial para un cliente.<br>
+        De repente, te das cuenta de que falta un ingrediente clave.</p>
+        <ul class="list-disc pl-6 text-gray-700 mb-2">
+          <li>Opción tradicional: cancelar el plato o retrasar el pedido para ir a comprarlo.</li>
+          <li>Opción creativa: sustituir el ingrediente por otro que tengas a mano y que aporte un sabor similar o incluso mejor.</li>
+        </ul>
+        <p class="text-gray-700">La creatividad en la solución de problemas es exactamente eso: adaptarte a la situación y buscar nuevas combinaciones que cumplan el objetivo, incluso mejorando el resultado esperado.</p>
+      </div>
+      <div class="bg-gradient-to-br from-green-100 via-green-50 to-white border-l-4 border-green-400 shadow-lg rounded-xl p-6 w-full">
+        <h2 class="text-xl font-bold text-green-600 mb-2 flex items-center gap-2">🔄 Solución creativa y la vida real</h2>
+        <ul class="list-disc ml-6 text-gray-800 mb-2">
+          <li>En casa: Si se rompe el control remoto, puedes cambiar de canal usando los botones de la TV o incluso una app en el teléfono.</li>
+          <li>En el trabajo: Si un archivo es demasiado pesado para enviarlo por correo, puedes comprimirlo, subirlo a la nube o dividirlo en partes.</li>
+          <li>En la escuela: Si olvidaste tu cuaderno, puedes pedirle a un compañero una foto de las notas.</li>
+        </ul>
+        <p class="text-gray-700">La creatividad no siempre es “inventar algo nuevo” desde cero, muchas veces es usar lo que tienes de una forma distinta.</p>
+      </div>
+      <div class="bg-gradient-to-br from-yellow-100 via-yellow-50 to-white border-l-4 border-yellow-400 shadow-lg rounded-xl p-6 w-full">
+        <h2 class="text-xl font-bold text-yellow-600 mb-2 flex items-center gap-2">🧩 Elementos clave de la solución creativa</h2>
+        <ul class="list-disc ml-6 text-gray-800 mb-2">
+          <li>Identificación precisa del problema<br><span class="text-gray-700">No se puede encontrar una solución efectiva si no se entiende exactamente qué se quiere resolver.<br>Ejemplo: “El sistema es lento” es muy general. “El sistema tarda 5 segundos en cargar la lista de productos” es específico y accionable.</span></li>
+          <li>Análisis desde diferentes perspectivas<br><span class="text-gray-700">Ver el problema desde distintos ángulos. A veces la solución aparece cuando lo miras desde el punto de vista de otro usuario, otro equipo o incluso otra cultura.</span></li>
+          <li>Generación de múltiples ideas<br><span class="text-gray-700">Cuantas más ideas tengas, más probabilidades de encontrar una solución innovadora. Aquí no se juzga si son “buenas” o “malas”, la prioridad es cantidad.</span></li>
+          <li>Pensar fuera del patrón (out of the box)<br><span class="text-gray-700">Se trata de romper las rutas mentales comunes y atreverse a probar lo que, en principio, podría parecer extraño.</span></li>
+          <li>Combinar conceptos<br><span class="text-gray-700">La fusión de dos ideas distintas suele producir soluciones poderosas. Ejemplo: las “bicicletas eléctricas” combinan el transporte tradicional con tecnología eléctrica.</span></li>
+          <li>Evaluación práctica<br><span class="text-gray-700">No toda idea creativa es viable. Hay que considerar recursos, tiempo, riesgos y beneficios antes de implementarla.</span></li>
+          <li>Iteración y mejora<br><span class="text-gray-700">La primera versión rara vez es perfecta. La creatividad también incluye la capacidad de mejorar la solución con base en pruebas y retroalimentación.</span></li>
+        </ul>
+      </div>
+      <div class="bg-gradient-to-br from-blue-100 via-blue-50 to-white border-l-4 border-blue-400 shadow-lg rounded-xl p-6 w-full">
+        <h2 class="text-xl font-bold text-blue-600 mb-2 flex items-center gap-2">🧠 Enfoques creativos usados en programación</h2>
+        <ul class="list-disc ml-6 text-gray-800 mb-2">
+          <li>Reutilización de código en contextos distintos al que fue creado.</li>
+          <li>Uso de librerías de forma no tradicional, combinando funciones para lograr nuevos resultados.</li>
+          <li>Aplicar conceptos de un lenguaje de programación en otro para obtener ventajas técnicas.</li>
+          <li>Pensar en soluciones visuales (UI/UX) para problemas que no son puramente técnicos.</li>
+        </ul>
+      </div>
+      <div class="bg-gradient-to-br from-pink-100 via-pink-50 to-white border-l-4 border-pink-400 shadow-lg rounded-xl p-6 w-full">
+        <h2 class="text-xl font-bold text-pink-600 mb-2 flex items-center gap-2">🚀 Beneficios de aplicar soluciones creativas</h2>
+        <ul class="list-disc ml-6 text-gray-800 mb-2">
+          <li>Mayor eficiencia y reducción de costos.</li>
+          <li>Respuestas rápidas a problemas imprevistos.</li>
+          <li>Mayor competitividad y diferenciación en el mercado.</li>
+          <li>Mejor experiencia para el usuario final.</li>
+          <li>Incremento de la satisfacción personal y del equipo al resolver desafíos de forma ingeniosa.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- Sección 2 -->
+  <section *ngIf="selectedSection === 2"
+    class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
+    <h1 class="mt-6">Ejemplos</h1>
+    <!-- Aquí puedes agregar el componente de ejemplos o contenido adicional -->
+  </section>
+  <!-- Sección 3 -->
+  <section *ngIf="selectedSection === 3"
+    class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
+    <h1 class="mt-6">Ejercicios</h1>
+    <!-- Aquí puedes agregar el componente de ejercicios o contenido adicional -->
+  </section>
+</div>

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./solucion-creativa.component.css']
 })
 export class SolucionCreativaComponent {
-
+  selectedSection = 1;
 }

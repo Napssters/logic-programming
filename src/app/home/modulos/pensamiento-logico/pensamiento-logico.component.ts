@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './pensamiento-logico.component.html',
   styleUrls: ['./pensamiento-logico.component.css']
 })
-export class PensamientoLogicoComponent {
 
+export class PensamientoLogicoComponent {
+  selectedSection = 1;
 }

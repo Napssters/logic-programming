@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./toma-decisiones.component.css']
 })
 export class TomaDecisionesComponent {
-
+  selectedSection = 1;
 }

@@ -1,1 +1,212 @@
-<p>toma-decisiones works!</p>
+<div class="text-center mb-6 mt-6">
+  <h1 class="text-3xl font-bold text-gray-800 mb-2 drop-shadow-md">🗂️ Toma de Decisiones y Evaluación de Opciones</h1>
+  <div class="flex items-center justify-center mb-1">
+    <div class="h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent w-96 shadow-sm"></div>
+  </div>
+  <div class="flex items-center justify-center">
+    <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-64 opacity-60"></div>
+  </div>
+</div>
+
+<!-- Navbar de opciones para mostrar secciones -->
+<div class="flex flex-col items-center mb-6">
+  <nav class="sticky top-0 z-20 w-auto flex justify-center bg-transparent backdrop-blur-md py-2 rounded-xl">
+    <ul class="flex gap-72">
+      <li>
+        <button class="relative px-4 py-2 rounded-lg font-semibold text-gray-700 hover:text-blue-500 transition"
+          [class.border-b-4]="selectedSection === 1" [class.border-blue-500]="selectedSection === 1"
+          [ngClass]="{ 'button-with-point': selectedSection === 1 }" (click)="selectedSection = 1">
+          Teoría
+        </button>
+      </li>
+      <li>
+        <button class="relative px-4 py-2 rounded-lg font-semibold text-gray-700 hover:text-blue-500 transition"
+          [class.border-b-4]="selectedSection === 2" [class.border-blue-500]="selectedSection === 2"
+          [ngClass]="{ 'button-with-point': selectedSection === 2 }" (click)="selectedSection = 2">
+          Ejemplos
+        </button>
+      </li>
+      <li>
+        <button class="relative px-4 py-2 rounded-lg font-semibold text-gray-700 hover:text-blue-500 transition"
+          [class.border-b-4]="selectedSection === 3" [class.border-blue-500]="selectedSection === 3"
+          [ngClass]="{ 'button-with-point': selectedSection === 3 }" (click)="selectedSection = 3">
+          Ejercicios
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<!-- Contenedor de las secciones/cards -->
+<div class="flex flex-col gap-6 items-center w-full px-2 md:px-0">
+  <!-- Sección 1 -->
+  <section *ngIf="selectedSection === 1"
+    class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
+    <div class="flex flex-col gap-6 mb-8 justify-start items-start">
+      <h2 class="text-xl font-bold text-blue-500 mb-2 flex items-center gap-2">🧠 ¿Qué es la toma de decisiones?</h2>
+      <p class="text-gray-800 ml-8">La toma de decisiones es el proceso consciente de elegir entre varias alternativas
+        (opciones) analizando información, premisas y consecuencias. En programación y en la vida real implica evaluar
+        datos, aplicar reglas lógicas y seleccionar la acción más adecuada según objetivos y restricciones.</p>
+      <div
+        class="bg-gradient-to-br from-blue-100 via-blue-50 to-white border-l-4 border-blue-400 shadow-lg rounded-xl p-6 w-full">
+        <h3 class="text-lg font-semibold text-gray-700 mt-4 mb-2 flex items-center gap-2">🔧 Elementos fundamentales de
+          todo proceso de decisión</h3>
+        <ul class="list-disc pl-6 text-gray-700 mb-2">
+          <li><b>Opciones (alternativas):</b> las posibilidades entre las que puedes elegir.</li>
+          <li><b>Premisas / datos:</b> hechos o suposiciones sobre la situación (lo que sabes).</li>
+          <li><b>Criterios:</b> lo que valoras para elegir (rapidez, coste, seguridad, calidad).</li>
+          <li><b>Restricciones:</b> límites reales (presupuesto, tiempo, recursos).</li>
+          <li><b>Consecuencias:</b> resultados esperados para cada opción.</li>
+          <li><b>Incertidumbre:</b> grado de desconocimiento o probabilidad de distintos resultados.</li>
+        </ul>
+      </div>
+      <div
+        class="bg-gradient-to-br from-green-100 via-green-50 to-white border-l-4 border-green-400 shadow-lg rounded-xl p-6 w-full">
+        <h2 class="text-xl font-bold text-green-600 mb-2 flex items-center gap-2">📚 Tipos de decisiones</h2>
+        <ul class="list-disc ml-6 text-gray-800 mb-2">
+          <li><b>Determinísticas:</b> resultado claro si se cumplen condiciones (ej. semáforo).</li>
+          <li><b>Probabilísticas:</b> resultado incierto (ej. clima, mercado).</li>
+          <li><b>Simples / aisladas:</b> una sola elección momentánea.</li>
+          <li><b>Secuenciales:</b> múltiples decisiones encadenadas (planificación).</li>
+          <li><b>Óptimas vs. satisficing:</b> buscar la mejor solución o una suficientemente buena (por
+            tiempo/recursos).</li>
+        </ul>
+      </div>
+      <div
+        class="bg-gradient-to-br from-yellow-100 via-yellow-50 to-white border-l-4 border-yellow-400 shadow-lg rounded-xl p-6 w-full">
+        <h2 class="text-xl font-bold text-yellow-600 mb-2 flex items-center gap-2">🧭 Metáforas cotidianas</h2>
+        <ul class="list-disc ml-6 text-gray-800 mb-2">
+          <li><b>Bifurcación en el camino:</b> llegas a un cruce y tomas la ruta según señales (condicional).</li>
+          <li><b>Carta de restaurante:</b> eliges plato según hambre, tiempo y dinero (ponderar criterios).</li>
+          <li><b>GPS con tráfico:</b> elige la ruta más rápida en tiempo real (evaluación dinámica con datos).</li>
+          <li><b>Comprar en oferta:</b> comparas precio y necesidad; si el descuento compensa, compras (análisis
+            coste-beneficio).</li>
+        </ul>
+      </div>
+      <div
+        class="bg-gradient-to-br from-purple-100 via-purple-50 to-white border-l-4 border-purple-400 shadow-lg rounded-xl p-6 w-full mt-2 mb-2">
+        <h2 class="text-xl font-bold text-purple-600 mb-2 flex items-center gap-2">🔗 Cómo se conectan premisas y
+          conclusiones</h2>
+        <ul class="list-disc ml-6 text-gray-800 mb-2">
+          <li>Premisa: “Si llueve, llevaré paraguas.”</li>
+          <li>Hecho observado: “Está lloviendo.”</li>
+          <li>Conclusión: “Llevo paraguas.”</li>
+        </ul>
+        <p class="text-gray-700">En lógica: premisas → reglas (si… entonces, y, o, no) → conclusión. En programación
+          esto se traduce en condiciones (<code>if</code>), combinaciones (<code>&&</code>, <code>||</code>) y
+          negaciones (<code>!</code>).</p>
+      </div>
+      <div
+        class="bg-gradient-to-br from-pink-100 via-pink-50 to-white border-l-4 border-pink-400 shadow-lg rounded-xl p-6 w-full">
+        <h2 class="text-xl font-bold text-pink-600 mb-2 flex items-center gap-2">🧠 Modelos mentales y técnicas lógicas
+          útiles</h2>
+        <ul class="list-disc ml-6 text-gray-800 mb-2">
+          <li><b>Si … entonces (implicación):</b> estructura básica para decisiones.</li>
+          <li><b>AND (y) / OR (o) / NOT (no):</b> combinar condiciones.</li>
+          <li><b>Árbol de decisión:</b> representar opciones y sus resultados en ramas.</li>
+          <li><b>Función de utilidad / puntuación:</b> asignar valor numérico a cada opción y elegir la de mayor
+            puntaje.</li>
+          <li><b>Reglas heurísticas:</b> atajos para decidir rápido (p. ej. “si tengo menos de 5 minutos, elijo la
+            opción rápida”).</li>
+          <li><b>Búsqueda y optimización:</b> cuando hay muchas opciones, aplicar estrategias (greedy, búsqueda por
+            puntaje, backtracking).</li>
+        </ul>
+      </div>
+      <div
+        class="bg-gradient-to-br from-blue-100 via-blue-50 to-white border-l-4 border-blue-400 shadow-lg rounded-xl p-6 w-full">
+        <h2 class="text-xl font-bold text-blue-600 mb-2 flex items-center gap-2">🧾 Herramientas prácticas para evaluar
+          opciones</h2>
+        <h3 class="font-semibold text-blue-700">1) Matriz de decisión ponderada</h3>
+        <ol class="list-decimal ml-8 text-gray-700 mb-2">
+          <li>Listar criterios relevantes.</li>
+          <li>Asignar peso a cada criterio (suma 1 o 100).</li>
+          <li>Puntuar cada opción por criterio (0–5).</li>
+          <li>Multiplicar y sumar para obtener la puntuación total.</li>
+        </ol>
+        <div class="overflow-x-auto mb-4">
+          <table class="min-w-full text-sm text-left border-separate border-spacing-0 rounded-xl shadow-lg bg-white">
+            <thead>
+              <tr class="bg-gradient-to-r from-blue-500 via-cyan-400 to-green-300">
+                <th class="py-3 px-6 font-bold text-white rounded-tl-xl text-center">Opción</th>
+                <th class="py-3 px-6 font-bold text-white text-center">Rapidez (0.4)</th>
+                <th class="py-3 px-6 font-bold text-white text-center">Costo (0.3)</th>
+                <th class="py-3 px-6 font-bold text-white text-center">Facilidad (0.3)</th>
+                <th class="py-3 px-6 font-bold text-white rounded-tr-xl text-center">Score total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="hover:bg-red-50 transition">
+                <td class="py-3 px-6 border-b border-gray-200">Opción A</td>
+                <td class="py-3 px-6 border-b border-gray-200">4 → 1.6</td>
+                <td class="py-3 px-6 border-b border-gray-200">3 → 0.9</td>
+                <td class="py-3 px-6 border-b border-gray-200">5 → 1.5</td>
+                <td class="py-3 px-6 border-b border-gray-200">4.0</td>
+              </tr>
+              <tr class="hover:bg-blue-50 transition">
+                <td class="py-3 px-6 border-b border-gray-200">Opción B</td>
+                <td class="py-3 px-6 border-b border-gray-200">3 → 1.2</td>
+                <td class="py-3 px-6 border-b border-gray-200">5 → 1.5</td>
+                <td class="py-3 px-6 border-b border-gray-200">2 → 0.6</td>
+                <td class="py-3 px-6 border-b border-gray-200">3.3</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="font-semibold text-blue-700">2) Pros / Cons</h3>
+        <p class="text-gray-700">Lista simple de ventajas y desventajas; útil para decisiones con pocos criterios.</p>
+        <h3 class="font-semibold text-blue-700">3) Árbol de decisión básico</h3>
+        <p class="text-gray-700">Dibuja nodos: en cada nodo una condición; en hojas la consecuencia o recompensa. Muy
+          útil para decisiones secuenciales.</p>
+        <h3 class="font-semibold text-blue-700">4) Sensitivity / Análisis de sensibilidad</h3>
+        <p class="text-gray-700">Modificar pesos o supuestos para ver si la decisión se mantiene estable.</p>
+      </div>
+      <div
+        class="bg-gradient-to-br from-yellow-100 via-yellow-50 to-white border-l-4 border-yellow-400 shadow-lg rounded-xl p-6 w-full">
+        <h2 class="text-xl font-bold text-yellow-600 mb-2 flex items-center gap-2">⚠️ Sesgos y errores comunes</h2>
+        <ul class="list-disc ml-6 text-gray-800 mb-2">
+          <li><b>Anclaje:</b> fijarse en la primera información recibida.</li>
+          <li><b>Confirmación:</b> buscar solo datos que confirmen nuestra idea.</li>
+          <li><b>Disponibilidad:</b> sobrevalorar ejemplos recientes o memorables.</li>
+          <li><b>Exceso de confianza:</b> subestimar la incertidumbre.</li>
+        </ul>
+        <p class="text-gray-700">Enseñar a preguntar: “¿Qué supongo?” y “¿Qué pasa si esa suposición falla?” ayuda a
+          mitigarlos.</p>
+      </div>
+      <div
+        class="bg-gradient-to-br from-purple-100 via-purple-50 to-white border-l-4 border-purple-400 shadow-lg rounded-xl p-6 w-full mt-2 mb-2">
+        <h2 class="text-xl font-bold text-purple-600 mb-2 flex items-center gap-2">🖥 Cómo mapear todo esto en
+          programación</h2>
+        <ul class="list-disc ml-6 text-gray-800 mb-2">
+          <li><b>Condicionales (<code>if/else</code>):</b> decisiones simples.</li>
+          <li><b>Switch / case:</b> elegir entre varias alternativas discretas.</li>
+          <li><b>Funciones que devuelven puntajes:</b> implementar matriz ponderada (<code>score(option)</code>).</li>
+          <li><b>Estructuras de datos (arrays / objetos):</b> almacenar opciones, criterios y resultados.</li>
+          <li><b>Árboles (estructuras recursivas):</b> modelar decisiones secuenciales.</li>
+          <li><b>Simulación / Monte Carlo:</b> cuando hay incertidumbre usar simulaciones para estimar probabilidades.
+          </li>
+        </ul>
+        <h3 class="font-semibold text-purple-700">Pseudocódigo ejemplo (score):</h3>
+        <pre class="bg-gray-900 text-green-200 rounded-lg p-4 text-sm overflow-x-auto"><code>// criterios = {{ '{' }} rapidez:0.4, costo:0.3, facilidad:0.3 {{ '}' }}
+// opciones = [A,B,C]
+for opcion in opciones:
+    score = 0
+    for criterio in criterios:
+        score += puntaje(opcion, criterio) * criterios[criterio]
+    escoger opcion con max(score)
+</code></pre>
+      </div>
+    </div>
+  </section>
+  <!-- Sección 2 -->
+  <section *ngIf="selectedSection === 2"
+    class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
+    <h1 class="mt-6">Ejemplos</h1>
+    <!-- Aquí puedes agregar el componente de ejemplos o contenido adicional -->
+  </section>
+  <!-- Sección 3 -->
+  <section *ngIf="selectedSection === 3"
+    class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
+    <h1 class="mt-6">Ejercicios</h1>
+    <!-- Aquí puedes agregar el componente de ejercicios o contenido adicional -->
+  </section>
+</div>

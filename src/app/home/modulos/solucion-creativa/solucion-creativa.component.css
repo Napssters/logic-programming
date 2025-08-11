@@ -1,0 +1,5 @@
+/* Viñeta verde debajo de la opción seleccionada en el navbar */
+.button-with-point {
+  border-bottom-width: 4px !important;
+  border-bottom-color: #22c55e !important; /* Tailwind green-500 */
+}
