@@ -348,7 +348,7 @@
   "bucles": {
     "examples": [
       {
-        "title": "Rutina de ejercicio diaria",
+        "title": "Rutina de Ejemplo diaria",
         "description": "Imagina que tu entrenador te dice: 'Haz 20 flexiones'. Necesitas repetir el mismo movimiento 20 veces exactamente.",
         "question": "👉 ¿Cómo programarías un bucle para contar las flexiones y asegurarte de hacer exactamente 20?",
         "steps": [
@@ -564,7 +564,7 @@
     "examples": [
       {
         "title": "Organizar una fiesta de cumpleaños",
-        "description": "Tipo: Ejercicio de abstracción.\n\nDescripción larga: Vas a organizar una fiesta de cumpleaños para un amigo cercano. Tienes muchas ideas, deseos y recursos posibles: desde la lista de invitados, la comida, la temática, la música, hasta pequeños detalles como los colores de las servilletas o regalar souvenirs personalizados. Para que la fiesta sea exitosa sin gastar tiempo ni recursos innecesarios, tu tarea es abstraer: identificar los pasos esenciales que permiten planificar y ejecutar la celebración. Piensa en las decisiones que sí influyen directamente en que la fiesta ocurra (fecha, lugar, comida, invitados, logística básica), y deja de lado lo accesorio que puede posponerse o eliminarse sin afectar la realización.",
+        "description": "Para organizar una fiesta de cumpleaños exitosa, abstrae los pasos esenciales: define la fecha, elige el lugar, haz la lista de invitados, decide la comida y la música, y planifica la logística básica. Deja de lado detalles accesorios para optimizar recursos y evitar gastos innecesarios en el evento y lograr una celebración memorable.",
         "blocks": [
           { "id": 1, "text": "Definir la fecha y hora de la fiesta" },
           { "id": 2, "text": "Hacer la lista de invitados principales" },
@@ -582,7 +582,10 @@
           { "id": 14, "text": "Mandar hacer camisetas personalizadas para todos" },
           { "id": 15, "text": "Alquilar una máquina de humo gigante" },
           { "id": 16, "text": "Comprar platos y cubiertos de una marca de lujo" },
-          { "id": 17, "text": "Encargar una tarta de varios pisos con figuras personalizadas" }
+          { "id": 17, "text": "Encargar una tarta de varios pisos con figuras personalizadas" },
+          { "id": 18, "text": "Contratar un fotógrafo profesional para la fiesta" },
+          { "id": 19, "text": "Organizar una competencia de baile entre los invitados" },
+          { "id": 20, "text": "Comprar una cafetera de lujo para el evento" }
         ],
         "answer": [
           { "blockId": 1, "text": "Definir la fecha y hora de la fiesta" },
@@ -594,11 +597,22 @@
           { "blockId": 7, "text": "Enviar invitaciones y confirmar asistencia" },
           { "blockId": 8, "text": "Planificar el horario o cronograma del evento" },
           { "blockId": 9, "text": "Organizar materiales y recuerdos para los invitados"  }
+        ],
+        "explanation": [
+          { "blockId_answer": 1, "description": "Definir la fecha y hora es el primer paso fundamental porque sin este dato no se puede coordinar ningún aspecto de la fiesta. Permite que todos los invitados y proveedores puedan organizarse y garantiza que el evento pueda ocurrir. Es la base sobre la que se construyen los demás pasos." },
+          { "blockId_answer": 2, "description": "Hacer la lista de invitados principales es esencial para saber a quién va dirigida la celebración y poder dimensionar el resto de la organización (comida, lugar, presupuesto). Sin saber quiénes son los invitados clave, no se puede avanzar en la planificación." },
+          { "blockId_answer": 3, "description": "Fijar el presupuesto disponible permite definir los límites de gasto y priorizar recursos. Es un paso lógico porque de él depende la elección del lugar, la comida y otros servicios. Sin presupuesto, la organización puede salirse de control." },
+          { "blockId_answer": 4, "description": "Reservar o elegir el lugar es necesario para tener un espacio físico donde realizar la fiesta. Sin este paso, no se puede informar a los invitados ni contratar servicios. El lugar define la logística y el tipo de evento." },
+          { "blockId_answer": 5, "description": "Decidir y contratar el servicio de comida o catering es clave para la experiencia de los invitados. La comida suele ser uno de los elementos más recordados y debe ajustarse al presupuesto y al tipo de invitados. Sin comida, la fiesta pierde atractivo y funcionalidad." },
+          { "blockId_answer": 6, "description": "Preparar o elegir la música/playlist o DJ es importante para el ambiente y la diversión. La música marca el ritmo del evento y debe ser adecuada para los gustos de los asistentes. Sin música, la fiesta puede resultar aburrida o monótona." },
+          { "blockId_answer": 7, "description": "Enviar invitaciones y confirmar asistencia permite saber cuántas personas realmente asistirán y ajustar la logística. Es un paso lógico porque evita desperdicios y asegura que los recursos estén bien distribuidos." },
+          { "blockId_answer": 8, "description": "Planificar el horario o cronograma del evento ayuda a que todo ocurra en orden y a tiempo. Permite coordinar actividades, comidas y momentos especiales, evitando improvisaciones y retrasos." },
+          { "blockId_answer": 9, "description": "Organizar materiales y recuerdos para los invitados agrega valor y personalización al evento. Es el paso final que asegura que los asistentes tengan una experiencia memorable y se lleven un recuerdo de la celebración." }
         ]
       },
       {
         "title": "Planificar un viaje de vacaciones",
-        "description": "Tipo: Ejercicio de abstracción.\n\nDescripción larga: Vas a organizar unas vacaciones que deben ser seguras, cómodas y dentro de tu presupuesto. Hay cientos de opciones, ideas y actividades posibles que podrías incluir (excursiones, restaurantes exclusivos, compras, souvenirs), pero primero necesitas abstraer el núcleo del viaje: las decisiones que garantizan que el viaje se pueda realizar (destino, fechas, transporte, alojamiento, documentación y presupuesto). El objetivo es identificar los pasos esenciales que aseguran que el viaje ocurra sin contratiempos y que sean la base sobre la que luego puedes añadir detalles opcionales si el tiempo y dinero lo permiten.",
+        "description": "Planificar un viaje de vacaciones implica abstraer lo esencial: elegir destino, definir fechas, revisar presupuesto, verificar documentos, reservar transporte y alojamiento, y contratar seguro. Ignora detalles accesorios y enfócate en los pasos clave para asegurar que el viaje ocurra sin contratiempos y puedas disfrutar la experiencia de manera eficiente.",
         "blocks": [
           { "id": 1, "text": "Elegir el destino y la duración del viaje" },
           { "id": 2, "text": "Definir las fechas exactas y la flexibilidad posible" },
@@ -616,7 +630,10 @@
           { "id": 14, "text": "Contratar un fotógrafo personal para cada salida" },
           { "id": 15, "text": "Comprar recuerdos de lujo en cada ciudad" },
           { "id": 16, "text": "Llevar un traje de gala para una cena improvisada" },
-          { "id": 17, "text": "Traer una colección completa de sombreros temáticos"  }
+          { "id": 17, "text": "Traer una colección completa de sombreros temáticos" },
+          { "id": 18, "text": "Organizar una fiesta temática en cada destino" },
+          { "id": 19, "text": "Comprar una cámara profesional para fotos de viaje" },
+          { "id": 20, "text": "Reservar un tour privado en cada ciudad visitada" }
         ],
         "answer": [
           { "blockId": 1, "text": "Elegir el destino y la duración del viaje" },
@@ -628,11 +645,22 @@
           { "blockId": 7, "text": "Contratar seguro de viaje y asistencia médica" },
           { "blockId": 8, "text": "Planificar las actividades principales/itinerario" },
           { "blockId": 9, "text": "Hacer la lista de cosas esenciales para empacar"  }
-        ]
+        ],
+          "explanation": [
+            { "blockId_answer": 1, "description": "Elegir el destino y la duración del viaje es el punto de partida, ya que define el objetivo y el alcance de toda la planificación. Sin saber a dónde y por cuánto tiempo se va, no se puede avanzar en reservas ni presupuesto." },
+            { "blockId_answer": 2, "description": "Definir las fechas exactas y la flexibilidad posible permite coordinar reservas, vacaciones laborales y disponibilidad de servicios. Es esencial para evitar conflictos de agenda y aprovechar mejores precios." },
+            { "blockId_answer": 3, "description": "Revisar y ajustar el presupuesto disponible garantiza que el viaje sea viable y ayuda a priorizar gastos. Sin este paso, se corre el riesgo de exceder los recursos y tener problemas durante el viaje." },
+            { "blockId_answer": 4, "description": "Verificar documentos y requisitos (pasaporte, visados) es fundamental para poder viajar legalmente y sin contratiempos. Sin la documentación adecuada, el viaje puede cancelarse o complicarse." },
+            { "blockId_answer": 5, "description": "Reservar transporte (vuelos, trenes, autos) asegura que se pueda llegar al destino y moverse durante el viaje. Es un paso lógico que depende de las fechas y el presupuesto definidos previamente." },
+            { "blockId_answer": 6, "description": "Reservar alojamiento adecuado al presupuesto permite tener un lugar seguro y cómodo para quedarse, ajustado a los recursos disponibles. Sin alojamiento, el viaje no puede realizarse de manera organizada." },
+            { "blockId_answer": 7, "description": "Contratar seguro de viaje y asistencia médica protege ante imprevistos y emergencias. Es una decisión lógica para evitar gastos inesperados y garantizar tranquilidad durante el viaje." },
+            { "blockId_answer": 8, "description": "Planificar las actividades principales/itinerario ayuda a aprovechar el tiempo y los recursos, evitando improvisaciones y asegurando que se cumplan los objetivos del viaje." },
+            { "blockId_answer": 9, "description": "Hacer la lista de cosas esenciales para empacar permite llevar lo necesario y evitar olvidos que puedan afectar la experiencia. Es el paso final que cierra la preparación antes de partir." }
+          ]
       },
       {
         "title": "Hacer las compras del mes",
-        "description": "Tipo: Ejercicio de simplificación.\n\nDescripción larga: Debes planificar las compras del mes para tu hogar. Existen muchas ofertas, productos nuevos y promociones que pueden distraerte. Para no gastar de más ni olvidar lo necesario, necesitas simplificar el proceso: identificar categorías, priorizar lo esencial, estimar cantidades y organizar la compra por secciones del supermercado. La finalidad es construir una lista clara y ordenada que reduzca el tiempo en la tienda y evite compras impulsivas.",
+        "description": "Para hacer las compras del mes de forma eficiente, abstrae los pasos esenciales: revisa la despensa, planifica el menú, haz una lista organizada, estima cantidades, marca productos esenciales, fija presupuesto, elige el día y tienda, prepara bolsas y revisa comprobantes. Deja de lado compras impulsivas y detalles innecesarios para ahorrar.",
         "blocks": [
           { "id": 1, "text": "Revisar la despensa y el refrigerador para saber qué falta" },
           { "id": 2, "text": "Planificar un menú semanal aproximado para el mes" },
@@ -650,7 +678,10 @@
           { "id": 14, "text": "Adquirir snacks innecesarios por promoción" },
           { "id": 15, "text": "Llevar un carrito para acumular cupones" },
           { "id": 16, "text": "Comprar utensilios de cocina que no necesitas" },
-          { "id": 17, "text": "Hacer fotos de cada estante para comparar precios"  }
+          { "id": 17, "text": "Hacer fotos de cada estante para comparar precios" },
+          { "id": 18, "text": "Comprar revistas de cocina para inspiración" },
+          { "id": 19, "text": "Organizar una competencia de compras familiares" },
+          { "id": 20, "text": "Comprar una cafetera de lujo para la cocina" }
         ],
         "answer": [
           { "blockId": 1, "text": "Revisar la despensa y el refrigerador para saber qué falta" },
@@ -662,11 +693,22 @@
           { "blockId": 7, "text": "Elegir el día y la tienda más conveniente para comprar" },
           { "blockId": 8, "text": "Preparar bolsas reutilizables y métodos de pago" },
           { "blockId": 9, "text": "Revisar y guardar los comprobantes o recibos"  }
-        ]
+        ],
+          "explanation": [
+            { "blockId_answer": 1, "description": "Revisar la despensa y el refrigerador es el primer paso para saber qué productos realmente faltan y evitar compras innecesarias. Permite priorizar lo esencial y ahorrar dinero." },
+            { "blockId_answer": 2, "description": "Planificar un menú semanal ayuda a estimar qué ingredientes se necesitarán y en qué cantidad, evitando improvisaciones y compras impulsivas." },
+            { "blockId_answer": 3, "description": "Hacer una lista de compras organizada por categorías facilita el recorrido en la tienda y asegura que no se olvide ningún producto importante." },
+            { "blockId_answer": 4, "description": "Estimar cantidades según el número de personas y duración permite ajustar la compra a las necesidades reales del hogar, evitando desperdicios o faltantes." },
+            { "blockId_answer": 5, "description": "Marcar productos esenciales vs. opcionales ayuda a priorizar el gasto y a no exceder el presupuesto en cosas innecesarias." },
+            { "blockId_answer": 6, "description": "Fijar un presupuesto máximo para las compras es clave para controlar el gasto y evitar sorpresas al momento de pagar." },
+            { "blockId_answer": 7, "description": "Elegir el día y la tienda más conveniente optimiza tiempo y recursos, permitiendo aprovechar ofertas y evitar aglomeraciones." },
+            { "blockId_answer": 8, "description": "Preparar bolsas reutilizables y métodos de pago es un paso práctico que facilita la compra y contribuye al cuidado del medio ambiente." },
+            { "blockId_answer": 9, "description": "Revisar y guardar los comprobantes o recibos permite controlar el gasto y tener evidencia en caso de devoluciones o reclamos." }
+          ]
       },
       {
         "title": "Estudiar de forma efectiva para un examen importante",
-        "description": "Tipo: Ejercicio de simplificación.\n\nDescripción larga: Tienes un examen importante y una gran cantidad de material para repasar. Es fácil perderse en detalles y dedicar tiempo a lo que no será evaluado. Tu misión es simplificar el proceso de estudio: dividir el temario en unidades manejables, priorizar según la probabilidad de aparición y la dificultad, practicar con problemas reales, y establecer ciclos de revisión. Este ejercicio te pide desglosar el estudio en pasos concretos y ordenados para maximizar la eficacia.",
+        "description": "Para estudiar eficazmente para un examen, abstrae los pasos esenciales: delimita temas, recolecta materiales, haz esquemas, prioriza según dificultad, divide en subtemas, establece objetivos, crea cronograma, prepara resúmenes, practica con exámenes anteriores y autoevalúate. Ignora distracciones y enfócate en lo que realmente será evaluado para obtener mejores resultados.",
         "blocks": [
           { "id": 1, "text": "Leer el programa oficial y delimitar los temas que entran" },
           { "id": 2, "text": "Recolectar apuntes, libros y materiales oficiales" },
@@ -676,7 +718,7 @@
           { "id": 6, "text": "Establecer objetivos de aprendizaje para cada subtema" },
           { "id": 7, "text": "Crear un cronograma de estudio con fechas y tiempos" },
           { "id": 8, "text": "Preparar resúmenes y fichas por cada subtema" },
-          { "id": 9, "text": "Reunir ejercicios y exámenes anteriores para practicar" },
+          { "id": 9, "text": "Reunir Ejemplos y exámenes anteriores para practicar" },
           { "id": 10, "text": "Resolver problemas cronometrados en condiciones de examen" },
           { "id": 11, "text": "Autoevaluarse y registrar errores frecuentes" },
           { "id": 12, "text": "Reforzar y volver a estudiar los puntos débiles" },
@@ -685,7 +727,9 @@
           { "id": 15, "text": "Planificar descansos regulares y técnicas de concentración" },
           { "id": 16, "text": "Preparar todo lo necesario el día anterior al examen" },
           { "id": 17, "text": "Decorar la mesa de estudio con luces LED" },
-          { "id": 18, "text": "Cambiar la pintura del cuarto antes de estudiar" }
+          { "id": 18, "text": "Cambiar la pintura del cuarto antes de estudiar" },
+          { "id": 19, "text": "Comprar una agenda exclusiva para exámenes" },
+          { "id": 20, "text": "Organizar una fiesta de repaso antes del examen" }
         ],
         "answer": [
           { "blockId": 1, "text": "Leer el programa oficial y delimitar los temas que entran" },
@@ -696,7 +740,7 @@
           { "blockId": 6, "text": "Establecer objetivos de aprendizaje para cada subtema" },
           { "blockId": 7, "text": "Crear un cronograma de estudio con fechas y tiempos" },
           { "blockId": 8, "text": "Preparar resúmenes y fichas por cada subtema" },
-          { "blockId": 9, "text": "Reunir ejercicios y exámenes anteriores para practicar" },
+          { "blockId": 9, "text": "Reunir Ejemplos y exámenes anteriores para practicar" },
           { "blockId": 10, "text": "Resolver problemas cronometrados en condiciones de examen" },
           { "blockId": 11, "text": "Autoevaluarse y registrar errores frecuentes" },
           { "blockId": 12, "text": "Reforzar y volver a estudiar los puntos débiles" },
@@ -704,11 +748,29 @@
           { "blockId": 14, "text": "Realizar sesiones de estudio en grupo para aclarar dudas" },
           { "blockId": 15, "text": "Planificar descansos regulares y técnicas de concentración" },
           { "blockId": 16, "text": "Preparar todo lo necesario el día anterior al examen"  }
-        ]
+        ],
+          "explanation": [
+            { "blockId_answer": 1, "description": "Leer el programa oficial y delimitar los temas que entran permite enfocar el estudio en lo realmente importante y evitar perder tiempo en contenidos que no serán evaluados." },
+            { "blockId_answer": 2, "description": "Recolectar apuntes, libros y materiales oficiales asegura que la información sea confiable y completa para abordar el examen." },
+            { "blockId_answer": 3, "description": "Hacer un esquema general con los grandes bloques temáticos ayuda a organizar el estudio y visualizar la estructura del contenido." },
+            { "blockId_answer": 4, "description": "Priorizar los temas según peso y dificultad permite dedicar más tiempo a lo que tiene mayor relevancia y a lo que resulta más complejo." },
+            { "blockId_answer": 5, "description": "Dividir cada tema en subtemas manejables facilita el aprendizaje y evita la saturación de información." },
+            { "blockId_answer": 6, "description": "Establecer objetivos de aprendizaje para cada subtema ayuda a medir el progreso y a mantener la motivación." },
+            { "blockId_answer": 7, "description": "Crear un cronograma de estudio con fechas y tiempos permite distribuir el esfuerzo y evitar acumulaciones de última hora." },
+            { "blockId_answer": 8, "description": "Preparar resúmenes y fichas por cada subtema facilita la revisión y el repaso rápido antes del examen." },
+            { "blockId_answer": 9, "description": "Reunir Ejemplos y exámenes anteriores para practicar ayuda a familiarizarse con el formato y el tipo de preguntas que pueden aparecer." },
+            { "blockId_answer": 10, "description": "Resolver problemas cronometrados en condiciones de examen entrena la gestión del tiempo y reduce el estrés el día de la prueba." },
+            { "blockId_answer": 11, "description": "Autoevaluarse y registrar errores frecuentes permite identificar debilidades y corregirlas antes del examen real." },
+            { "blockId_answer": 12, "description": "Reforzar y volver a estudiar los puntos débiles asegura que el conocimiento sea sólido y completo." },
+            { "blockId_answer": 13, "description": "Hacer repasos espaciados según el cronograma mejora la retención y evita el olvido de información importante." },
+            { "blockId_answer": 14, "description": "Realizar sesiones de estudio en grupo para aclarar dudas permite compartir conocimientos y resolver inquietudes de manera colaborativa." },
+            { "blockId_answer": 15, "description": "Planificar descansos regulares y técnicas de concentración ayuda a mantener la energía y la atención durante el estudio." },
+            { "blockId_answer": 16, "description": "Preparar todo lo necesario el día anterior al examen reduce el estrés y asegura que nada falte el día de la prueba." }
+          ]
       },
       {
         "title": "Organizar una mudanza eficiente",
-        "description": "Tipo: Ejercicio de abstracción.\n\nDescripción larga: Debes trasladar tu hogar a una nueva dirección. Hay tareas urgentes y muchas decisiones opcionales (decoración, compra de muebles nuevos, etc.). Para que la mudanza sea exitosa necesitas abstraer las acciones esenciales que garantizan que las cosas lleguen en buen estado y que puedas instalarte con lo básico: empaquetado, transporte, documentación y logística. Este ejercicio consiste en ordenar y simplificar la mudanza en pasos concretos, evitando distracciones que consumen tiempo y dinero.",
+        "description": "Para organizar una mudanza eficiente, abstrae los pasos esenciales: haz inventario, dona lo innecesario, consigue cajas, empaca por habitaciones, etiqueta, reserva transporte, protege objetos frágiles, organiza kit de primera necesidad y notifica cambios de dirección. Deja de lado tareas accesorias para ahorrar tiempo y dinero y facilitar el traslado.",
         "blocks": [
           { "id": 1, "text": "Hacer inventario y clasificar objetos por utilidad" },
           { "id": 2, "text": "Donar o vender lo que no necesitas antes de empaquetar" },
@@ -727,7 +789,9 @@
           { "id": 15, "text": "Abrir cajas prioritarias y acomodar lo esencial" },
           { "id": 16, "text": "Programar la instalación de muebles y arreglos necesarios" },
           { "id": 17, "text": "Pintar todas las paredes de la nueva casa antes de entrar" },
-          { "id": 18, "text": "Mandar hacer un retrato familiar para la nueva pared" }
+          { "id": 18, "text": "Mandar hacer un retrato familiar para la nueva pared" },
+          { "id": 19, "text": "Comprar una cafetera de lujo para la cocina nueva" },
+          { "id": 20, "text": "Organizar una fiesta de bienvenida en la nueva casa" }
         ],
         "answer": [
           { "blockId": 1, "text": "Hacer inventario y clasificar objetos por utilidad" },
@@ -746,11 +810,29 @@
           { "blockId": 14, "text": "Comprobar que todos los servicios funcionan en la nueva dirección" },
           { "blockId": 15, "text": "Abrir cajas prioritarias y acomodar lo esencial" },
           { "blockId": 16, "text": "Programar la instalación de muebles y arreglos necesarios"  }
-        ]
+        ],
+          "explanation": [
+            { "blockId_answer": 1, "description": "Hacer inventario y clasificar objetos por utilidad permite saber qué se tiene y qué realmente se necesita llevar, optimizando espacio y esfuerzo." },
+            { "blockId_answer": 2, "description": "Donar o vender lo que no necesitas antes de empaquetar reduce el volumen de la mudanza y facilita el proceso, además de generar posibles ingresos extra." },
+            { "blockId_answer": 3, "description": "Conseguir cajas, material de embalaje y etiquetas es esencial para proteger los objetos y mantener el orden durante el traslado." },
+            { "blockId_answer": 4, "description": "Empacar habitación por habitación empezando por lo menos usado permite organizar el proceso y evitar olvidos, facilitando la instalación en el nuevo hogar." },
+            { "blockId_answer": 5, "description": "Etiquetar cajas indicando contenido y destino en la nueva casa agiliza la descarga y la ubicación de los objetos, evitando confusiones." },
+            { "blockId_answer": 6, "description": "Reservar fecha y transportista o furgoneta de mudanza asegura que el traslado se realice en el momento adecuado y con los recursos necesarios." },
+            { "blockId_answer": 7, "description": "Proteger muebles y objetos frágiles adecuadamente evita daños y pérdidas durante el traslado, garantizando que todo llegue en buen estado." },
+            { "blockId_answer": 8, "description": "Desmontar muebles grandes y almacenarlos ordenadamente facilita el transporte y reduce el riesgo de daños." },
+            { "blockId_answer": 9, "description": "Organizar un kit de 'primera necesidad' para el primer día permite tener lo esencial a mano y evitar contratiempos al llegar a la nueva casa." },
+            { "blockId_answer": 10, "description": "Notificar cambios de dirección y gestionar servicios públicos es fundamental para que todo funcione correctamente en el nuevo hogar desde el primer día." },
+            { "blockId_answer": 11, "description": "Confirmar horarios y detalles con la empresa de mudanza evita retrasos y problemas logísticos, asegurando que todo salga según lo planeado." },
+            { "blockId_answer": 12, "description": "Realizar limpieza final del lugar que dejas es un acto de responsabilidad y facilita la entrega del inmueble en buenas condiciones." },
+            { "blockId_answer": 13, "description": "Coordinar la descarga y colocación básica en la nueva casa agiliza la instalación y permite empezar a vivir cómodamente desde el primer momento." },
+            { "blockId_answer": 14, "description": "Comprobar que todos los servicios funcionan en la nueva dirección evita sorpresas y permite una transición sin inconvenientes." },
+            { "blockId_answer": 15, "description": "Abrir cajas prioritarias y acomodar lo esencial ayuda a establecer rápidamente un ambiente funcional y cómodo en el nuevo hogar." },
+            { "blockId_answer": 16, "description": "Programar la instalación de muebles y arreglos necesarios permite completar la mudanza y adaptar el espacio a las necesidades personales." }
+          ]
       },
       {
         "title": "Planificar y desarrollar una aplicación simple (MVP)",
-        "description": "Tipo: Ejercicio de abstracción.\n\nDescripción larga: Vas a crear una aplicación pequeña cuyo objetivo es resolver un problema básico (MVP). Hay infinitas mejoras y detalles de diseño que puedes considerar, pero primero necesitas abstraer la solución hasta lo que realmente entrega valor. El ejercicio consiste en ordenar los pasos de desarrollo desde la claridad de la idea hasta el despliegue inicial, centrándote en aquello que permite construir, probar y lanzar una versión funcional con el menor esfuerzo posible.",
+        "description": "Para desarrollar una aplicación simple, abstrae los pasos esenciales: define el problema, establece funcionalidades mínimas, investiga soluciones, diseña el flujo de usuario, crea bocetos, define arquitectura, configura control de versiones, implementa base de datos y backend, crea pantallas principales y lanza la versión funcional. Deja mejoras para después.",
         "blocks": [
           { "id": 1, "text": "Definir el problema que resolverá la app y el público objetivo" },
           { "id": 2, "text": "Establecer las funcionalidades mínimas (MVP) prioritarias" },
@@ -769,7 +851,9 @@
           { "id": 15, "text": "Desplegar la primera versión y monitorizar errores" },
           { "id": 16, "text": "Recoger feedback de usuarios y planear mejoras iterativas" },
           { "id": 17, "text": "Contratar una campaña publicitaria masiva antes del lanzamiento" },
-          { "id": 18, "text": "Diseñar merchandising y regalar camisetas promocionales" }
+          { "id": 18, "text": "Diseñar merchandising y regalar camisetas promocionales" },
+          { "id": 19, "text": "Organizar una fiesta de lanzamiento con influencers" },
+          { "id": 20, "text": "Comprar una cafetera de lujo para el equipo de desarrollo" }
         ],
         "answer": [
           { "blockId": 1, "text": "Definir el problema que resolverá la app y el público objetivo" },
@@ -788,11 +872,29 @@
           { "blockId": 14, "text": "Preparar scripts de despliegue y configuración de servidor" },
           { "blockId": 15, "text": "Desplegar la primera versión y monitorizar errores" },
           { "blockId": 16, "text": "Recoger feedback de usuarios y planear mejoras iterativas"  }
-        ]
+        ],
+          "explanation": [
+            { "blockId_answer": 1, "description": "Definir el problema y el público objetivo es el punto de partida para que la app tenga sentido y resuelva una necesidad real. Sin esto, el desarrollo puede perder foco y utilidad." },
+            { "blockId_answer": 2, "description": "Establecer las funcionalidades mínimas (MVP) permite lanzar una versión funcional rápidamente, validando la idea sin invertir recursos en detalles secundarios." },
+            { "blockId_answer": 3, "description": "Investigar soluciones existentes y referencias del mercado ayuda a evitar errores comunes y a identificar oportunidades de mejora o diferenciación." },
+            { "blockId_answer": 4, "description": "Diseñar el flujo básico de usuario (user flow) facilita la experiencia y asegura que la app sea intuitiva y fácil de usar." },
+            { "blockId_answer": 5, "description": "Crear bocetos o wireframes de las pantallas principales permite visualizar la estructura y detectar posibles problemas antes de programar." },
+            { "blockId_answer": 6, "description": "Definir la arquitectura técnica y stack tecnológico garantiza que la app sea escalable, segura y eficiente desde el inicio." },
+            { "blockId_answer": 7, "description": "Configurar el control de versiones (repositorio) y ramas facilita el trabajo colaborativo y el seguimiento de cambios, evitando pérdidas de información." },
+            { "blockId_answer": 8, "description": "Implementar la base de datos y modelos de datos es esencial para almacenar y gestionar la información de la app de forma estructurada." },
+            { "blockId_answer": 9, "description": "Desarrollar las APIs o lógica de backend esenciales permite que la app funcione correctamente y se comunique con los datos y servicios necesarios." },
+            { "blockId_answer": 10, "description": "Crear las pantallas principales en el frontend es clave para que los usuarios puedan interactuar con la app y acceder a sus funcionalidades." },
+            { "blockId_answer": 11, "description": "Implementar autenticación básica si es necesaria protege la información y restringe el acceso a usuarios autorizados." },
+            { "blockId_answer": 12, "description": "Escribir pruebas unitarias y pruebas básicas de integración asegura que el código sea confiable y que los componentes funcionen correctamente juntos." },
+            { "blockId_answer": 13, "description": "Realizar pruebas de usuario y corregir errores críticos permite validar la experiencia real y mejorar la calidad antes del lanzamiento." },
+            { "blockId_answer": 14, "description": "Preparar scripts de despliegue y configuración de servidor facilita la publicación y el mantenimiento de la app en producción." },
+            { "blockId_answer": 15, "description": "Desplegar la primera versión y monitorizar errores permite detectar y corregir fallos rápidamente, asegurando la estabilidad inicial." },
+            { "blockId_answer": 16, "description": "Recoger feedback de usuarios y planear mejoras iterativas ayuda a evolucionar la app según las necesidades reales y mantenerla competitiva." }
+          ]
       },
       {
         "title": "Cocinar una receta nueva de forma ordenada",
-        "description": "Tipo: Ejercicio de simplificación.\n\nDescripción larga: Vas a preparar una receta que nunca has hecho antes. Existen muchos detalles sobre ingredientes, técnicas, utensilios y tiempos que podrías aprender, pero para no frustrarte necesitas simplificar el proceso: identificar los pasos esenciales para preparar el plato correctamente (leer la receta completa, reunir ingredientes, preparar mise en place, seguir pasos de cocción, y ajustar sabores). El objetivo es extraer las acciones críticas que garantizan un buen resultado aun si no controlas todos los detalles.",
+        "description": "Para cocinar una receta nueva de forma ordenada, abstrae los pasos esenciales: lee y entiende la receta, verifica ingredientes, prepara y mide todo, precalienta hornos o sartenes, sigue los pasos de cocción, ajusta sazón, sirve el plato, limpia mientras cocinas y anota ajustes. Deja de lado detalles accesorios para lograr buenos resultados.",
         "blocks": [
           { "id": 1, "text": "Leer y entender completamente la receta antes de comenzar" },
           { "id": 2, "text": "Verificar que tienes todos los ingredientes y cantidades" },
@@ -810,7 +912,10 @@
           { "id": 14, "text": "Aprender 10 técnicas nuevas antes de intentarlo" },
           { "id": 15, "text": "Invitar a un crítico gastronómico a la primera prueba" },
           { "id": 16, "text": "Preparar cinco platos diferentes la primera vez" },
-          { "id": 17, "text": "Comprar ingredientes exóticos no necesarios para la receta"  }
+          { "id": 17, "text": "Comprar ingredientes exóticos no necesarios para la receta" },
+          { "id": 18, "text": "Organizar una competencia de cocina familiar" },
+          { "id": 19, "text": "Comprar una cafetera de lujo para la cocina" },
+          { "id": 20, "text": "Hacer una fiesta temática de comida internacional" }
         ],
         "answer": [
           { "blockId": 1, "text": "Leer y entender completamente la receta antes de comenzar" },
@@ -822,6 +927,16 @@
           { "blockId": 7, "text": "Servir y presentar el plato cuidadosamente" },
           { "blockId": 8, "text": "Limpiar y ordenar mientras cocinas para no acumular desorden" },
           { "blockId": 9, "text": "Anotar ajustes que hiciste para la próxima vez"  }
+        ],
+        "explanation": [
+          { "blockId_answer": 1, "description": "Leer y entender completamente la receta antes de comenzar es esencial para evitar errores y saber exactamente qué pasos seguir, qué ingredientes usar y cómo organizar el tiempo." },
+          { "blockId_answer": 2, "description": "Verificar que tienes todos los ingredientes y cantidades evita interrupciones y asegura que el resultado final sea el esperado." },
+          { "blockId_answer": 3, "description": "Preparar y medir ingredientes (mise en place) facilita el proceso de cocción y ayuda a mantener el orden en la cocina." },
+          { "blockId_answer": 4, "description": "Precalentar hornos o preparar sartenes necesarios garantiza que los tiempos de cocción sean correctos y que los alimentos se cocinen adecuadamente." },
+          { "blockId_answer": 5, "description": "Seguir los pasos de cocción en el orden indicado permite obtener el resultado deseado y evitar errores que puedan arruinar la receta." },
+          { "blockId_answer": 6, "description": "Ajustar sabores y texturas según el resultado es importante para personalizar el plato y corregir posibles fallos durante la preparación." },
+          { "blockId_answer": 7, "description": "Servir el plato y limpiar la zona de trabajo es el cierre del proceso, asegurando una buena presentación y manteniendo la higiene en la cocina." },
+          { "blockId_answer": 8, "description": "Registrar la experiencia y posibles mejoras ayuda a aprender para futuras ocasiones y perfeccionar la técnica culinaria." }
         ]
       }
     ]

@@ -12,6 +12,7 @@ import { BlocklyExerciseComponent } from './blockly-exercise/blockly-exercise.co
 import { ModalComponent } from './components/modal/modal.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { CardTitleFormatPipe } from './pipes/card-title-format.pipe';
+import { ExtractTipoPipe } from './pipes/extract-tipo.pipe';
 import { TutorialComponent } from './components/tutorial/tutorial.component';
 import { PuzzleComponent } from './components/puzzle/puzzle.component';
 
@@ -28,8 +29,9 @@ import { PuzzleComponent } from './components/puzzle/puzzle.component';
     ModalComponent,
     CardsComponent,
     CardTitleFormatPipe,
+    ExtractTipoPipe,
     TutorialComponent,
-  PuzzleComponent
+    PuzzleComponent
   ],
   imports: [
     CommonModule,

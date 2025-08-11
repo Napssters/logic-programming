@@ -8,6 +8,9 @@ import { PuzzleComponent } from '../../../shared/components/puzzle/puzzle.compon
   styleUrls: ['./abstraccion.component.css']
 })
 export class AbstraccionComponent implements OnInit {
+  blocklyExercises: any[] = [];
+  currentBlocklyIndex: number = 0;
+  currentBlockly: any = null;
   @ViewChild('puzzleRef') puzzleComponent!: PuzzleComponent;
 
   selectedSection: number = 1;
@@ -17,10 +20,95 @@ export class AbstraccionComponent implements OnInit {
   currentExample: any = null;
   validationResult: string = '';
 
+  // Para sección 3: navegación y validación de ejercicios de abstracción
+  get canGoPreviousPuzzle(): boolean {
+    return this.currentBlocklyIndex > 0;
+  }
+  get canGoNextPuzzle(): boolean {
+    return this.currentBlocklyIndex < this.blocklyExercises.length - 1;
+  }
+  previousPuzzle(): void {
+    if (this.currentBlocklyIndex > 0) {
+      this.currentBlocklyIndex--;
+      this.currentBlockly = this.blocklyExercises[this.currentBlocklyIndex];
+      this.resetPuzzle();
+      this.validationResult = '';
+    }
+  }
+  nextPuzzle(): void {
+    if (this.currentBlocklyIndex < this.blocklyExercises.length - 1) {
+      this.currentBlocklyIndex++;
+      this.currentBlockly = this.blocklyExercises[this.currentBlocklyIndex];
+      this.resetPuzzle();
+      this.validationResult = '';
+    }
+  }
+  get puzzleBlocks(): any[] {
+    return this.currentBlockly?.blocks || [];
+  }
+  get puzzleAnswer(): any[] {
+    return this.currentBlockly?.answer || [];
+  }
+  validatePuzzle(): void {
+    if (!this.puzzleComponent) return;
+    const userBlocks = this.puzzleComponent.dropMatrix.flat().filter(b => b !== null).map(b => (b as any).text);
+    const answerBlocks = this.puzzleAnswer.map(a => a.text);
+    const isCorrect = userBlocks.length === answerBlocks.length && userBlocks.every((b, i) => b === answerBlocks[i]);
+    this.validationResult = isCorrect ? '¡Correcto!' : 'Incorrecto, revisa el orden y los bloques.';
+  }
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.loadExamples();
+  this.loadBlocklyExercises();
+  }
+  loadBlocklyExercises(): void {
+    this.http.get<any>('assets/jsons-base/blockly-exercises.json').subscribe({
+      next: (data) => {
+        const modulo = data['abstraccion'];
+        this.blocklyExercises = modulo.exercises || [];
+        this.currentBlockly = this.blocklyExercises[0] || null;
+        this.currentBlocklyIndex = 0;
+        console.log('Blockly Abstracción loaded:', this.blocklyExercises.length);
+      },
+      error: (error) => {
+        console.error('Error cargando ejercicios blockly:', error);
+      }
+    });
+  }
+  previousBlockly(): void {
+    if (this.currentBlocklyIndex > 0) {
+      this.currentBlocklyIndex--;
+      this.currentBlockly = this.blocklyExercises[this.currentBlocklyIndex];
+      this.resetPuzzle();
+      this.validationResult = '';
+    }
+  }
+
+  nextBlockly(): void {
+    if (this.currentBlocklyIndex < this.blocklyExercises.length - 1) {
+      this.currentBlocklyIndex++;
+      this.currentBlockly = this.blocklyExercises[this.currentBlocklyIndex];
+      this.resetPuzzle();
+      this.validationResult = '';
+    }
+  }
+
+  get canGoPreviousBlockly(): boolean {
+    return this.currentBlocklyIndex > 0;
+  }
+
+  get canGoNextBlockly(): boolean {
+    return this.currentBlocklyIndex < this.blocklyExercises.length - 1;
+  }
+
+  get blocklyBlocks(): any[] {
+    return this.currentBlockly?.blocks || [];
+  }
+
+  get blocklyAnswer(): any[] {
+    return this.currentBlockly?.answer || [];
   }
 
   loadExamples(): void {
@@ -65,7 +153,14 @@ export class AbstraccionComponent implements OnInit {
   }
 
   get currentBlocks(): any[] {
-    return this.currentExample?.blocks || [];
+    if (!this.currentExample?.blocks) return [];
+    // Mezclar los bloques aleatoriamente cada vez que se accede
+    const blocks = [...this.currentExample.blocks];
+    for (let i = blocks.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [blocks[i], blocks[j]] = [blocks[j], blocks[i]];
+    }
+    return blocks;
   }
 
   get currentAnswer(): any[] {
@@ -80,12 +175,5 @@ export class AbstraccionComponent implements OnInit {
     }, 0);
   }
 
-  validatePuzzle(): void {
-  if (!this.puzzleComponent) return;
-  // Obtener el estado actual del dropMatrix
-  const userBlocks = this.puzzleComponent.dropMatrix.flat().filter(b => b !== null).map(b => (b as any).text);
-  const answerBlocks = this.currentAnswer.map(a => a.text);
-  const isCorrect = userBlocks.length === answerBlocks.length && userBlocks.every((b, i) => b === answerBlocks[i]);
-  this.validationResult = isCorrect ? '¡Correcto!' : 'Incorrecto, revisa el orden y los bloques.';
-  }
+  // ...existing code...
 }
