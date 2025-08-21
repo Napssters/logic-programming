@@ -85,8 +85,19 @@
             </div>
           </div>
         </div>
-  <div *ngIf="showSteps" class="px-4 py-3 w-full max-w-xl">
-          <h2 class="text-xl font-bold text-black mb-2">Explicación paso a paso</h2>
+        <div *ngIf="showSteps" class="px-4 py-3 w-full max-w-xl">
+          <div class="flex items-center space-x-3 mb-2">
+            <div class="relative group flex items-center">
+              <div class="w-8 h-8 bg-blue-200 text-blue-700 rounded-full shadow-lg flex items-center justify-center border-2 border-blue-400 text-base">
+                <!-- Emoji de huellas -->
+                👣
+              </div>
+              <div class="absolute left-1/2 transform -translate-x-1/2 -top-10 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                Ver pasos
+              </div>
+            </div>
+            <h2 class="text-xl font-bold text-black mb-0 flex items-center">Explicación paso a paso</h2>
+          </div>
           <div>
             <div class="bg-blue-50 border-l-4 border-blue-400 p-2 rounded-r-lg mb-4">
               <h3 class="font-semibold text-blue-800 mb-1 text-sm">📋 Instrucciones:</h3>
