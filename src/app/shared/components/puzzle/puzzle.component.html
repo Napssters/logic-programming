@@ -1,8 +1,9 @@
 <div class="w-full" *ngIf="currentExample">
-  <!-- Control de ejercicios -->
-  <div class="w-full flex flex-col items-start mt-2">
+  <!-- Controladores alineados horizontalmente SOLO para ejemplos -->
+  <div *ngIf="examples && examples.length > 0" class="w-full flex flex-row items-start mt-2 gap-8">
+    <!-- Controlador principal -->
     <div class="px-4 py-3 w-full max-w-xl">
-      <div class="flex items-center space-x-3 mb-1">
+      <div class="flex items-center space-x-3 mb-2">
         <div class="relative group">
           <div class="w-8 h-8 text-white rounded-full shadow-lg flex items-center justify-center border-2"
             [style.background-color]="getDifficultyColor(currentDifficulty)"
@@ -24,20 +25,19 @@
             {{ getDifficultyText(currentDifficulty) }}
           </div>
         </div>
-        <h2 class="text-xl font-bold text-gray-800">{{ currentTitle }}</h2>
+        <h2 class="text-xl font-bold text-gray-800">{{ currentExample?.title }}</h2>
       </div>
-      <p class="text-gray-600 text-sm mb-2 text-justify">{{ currentDescription }}</p>
       <div class="bg-blue-50 border-l-4 border-blue-400 p-2 rounded-r-lg mb-4">
         <h3 class="font-semibold text-blue-800 mb-1 text-sm">📋 Instrucciones:</h3>
-        <p class="text-blue-700 text-sm text-justify">{{ currentInstructions }}</p>
+        <p class="text-blue-700 text-sm text-justify">{{ currentExample?.description }}</p>
       </div>
       <div class="border-t border-gray-200 w-full"></div>
       <div class="flex justify-between items-center pt-4">
-        <button (click)="onPreviousExercise()" [disabled]="!canGoPrevious" [class.opacity-50]="!canGoPrevious"
-          [class.cursor-not-allowed]="!canGoPrevious"
+        <button (click)="previousExample.emit()" [disabled]="currentExampleIndex === 0"
+          [class.opacity-50]="currentExampleIndex === 0" [class.cursor-not-allowed]="currentExampleIndex === 0"
           class="w-10 h-10 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400"
-          [style.background-color]="canGoPrevious ? '#f3ae22' : ''"
-          [style.border-color]="canGoPrevious ? '#d18c00' : ''">
+          [style.background-color]="currentExampleIndex > 0 ? '#f3ae22' : ''"
+          [style.border-color]="currentExampleIndex > 0 ? '#d18c00' : ''">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
           </svg>
@@ -45,15 +45,55 @@
         <span class="text-sm text-green-600 font-bold">
           {{ currentExampleIndex + 1 }} de {{ examples.length }}
         </span>
-        <button (click)="onNextExercise()" [disabled]="!canGoNext" [class.opacity-50]="!canGoNext"
-          [class.cursor-not-allowed]="!canGoNext"
+        <button (click)="nextExample.emit()" [disabled]="currentExampleIndex === examples.length - 1"
+          [class.opacity-50]="currentExampleIndex === examples.length - 1"
+          [class.cursor-not-allowed]="currentExampleIndex === examples.length - 1"
           class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 border-blue-800 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
           </svg>
         </button>
       </div>
-
+    </div>
+    <!-- Botón/card para mostrar pasos -->
+    <div *ngIf="currentExample?.explanation && currentExample?.explanation.length > 0">
+      <div *ngIf="!showSteps" class="w-full max-w-xl px-4 py-3">
+        <div class="bg-white border border-blue-300 rounded-lg shadow flex items-center justify-between p-3">
+          <span class="text-blue-700 font-semibold">¿Quieres ver la explicación paso a paso?</span>
+          <button (click)="showSteps = true" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-200">Ver pasos</button>
+        </div>
+      </div>
+      <div *ngIf="showSteps" class="px-4 py-3 w-full max-w-xl">
+        <h2 class="text-xl font-bold text-black mb-2">Explicación paso a paso</h2>
+        <div>
+          <div class="bg-blue-50 border-l-4 border-blue-400 p-2 rounded-r-lg mb-4">
+            <h3 class="font-semibold text-blue-800 mb-1 text-sm">📋 Instrucciones:</h3>
+            <p class="text-blue-700 text-sm text-justify">{{ currentStep?.description }}</p>
+          </div>
+          <div class="border-t border-gray-200 w-full"></div>
+          <div class="flex justify-between items-center pt-2">
+            <button (click)="previousStep()" [disabled]="!canGoPreviousStep" [class.opacity-50]="!canGoPreviousStep"
+              [class.cursor-not-allowed]="!canGoPreviousStep"
+              class="w-10 h-10 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400"
+              [style.background-color]="canGoPreviousStep ? '#f3ae22' : ''"
+              [style.border-color]="canGoPreviousStep ? '#d18c00' : ''">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+            <span class="text-sm text-green-600 font-bold">
+              Paso {{ stepIndex + 1 }} de {{ currentExample.explanation.length }}
+            </span>
+            <button (click)="nextStep()" [disabled]="!canGoNextStep" [class.opacity-50]="!canGoNextStep"
+              [class.cursor-not-allowed]="!canGoNextStep"
+              class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 border-blue-800 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- Drag y Drop en la misma fila -->

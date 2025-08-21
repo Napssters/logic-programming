@@ -6,6 +6,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./puzzle.component.css']
 })
 export class PuzzleComponent {
+  showSteps: boolean = false;
   @Input() n: number = 3;
   @Input() description: string = '';
   @Input() blocks: { id: number, text: string }[] = [];
@@ -15,6 +16,38 @@ export class PuzzleComponent {
   @Input() validationResult: string = '';
   @Output() previousExample = new EventEmitter<void>();
   @Output() nextExample = new EventEmitter<void>();
+  stepIndex: number = 0;
+
+  get currentStep(): any {
+    if (this.currentExample?.explanation && this.currentExample.explanation.length > 0) {
+      return this.currentExample.explanation[this.stepIndex];
+    }
+    return null;
+  }
+
+  get canGoPreviousStep(): boolean {
+    return this.stepIndex > 0;
+  }
+
+  get canGoNextStep(): boolean {
+    return this.currentExample?.explanation && this.stepIndex < this.currentExample.explanation.length - 1;
+  }
+
+  previousStep() {
+    if (this.canGoPreviousStep) {
+      this.stepIndex--;
+    }
+  }
+
+  nextStep() {
+    if (this.canGoNextStep) {
+      this.stepIndex++;
+    }
+  }
+
+  ngOnChanges() {
+    this.stepIndex = 0;
+  }
   @Output() validatePuzzle = new EventEmitter<void>();
   @Output() blocksChange = new EventEmitter<any[]>();
   dropMatrix: ({ id: number, text: string } | null)[][] = [];

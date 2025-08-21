@@ -15,16 +15,20 @@
 }
 .drag-box {
   min-width: 180px;
-  background: #f5f5f5;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px #0001;
-  padding: 1rem;
+  background: linear-gradient(135deg, #f4fafe 0%, #f7eafd 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(80,80,160,0.10);
+  padding: 1.5rem 1rem 1.2rem 1rem;
+  border: none;
+  transition: box-shadow 0.3s, background 0.3s;
 }
 .drop-box {
-  background: #f5f5f5;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px #0001;
-  padding: 1rem;
+  background: linear-gradient(135deg, #f7eafd 0%, #f4fafe 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(80,80,160,0.10);
+  padding: 1.5rem 1rem 1.2rem 1rem;
+  border: none;
+  transition: box-shadow 0.3s, background 0.3s;
 }
 .blocks {
   display: flex;
