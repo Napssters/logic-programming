@@ -33,7 +33,7 @@
       </div>
       <div class="border-t border-gray-200 w-full"></div>
       <div class="flex justify-between items-center pt-4">
-        <button (click)="previousExample.emit()" [disabled]="currentExampleIndex === 0"
+  <button (click)="onPreviousExercise()" [disabled]="currentExampleIndex === 0"
           [class.opacity-50]="currentExampleIndex === 0" [class.cursor-not-allowed]="currentExampleIndex === 0"
           class="w-10 h-10 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400"
           [style.background-color]="currentExampleIndex > 0 ? '#f3ae22' : ''"
@@ -45,7 +45,7 @@
         <span class="text-sm text-green-600 font-bold">
           {{ currentExampleIndex + 1 }} de {{ examples.length }}
         </span>
-        <button (click)="nextExample.emit()" [disabled]="currentExampleIndex === examples.length - 1"
+  <button (click)="onNextExercise()" [disabled]="currentExampleIndex === examples.length - 1"
           [class.opacity-50]="currentExampleIndex === examples.length - 1"
           [class.cursor-not-allowed]="currentExampleIndex === examples.length - 1"
           class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 border-blue-800 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400">
@@ -72,7 +72,7 @@
               <p class="text-gray-600 text-xs mt-1">Puedes ver cómo se resuelve este ejemplo bloque por bloque.</p>
             </div>
             <div class="relative group">
-              <button (click)="showSteps = true"
+              <button (click)="setShowSteps(true)"
                 class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg flex items-center justify-center border-2 border-blue-800 transition-all duration-300 ease-in-out"
                 aria-label="Ver pasos">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
