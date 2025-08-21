@@ -168,7 +168,22 @@
                 </svg>
               </ng-container>
               <ng-container *ngIf="cell">
-                <div>
+                <div [ngStyle]="{
+                  width: n === 4 ? '110px' : '161px',
+                  height: n === 4 ? '100px' : '161px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  textAlign: 'center',
+                  fontSize: '0.85rem',
+                  color: '#333',
+                  fontWeight: 500,
+                  overflowWrap: 'break-word',
+                  wordBreak: 'break-word',
+                  whiteSpace: 'pre-line',
+                  lineHeight: 1.1,
+                  padding: 0
+                }">
                   {{ cell?.text || cell }}
                 </div>
               </ng-container>

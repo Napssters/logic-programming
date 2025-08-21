@@ -35,6 +35,16 @@ export class PuzzleComponent {
 
   previousStep() {
     if (this.canGoPreviousStep) {
+      // Calcular posición del bloque a remover
+      const prevStepIndex = this.stepIndex;
+      const row = Math.floor(prevStepIndex / this.n);
+      const col = prevStepIndex % this.n;
+      const cell = this.dropMatrix[row][col];
+      if (cell) {
+        this.blocks.push(cell);
+        this.dropMatrix[row][col] = null;
+        this.blocks = [...this.blocks];
+      }
       this.stepIndex--;
     }
   }
@@ -52,7 +62,6 @@ export class PuzzleComponent {
         const blockId = this.currentExample.explanation[this.stepIndex].blockId_answer;
         const answerBlock = this.currentExample.answer.find((a: any) => a.blockId === blockId);
         const block = this.blocks.find(b => b.id === blockId);
-        console.log('Paso', this.stepIndex + 1, 'BlockId:', blockId, 'Bloque:', block || answerBlock);
         if (block) {
           // Calcular posición destino en la matriz
           const row = Math.floor(this.stepIndex / this.n);
@@ -60,8 +69,6 @@ export class PuzzleComponent {
           this.dropMatrix[row][col] = block;
           this.blocks = this.blocks.filter(b => b.id !== blockId);
           this.blocks = [...this.blocks];
-          console.log('Paso movido:', block);
-          console.log('Estado matriz:', this.dropMatrix);
         }
       }
     }
@@ -207,28 +214,35 @@ export class PuzzleComponent {
     return 'Desconocido';
   }
   setShowSteps(value: boolean) {
-    console.log('setShowSteps llamado:', value);
     this.showSteps = value;
     if (value) {
       this.stepIndex = 0;
+      // Reiniciar la matriz y devolver todos los bloques al drag
+      let allBlocks: any[] = [];
+      for (let i = 0; i < this.n; i++) {
+        for (let j = 0; j < this.n; j++) {
+          if (this.dropMatrix[i][j]) {
+            allBlocks.push(this.dropMatrix[i][j]);
+            this.dropMatrix[i][j] = null;
+          }
+        }
+      }
+      this.blocks = [...this.blocks, ...allBlocks];
+      // Mostrar el primer paso
       if (
         this.currentExample?.answer &&
         Array.isArray(this.currentExample.answer) &&
         this.currentExample.answer.length > 0
       ) {
-        console.log('currentExample.answer:', this.currentExample.answer);
         const firstAnswer = this.currentExample.answer[0];
         const blockId = firstAnswer.blockId !== undefined ? firstAnswer.blockId : firstAnswer;
         const block = this.blocks.find(b => b.id === blockId);
-        console.log('Primer paso blockId:', blockId, 'Bloque encontrado:', block);
         if (block) {
           const row = Math.floor(0 / this.n);
           const col = 0 % this.n;
           this.dropMatrix[row][col] = block;
           this.blocks = this.blocks.filter(b => b.id !== blockId);
           this.blocks = [...this.blocks];
-          console.log('Primer paso movido:', block);
-          console.log('Estado matriz:', this.dropMatrix);
         }
       }
     }
