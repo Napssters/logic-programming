@@ -1,8 +1,8 @@
 <div class="w-full" *ngIf="currentExample">
   <!-- Controladores alineados horizontalmente SOLO para ejemplos -->
   <div *ngIf="examples && examples.length > 0" class="w-full flex flex-row items-start mt-2 gap-8">
-    <!-- Controlador principal -->
-    <div class="px-4 py-3 w-full max-w-xl">
+    <!-- Controlador principal alineado a la izquierda -->
+    <div class="px-4 py-3 max-w-xl flex-shrink-0">
       <div class="flex items-center space-x-3 mb-2">
         <div class="relative group">
           <div class="w-8 h-8 text-white rounded-full shadow-lg flex items-center justify-center border-2"
@@ -55,45 +55,68 @@
         </button>
       </div>
     </div>
-    <!-- Botón/card para mostrar pasos -->
-    <div *ngIf="currentExample?.explanation && currentExample?.explanation.length > 0">
-      <div *ngIf="!showSteps" class="w-full max-w-xl px-4 py-3">
-        <div class="bg-white border border-blue-300 rounded-lg shadow flex items-center justify-between p-3">
-          <span class="text-blue-700 font-semibold">¿Quieres ver la explicación paso a paso?</span>
-          <button (click)="showSteps = true" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-200">Ver pasos</button>
-        </div>
-      </div>
-      <div *ngIf="showSteps" class="px-4 py-3 w-full max-w-xl">
-        <h2 class="text-xl font-bold text-black mb-2">Explicación paso a paso</h2>
-        <div>
-          <div class="bg-blue-50 border-l-4 border-blue-400 p-2 rounded-r-lg mb-4">
-            <h3 class="font-semibold text-blue-800 mb-1 text-sm">📋 Instrucciones:</h3>
-            <p class="text-blue-700 text-sm text-justify">{{ currentStep?.description }}</p>
-          </div>
-          <div class="border-t border-gray-200 w-full"></div>
-          <div class="flex justify-between items-center pt-2">
-            <button (click)="previousStep()" [disabled]="!canGoPreviousStep" [class.opacity-50]="!canGoPreviousStep"
-              [class.cursor-not-allowed]="!canGoPreviousStep"
-              class="w-10 h-10 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400"
-              [style.background-color]="canGoPreviousStep ? '#f3ae22' : ''"
-              [style.border-color]="canGoPreviousStep ? '#d18c00' : ''">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+    <!-- Card de pasos perfectamente centrado en la fila -->
+    <div class="flex-1 flex flex-col items-center justify-center">
+      <ng-container *ngIf="currentExample?.explanation && currentExample?.explanation.length > 0">
+        <div *ngIf="!showSteps" class="mx-auto">
+          <div class="rounded-xl shadow-lg p-4 flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 via-blue-50 to-white border border-blue-300"
+            style="width: 220px; height: 220px;">
+            <div class="mb-2 flex items-center justify-center">
+              <svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke-width="2" stroke="currentColor" fill="#e3f2fd"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01" />
               </svg>
-            </button>
-            <span class="text-sm text-green-600 font-bold">
-              Paso {{ stepIndex + 1 }} de {{ currentExample.explanation.length }}
-            </span>
-            <button (click)="nextStep()" [disabled]="!canGoNextStep" [class.opacity-50]="!canGoNextStep"
-              [class.cursor-not-allowed]="!canGoNextStep"
-              class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 border-blue-800 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </button>
+            </div>
+            <div class="text-center mb-3">
+              <span class="text-blue-700 font-semibold text-base">¿Quieres ver la explicación paso a paso?</span>
+              <p class="text-gray-600 text-xs mt-1">Puedes ver cómo se resuelve este ejemplo bloque por bloque.</p>
+            </div>
+            <div class="relative group">
+              <button (click)="showSteps = true"
+                class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg flex items-center justify-center border-2 border-blue-800 transition-all duration-300 ease-in-out"
+                aria-label="Ver pasos">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+              <div class="absolute left-1/2 transform -translate-x-1/2 -top-10 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                Mostrar explicación paso a paso
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+  <div *ngIf="showSteps" class="px-4 py-3 w-full max-w-xl">
+          <h2 class="text-xl font-bold text-black mb-2">Explicación paso a paso</h2>
+          <div>
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-2 rounded-r-lg mb-4">
+              <h3 class="font-semibold text-blue-800 mb-1 text-sm">📋 Instrucciones:</h3>
+              <p class="text-blue-700 text-sm text-justify">{{ currentStep?.description }}</p>
+            </div>
+            <div class="border-t border-gray-200 w-full"></div>
+            <div class="flex justify-between items-center pt-2">
+              <button (click)="previousStep()" [disabled]="!canGoPreviousStep" [class.opacity-50]="!canGoPreviousStep"
+                [class.cursor-not-allowed]="!canGoPreviousStep"
+                class="w-10 h-10 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400"
+                [style.background-color]="canGoPreviousStep ? '#f3ae22' : ''"
+                [style.border-color]="canGoPreviousStep ? '#d18c00' : ''">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+              <span class="text-sm text-green-600 font-bold">
+                Paso {{ stepIndex + 1 }} de {{ currentExample.explanation.length }}
+              </span>
+              <button (click)="nextStep()" [disabled]="!canGoNextStep" [class.opacity-50]="!canGoNextStep"
+                [class.cursor-not-allowed]="!canGoNextStep"
+                class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 border-blue-800 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </div>
   </div>
   <!-- Drag y Drop en la misma fila -->
