@@ -168,7 +168,6 @@
   <section *ngIf="selectedSection === 2"
     class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
     <!-- ...contenido de la sección 2... -->
-    <h1 class="mt-6">ejemplos</h1>
     <app-puzzle
       #puzzleRef
       [n]="3"
@@ -181,6 +180,7 @@
       (nextExample)="nextExample()"
       [validationResult]="validationResult"
       (validatePuzzle)="validatePuzzle()"
+      (blocksChange)="currentBlocks = $event"
     ></app-puzzle>
   </section>
   <!-- FIN SECCION 2 -->
@@ -190,7 +190,6 @@
   <!-- INICIO SECCION 3 -->
   <section *ngIf="selectedSection === 3"
     class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
-    <h1 class="mt-6">Ejercicios Blockly</h1>
     <app-puzzle
       #puzzleRef
       [n]="currentBlockly?.answer?.length === 16 ? 4 : 3"

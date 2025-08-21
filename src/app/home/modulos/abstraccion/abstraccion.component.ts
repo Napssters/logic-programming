@@ -19,6 +19,7 @@ export class AbstraccionComponent implements OnInit {
   currentExampleIndex: number = 0;
   currentExample: any = null;
   validationResult: string = '';
+  currentBlocks: any[] = [];
 
   // Para sección 3: navegación y validación de ejercicios de abstracción
   get canGoPreviousPuzzle(): boolean {
@@ -118,6 +119,7 @@ export class AbstraccionComponent implements OnInit {
         const modulo = data['abstraccion'];
         this.examples = modulo.examples;
         this.currentExample = this.examples[0];
+        this.currentBlocks = this.shuffleBlocks(this.currentExample?.blocks || []);
         console.log('Abstracción examples loaded:', this.examples.length);
       },
       error: (error) => {
@@ -130,6 +132,7 @@ export class AbstraccionComponent implements OnInit {
     if (this.currentExampleIndex > 0) {
       this.currentExampleIndex--;
       this.currentExample = this.examples[this.currentExampleIndex];
+      this.currentBlocks = this.shuffleBlocks(this.currentExample?.blocks || []);
       this.resetPuzzle();
       this.validationResult = '';
     }
@@ -139,6 +142,7 @@ export class AbstraccionComponent implements OnInit {
     if (this.currentExampleIndex < this.examples.length - 1) {
       this.currentExampleIndex++;
       this.currentExample = this.examples[this.currentExampleIndex];
+      this.currentBlocks = this.shuffleBlocks(this.currentExample?.blocks || []);
       this.resetPuzzle();
       this.validationResult = '';
     }
@@ -152,15 +156,13 @@ export class AbstraccionComponent implements OnInit {
     return this.currentExampleIndex < this.examples.length - 1;
   }
 
-  get currentBlocks(): any[] {
-    if (!this.currentExample?.blocks) return [];
-    // Mezclar los bloques aleatoriamente cada vez que se accede
-    const blocks = [...this.currentExample.blocks];
-    for (let i = blocks.length - 1; i > 0; i--) {
+  shuffleBlocks(blocks: any[]): any[] {
+    const arr = [...blocks];
+    for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [blocks[i], blocks[j]] = [blocks[j], blocks[i]];
+      [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-    return blocks;
+    return arr;
   }
 
   get currentAnswer(): any[] {

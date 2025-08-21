@@ -1,6 +1,6 @@
 <div class="w-full" *ngIf="currentExample">
   <!-- Control de ejercicios -->
-  <div class="w-full flex flex-col items-center mt-2">
+  <div class="w-full flex flex-col items-start mt-2">
     <div class="px-4 py-3 w-full max-w-xl">
       <div class="flex items-center space-x-3 mb-1">
         <div class="relative group">
@@ -94,8 +94,7 @@
                 </svg>
               </ng-container>
               <ng-container *ngIf="cell">
-                <div
-                  style="width:80px;height:80px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:0.95rem;color:#333;padding:4px;overflow-wrap:break-word;word-break:break-word;">
+                <div>
                   {{ cell?.text || cell }}
                 </div>
               </ng-container>

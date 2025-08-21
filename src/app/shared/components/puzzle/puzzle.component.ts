@@ -16,6 +16,7 @@ export class PuzzleComponent {
   @Output() previousExample = new EventEmitter<void>();
   @Output() nextExample = new EventEmitter<void>();
   @Output() validatePuzzle = new EventEmitter<void>();
+  @Output() blocksChange = new EventEmitter<any[]>();
   dropMatrix: ({ id: number, text: string } | null)[][] = [];
   dragSource: { type: 'block' | 'matrix', row?: number, col?: number, value: string } | null = null;
 
@@ -29,11 +30,15 @@ export class PuzzleComponent {
       this.n = 3;
     }
     this.dropMatrix = Array.from({ length: this.n }, () => Array(this.n).fill(null));
-    if (this.blocks && this.blocks.length > 0) {
-      this.blocks = [...this.blocks];
-    } else {
-      this.blocks = Array.from({ length: this.n * this.n }, (_, i) => ({ id: i + 1, text: `Bloque ${i + 1}` }));
+    // Solo copiar los bloques si NO estamos en ejemplos (es decir, si blocks es undefined o null)
+    if (!this.examples || this.examples.length === 0) {
+      if (this.blocks && this.blocks.length > 0) {
+        this.blocks = [...this.blocks];
+      } else {
+        this.blocks = Array.from({ length: this.n * this.n }, (_, i) => ({ id: i + 1, text: `Bloque ${i + 1}` }));
+      }
     }
+    // Si estamos en ejemplos, blocks ya es reactivo y no se debe copiar
   }
 
   onDrop(event: any, row: number, col: number) {
@@ -75,6 +80,8 @@ export class PuzzleComponent {
         if (cell && cell.text === blockText) {
           this.blocks.push(cell);
           this.dropMatrix[i][j] = null;
+          // Emitir el array actualizado de bloques
+          this.blocksChange.emit(this.blocks);
           break;
         }
       }
