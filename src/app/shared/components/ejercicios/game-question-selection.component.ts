@@ -22,6 +22,7 @@ interface Pregunta {
   styleUrls: ['./game-question-selection.component.css']
 })
 export class GameQuestionSelectionComponent {
+  puntuacionesEjemplos: { [id: number]: number } = {};
   @Input() tipo: number = 2;
   ejemplos: Ejercicio[] = [];
   ejemploSeleccionado: Ejercicio | null = null;
@@ -48,7 +49,7 @@ export class GameQuestionSelectionComponent {
     this.http.get<any>('assets/jsons-base/pensamiento-logico.json').subscribe({
       next: (data) => {
         this.ejercicios = data.ejercicios;
-  this.ejemplos = data.ejemplos;
+        this.ejemplos = data.ejemplos;
         this.loading = false;
       },
       error: () => {
@@ -59,7 +60,7 @@ export class GameQuestionSelectionComponent {
   }
 
   seleccionarEjercicio(ejercicios: Ejercicio) {
-  this.ejercicioSeleccionado = ejercicios;
+    this.ejercicioSeleccionado = ejercicios;
     this.preguntaActual = 0;
     this.puntuacion = 0;
     this.finalizado = false;
@@ -91,17 +92,26 @@ export class GameQuestionSelectionComponent {
     if (consecuencia?.final) {
       this.finalizadoEjemplo = true;
       this.resultadoEjemplo = '¡Ejemplo finalizado! Puntuación: ' + this.puntuacionEjemplo;
+      if (this.ejemploSeleccionado) {
+        this.puntuacionesEjemplos[this.ejemploSeleccionado.id] = this.puntuacionEjemplo;
+      }
     } else if (consecuencia?.siguiente_ronda) {
       this.preguntaActualEjemplo++;
       if (this.preguntaActualEjemplo >= this.ejemploSeleccionado.preguntas.length) {
         this.finalizadoEjemplo = true;
         this.resultadoEjemplo = '¡Ejemplo finalizado! Puntuación: ' + this.puntuacionEjemplo;
+        if (this.ejemploSeleccionado) {
+          this.puntuacionesEjemplos[this.ejemploSeleccionado.id] = this.puntuacionEjemplo;
+        }
       }
     } else {
       this.preguntaActualEjemplo++;
       if (this.preguntaActualEjemplo >= this.ejemploSeleccionado.preguntas.length) {
         this.finalizadoEjemplo = true;
         this.resultadoEjemplo = '¡Ejemplo finalizado! Puntuación: ' + this.puntuacionEjemplo;
+        if (this.ejemploSeleccionado) {
+          this.puntuacionesEjemplos[this.ejemploSeleccionado.id] = this.puntuacionEjemplo;
+        }
       }
     }
   }
