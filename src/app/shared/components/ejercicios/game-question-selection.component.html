@@ -4,22 +4,26 @@
   <div *ngIf="error" class="text-red-500 text-center py-8">{{ error }}</div>
 
   <!-- Selector de ejemplos -->
-  <div *ngIf="!ejemploSeleccionado && !loading && !error"
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div *ngIf="!ejemploSeleccionado && !loading && !error" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <div *ngFor="let ejemplo of ejemplos"
-      class="card-ejemplo bg-gradient-to-br from-white via-blue-100 to-purple-100 rounded-3xl shadow-xl border border-blue-200 flex flex-col justify-between items-stretch px-6 pt-6 pb-4 h-[21.85rem] w-full max-w-md mx-auto transition-all duration-200 hover:scale-105">
+      class="card-ejemplo bg-gradient-to-br from-white via-blue-100 to-purple-100 rounded-3xl shadow-xl border border-blue-200 flex flex-col justify-between items-stretch px-6 pt-6 pb-4 h-[22.61180115rem] w-full max-w-md mx-auto transition-all duration-200 hover:scale-105">
       <div class="flex flex-col gap-2 flex-grow">
         <div class="flex items-center mb-4 gap-2">
-          <span class="emoji-card text-2xl">🧑‍🍳</span>
+          <span class="emoji-card text-2xl">{{ getEmojiEjemplo(ejemplo.titulo) }}</span>
           <span class="text-lg font-bold text-gray-800 truncate">{{ ejemplo.titulo }}</span>
         </div>
-        <div class="bg-gradient-to-br from-blue-50 via-purple-50 to-white border-l-4 border-blue-300 shadow rounded-xl px-2 py-3 w-full mb-2 overflow-auto">
-          <p class="text-gray-700 text-sm" style="text-align: justify; white-space: pre-line;">{{ ejemplo.enunciado }}</p>
+        <div
+          class="bg-gradient-to-br from-blue-50 via-purple-50 to-white border-l-4 border-blue-300 shadow rounded-xl px-2 py-3 w-full mb-2 overflow-auto">
+          <p class="text-gray-700 text-sm" style="text-align: justify; white-space: pre-line;">{{ ejemplo.enunciado }}
+          </p>
         </div>
       </div>
       <div class="flex flex-col items-center mt-auto">
-        <div class="text-xs text-gray-600 mb-2">Puntuación: <span class="font-bold text-blue-700">{{ puntuacionesEjemplos[ejemplo.id] || 0 }}</span></div>
-        <button class="btn-ejemplo w-full bg-gradient-to-r from-blue-400 to-purple-400 text-white font-semibold py-2 px-4 rounded-lg shadow hover:from-blue-500 hover:to-purple-500 transition" (click)="seleccionarEjemplo(ejemplo)">Intentar ejemplo</button>
+        <div class="text-xs text-gray-600 mb-2">Puntuación: <span class="font-bold text-blue-700">{{
+            puntuacionesEjemplos[ejemplo.id] || 0 }}</span></div>
+        <button
+          class="btn-ejemplo w-full bg-gradient-to-r from-blue-400 to-purple-400 text-white font-semibold py-2 px-4 rounded-lg shadow hover:from-blue-500 hover:to-purple-500 transition"
+          (click)="seleccionarEjemplo(ejemplo)">Intentar ejemplo</button>
       </div>
     </div>
   </div>
@@ -32,12 +36,15 @@
       <div class="game-bg-stars"></div>
     </div>
     <!-- Card: Título y enunciado -->
-    <div class="game-card relative z-10 animate-pop shadow-2xl rounded-3xl px-8 pt-8 pb-6 flex flex-col items-center w-full" style="background: linear-gradient(135deg, #fef9c3 0%, #e0e7ff 100%);">
+    <div
+      class="game-card relative z-10 animate-pop shadow-2xl rounded-3xl px-8 pt-8 pb-6 flex flex-col items-center w-full"
+      style="background: linear-gradient(135deg, #fef9c3 0%, #e0e7ff 100%);">
       <div class="flex items-center gap-2 mb-2">
-        <span class="emoji-card text-4xl">🧑‍�</span>
+        <span class="emoji-card text-4xl">{{ getEmojiEjemplo(ejemploSeleccionado.titulo) }}‍</span>
         <span class="text-2xl font-extrabold text-pink-700 drop-shadow">{{ ejemploSeleccionado.titulo }}</span>
       </div>
-      <p class="mb-2 text-gray-800 text-justify text-lg font-medium w-full max-w-xl">{{ ejemploSeleccionado.enunciado }}</p>
+      <p class="mb-2 text-gray-800 text-justify text-lg font-medium w-full max-w-xl">{{ ejemploSeleccionado.enunciado }}
+      </p>
     </div>
     <!-- Card: Pregunta y opciones -->
     <div *ngIf="preguntaActualEjemplo < ejemploSeleccionado.preguntas.length"
@@ -56,9 +63,12 @@
       </div>
     </div>
     <!-- Card: Progreso y puntuación -->
-    <div class="game-status-card bg-white/80 rounded-xl px-6 py-4 shadow-lg border-2 border-pink-300 flex justify-between items-center w-full max-w-md animate-fade-in">
-      <div class="text-sm text-pink-600 font-bold">Pregunta <span class="text-base">{{ preguntaActualEjemplo + 1 }}</span> /
-        <span class="text-base">{{ ejemploSeleccionado.preguntas.length }}</span></div>
+    <div
+      class="game-status-card bg-white/80 rounded-xl px-6 py-4 shadow-lg border-2 border-pink-300 flex justify-between items-center w-full max-w-md animate-fade-in">
+      <div class="text-sm text-pink-600 font-bold">Pregunta <span class="text-base">{{ preguntaActualEjemplo + 1
+          }}</span> /
+        <span class="text-base">{{ ejemploSeleccionado.preguntas.length }}</span>
+      </div>
       <div class="text-pink-600 font-extrabold text-lg flex items-center gap-1">
         <span class="emoji-card text-xl">⭐</span> {{ puntuacionEjemplo }}
       </div>
@@ -66,11 +76,18 @@
   </div>
 
   <!-- Ejemplo finalizado -->
-  <div *ngIf="finalizadoEjemplo" class="w-full max-w-2xl mx-auto text-center">
-    <div class="bg-pink-100 border-l-4 border-pink-500 rounded-xl p-6 shadow mb-4">
-      <h2 class="text-2xl font-bold text-pink-700 mb-2">¡Ejemplo completado!</h2>
-      <p class="text-lg text-gray-800 mb-2">{{ resultadoEjemplo }}</p>
-      <button class="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-6 rounded-lg shadow transition" (click)="reiniciarEjemplo()">Volver al selector de ejemplos</button>
+  <div *ngIf="finalizadoEjemplo"
+    class="w-full max-w-2xl mx-auto flex flex-col items-center justify-center relative gap-6">
+    <div class="relative z-10 animate-pop shadow-2xl rounded-3xl px-8 pt-8 pb-6 flex flex-col items-center w-full mb-4"
+      style="background: linear-gradient(135deg, #b6c7ff 0%, #f3f4f6 100%);">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="emoji-card text-4xl">🏆</span>
+        <span class="text-2xl font-extrabold text-blue-700 drop-shadow">¡Ejemplo completado!</span>
+      </div>
+      <p class="mb-4 text-gray-800 text-lg font-medium w-full max-w-xl text-center">{{ resultadoEjemplo }}</p>
+      <button
+        class="bg-gradient-to-r from-blue-200 to-purple-200 hover:from-blue-300 hover:to-purple-300 text-gray-800 font-semibold py-3 px-8 rounded-full shadow-xl transition transform hover:scale-105 mt-2"
+        (click)="reiniciarEjemplo()">Volver al selector de ejemplos</button>
     </div>
   </div>
 </div>
@@ -84,14 +101,14 @@
   <div *ngIf="!ejercicioSeleccionado && !loading && !error"
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <div *ngFor="let ejercicio of ejercicios"
-      class="card-ejercicio bg-gradient-to-br from-white via-gray-100 to-yellow-400 rounded-3xl shadow-2xl border border-yellow-200 flex flex-col justify-between items-stretch px-6 pt-8 pb-6 h-[30rem] w-full max-w-lg mx-auto transition-all duration-200 hover:scale-105">
+      class="card-ejercicio bg-gradient-to-br from-white via-blue-100 to-green-200 rounded-2xl shadow-xl border border-green-300 flex flex-col justify-between items-stretch px-5 pt-7 pb-5 h-[26.5335rem] w-full max-w-md mx-auto transition-all duration-200 hover:scale-105">
       <div class="flex flex-col gap-2 flex-grow">
         <div class="flex items-center mb-4 gap-2">
           <span class="emoji-card text-2xl">{{ getEmoji(ejercicio.titulo) }}</span>
           <span class="text-lg font-bold text-gray-800 truncate">{{ ejercicio.titulo }}</span>
         </div>
         <div
-          class="bg-gradient-to-br from-yellow-100 via-yellow-50 to-white border-l-4 border-yellow-400 shadow-lg rounded-xl px-2 py-4 w-full mb-2 overflow-auto">
+          style="background: linear-gradient(135deg, #b1eef6 0%, #e0e7ff 100%); border-left: 4px solid #38b2ac; box-shadow: 0 2px 8px rgba(59,130,246,0.10); border-radius: 1rem; padding: 1rem 0.5rem; width: 100%; margin-bottom: 0.5rem; overflow: auto;">
           <p class="text-gray-700 text-sm" style="text-align: justify; white-space: pre-line;">{{ ejercicio.enunciado }}
           </p>
         </div>
@@ -99,7 +116,9 @@
       <div class="flex flex-col items-center mt-auto">
         <div class="text-xs text-gray-600 mb-2">Puntuación: <span class="font-bold text-yellow-700">{{
             puntuacionesEjercicios[ejercicio.id] || 0 }}</span></div>
-        <button class="btn-ejercicio w-full" (click)="seleccionarEjercicio(ejercicio)">Intentémoslo</button>
+        <button
+          class="btn-ejercicio w-full bg-gradient-to-r from-green-500 to-blue-400 text-white font-semibold py-2 px-4 rounded-lg shadow hover:from-green-600 hover:to-blue-500 transition"
+          (click)="seleccionarEjercicio(ejercicio)">Intentémoslo</button>
       </div>
     </div>
   </div>
@@ -117,7 +136,7 @@
       class="game-card relative z-10 animate-pop shadow-2xl rounded-3xl px-8 pt-8 pb-6 flex flex-col items-center w-full"
       style="background: linear-gradient(135deg, #fef9c3 0%, #e0e7ff 100%);">
       <div class="flex items-center gap-2 mb-2">
-        <span class="emoji-card text-4xl">🎮</span>
+        <span class="emoji-card text-4xl">{{ getEmoji(ejercicioSeleccionado.titulo) }}</span>
         <span class="text-2xl font-extrabold text-purple-700 drop-shadow">{{ ejercicioSeleccionado.titulo }}</span>
       </div>
       <p class="mb-2 text-gray-800 text-justify text-lg font-medium w-full max-w-xl">{{ ejercicioSeleccionado.enunciado
@@ -153,19 +172,15 @@
 
   <!-- Ejercicio finalizado -->
   <div *ngIf="finalizado" class="w-full max-w-2xl mx-auto flex flex-col items-center justify-center relative gap-6">
-    <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-      <div class="game-bg-gradient"></div>
-      <div class="game-bg-stars"></div>
-    </div>
     <div class="relative z-10 animate-pop shadow-2xl rounded-3xl px-8 pt-8 pb-6 flex flex-col items-center w-full mb-4"
-      style="background: linear-gradient(135deg, #bbf7d0 0%, #e0e7ff 100%);">
+      style="background: linear-gradient(135deg, #94efb5 0%, #f3f4f6 100%);">
       <div class="flex items-center gap-2 mb-4">
         <span class="emoji-card text-4xl">🏆</span>
         <span class="text-2xl font-extrabold text-green-700 drop-shadow">¡Ejercicio completado!</span>
       </div>
       <p class="mb-4 text-gray-800 text-lg font-medium w-full max-w-xl text-center">{{ resultado }}</p>
       <button
-        class="bg-gradient-to-r from-blue-400 to-purple-400 hover:from-blue-500 hover:to-purple-500 text-white font-semibold py-3 px-8 rounded-full shadow-xl transition transform hover:scale-105 mt-2"
+        class="bg-gradient-to-r from-green-200 to-blue-200 hover:from-green-300 hover:to-blue-300 text-gray-800 font-semibold py-3 px-8 rounded-full shadow-xl transition transform hover:scale-105 mt-2"
         (click)="reiniciar()">Volver al selector de ejercicios</button>
     </div>
   </div>

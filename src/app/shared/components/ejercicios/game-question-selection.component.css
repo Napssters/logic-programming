@@ -95,43 +95,10 @@
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.card-ejercicio {
-  min-height: 30rem;
-  max-width: 34rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-  border-radius: 2rem;
-  border: 1px solid #e0e7ff;
-  background: linear-gradient(135deg, #fef9c3 0%, #e0e7ff 100%);
-  transition: box-shadow 0.2s, transform 0.2s;
-}
-.card-ejercicio:hover {
-  box-shadow: 0 12px 40px rgba(0,0,0,0.16);
-  transform: scale(1.04);
-}
 .emoji-card {
   font-size: 1.3rem;
   margin-right: 0.5rem;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.10));
-}
-.btn-ejercicio {
-  margin-top: auto;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 0.75rem;
-  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.10);
-  background: linear-gradient(90deg, #fbbf24 0%, #fde047 100%);
-  color: #a16207;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  transition: background 0.2s, color 0.2s;
-}
-.btn-ejercicio:hover {
-  background: linear-gradient(90deg, #fde047 0%, #fbbf24 100%);
-  color: #b45309;
 }
 .card-ejercicio .text-xs {
   margin-bottom: 0.5rem;

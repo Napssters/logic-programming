@@ -22,6 +22,7 @@ interface Pregunta {
   styleUrls: ['./game-question-selection.component.css']
 })
 export class GameQuestionSelectionComponent {
+
   puntuacionesEjemplos: { [id: number]: number } = {};
   @Input() tipo: number = 2;
   ejemplos: Ejercicio[] = [];
@@ -182,5 +183,23 @@ export class GameQuestionSelectionComponent {
     if (titulo.toLowerCase().includes('robot')) return '🤖';
     if (titulo.toLowerCase().includes('guardarropa')) return '👔';
     return '🧩';
+  }
+
+  // Devuelve un emoji según el título del ejemplo
+  getEmojiEjemplo(titulo: string): string {
+  if (titulo.toLowerCase().includes('chef')) return '🍳';
+  if (titulo.toLowerCase().includes('ingredientes')) return '🥗';
+  if (titulo.toLowerCase().includes('enfermera')) return '💉';
+  if (titulo.toLowerCase().includes('pacientes')) return '🏥';
+  if (titulo.toLowerCase().includes('tienda')) return '🏪';
+  if (titulo.toLowerCase().includes('estilista')) return '💇‍♂️';
+  if (titulo.toLowerCase().includes('clientas')) return '💁';
+  if (titulo.toLowerCase().includes('organizador')) return '🎉';
+  if (titulo.toLowerCase().includes('fiestas')) return '🎊';
+  if (titulo.toLowerCase().includes('entrenador')) return '🏋️';
+  if (titulo.toLowerCase().includes('deportivo')) return '⚽';
+  if (titulo.toLowerCase().includes('técnico')) return '🔧';
+  if (titulo.toLowerCase().includes('computadoras')) return '💻';
+  return '🧩';
   }
 }
