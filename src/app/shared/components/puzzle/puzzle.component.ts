@@ -6,10 +6,14 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./puzzle.component.css']
 })
 export class PuzzleComponent {
+  showSuccess: boolean = false;
+  showError: boolean = false;
+  currentMessage: string = '';
+  showValidationModal: boolean = false;
   showSteps: boolean = false;
   @Input() n: number = 3;
   @Input() description: string = '';
-  @Input() blocks: { id: number, text: string }[] = [];
+  @Input() blocks: { id: number, text: string, color?: string, hoverColor?: string }[] = [];
   @Input() currentExample: any;
   @Input() currentExampleIndex: number = 0;
   @Input() examples: any[] = [];
@@ -62,10 +66,16 @@ export class PuzzleComponent {
         const blockId = this.currentExample.explanation[this.stepIndex].blockId_answer;
         const answerBlock = this.currentExample.answer.find((a: any) => a.blockId === blockId);
         const block = this.blocks.find(b => b.id === blockId);
+        // Calcular posición destino en la matriz
+        const row = Math.floor(this.stepIndex / this.n);
+        const col = this.stepIndex % this.n;
+        // Si ya hay un bloque en la celda destino y no es el correcto, regresarlo al drag
+        const cell = this.dropMatrix[row][col];
+        if (cell && cell.id !== blockId) {
+          this.blocks.push(cell);
+          this.dropMatrix[row][col] = null;
+        }
         if (block) {
-          // Calcular posición destino en la matriz
-          const row = Math.floor(this.stepIndex / this.n);
-          const col = this.stepIndex % this.n;
           this.dropMatrix[row][col] = block;
           this.blocks = this.blocks.filter(b => b.id !== blockId);
           this.blocks = [...this.blocks];
@@ -173,6 +183,33 @@ export class PuzzleComponent {
   }
 
   onValidatePuzzle() {
+    // Obtener los ids de los bloques en el drop
+    let dropIds: number[] = [];
+    for (let i = 0; i < this.n; i++) {
+      for (let j = 0; j < this.n; j++) {
+        const cell = this.dropMatrix[i][j];
+        if (cell && cell.id !== undefined) {
+          dropIds.push(cell.id);
+        }
+      }
+    }
+    // Obtener los ids de la respuesta correcta
+    const correctIds = (this.currentExample?.answer || []).map((a: any) => a.blockId);
+    // Ordenar ambos arrays
+    dropIds.sort((a, b) => a - b);
+    const sortedCorrectIds = [...correctIds].sort((a, b) => a - b);
+    // Validar que ambos arrays sean iguales
+    const isCorrect = dropIds.length === sortedCorrectIds.length && dropIds.every((id, idx) => id === sortedCorrectIds[idx]);
+    this.validationResult = isCorrect ? 'correcto' : 'incorrecto';
+    if (isCorrect) {
+      this.showSuccess = true;
+      this.currentMessage = '¡Excelente! Has completado el ejercicio correctamente. 🎉';
+      setTimeout(() => { this.showSuccess = false; }, 2500);
+    } else {
+      this.showError = true;
+      this.currentMessage = 'La solución no es correcta. Revisa las instrucciones e inténtalo de nuevo. 💪';
+      setTimeout(() => { this.showError = false; }, 2500);
+    }
     this.validatePuzzle.emit();
   }
 

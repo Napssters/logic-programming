@@ -33,7 +33,7 @@
       </div>
       <div class="border-t border-gray-200 w-full"></div>
       <div class="flex justify-between items-center pt-4">
-  <button (click)="onPreviousExercise()" [disabled]="currentExampleIndex === 0"
+        <button (click)="onPreviousExercise()" [disabled]="currentExampleIndex === 0"
           [class.opacity-50]="currentExampleIndex === 0" [class.cursor-not-allowed]="currentExampleIndex === 0"
           class="w-10 h-10 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400"
           [style.background-color]="currentExampleIndex > 0 ? '#f3ae22' : ''"
@@ -45,7 +45,7 @@
         <span class="text-sm text-green-600 font-bold">
           {{ currentExampleIndex + 1 }} de {{ examples.length }}
         </span>
-  <button (click)="onNextExercise()" [disabled]="currentExampleIndex === examples.length - 1"
+        <button (click)="onNextExercise()" [disabled]="currentExampleIndex === examples.length - 1"
           [class.opacity-50]="currentExampleIndex === examples.length - 1"
           [class.cursor-not-allowed]="currentExampleIndex === examples.length - 1"
           class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 border-blue-800 disabled:bg-gray-400 disabled:border-gray-300 disabled:hover:bg-gray-400">
@@ -59,11 +59,12 @@
     <div class="flex-1 flex flex-col items-center justify-center">
       <ng-container *ngIf="currentExample?.explanation && currentExample?.explanation.length > 0">
         <div *ngIf="!showSteps" class="mx-auto">
-          <div class="rounded-xl shadow-lg p-4 flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 via-blue-50 to-white border border-blue-300"
+          <div
+            class="rounded-xl shadow-lg p-4 flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 via-blue-50 to-white border border-blue-300"
             style="width: 220px; height: 220px;">
             <div class="mb-2 flex items-center justify-center">
               <svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10" stroke-width="2" stroke="currentColor" fill="#e3f2fd"/>
+                <circle cx="12" cy="12" r="10" stroke-width="2" stroke="currentColor" fill="#e3f2fd" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01" />
               </svg>
             </div>
@@ -79,7 +80,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
               </button>
-              <div class="absolute left-1/2 transform -translate-x-1/2 -top-10 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+              <div
+                class="absolute left-1/2 transform -translate-x-1/2 -top-10 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
                 Mostrar explicación paso a paso
               </div>
             </div>
@@ -88,11 +90,13 @@
         <div *ngIf="showSteps" class="px-4 py-3 w-full max-w-xl">
           <div class="flex items-center space-x-3 mb-2">
             <div class="relative group flex items-center">
-              <div class="w-8 h-8 bg-blue-200 text-blue-700 rounded-full shadow-lg flex items-center justify-center border-2 border-blue-400 text-base">
+              <div
+                class="w-8 h-8 bg-blue-200 text-blue-700 rounded-full shadow-lg flex items-center justify-center border-2 border-blue-400 text-base">
                 <!-- Emoji de huellas -->
                 👣
               </div>
-              <div class="absolute left-1/2 transform -translate-x-1/2 -top-10 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+              <div
+                class="absolute left-1/2 transform -translate-x-1/2 -top-10 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
                 Ver pasos
               </div>
             </div>
@@ -151,15 +155,10 @@
         [ngStyle]="{'grid-template-columns': 'repeat(' + n + ', 1fr)', 'justify-content': 'center', 'margin': '0 auto', 'width': 'max-content'}">
         <div *ngFor="let row of dropMatrix; let i = index">
           <div class="flex flex-row" style="gap: 8px; margin-bottom: 0;">
-            <div *ngFor="let cell of row; let j = index" class="cell" (drop)="onDrop($event, i, j)"
-              (dragover)="$event.preventDefault()" [draggable]="!!cell"
-              (dragstart)="cell ? onDragStart($event, cell, i, j) : null" [ngStyle]="{
-                width: n === 4 ? '113px' : '161px',
-                height: n === 4 ? '113px' : '161px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }">
+            <div *ngFor="let cell of row; let j = index" [ngClass]="cell ? 'cellblock' : 'cell'"
+              [ngStyle]="n === 4 ? { width: '113px', height: '113px' } : { width: '160px', height: '160px' }"
+              (drop)="onDrop($event, i, j)" (dragover)="$event.preventDefault()" [draggable]="!!cell"
+              (dragstart)="cell ? onDragStart($event, cell, i, j) : null">
               <ng-container *ngIf="!cell">
                 <svg width="80" height="80" viewBox="0 0 80 80">
                   <path
@@ -168,27 +167,56 @@
                 </svg>
               </ng-container>
               <ng-container *ngIf="cell">
-                <div [ngStyle]="{
-                  width: n === 4 ? '110px' : '161px',
-                  height: n === 4 ? '100px' : '161px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                  fontSize: '0.85rem',
-                  color: '#333',
-                  fontWeight: 500,
-                  overflowWrap: 'break-word',
-                  wordBreak: 'break-word',
-                  whiteSpace: 'pre-line',
-                  lineHeight: 1.1,
-                  padding: 0
-                }">
+                <div [ngStyle]="{ fontSize: n === 4 ? '0.8rem' : '1.1rem' }"
+                  style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;color:#333;">
                   {{ cell?.text || cell }}
                 </div>
               </ng-container>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Botón de validación debajo del drop -->
+  <div class="w-full flex justify-end mt-6">
+    <div class="relative group">
+      <button (click)="showValidationModal = true; onValidatePuzzle()"
+        class="w-12 h-12 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center border-2 border-green-800"
+        aria-label="Validar ejercicio">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </button>
+      <div class="absolute right-0 top-full mt-2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+        Validar ejercicio
+      </div>
+    </div>
+  </div>
+  <!-- Toast de éxito -->
+  <div *ngIf="showSuccess" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-green-500 text-white px-8 py-6 rounded-xl shadow-2xl transform transition-all duration-500 ease-in-out max-w-md mx-4">
+      <div class="flex items-center space-x-4">
+        <svg class="w-8 h-8 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <div>
+          <p class="font-bold text-lg">¡Perfecto!</p>
+          <p class="text-sm opacity-90">{{ currentMessage }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Toast de error -->
+  <div *ngIf="showError" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-red-500 text-white px-8 py-6 rounded-xl shadow-2xl transform transition-all duration-500 ease-in-out max-w-md mx-4">
+      <div class="flex items-center space-x-4">
+        <svg class="w-8 h-8 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <div>
+          <p class="font-bold text-lg">Inténtalo de nuevo</p>
+          <p class="text-sm opacity-90">{{ currentMessage }}</p>
         </div>
       </div>
     </div>

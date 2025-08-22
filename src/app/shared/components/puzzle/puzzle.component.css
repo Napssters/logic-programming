@@ -1,4 +1,3 @@
-
 .puzzle-container {
   display: flex;
   flex-direction: column;
@@ -105,4 +104,26 @@
 .description {
   font-weight: bold;
   font-size: 1.1rem;
+}
+.cellblock {
+  background: linear-gradient(135deg, #fbc2eb 0%, #e0e7ff 80%, #f8fafc 100%);
+  border: 2px solid #a5b4fc;
+  box-shadow: 0 4px 16px 0 #a5b4fc33, 0 1.5px 6px 0 #fbc2eb22;
+  border-radius: 14px;
+  width: 160px;
+  height: 160px;
+  border: 4px dashed #90caf9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.cellblock:hover {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 60%, #fbc2eb 100%);
+
+  box-shadow: 0 8px 24px 0 #a5b4fc55, 0 2px 12px 0 #fbc2eb44;
+}
+.cellblock.small {
+  width: 110px;
+  height: 100px;
 }
