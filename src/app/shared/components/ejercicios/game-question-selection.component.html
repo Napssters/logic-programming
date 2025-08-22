@@ -20,23 +20,39 @@
   </div>
 </div>
 
-<!-- Ejercicio en curso -->
-<div *ngIf="ejercicioSeleccionado && !finalizado" class="w-full max-w-2xl mx-auto">
-  <h2 class="text-xl font-bold text-green-700 mb-4">{{ ejercicioSeleccionado.titulo }}</h2>
-  <p class="mb-4 text-gray-800">{{ ejercicioSeleccionado.enunciado }}</p>
-  <div *ngIf="preguntaActual < ejercicioSeleccionado.preguntas.length">
-    <div class="bg-gray-100 rounded-lg p-4 mb-4 shadow">
-      <h3 class="font-semibold text-gray-900 mb-2">{{ ejercicioSeleccionado.preguntas[preguntaActual].pregunta }}</h3>
-      <div class="flex flex-col gap-3">
-        <button *ngFor="let eleccion of ejercicioSeleccionado.preguntas[preguntaActual].elecciones"
-          class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow transition"
-          (click)="responder(eleccion)">
-          {{ eleccion }}
-        </button>
-      </div>
+
+<!-- Ejercicio en curso - Estilo juego mejorado -->
+<div *ngIf="ejercicioSeleccionado && !finalizado" class="game-section w-full max-w-4xl mx-auto flex flex-col items-center justify-center relative gap-8">
+  <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+    <div class="game-bg-gradient"></div>
+    <div class="game-bg-stars"></div>
+  </div>
+  <!-- Card: Título y enunciado -->
+  <div class="game-card relative z-10 animate-pop shadow-2xl rounded-3xl px-12 pt-10 pb-8 flex flex-col items-center w-full" style="background: linear-gradient(135deg, #fef9c3 0%, #e0e7ff 100%);">
+    <span class="emoji-card text-4xl mb-2">🎮</span>
+    <h2 class="text-2xl font-extrabold text-purple-700 drop-shadow text-center mb-2">{{ ejercicioSeleccionado.titulo }}</h2>
+    <p class="mb-2 text-gray-800 text-justify text-lg font-medium w-full max-w-xl">{{ ejercicioSeleccionado.enunciado }}</p>
+  </div>
+  <!-- Card: Pregunta y opciones -->
+  <div *ngIf="preguntaActual < ejercicioSeleccionado.preguntas.length" class="game-question-card bg-white/80 rounded-xl p-8 shadow-lg border-2 border-yellow-300 animate-fade-in w-full">
+    <h3 class="font-bold text-blue-700 text-xl mb-4 flex items-center gap-2">
+      <span class="emoji-card text-2xl">❓</span>
+      {{ ejercicioSeleccionado.preguntas[preguntaActual].pregunta }}
+    </h3>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <button *ngFor="let eleccion of ejercicioSeleccionado.preguntas[preguntaActual].elecciones"
+        class="game-btn-choice px-6 py-3 rounded-full font-bold text-lg shadow-lg transition transform hover:scale-110 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-pink-400 bg-gradient-to-r from-blue-400 to-purple-400 text-white border-2 border-white"
+        (click)="responder(eleccion)">
+        {{ eleccion }}
+      </button>
     </div>
-    <div class="text-right text-sm text-gray-500">Pregunta {{ preguntaActual + 1 }} de {{ ejercicioSeleccionado.preguntas.length }}</div>
-    <div class="mt-2 text-green-600 font-bold">Puntuación: {{ puntuacion }}</div>
+  </div>
+  <!-- Card: Progreso y puntuación -->
+  <div class="game-status-card bg-white/80 rounded-xl px-8 py-5 shadow-lg border-2 border-purple-300 flex justify-between items-center w-full max-w-lg animate-fade-in">
+    <div class="text-sm text-pink-600 font-bold">Pregunta <span class="text-base">{{ preguntaActual + 1 }}</span> / <span class="text-base">{{ ejercicioSeleccionado.preguntas.length }}</span></div>
+    <div class="text-green-600 font-extrabold text-lg flex items-center gap-1">
+      <span class="emoji-card text-xl">⭐</span> {{ puntuacion }}
+    </div>
   </div>
 </div>
 

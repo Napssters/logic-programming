@@ -1,3 +1,99 @@
+.game-card {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  border-radius: 2rem;
+  background: linear-gradient(135deg, #fef9c3 0%, #e0e7ff 100%);
+  animation: pop 0.5s cubic-bezier(.17,.67,.83,.67);
+  margin-bottom: 0;
+  width: 100%;
+  max-width: 38rem;
+}
+.game-question-card {
+  animation: fade-in 0.6s;
+  margin-bottom: 0;
+  width: 100%;
+  max-width: 38rem;
+}
+.game-status-card {
+  animation: fade-in 0.6s;
+  margin-top: 0;
+  width: 100%;
+  max-width: 24rem;
+  box-shadow: 0 4px 16px rgba(168,85,247,0.10);
+  border-radius: 1.5rem;
+  background: rgba(255,255,255,0.85);
+}
+.game-section {
+  position: relative;
+  min-height: 32rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.game-bg-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(circle at 60% 40%, #fbbf24 0%, #a5b4fc 60%, #fff 100%);
+  opacity: 0.5;
+}
+.game-bg-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.game-bg-stars::before {
+  content: '✨✨✨✨✨';
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  font-size: 2rem;
+  opacity: 0.3;
+}
+.game-bg-stars::after {
+  content: '⭐️⭐️⭐️';
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  font-size: 2.5rem;
+  opacity: 0.2;
+}
+.game-card {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  border-radius: 2rem;
+  background: linear-gradient(135deg, #fef9c3 0%, #e0e7ff 100%);
+  animation: pop 0.5s cubic-bezier(.17,.67,.83,.67);
+}
+.game-question-card {
+  animation: fade-in 0.6s;
+}
+.game-btn-choice {
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(59,130,246,0.10);
+  background: linear-gradient(90deg, #60a5fa 0%, #a78bfa 100%);
+  color: #fff;
+  border: 2px solid #fff;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.game-btn-choice:hover {
+  background: linear-gradient(90deg, #fbbf24 0%, #f472b6 100%);
+  color: #fff;
+  transform: scale(1.08);
+}
+.animate-pop {
+  animation: pop 0.5s cubic-bezier(.17,.67,.83,.67);
+}
+@keyframes pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  80% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .card-ejercicio {
   min-height: 30rem;
   max-width: 34rem;
