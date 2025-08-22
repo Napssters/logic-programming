@@ -25,6 +25,7 @@
 .game-section {
   position: relative;
   min-height: 32rem;
+  max-width: 70rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
@@ -44,7 +45,7 @@
 .game-bg-stars::before {
   content: '✨✨✨✨✨';
   position: absolute;
-  top: 10%;
+  top: 5%;
   left: 5%;
   font-size: 2rem;
   opacity: 0.3;
@@ -52,8 +53,8 @@
 .game-bg-stars::after {
   content: '⭐️⭐️⭐️';
   position: absolute;
-  bottom: 10%;
-  right: 10%;
+  bottom: 5%;
+  right: 5%;
   font-size: 2.5rem;
   opacity: 0.2;
 }
