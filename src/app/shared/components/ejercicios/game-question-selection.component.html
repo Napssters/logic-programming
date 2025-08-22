@@ -3,22 +3,22 @@
 
 <!-- Selector de ejercicios -->
 <div *ngIf="!ejercicioSeleccionado && !loading && !error" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  <div *ngFor="let ejemplo of ejemplos"
+  <div *ngFor="let ejercicio of ejercicios"
     class="card-ejercicio bg-gradient-to-br from-white via-gray-100 to-yellow-400 rounded-3xl shadow-2xl border border-yellow-200 flex flex-col justify-between items-stretch px-6 pt-8 pb-6 h-[30rem] w-full max-w-lg mx-auto transition-all duration-200 hover:scale-105">
     <div class="flex flex-col gap-2 flex-grow">
       <div class="flex items-center mb-4 gap-2">
-        <span class="emoji-card text-2xl">{{ getEmoji(ejemplo.titulo) }}</span>
-        <span class="text-lg font-bold text-gray-800 truncate">{{ ejemplo.titulo }}</span>
+        <span class="emoji-card text-2xl">{{ getEmoji(ejercicio.titulo) }}</span>
+        <span class="text-lg font-bold text-gray-800 truncate">{{ ejercicio.titulo }}</span>
       </div>
       <div
         class="bg-gradient-to-br from-yellow-100 via-yellow-50 to-white border-l-4 border-yellow-400 shadow-lg rounded-xl px-2 py-4 w-full mb-2 overflow-auto">
-        <p class="text-gray-700 text-sm" style="text-align: justify; white-space: pre-line;">{{ ejemplo.enunciado }}</p>
+        <p class="text-gray-700 text-sm" style="text-align: justify; white-space: pre-line;">{{ ejercicio.enunciado }}</p>
       </div>
     </div>
     <div class="flex flex-col items-center mt-auto">
       <div class="text-xs text-gray-600 mb-2">Puntuación: <span class="font-bold text-yellow-700">{{
-          puntuacionesEjercicios[ejemplo.id] || 0 }}</span></div>
-      <button class="btn-ejercicio w-full" (click)="seleccionarEjercicio(ejemplo)">Intentémoslo</button>
+          puntuacionesEjercicios[ejercicio.id] || 0 }}</span></div>
+      <button class="btn-ejercicio w-full" (click)="seleccionarEjercicio(ejercicio)">Intentémoslo</button>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-interface Ejemplo {
+interface Ejercicio {
   id: number;
   titulo: string;
   enunciado: string;
@@ -21,10 +21,10 @@ interface Pregunta {
   styleUrls: ['./game-question-selection.component.css']
 })
 export class GameQuestionSelectionComponent {
-  ejemplos: Ejemplo[] = [];
+  ejercicios: Ejercicio[] = [];
   loading = true;
   error = '';
-  ejercicioSeleccionado: Ejemplo | null = null;
+  ejercicioSeleccionado: Ejercicio | null = null;
   preguntaActual = 0;
   puntuacion = 0;
   finalizado = false;
@@ -38,7 +38,7 @@ export class GameQuestionSelectionComponent {
   cargarEjercicios() {
     this.http.get<any>('assets/jsons-base/pensamiento-logico.json').subscribe({
       next: (data) => {
-        this.ejemplos = data.ejemplos;
+        this.ejercicios = data.ejemplos;
         this.loading = false;
       },
       error: () => {
@@ -48,8 +48,8 @@ export class GameQuestionSelectionComponent {
     });
   }
 
-  seleccionarEjercicio(ejemplo: Ejemplo) {
-    this.ejercicioSeleccionado = ejemplo;
+  seleccionarEjercicio(ejercicios: Ejercicio) {
+  this.ejercicioSeleccionado = ejercicios;
     this.preguntaActual = 0;
     this.puntuacion = 0;
     this.finalizado = false;
