@@ -12,6 +12,7 @@ interface Pregunta {
   pregunta: string;
   elecciones: string[];
   consecuencias: { [key: string]: any };
+  puntuaciones?: { [key: string]: number };
 }
 
 @Component({
@@ -28,6 +29,7 @@ export class EjerciciosComponent {
   puntuacion = 0;
   finalizado = false;
   resultado = '';
+  puntuacionesEjercicios: { [id: number]: number } = {};
 
   constructor(private http: HttpClient) {
     this.cargarEjercicios();
@@ -58,22 +60,37 @@ export class EjerciciosComponent {
     if (!this.ejercicioSeleccionado) return;
     const pregunta = this.ejercicioSeleccionado.preguntas[this.preguntaActual];
     const consecuencia = pregunta.consecuencias[eleccion];
+    // Sumar/restar puntuación según el JSON (si existe)
+    let cambio = 0;
+    if (pregunta.puntuaciones && typeof pregunta.puntuaciones[eleccion] === 'number') {
+      cambio = pregunta.puntuaciones[eleccion];
+    } else if (typeof consecuencia?.puntuacion === 'number') {
+      cambio = consecuencia.puntuacion;
+    }
+    this.puntuacion += cambio;
     if (consecuencia?.final) {
-      this.puntuacion++;
       this.finalizado = true;
       this.resultado = '¡Ejercicio finalizado! Puntuación: ' + this.puntuacion;
+      if (this.ejercicioSeleccionado) {
+        this.puntuacionesEjercicios[this.ejercicioSeleccionado.id] = this.puntuacion;
+      }
     } else if (consecuencia?.siguiente_ronda) {
-      this.puntuacion++;
       this.preguntaActual++;
       if (this.preguntaActual >= this.ejercicioSeleccionado.preguntas.length) {
         this.finalizado = true;
         this.resultado = '¡Ejercicio finalizado! Puntuación: ' + this.puntuacion;
+        if (this.ejercicioSeleccionado) {
+          this.puntuacionesEjercicios[this.ejercicioSeleccionado.id] = this.puntuacion;
+        }
       }
     } else {
       this.preguntaActual++;
       if (this.preguntaActual >= this.ejercicioSeleccionado.preguntas.length) {
         this.finalizado = true;
         this.resultado = '¡Ejercicio finalizado! Puntuación: ' + this.puntuacion;
+        if (this.ejercicioSeleccionado) {
+          this.puntuacionesEjercicios[this.ejercicioSeleccionado.id] = this.puntuacion;
+        }
       }
     }
   }
@@ -84,5 +101,17 @@ export class EjerciciosComponent {
     this.puntuacion = 0;
     this.finalizado = false;
     this.resultado = '';
+  }
+
+  // Devuelve un emoji según el título del ejercicio
+  getEmoji(titulo: string): string {
+    if (titulo.toLowerCase().includes('clima')) return '🌦️';
+    if (titulo.toLowerCase().includes('desayuno')) return '🍳';
+    if (titulo.toLowerCase().includes('semáforo')) return '🚦';
+    if (titulo.toLowerCase().includes('detective')) return '🕵️';
+    if (titulo.toLowerCase().includes('café')) return '☕';
+    if (titulo.toLowerCase().includes('robot')) return '🤖';
+    if (titulo.toLowerCase().includes('guardarropa')) return '👔';
+    return '🧩';
   }
 }
