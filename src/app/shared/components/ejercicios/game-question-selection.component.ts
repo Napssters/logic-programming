@@ -38,7 +38,7 @@ export class GameQuestionSelectionComponent {
   cargarEjercicios() {
     this.http.get<any>('assets/jsons-base/pensamiento-logico.json').subscribe({
       next: (data) => {
-        this.ejercicios = data.ejemplos;
+        this.ejercicios = data.ejercicios;
         this.loading = false;
       },
       error: () => {
