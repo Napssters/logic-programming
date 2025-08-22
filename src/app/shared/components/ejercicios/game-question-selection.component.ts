@@ -16,11 +16,11 @@ interface Pregunta {
 }
 
 @Component({
-  selector: 'app-ejercicios',
-  templateUrl: './ejercicios.component.html',
-  styleUrls: ['./ejercicios.component.css']
+  selector: 'app-game-question-selection',
+  templateUrl: './game-question-selection.component.html',
+  styleUrls: ['./game-question-selection.component.css']
 })
-export class EjerciciosComponent {
+export class GameQuestionSelectionComponent {
   ejemplos: Ejemplo[] = [];
   loading = true;
   error = '';

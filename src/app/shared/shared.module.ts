@@ -15,7 +15,7 @@ import { CardTitleFormatPipe } from './pipes/card-title-format.pipe';
 import { ExtractTipoPipe } from './pipes/extract-tipo.pipe';
 import { TutorialComponent } from './components/tutorial/tutorial.component';
 import { PuzzleComponent } from './components/puzzle/puzzle.component';
-import { EjerciciosComponent } from './components/ejercicios/ejercicios.component';
+import { GameQuestionSelectionComponent } from './components/ejercicios/game-question-selection.component';
 
 
 
@@ -33,7 +33,7 @@ import { EjerciciosComponent } from './components/ejercicios/ejercicios.componen
     ExtractTipoPipe,
     TutorialComponent,
     PuzzleComponent,
-    EjerciciosComponent
+    GameQuestionSelectionComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +53,7 @@ import { EjerciciosComponent } from './components/ejercicios/ejercicios.componen
     CardTitleFormatPipe,
     TutorialComponent,
     PuzzleComponent,
-    EjerciciosComponent
+  GameQuestionSelectionComponent
   ]
 })
 export class SharedModule { }
