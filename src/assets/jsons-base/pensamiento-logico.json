@@ -1,0 +1,1355 @@
+{
+  "ejemplos": [
+    {
+      "id": 1,
+      "titulo": "Jorgito y el Clima",
+      "enunciado": "Jorgito es un programador principiante que debe decidir qué llevar cada día según el clima. Su objetivo es llegar seco y cómodo al trabajo, usando pensamiento lógico para combinar condiciones como lluvia, frío, calor y viento. En este juego, tú tomas las decisiones por él. Cada elección tiene consecuencias visuales y explicaciones claras sobre la lógica usada. ¡Acumula puntos y evita que Jorgito pase frío, calor o se moje!",
+      "preguntas": [
+        {
+          "pregunta": "Jorgito mira por la ventana y ve que está lloviendo a cántaros. ¿Qué debe hacer antes de salir al trabajo?",
+          "elecciones": ["Llevar paraguas", "Salir sin paraguas", "Llevar paraguas y botas de agua"],
+          "consecuencias": {
+            "Llevar paraguas": {
+              "resultado": "Jorgito llega seco a su trabajo.",
+              "feedback": "Animación: Jorgito camina feliz bajo la lluvia con su paraguas abierto. Mensaje: 'Usaste la premisa 'llueve' para tomar la acción correcta, como un condicional `if` bien aplicado.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Salir sin paraguas": {
+              "resultado": "Jorgito llega empapado y resfriado.",
+              "feedback": "Animación: Jorgito llega temblando y mojado. Mensaje: 'Ignoraste la condición principal ('llueve'), como un programa que no verifica entradas importantes.'",
+              "puntuacion": -5,
+              "siguiente_ronda": false,
+              "reiniciar": true
+            },
+            "Llevar paraguas y botas de agua": {
+              "resultado": "Jorgito llega seco, pero las botas eran innecesarias hoy.",
+              "feedback": "Animación: Jorgito camina con paraguas y botas, pero el suelo no está inundado. Mensaje: 'Tu lógica es correcta, pero sobrecargaste la solución. En programación, evita añadir condiciones innecesarias.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Al día siguiente, el cielo está despejado y hace sol. ¿Qué debe hacer Jorgito?",
+          "elecciones": ["Llevar paraguas por si acaso", "Salir sin paraguas", "Llevar gorra y bloqueador solar"],
+          "consecuencias": {
+            "Llevar paraguas por si acaso": {
+              "resultado": "Jorgito carga el paraguas todo el día sin usarlo.",
+              "feedback": "Animación: Jorgito suda bajo el sol, cargando el paraguas. Mensaje: 'Tu decisión es válida, pero no es óptima. En lógica, evita condiciones innecesarias.'",
+              "puntuacion": 0,
+              "siguiente_ronda": true
+            },
+            "Salir sin paraguas": {
+              "resultado": "Jorgito disfruta del día soleado sin cargar nada extra.",
+              "feedback": "Animación: Jorgito camina relajado bajo el sol. Mensaje: 'Reconociste la negación de la premisa ('no llueve') y actuaste en consecuencia.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Llevar gorra y bloqueador solar": {
+              "resultado": "Jorgito está fresco y protegido del sol.",
+              "feedback": "Animación: Jorgito sonríe con gorra y bloqueador. Mensaje: 'Consideraste una premisa adicional ('hace sol') y optimizaste tu acción.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Hoy está lloviendo y hace mucho frío. ¿Cómo debe prepararse Jorgito?",
+          "elecciones": ["Llevar solo paraguas", "Llevar paraguas y abrigo", "Salir sin nada"],
+          "consecuencias": {
+            "Llevar solo paraguas": {
+              "resultado": "Jorgito llega seco pero tiritando de frío.",
+              "feedback": "Animación: Jorgito bajo el paraguas, con frío. Mensaje: 'Falta considerar la premisa 'hace frío'. En programación, cubre todos los casos relevantes.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "Llevar paraguas y abrigo": {
+              "resultado": "Jorgito llega seco y abrigado.",
+              "feedback": "Animación: Jorgito camina cómodo con paraguas y bufanda. Mensaje: 'Usaste el operador 'Y' implícito: ambas condiciones se cumplen.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Salir sin nada": {
+              "resultado": "Jorgito llega empapado y congelado.",
+              "feedback": "Animación: Jorgito tose y tiembla. Mensaje: 'Ignorar premisas clave lleva a fallos graves.'",
+              "puntuacion": -10,
+              "siguiente_ronda": false,
+              "reiniciar": true
+            }
+          }
+        },
+        {
+          "pregunta": "El pronóstico dice: 'Posibilidad de lluvia y viento fuerte'. ¿Qué debe hacer Jorgito?",
+          "elecciones": ["Llevar paraguas normal", "Llevar paraguas resistente y abrigo", "No llevar paraguas"],
+          "consecuencias": {
+            "Llevar paraguas normal": {
+              "resultado": "El paraguas se voltea y Jorgito se moja.",
+              "feedback": "Animación: El paraguas vuela. Mensaje: 'No consideraste la premisa 'viento fuerte'.'",
+              "puntuacion": -5,
+              "siguiente_ronda": false,
+              "reiniciar": true
+            },
+            "Llevar paraguas resistente y abrigo": {
+              "resultado": "Jorgito llega seco y protegido.",
+              "feedback": "Animación: Jorgito camina firme con paraguas resistente. Mensaje: 'Combinaste múltiples premisas para una solución robusta.'",
+              "puntuacion": 20,
+              "siguiente_ronda": true
+            },
+            "No llevar paraguas": {
+              "resultado": "Jorgito llega empapado, pero sin perder el paraguas.",
+              "feedback": "Animación: Jorgito mojado, pero con abrigo. Mensaje: 'Evitaste un riesgo, pero no resolviste el problema principal.'",
+              "puntuacion": 0,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Hoy no llueve, pero hay neblina y frío. ¿Qué debe hacer?",
+          "elecciones": ["Llevar abrigo y gorra", "Llevar paraguas por la neblina", "Salir con ropa ligera"],
+          "consecuencias": {
+            "Llevar abrigo y gorra": {
+              "resultado": "Jorgito está abrigado y visible.",
+              "feedback": "Animación: Jorgito camina con abrigo y gorra. Mensaje: 'Adaptaste tu lógica a nuevas premisas.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Llevar paraguas por la neblina": {
+              "resultado": "El paraguas no sirve y Jorgito tropieza.",
+              "feedback": "Animación: Jorgito choca el paraguas. Mensaje: 'Herramienta incorrecta para la premisa.'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            },
+            "Salir con ropa ligera": {
+              "resultado": "Jorgito llega con frío y casi invisible.",
+              "feedback": "Animación: Jorgito tiembla y es invisible. Mensaje: 'Ignoraste premisas críticas.'",
+              "puntuacion": -10,
+              "siguiente_ronda": false,
+              "reiniciar": true
+            }
+          }
+        },
+        {
+          "pregunta": "Está soleado, pero lloverá por la tarde. ¿Qué debe hacer?",
+          "elecciones": ["Llevar paraguas plegable", "No llevar nada", "Llevar abrigo"],
+          "consecuencias": {
+            "Llevar paraguas plegable": {
+              "resultado": "Jorgito usa el paraguas en la tarde y llega seco.",
+              "feedback": "Animación: Jorgito abre el paraguas cuando llueve. Mensaje: 'Anticipaste cambios en las premisas.'",
+              "puntuacion": 20,
+              "siguiente_ronda": true
+            },
+            "No llevar nada": {
+              "resultado": "Jorgito se moja en la tarde.",
+              "feedback": "Animación: Jorgito corre bajo la lluvia. Mensaje: 'No planificaste para cambios en las condiciones.'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            },
+            "Llevar abrigo": {
+              "resultado": "Jorgito no necesita el abrigo, pero lo carga.",
+              "feedback": "Animación: Jorgito suda con el abrigo. Mensaje: 'Solución parcial. Prepárate para lo necesario.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Hace calor extremo. ¿Qué debe hacer?",
+          "elecciones": ["Llevar ropa ligera y agua", "Llevar paraguas para el sol", "Salir con abrigo"],
+          "consecuencias": {
+            "Llevar ropa ligera y agua": {
+              "resultado": "Jorgito llega fresco y hidratado.",
+              "feedback": "Animación: Jorgito bebe agua. Mensaje: 'Adaptaste tu lógica a la premisa 'calor extremo'.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Llevar paraguas para el sol": {
+              "resultado": "Jorgito usa el paraguas como sombrilla.",
+              "feedback": "Animación: Jorgito con paraguas abierto. Mensaje: 'Solución creativa.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Salir con abrigo": {
+              "resultado": "Jorgito llega agotado por el calor.",
+              "feedback": "Animación: Jorgito suda con el abrigo. Mensaje: 'Error de premisas: 'calor' y 'abrigo' son incompatibles.'",
+              "puntuacion": -10,
+              "siguiente_ronda": false,
+              "reiniciar": true
+            }
+          }
+        },
+        {
+          "pregunta": "Clima impredecible: sol, lluvia, viento y frío. ¿Cómo se prepara?",
+          "elecciones": ["Llevar paraguas resistente, abrigo, gorra y agua", "Decidir sobre la marcha", "Quedarse en casa"],
+          "consecuencias": {
+            "Llevar paraguas resistente, abrigo, gorra y agua": {
+              "resultado": "Jorgito está preparado para todo.",
+              "feedback": "Animación: Jorgito usa cada item según el momento. Mensaje: 'Manejaste múltiples premisas cambiantes.'",
+              "puntuacion": 30,
+              "final": true
+            },
+            "Decidir sobre la marcha": {
+              "resultado": "Jorgito llega mojado y con frío.",
+              "feedback": "Animación: Jorgito corre desordenado. Mensaje: 'La improvisación sin planificación es riesgosa.'",
+              "puntuacion": 0,
+              "final": true
+            },
+            "Quedarse en casa": {
+              "resultado": "Jorgito no va al trabajo.",
+              "feedback": "Animación: Jorgito en pijama. Mensaje: 'Evitar el problema no es una solución.'",
+              "puntuacion": -20,
+              "final": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Ana y el Desayuno",
+      "enunciado": "Ana debe decidir qué desayunar según lo que hay en la despensa. Combina los ingredientes disponibles para preparar el mejor desayuno posible. Usa pensamiento lógico para no desperdiciar comida y satisfacer su hambre.",
+      "preguntas": [
+        {
+          "pregunta": "Ana abre la despensa y ve pan, mermelada y huevos. ¿Qué debe preparar?",
+          "elecciones": ["Sándwich de mermelada", "Huevos revueltos con pan", "Solo pan tostado"],
+          "consecuencias": {
+            "Sándwich de mermelada": {
+              "resultado": "Ana disfruta su sándwich.",
+              "feedback": "Animación: Ana come un sándwich. Mensaje: 'Usaste los ingredientes disponibles de forma eficiente.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Huevos revueltos con pan": {
+              "resultado": "Ana come un desayuno proteico y completo.",
+              "feedback": "Animación: Ana sonríe con su plato. Mensaje: 'Combinaste dos premisas ('hay huevos' y 'hay pan') para una solución óptima.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Solo pan tostado": {
+              "resultado": "Ana se queda con hambre.",
+              "feedback": "Animación: Ana mira su plato con tristeza. Mensaje: 'No aprovechaste todos los recursos disponibles.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Ana encuentra fruta fresca y yogur. ¿Qué debe añadir a su desayuno?",
+          "elecciones": ["Añadir fruta y yogur al sándwich", "Comer la fruta y yogur aparte", "Ignorar la fruta y el yogur"],
+          "consecuencias": {
+            "Añadir fruta y yogur al sándwich": {
+              "resultado": "Ana tiene un desayuno balanceado.",
+              "feedback": "Animación: Ana come un plato colorido. Mensaje: 'Integraste nuevas premisas ('fruta' y 'yogur') a tu solución.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Comer la fruta y yogur aparte": {
+              "resultado": "Ana disfruta de ambos, pero por separado.",
+              "feedback": "Animación: Ana come fruta y yogur en bowls. Mensaje: 'Solución válida, pero menos integrada.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Ignorar la fruta y el yogur": {
+              "resultado": "Ana pierde nutrientes importantes.",
+              "feedback": "Animación: La fruta y el yogur se echan a perder. Mensaje: 'Ignorar premisas disponibles es un error lógico.'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Ana quiere café, pero solo hay té. ¿Qué debe hacer?",
+          "elecciones": ["Tomar té", "Buscar café en otro lugar", "No tomar nada"],
+          "consecuencias": {
+            "Tomar té": {
+              "resultado": "Ana disfruta su té y se adapta.",
+              "feedback": "Animación: Ana bebe té con una sonrisa. Mensaje: 'Reaccionaste a la premisa 'no hay café' con una alternativa válida.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Buscar café en otro lugar": {
+              "resultado": "Ana pierde tiempo y llega tarde.",
+              "feedback": "Animación: Ana corre buscando café. Mensaje: 'A veces, aceptar las premisas disponibles es la mejor opción.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "No tomar nada": {
+              "resultado": "Ana tiene sed y mal humor.",
+              "feedback": "Animación: Ana frunce el ceño. Mensaje: 'No resolver una necesidad es como un programa con un caso no manejado.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Ana ve que el pan está duro. ¿Qué debe hacer?",
+          "elecciones": ["Hacer tostadas", "Tirar el pan y comer solo huevos", "Ignorar el problema"],
+          "consecuencias": {
+            "Hacer tostadas": {
+              "resultado": "Ana convierte el pan duro en algo delicioso.",
+              "feedback": "Animación: Ana come tostadas crujientes. Mensaje: 'Transformaste una premisa negativa ('pan duro') en una solución positiva.'",
+              "puntuacion": 20,
+              "siguiente_ronda": true
+            },
+            "Tirar el pan y comer solo huevos": {
+              "resultado": "Ana desperdicia comida.",
+              "feedback": "Animación: El pan va a la basura. Mensaje: 'Desperdiciar recursos es como código ineficiente.'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            },
+            "Ignorar el problema": {
+              "resultado": "Ana se atraganta con el pan duro.",
+              "feedback": "Animación: Ana tose. Mensaje: 'Ignorar problemas no los resuelve.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Ana tiene hambre pero solo hay atún y galletas. ¿Qué debe hacer?",
+          "elecciones": ["Preparar atún con galletas", "Comer solo galletas", "No comer nada"],
+          "consecuencias": {
+            "Preparar atún con galletas": {
+              "resultado": "Ana improvisa un desayuno salado.",
+              "feedback": "Animación: Ana come atún con galletas. Mensaje: 'Usaste la creatividad para combinar premisas disponibles.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Comer solo galletas": {
+              "resultado": "Ana se queda con hambre.",
+              "feedback": "Animación: Ana mira su plato con hambre. Mensaje: 'No aprovechaste todos los recursos.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "No comer nada": {
+              "resultado": "Ana se desmaya de hambre.",
+              "feedback": "Animación: Ana se maree. Mensaje: 'No actuar ante premisas claras es un error crítico.'",
+              "puntuacion": -20,
+              "siguiente_ronda": false,
+              "reiniciar": true
+            }
+          }
+        },
+        {
+          "pregunta": "Ana encuentra chocolate y plátanos. ¿Cómo puede mejorar su desayuno?",
+          "elecciones": ["Hacer un batido de plátano y chocolate", "Comerlos por separado", "Guardarlos para después"],
+          "consecuencias": {
+            "Hacer un batido de plátano y chocolate": {
+              "resultado": "Ana disfruta de un desayuno delicioso y energético.",
+              "feedback": "Animación: Ana bebe un batido con felicidad. Mensaje: 'Combinaste premisas para crear algo nuevo y mejor.'",
+              "puntuacion": 20,
+              "siguiente_ronda": true
+            },
+            "Comerlos por separado": {
+              "resultado": "Ana come ambos, pero sin sinergia.",
+              "feedback": "Animación: Ana come plátano y chocolate. Mensaje: 'Solución válida, pero menos innovadora.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Guardarlos para después": {
+              "resultado": "Ana se queda con hambre ahora.",
+              "feedback": "Animación: Ana guarda la comida. Mensaje: 'Posponer soluciones puede ser útil, pero no siempre.'",
+              "puntuacion": 0,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Ana tiene prisa y solo 5 minutos para desayunar. ¿Qué debe hacer?",
+          "elecciones": ["Comer una fruta y un yogur rápido", "Preparar huevos revueltos", "Saltarse el desayuno"],
+          "consecuencias": {
+            "Comer una fruta y un yogur rápido": {
+              "resultado": "Ana desayuna rápido y nutritivo.",
+              "feedback": "Animación: Ana come mientras corre. Mensaje: 'Optimizaste tu tiempo considerando la premisa 'prisa'.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Preparar huevos revueltos": {
+              "resultado": "Ana llega tarde al trabajo.",
+              "feedback": "Animación: Ana mira el reloj con estrés. Mensaje: 'No adaptaste tu solución al contexto temporal.'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            },
+            "Saltarse el desayuno": {
+              "resultado": "Ana tiene baja energía todo el día.",
+              "feedback": "Animación: Ana se arrastra cansada. Mensaje: 'Ignorar necesidades básicas es como un programa sin manejo de errores.'",
+              "puntuacion": -15,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Ana tiene todos los ingredientes: pan, huevos, fruta, yogur, café y té. ¿Qué desayuno ideal prepara?",
+          "elecciones": ["Un desayuno completo con todo", "Solo café y tostadas", "Comer cualquier cosa rápido"],
+          "consecuencias": {
+            "Un desayuno completo con todo": {
+              "resultado": "Ana tiene el mejor desayuno posible.",
+              "feedback": "Animación: Ana sonríe con un plato lleno. Mensaje: 'Integraste todas las premisas disponibles para una solución óptima.'",
+              "puntuacion": 30,
+              "final": true
+            },
+            "Solo café y tostadas": {
+              "resultado": "Ana desperdicia ingredientes.",
+              "feedback": "Animación: Los ingredientes se echan a perder. Mensaje: 'No aprovechar recursos es ineficiente.'",
+              "puntuacion": 5,
+              "final": true
+            },
+            "Comer cualquier cosa rápido": {
+              "resultado": "Ana come mal y se arrepiente.",
+              "feedback": "Animación: Ana mira su plato con decepción. Mensaje: 'La prisa no justifica malas decisiones lógicas.'",
+              "puntuacion": -10,
+              "final": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "El Semáforo Inteligente",
+      "enunciado": "Programa un semáforo inteligente que reaccione a carros, peatones y bicicletas. Tu objetivo es evitar accidentes y optimizar el tráfico. Usa condiciones lógicas para decidir cuándo cambiar las luces.",
+      "preguntas": [
+        {
+          "pregunta": "Hay carros esperando en la avenida principal y peatones en la esquina. ¿Qué debe hacer el semáforo?",
+          "elecciones": ["Dar paso a los carros", "Dar paso a los peatones", "Alternar rápidamente"],
+          "consecuencias": {
+            "Dar paso a los carros": {
+              "resultado": "Los carros avanzan, pero los peatones esperan.",
+              "feedback": "Animación: Carros pasan, peatones esperan. Mensaje: 'Priorizaste una premisa ('carros esperando') sobre otra.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "Dar paso a los peatones": {
+              "resultado": "Los peatones cruzan seguros, pero los carros esperan.",
+              "feedback": "Animación: Peatones cruzan, carros frenan. Mensaje: 'Priorizaste la seguridad peatonal, una premisa crítica.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Alternar rápidamente": {
+              "resultado": "Confusión y casi accidentes.",
+              "feedback": "Animación: Carros y peatones se detienen bruscamente. Mensaje: 'Cambios abruptos sin lógica clara generan caos.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Es de noche y no hay tráfico ni peatones. ¿Qué debe hacer el semáforo?",
+          "elecciones": ["Mantener el ciclo normal", "Poner luz amarilla intermitente", "Apagarse"],
+          "consecuencias": {
+            "Mantener el ciclo normal": {
+              "resultado": "El semáforo funciona innecesariamente.",
+              "feedback": "Animación: Luces cambiando sin nadie. Mensaje: 'No optimizaste para la premisa 'no hay tráfico'.'",
+              "puntuacion": 0,
+              "siguiente_ronda": true
+            },
+            "Poner luz amarilla intermitente": {
+              "resultado": "Ahorro de energía y seguridad.",
+              "feedback": "Animación: Luz amarilla parpadeando. Mensaje: 'Adaptaste la lógica a un contexto de bajas premisas.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Apagarse": {
+              "resultado": "Pelgroso: los pocos carros no saben qué hacer.",
+              "feedback": "Animación: Carros avanzan sin control. Mensaje: 'Ignorar la necesidad de señalización es un error.'",
+              "puntuacion": -15,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Hay una ambulancia acercándose con sirena encendida. ¿Qué debe hacer el semáforo?",
+          "elecciones": ["Poner todas las luces en rojo y dar paso a la ambulancia", "Ignorar la ambulancia", "Cambiar a verde para la ambulancia"],
+          "consecuencias": {
+            "Poner todas las luces en rojo y dar paso a la ambulancia": {
+              "resultado": "La ambulancia pasa rápida y segura.",
+              "feedback": "Animación: Ambulancia pasa mientras todos se detienen. Mensaje: 'Priorizaste una premisa de emergencia correctamente.'",
+              "puntuacion": 20,
+              "siguiente_ronda": true
+            },
+            "Ignorar la ambulancia": {
+              "resultado": "La ambulancia se queda atrapada en el tráfico.",
+              "feedback": "Animación: Ambulancia espera con sirena. Mensaje: 'Ignorar premisas de emergencia tiene consecuencias graves.'",
+              "puntuacion": -20,
+              "siguiente_ronda": true
+            },
+            "Cambiar a verde para la ambulancia": {
+              "resultado": "La ambulancia avanza, pero otros carros cruzan su camino.",
+              "feedback": "Animación: Carros chocan casi con la ambulancia. Mensaje: 'Solución parcial; falta coordinación.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Hay bicicletas y peatones esperando, pero no carros. ¿Qué debe hacer el semáforo?",
+          "elecciones": ["Dar paso a peatones y bicicletas", "Dar paso solo a peatones", "Mantener el ciclo normal"],
+          "consecuencias": {
+            "Dar paso a peatones y bicicletas": {
+              "resultado": "Todos cruzan seguros y rápidos.",
+              "feedback": "Animación: Peatones y bicicletas avanzan. Mensaje: 'Integraste dos premisas ('peatones' y 'bicicletas') para una solución eficiente.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Dar paso solo a peatones": {
+              "resultado": "Las bicicletas esperan innecesariamente.",
+              "feedback": "Animación: Bicicletas frenan. Mensaje: 'No consideraste todas las premisas relevantes.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "Mantener el ciclo normal": {
+              "resultado": "Bicicletas y peatones esperan sin motivo.",
+              "feedback": "Animación: Todos esperan. Mensaje: 'No adaptaste la lógica al contexto actual.'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "El semáforo detecta un accidente en la intersección. ¿Qué debe hacer?",
+          "elecciones": ["Poner todas las luces en rojo", "Mantener el ciclo normal", "Apagarse"],
+          "consecuencias": {
+            "Poner todas las luces en rojo": {
+              "resultado": "Todos se detienen y el accidente no empeora.",
+              "feedback": "Animación: Carros y peatones frenan. Mensaje: 'Reaccionaste a una premisa crítica ('accidente') con una solución segura.'",
+              "puntuacion": 20,
+              "siguiente_ronda": true
+            },
+            "Mantener el ciclo normal": {
+              "resultado": "Más carros chocan en el accidente.",
+              "feedback": "Animación: Choque múltiple. Mensaje: 'Ignorar premisas de seguridad es un error grave.'",
+              "puntuacion": -20,
+              "siguiente_ronda": true
+            },
+            "Apagarse": {
+              "resultado": "Caos total en la intersección.",
+              "feedback": "Animación: Carros chocan. Mensaje: 'La falta de señalización en emergencias es peligrosa.'",
+              "puntuacion": -25,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Hay mucho tráfico en todas direcciones. ¿Cómo optimizar el semáforo?",
+          "elecciones": ["Aumentar el tiempo de cada luz", "Alternar más rápido", "Dar prioridad a la avenida principal"],
+          "consecuencias": {
+            "Aumentar el tiempo de cada luz": {
+              "resultado": "El tráfico fluye mejor, pero los peatones esperan más.",
+              "feedback": "Animación: Carros avanzan lentos pero seguros. Mensaje: 'Equilibraste múltiples premisas ('tráfico' y 'seguridad').'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Alternar más rápido": {
+              "resultado": "Confusión y casi accidentes.",
+              "feedback": "Animación: Carros frenan bruscamente. Mensaje: 'Cambios rápidos sin lógica generan ineficiencia.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            },
+            "Dar prioridad a la avenida principal": {
+              "resultado": "La avenida principal fluye, pero las otras se congestionan.",
+              "feedback": "Animación: Una calle vacía, otras llenas. Mensaje: 'Priorizaste una premisa sobre otras sin balance.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "El semáforo detecta que un peatón con discapacidad visual está esperando. ¿Qué debe hacer?",
+          "elecciones": ["Activar señal sonora para peatones", "Mantener el ciclo normal", "Dar paso solo a carros"],
+          "consecuencias": {
+            "Activar señal sonora para peatones": {
+              "resultado": "El peatón cruza seguro.",
+              "feedback": "Animación: Peatón cruza con confianza. Mensaje: 'Adaptaste la lógica a una premisa de accesibilidad.'",
+              "puntuacion": 20,
+              "siguiente_ronda": true
+            },
+            "Mantener el ciclo normal": {
+              "resultado": "El peatón no cruza y se frustra.",
+              "feedback": "Animación: Peatón espera con bastón. Mensaje: 'No consideraste una premisa de inclusión.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            },
+            "Dar paso solo a carros": {
+              "resultado": "El peatón no puede cruzar.",
+              "feedback": "Animación: Peatón se queda en la acera. Mensaje: 'Ignorar necesidades específicas es un error lógico y ético.'",
+              "puntuacion": -15,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Es hora pico: tráfico intenso, peatones y bicicletas. ¿Cómo manejar el semáforo?",
+          "elecciones": ["Usar un algoritmo adaptativo que priorice según la demanda", "Mantener tiempos fijos", "Dar paso solo a carros"],
+          "consecuencias": {
+            "Usar un algoritmo adaptativo que priorice según la demanda": {
+              "resultado": "El tráfico fluye de manera óptima para todos.",
+              "feedback": "Animación: Todos avanzan en armonía. Mensaje: 'Integraste múltiples premisas dinámicas para una solución inteligente.'",
+              "puntuacion": 30,
+              "final": true
+            },
+            "Mantener tiempos fijos": {
+              "resultado": "Congestión en todas direcciones.",
+              "feedback": "Animación: Todos esperan frustrados. Mensaje: 'No adaptarte a premisas cambiantes genera ineficiencia.'",
+              "puntuacion": 0,
+              "final": true
+            },
+            "Dar paso solo a carros": {
+              "resultado": "Peatones y bicicletas se acumulan peligrosamente.",
+              "feedback": "Animación: Peatones y bicicletas amontonados. Mensaje: 'Priorizar una premisa sobre todas las demás es injusto y peligroso.'",
+              "puntuacion": -20,
+              "final": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "El Detective de las Premisas",
+      "enunciado": "Eres un detective resolviendo un misterio. Combina las pistas (premisas) para encontrar al culpable. Cada pista es una condición lógica que te acerca o aleja de la solución. ¡Usa tu pensamiento lógico para resolver el caso!",
+      "preguntas": [
+        {
+          "pregunta": "Encuentras huellas grandes y un sombrero de copa en la escena del crimen. ¿Qué puedes deducir?",
+          "elecciones": ["El culpable es alto y elegante", "El culpable es bajo y desaliñado", "No hay suficiente información"],
+          "consecuencias": {
+            "El culpable es alto y elegante": {
+              "resultado": "Primera deducción correcta.",
+              "feedback": "Animación: Silueta de un hombre alto con sombrero. Mensaje: 'Combinaste dos premisas ('huellas grandes' y 'sombrero de copa') para una conclusión lógica.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "El culpable es bajo y desaliñado": {
+              "resultado": "Conclusión incorrecta.",
+              "feedback": "Animación: Silueta de un hombre bajo. Mensaje: 'Tus premisas no apoyan esta conclusión. Revisa la lógica.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            },
+            "No hay suficiente información": {
+              "resultado": "Pierdes tiempo sin avanzar.",
+              "feedback": "Animación: Reloj girando. Mensaje: 'Aunque es prudente, en lógica debes trabajar con las premisas disponibles.'",
+              "puntuacion": 0,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Un testigo dice que vio a un hombre con bigote y bastón. ¿Cómo afecta esto a tu deducción?",
+          "elecciones": ["El culpable es alto, elegante, con bigote y bastón", "El testigo miente", "El bigote y el bastón son irrelevantes"],
+          "consecuencias": {
+            "El culpable es alto, elegante, con bigote y bastón": {
+              "resultado": "Añades detalles importantes a tu perfil.",
+              "feedback": "Animación: Silueta con bigote y bastón. Mensaje: 'Integraste una nueva premisa ('testigo') a tu conclusión.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "El testigo miente": {
+              "resultado": "Pierdes una pista valiosa.",
+              "feedback": "Animación: Testigo se encoge de hombros. Mensaje: 'Descartar premisas sin evidencia es un error lógico.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            },
+            "El bigote y el bastón son irrelevantes": {
+              "resultado": "Ignoras información útil.",
+              "feedback": "Animación: Pistas se desvanecen. Mensaje: 'Todas las premisas son relevantes hasta que se demuestre lo contrario.'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Encuentras un perfume caro en la escena. ¿Qué deduces?",
+          "elecciones": ["El culpable es una mujer elegante", "El culpable es un hombre que usa perfume", "El perfume es una pista falsa"],
+          "consecuencias": {
+            "El culpable es una mujer elegante": {
+              "resultado": "Nueva hipótesis, pero no necesariamente correcta.",
+              "feedback": "Animación: Silueta de una mujer. Mensaje: 'Añadiste una premisa, pero cuidado con los estereotipos.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "El culpable es un hombre que usa perfume": {
+              "resultado": "Conclusión más neutral y lógica.",
+              "feedback": "Animación: Silueta de hombre con perfume. Mensaje: 'Evitaste sesgos y trabajaste con la premisa disponible.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "El perfume es una pista falsa": {
+              "resultado": "Ignoras una premisa potencialmente útil.",
+              "feedback": "Animación: Perfume se evapora. Mensaje: 'Descartar premisas sin análisis es riesgoso.'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "El informe forense dice que el culpable tiene alergia a los gatos. En la escena hay pelo de gato. ¿Qué significa?",
+          "elecciones": ["El culpable no pudo estar aquí", "El culpable estuvo aquí a pesar de su alergia", "El pelo de gato es irrelevante"],
+          "consecuencias": {
+            "El culpable no pudo estar aquí": {
+              "resultado": "Descarta sospechosos con alergia.",
+              "feedback": "Animación: Lista de sospechosos se reduce. Mensaje: 'Usaste la premisa 'alergia' para filtrar posibilidades.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "El culpable estuvo aquí a pesar de su alergia": {
+              "resultado": "Conclusión posible, pero menos probable.",
+              "feedback": "Animación: Silueta estornudando. Mensaje: 'Forzaste una premisa. En lógica, busca la explicación más simple.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "El pelo de gato es irrelevante": {
+              "resultado": "Pierdes una pista clave.",
+              "feedback": "Animación: Pelo de gato brilla. Mensaje: 'Nunca ignores premisas sin analizar su impacto.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Un sospechoso tiene huellas grandes, usa sombrero de copa, pero no tiene bigote ni bastón. ¿Es el culpable?",
+          "elecciones": ["Sí, las premisas principales coinciden", "No, faltan detalles importantes", "Necesito más información"],
+          "consecuencias": {
+            "Sí, las premisas principales coinciden": {
+              "resultado": "Arrestas al sospechoso, pero luego descubres que no es él.",
+              "feedback": "Animación: Sospechoso inocente en prisión. Mensaje: 'Confiaste demasiado en premisas parciales. En lógica, verifica todo.'",
+              "puntuacion": -15,
+              "siguiente_ronda": true
+            },
+            "No, faltan detalles importantes": {
+              "resultado": "Evitas un error y sigues investigando.",
+              "feedback": "Animación: Detectives siguen buscando. Mensaje: 'Reconociste que no todas las premisas coinciden. ¡Buen pensamiento crítico!'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Necesito más información": {
+              "resultado": "Decisión prudente, pero el tiempo apremia.",
+              "feedback": "Animación: Reloj girando rápido. Mensaje: 'En lógica, a veces hay que actuar con la información disponible.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Encuentras una carta firmada por el mayordomo confesando el crimen. ¿Qué haces?",
+          "elecciones": ["Arrestar al mayordomo", "Verificar la autenticidad de la carta", "Ignorar la carta"],
+          "consecuencias": {
+            "Arrestar al mayordomo": {
+              "resultado": "Cierras el caso, pero luego descubres que la carta era falsa.",
+              "feedback": "Animación: Mayordomo inocente llorando. Mensaje: 'Aceptaste una premisa sin validarla. ¡Error crítico!'",
+              "puntuacion": -20,
+              "siguiente_ronda": true
+            },
+            "Verificar la autenticidad de la carta": {
+              "resultado": "Descubres que la carta es falsa y sigues investigando.",
+              "feedback": "Animación: Carta se quema revelando trampa. Mensaje: 'Validar premisas es esencial en el pensamiento lógico.'",
+              "puntuacion": 20,
+              "siguiente_ronda": true
+            },
+            "Ignorar la carta": {
+              "resultado": "Pierdes una pista, aunque sea falsa.",
+              "feedback": "Animación: Carta se desvanece. Mensaje: 'Incluso las premisas falsas pueden llevar a pistas útiles.'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Todas las pistas apuntan a la condesa, pero ella tiene una coartada sólida. ¿Qué concluyes?",
+          "elecciones": ["La condesa es culpable y su coartada es falsa", "Alguien más está involucrado", "El caso no tiene solución"],
+          "consecuencias": {
+            "La condesa es culpable y su coartada es falsa": {
+              "resultado": "Insistes en una teoría sin pruebas.",
+              "feedback": "Animación: Condesa inocente. Mensaje: 'Forzar una conclusión sin evidencia es un error lógico.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            },
+            "Alguien más está involucrado": {
+              "resultado": "Reevalúas las premisas y encuentras nuevas pistas.",
+              "feedback": "Animación: Nueva silueta aparece. Mensaje: 'Reconociste que las premisas pueden apuntar a soluciones no obvias.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "El caso no tiene solución": {
+              "resultado": "Abandonas la investigación.",
+              "feedback": "Animación: Caso archivado. Mensaje: 'En lógica, siempre hay una solución si analizas bien las premisas.'",
+              "puntuacion": -15,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Final: Todas las pistas apuntan al jardinero, quien tiene motivos, oportunidades y coincide con todas las premisas. ¿Qué haces?",
+          "elecciones": ["Arrestar al jardinero", "Buscar una última pista por si acaso", "Dejar el caso en manos de otro detective"],
+          "consecuencias": {
+            "Arrestar al jardinero": {
+              "resultado": "¡Caso resuelto! El jardinero confiesa.",
+              "feedback": "Animación: Jardinero entre rejas. Mensaje: 'Integraste todas las premisas para una conclusión lógica y correcta.'",
+              "puntuacion": 30,
+              "final": true
+            },
+            "Buscar una última pista por si acaso": {
+              "resultado": "Pierdes tiempo, pero confirmas la culpabilidad del jardinero.",
+              "feedback": "Animación: Detectives celebran. Mensaje: 'La prudencia es buena, pero a veces la lógica ya tiene la respuesta.'",
+              "puntuacion": 20,
+              "final": true
+            },
+            "Dejar el caso en manos de otro detective": {
+              "resultado": "El caso se resuelve, pero no gracias a ti.",
+              "feedback": "Animación: Otro detective recibe el crédito. Mensaje: 'Confiar en otros sin agotar tu análisis es perder una oportunidad de aprendizaje.'",
+              "puntuacion": 0,
+              "final": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "titulo": "La Máquina de Café",
+      "enunciado": "Programa una máquina de café para servir bebidas según los ingredientes disponibles. Usa condiciones lógicas para asegurarte de que los usuarios siempre reciban lo que piden, o una alternativa si algo falta.",
+      "preguntas": [
+        {
+          "pregunta": "Un usuario pide un café con leche. La máquina tiene café y leche. ¿Qué debe hacer?",
+          "elecciones": ["Servir café con leche", "Servir solo café", "Decir que no hay ingredientes"],
+          "consecuencias": {
+            "Servir café con leche": {
+              "resultado": "Usuario feliz con su café con leche.",
+              "feedback": "Animación: Café con leche siendo servido. Mensaje: 'Cumpliste con las premisas disponibles ('hay café' y 'hay leche').'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Servir solo café": {
+              "resultado": "Usuario confundido, pero toma el café.",
+              "feedback": "Animación: Café negro siendo servido. Mensaje: 'No aprovechaste todos los recursos ('hay leche').'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "Decir que no hay ingredientes": {
+              "resultado": "Usuario frustrado.",
+              "feedback": "Animación: Usuario se va molesto. Mensaje: 'Ignoraste premisas disponibles. Error lógico.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Un usuario pide un capuchino, pero no hay leche. ¿Qué debe hacer la máquina?",
+          "elecciones": ["Servir café negro", "Decir que no hay leche", "Servir té como alternativa"],
+          "consecuencias": {
+            "Servir café negro": {
+              "resultado": "Usuario acepta el café, pero prefiere capuchino.",
+              "feedback": "Animación: Café negro servido. Mensaje: 'Adaptaste la solución a las premisas disponibles ('no hay leche').'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "Decir que no hay leche": {
+              "resultado": "Usuario elige otra opción.",
+              "feedback": "Animación: Usuario piensa. Mensaje: 'Informar sobre premisas faltantes es útil, pero podrías ofrecer alternativas.'",
+              "puntuacion": 0,
+              "siguiente_ronda": true
+            },
+            "Servir té como alternativa": {
+              "resultado": "Usuario agradecido por la alternativa.",
+              "feedback": "Animación: Té siendo servido. Mensaje: 'Ofreciste una solución creativa ante una premisa faltante.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Un usuario pide un chocolate caliente. La máquina tiene chocolate y leche, pero no café. ¿Qué debe hacer?",
+          "elecciones": ["Servir chocolate caliente", "Servir café negro", "Decir que no hay café"],
+          "consecuencias": {
+            "Servir chocolate caliente": {
+              "resultado": "Usuario feliz con su chocolate.",
+              "feedback": "Animación: Chocolate caliente servido. Mensaje: 'Usaste las premisas disponibles ('hay chocolate' y 'hay leche') para cumplir el pedido.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Servir café negro": {
+              "resultado": "Usuario rechaza el café.",
+              "feedback": "Animación: Usuario hace gesto de no. Mensaje: 'No cumpliste con la premisa principal ('pide chocolate').'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            },
+            "Decir que no hay café": {
+              "resultado": "Usuario se confunde.",
+              "feedback": "Animación: Usuario mira la máquina. Mensaje: 'Información irrelevante. Enfócate en lo que sí hay.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Un usuario pide un té, pero la máquina no tiene té. ¿Qué debe hacer?",
+          "elecciones": ["Servir café negro", "Servir agua caliente con limón", "Decir que no hay té"],
+          "consecuencias": {
+            "Servir café negro": {
+              "resultado": "Usuario acepta, pero prefiere té.",
+              "feedback": "Animación: Café servido. Mensaje: 'Solución parcial. Podrías buscar alternativas más cercanas.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "Servir agua caliente con limón": {
+              "resultado": "Usuario agradecido por la alternativa.",
+              "feedback": "Animación: Agua con limón servida. Mensaje: 'Usaste recursos disponibles para ofrecer una alternativa lógica.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Decir que no hay té": {
+              "resultado": "Usuario se va molesto.",
+              "feedback": "Animación: Usuario se aleja. Mensaje: 'No ofrecer alternativas es un error de servicio y lógica.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "La máquina tiene café, leche y azúcar, pero un usuario pide un café sin azúcar. ¿Qué debe hacer?",
+          "elecciones": ["Servir café con leche sin azúcar", "Servir café con leche y azúcar", "Preguntar si está seguro"],
+          "consecuencias": {
+            "Servir café con leche sin azúcar": {
+              "resultado": "Usuario feliz con su café exacto.",
+              "feedback": "Animación: Café sin azúcar servido. Mensaje: 'Cumpliste con la premisa específica ('sin azúcar').'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Servir café con leche y azúcar": {
+              "resultado": "Usuario devuelve el café.",
+              "feedback": "Animación: Usuario hace gesto de no. Mensaje: 'Ignoraste una premisa clave ('sin azúcar').'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            },
+            "Preguntar si está seguro": {
+              "resultado": "Usuario se molesta por la demora.",
+              "feedback": "Animación: Usuario impaciente. Mensaje: 'Cuestionar premisas claras puede ser contraproducente.'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Un usuario pide un café con leche desnatada, pero solo hay leche entera. ¿Qué debe hacer la máquina?",
+          "elecciones": ["Servir café con leche entera", "Servir café negro", "Explicar que no hay leche desnatada"],
+          "consecuencias": {
+            "Servir café con leche entera": {
+              "resultado": "Usuario acepta el café, pero prefiere desnatada.",
+              "feedback": "Animación: Café con leche entera servido. Mensaje: 'Adaptaste la solución a las premisas disponibles ('leche entera').'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "Servir café negro": {
+              "resultado": "Usuario rechaza el café.",
+              "feedback": "Animación: Usuario hace gesto de no. Mensaje: 'No aprovechaste los recursos disponibles ('leche entera').'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            },
+            "Explicar que no hay leche desnatada": {
+              "resultado": "Usuario elige otra opción.",
+              "feedback": "Animación: Usuario piensa. Mensaje: 'Informar es útil, pero ofrecer alternativas es mejor.'",
+              "puntuacion": 0,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "La máquina está casi vacía: solo hay agua caliente y azúcar. Un usuario pide café. ¿Qué debe hacer?",
+          "elecciones": ["Servir agua caliente con azúcar", "Decir que no hay café", "Intentar servir café igual"],
+          "consecuencias": {
+            "Servir agua caliente con azúcar": {
+              "resultado": "Usuario acepta la alternativa.",
+              "feedback": "Animación: Agua con azúcar servida. Mensaje: 'Ofreciste una solución creativa ante premisas limitadas.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Decir que no hay café": {
+              "resultado": "Usuario se va molesto.",
+              "feedback": "Animación: Usuario se aleja. Mensaje: 'No ofrecer alternativas es un error.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            },
+            "Intentar servir café igual": {
+              "resultado": "La máquina se atasca.",
+              "feedback": "Animación: Máquina hace ruido. Mensaje: 'Forzar una solución sin premisas es un error lógico y técnico.'",
+              "puntuacion": -15,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "La máquina tiene todos los ingredientes y un usuario pide un café moca (café, chocolate y leche). ¿Qué debe hacer?",
+          "elecciones": ["Servir café moca", "Servir café con leche", "Servir chocolate caliente"],
+          "consecuencias": {
+            "Servir café moca": {
+              "resultado": "Usuario extasiado con su bebida.",
+              "feedback": "Animación: Café moca servido. Mensaje: 'Integraste todas las premisas disponibles para una solución perfecta.'",
+              "puntuacion": 20,
+              "final": true
+            },
+            "Servir café con leche": {
+              "resultado": "Usuario acepta, pero extraña el chocolate.",
+              "feedback": "Animación: Café con leche servido. Mensaje: 'No aprovechaste todas las premisas disponibles ('hay chocolate').'",
+              "puntuacion": 5,
+              "final": true
+            },
+            "Servir chocolate caliente": {
+              "resultado": "Usuario acepta, pero extraña el café.",
+              "feedback": "Animación: Chocolate caliente servido. Mensaje: 'Priorizaste una premisa sobre otra sin necesidad.'",
+              "puntuacion": 5,
+              "final": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "titulo": "El Robot Recolector",
+      "enunciado": "Programa un robot para recolectar frutas en un huerto. El robot debe identificar frutas maduras, evitar obstáculos y optimizar su batería. Usa bucles y condiciones para completar la tarea eficientemente.",
+      "preguntas": [
+        {
+          "pregunta": "El robot ve una manzana madura en el árbol. ¿Qué debe hacer?",
+          "elecciones": ["Recoger la manzana", "Ignorar la manzana", "Verificar si hay obstáculos"],
+          "consecuencias": {
+            "Recoger la manzana": {
+              "resultado": "Manzana recolectada. 1/10.",
+              "feedback": "Animación: Robot recoge manzana. Mensaje: 'Cumpliste con la premisa 'fruta madura'.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Ignorar la manzana": {
+              "resultado": "Manzana se pudre en el árbol.",
+              "feedback": "Animación: Manzana se cae podrida. Mensaje: 'Ignorar premisas claras es un error lógico.'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            },
+            "Verificar si hay obstáculos": {
+              "resultado": "El robot pierde tiempo, pero evita riesgos.",
+              "feedback": "Animación: Robot escanea el área. Mensaje: 'La prudencia es buena, pero no debes ignorar la premisa principal.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "El robot detecta una rama caída en el camino hacia otra manzana madura. ¿Qué debe hacer?",
+          "elecciones": ["Saltar la rama", "Rodear la rama", "Intentar pasar por encima"],
+          "consecuencias": {
+            "Saltar la rama": {
+              "resultado": "El robot salta con éxito y recoge la manzana.",
+              "feedback": "Animación: Robot salta y recoge manzana. Mensaje: 'Superaste un obstáculo usando una acción alternativa.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Rodear la rama": {
+              "resultado": "El robot tarda más, pero llega seguro.",
+              "feedback": "Animación: Robot da la vuelta. Mensaje: 'Solución segura, pero menos eficiente.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Intentar pasar por encima": {
+              "resultado": "El robot se cae y daña una manzana.",
+              "feedback": "Animación: Robot tropieza. Mensaje: 'Ignorar obstáculos lleva a errores.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "La batería del robot está al 20%. Hay 3 manzanas maduras lejos. ¿Qué debe hacer?",
+          "elecciones": ["Recoger las 3 manzanas y riesgo de quedarse sin batería", "Recoger solo 1 manzana cercana y recargar", "Ignorar las manzanas y recargar"],
+          "consecuencias": {
+            "Recoger las 3 manzanas y riesgo de quedarse sin batería": {
+              "resultado": "El robot recoge 2 manzanas y se apaga.",
+              "feedback": "Animación: Robot se detiene. Mensaje: 'Ambitioso, pero no optimizaste la premisa 'batería baja'.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "Recoger solo 1 manzana cercana y recargar": {
+              "resultado": "El robot recoge 1 manzana y se recarga.",
+              "feedback": "Animación: Robot recarga. Mensaje: 'Priorizaste la premisa 'batería baja' sobre la ambición.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Ignorar las manzanas y recargar": {
+              "resultado": "El robot se recarga, pero pierde tiempo.",
+              "feedback": "Animación: Robot en la base. Mensaje: 'Seguro, pero no productivo.'",
+              "puntuacion": 0,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "El robot ve una manzana podrida y una madura juntas. ¿Qué debe hacer?",
+          "elecciones": ["Recoger solo la manzana madura", "Recoger ambas", "Ignorar ambas"],
+          "consecuencias": {
+            "Recoger solo la manzana madura": {
+              "resultado": "Manzana madura recolectada.",
+              "feedback": "Animación: Robot recoge manzana madura. Mensaje: 'Filtraste la premisa relevante ('madura').'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Recoger ambas": {
+              "resultado": "El robot contamina la manzana buena con la podrida.",
+              "feedback": "Animación: Manzanas mezcladas. Mensaje: 'No distinguiste entre premisas útiles y dañinas.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            },
+            "Ignorar ambas": {
+              "resultado": "Pierde dos manzanas.",
+              "feedback": "Animación: Manzanas en el árbol. Mensaje: 'Ignorar oportunidades es ineficiente.'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "El robot tiene la canasta llena, pero ve otra manzana madura. ¿Qué debe hacer?",
+          "elecciones": ["Dejar la manzana y volver a la base", "Intentar llevar una manzana extra", "Comer la manzana para hacer espacio"],
+          "consecuencias": {
+            "Dejar la manzana y volver a la base": {
+              "resultado": "El robot entrega las manzanas recolectadas.",
+              "feedback": "Animación: Robot entrega canasta. Mensaje: 'Reconociste la limitación de capacidad.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Intentar llevar una manzana extra": {
+              "resultado": "El robot derrama manzanas.",
+              "feedback": "Animación: Manzanas en el suelo. Mensaje: 'Forzar capacidades lleva a errores.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            },
+            "Comer la manzana para hacer espacio": {
+              "resultado": "El robot 'come' una manzana y recoge otra.",
+              "feedback": "Animación: Robot simula comer. Mensaje: 'Solución creativa, pero poco práctica.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Hay una tormenta acercándose y el robot está lejos de la base. ¿Qué debe hacer?",
+          "elecciones": ["Regresar a la base rápidamente", "Seguir recolectando", "Esconderse bajo un árbol"],
+          "consecuencias": {
+            "Regresar a la base rápidamente": {
+              "resultado": "El robot llega seguro a la base.",
+              "feedback": "Animación: Robot corre a la base. Mensaje: 'Priorizaste la premisa 'peligro' sobre la tarea.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Seguir recolectando": {
+              "resultado": "El robot se moja y algunas manzanas se echan a perder.",
+              "feedback": "Animación: Robot bajo la lluvia. Mensaje: 'Ignorar riesgos externos es un error lógico.'",
+              "puntuacion": -15,
+              "siguiente_ronda": true
+            },
+            "Esconderse bajo un árbol": {
+              "resultado": "El robot se protege, pero pierde tiempo.",
+              "feedback": "Animación: Robot bajo un árbol. Mensaje: 'Solución parcial. Podrías haber optimizado más.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "El robot ha recolectado 9/10 manzanas y ve la última al otro lado de un charco. ¿Qué debe hacer?",
+          "elecciones": ["Cruzar el charco para recolectar la última manzana", "Dejar la última manzana e ir a la base", "Buscar un camino alternativo"],
+          "consecuencias": {
+            "Cruzar el charco para recolectar la última manzana": {
+              "resultado": "El robot cruza con éxito y completa la tarea.",
+              "feedback": "Animación: Robot cruza charco. Mensaje: 'Tomaste un riesgo calculado para cumplir el objetivo.'",
+              "puntuacion": 20,
+              "final": true
+            },
+            "Dejar la última manzana e ir a la base": {
+              "resultado": "El robot entrega 9 manzanas.",
+              "feedback": "Animación: Robot en la base. Mensaje: 'Seguro, pero no completaste la tarea.'",
+              "puntuacion": 10,
+              "final": true
+            },
+            "Buscar un camino alternativo": {
+              "resultado": "El robot tarda mucho y la manzana se cae.",
+              "feedback": "Animación: Manzana en el suelo. Mensaje: 'La demora hizo que perdieras la oportunidad.'",
+              "puntuacion": 0,
+              "final": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "titulo": "El Guardarropa de Lucas",
+      "enunciado": "Ayuda a Lucas a elegir su atuendo según el clima, la ocasión y su estado de ánimo. Combina prendas de vestir usando condiciones lógicas para que siempre esté cómodo y adecuado.",
+      "preguntas": [
+        {
+          "pregunta": "Hoy hace frío y Lucas tiene una reunión formal. ¿Qué debe usar?",
+          "elecciones": ["Traje formal con abrigo", "Jeans y sudadera", "Camisa y chaleco"],
+          "consecuencias": {
+            "Traje formal con abrigo": {
+              "resultado": "Lucas está elegante y abrigado.",
+              "feedback": "Animación: Lucas con traje y abrigo. Mensaje: 'Combinaste las premisas 'frío' y 'formal' perfectamente.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Jeans y sudadera": {
+              "resultado": "Lucas tiene frío y parece informal.",
+              "feedback": "Animación: Lucas tiembla con jeans. Mensaje: 'No cumpliste con la premisa 'formal'.'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            },
+            "Camisa y chaleco": {
+              "resultado": "Lucas está elegante, pero tiene frío.",
+              "feedback": "Animación: Lucas con chaleco y frío. Mensaje: 'Falta considerar la premisa 'frío'.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Lucas tiene prisa y debe elegir entre ropa limpia y planchada o arrugada. ¿Qué debe hacer?",
+          "elecciones": ["Usar ropa limpia y planchada", "Usar ropa arrugada para ahorrar tiempo", "Planchar rápidamente"],
+          "consecuencias": {
+            "Usar ropa limpia y planchada": {
+              "resultado": "Lucas llega impecable, pero 5 minutos tarde.",
+              "feedback": "Animación: Lucas corre con traje planchado. Mensaje: 'Priorizaste la apariencia sobre el tiempo.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Usar ropa arrugada para ahorrar tiempo": {
+              "resultado": "Lucas llega a tiempo, pero desaliñado.",
+              "feedback": "Animación: Lucas con camisa arrugada. Mensaje: 'Sacrificaste una premisa ('apariencia') por otra ('tiempo').'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "Planchar rápidamente": {
+              "resultado": "Lucas quema la camisa y debe cambiarse.",
+              "feedback": "Animación: Camisa quemada. Mensaje: 'Intentar hacer dos cosas a la vez sin recursos lleva a errores.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Hace calor y Lucas va a la playa. ¿Qué debe llevar?",
+          "elecciones": ["Shorts, camiseta y sandalias", "Jeans y tenis", "Traje de baño y toalla"],
+          "consecuencias": {
+            "Shorts, camiseta y sandalias": {
+              "resultado": "Lucas está cómodo y listo para la playa.",
+              "feedback": "Animación: Lucas sonríe en la playa. Mensaje: 'Cumpliste con las premisas 'calor' y 'playa'.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Jeans y tenis": {
+              "resultado": "Lucas suda y se siente incómodo.",
+              "feedback": "Animación: Lucas con jeans en la playa. Mensaje: 'Ignoraste la premisa 'calor'.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            },
+            "Traje de baño y toalla": {
+              "resultado": "Lucas está listo para nadar, pero no para caminar.",
+              "feedback": "Animación: Lucas con traje de baño en la calle. Mensaje: 'No consideraste el contexto completo.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Lucas tiene una cita romántica en un restaurante elegante. ¿Qué debe usar?",
+          "elecciones": ["Traje oscuro y corbata", "Camisa y jeans", "Sudadera y tenis"],
+          "consecuencias": {
+            "Traje oscuro y corbata": {
+              "resultado": "Lucas impresiona a su cita.",
+              "feedback": "Animación: Lucas y su cita sonríen. Mensaje: 'Elegiste la opción que cumple con todas las premisas ('elegante' y 'cita').'",
+              "puntuacion": 20,
+              "siguiente_ronda": true
+            },
+            "Camisa y jeans": {
+              "resultado": "Lucas parece casual, pero no elegante.",
+              "feedback": "Animación: Lucas con jeans en el restaurante. Mensaje: 'Solución parcial. Podrías mejorar.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "Sudadera y tenis": {
+              "resultado": "La cita se decepciona.",
+              "feedback": "Animación: Cita mira a Lucas con sorpresa. Mensaje: 'Ignoraste la premisa 'elegante'.'",
+              "puntuacion": -15,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Lucas debe asistir a una boda al aire libre con clima variable. ¿Qué debe usar?",
+          "elecciones": ["Traje ligero con saco y paraguas plegable", "Jeans y chaqueta", "Shorts y camiseta"],
+          "consecuencias": {
+            "Traje ligero con saco y paraguas plegable": {
+              "resultado": "Lucas está preparado para cualquier cambio climático.",
+              "feedback": "Animación: Lucas con saco y paraguas. Mensaje: 'Anticipaste múltiples premisas ('clima variable', 'boda').'",
+              "puntuacion": 20,
+              "siguiente_ronda": true
+            },
+            "Jeans y chaqueta": {
+              "resultado": "Lucas está cómodo, pero no muy elegante.",
+              "feedback": "Animación: Lucas con jeans en la boda. Mensaje: 'No optimizaste para la premisa 'boda'.'",
+              "puntuacion": 5,
+              "siguiente_ronda": true
+            },
+            "Shorts y camiseta": {
+              "resultado": "Lucas parece inapropiado para la boda.",
+              "feedback": "Animación: Invitados miran a Lucas. Mensaje: 'Ignoraste las premisas 'boda' y 'clima variable'.'",
+              "puntuacion": -10,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Lucas está enfermo y debe quedarse en casa. ¿Qué ropa debe usar?",
+          "elecciones": ["Pijama y bata", "Ropa deportiva", "Jeans y camiseta"],
+          "consecuencias": {
+            "Pijama y bata": {
+              "resultado": "Lucas está cómodo y se recupera rápido.",
+              "feedback": "Animación: Lucas en el sofá con pijama. Mensaje: 'Priorizaste la premisa 'enfermo' y 'comodidad'.'",
+              "puntuacion": 15,
+              "siguiente_ronda": true
+            },
+            "Ropa deportiva": {
+              "resultado": "Lucas está cómodo, pero no tanto como con pijama.",
+              "feedback": "Animación: Lucas con sudadera. Mensaje: 'Solución válida, pero no óptima.'",
+              "puntuacion": 10,
+              "siguiente_ronda": true
+            },
+            "Jeans y camiseta": {
+              "resultado": "Lucas no está cómodo y tarda en recuperarse.",
+              "feedback": "Animación: Lucas tose con jeans. Mensaje: 'No adaptaste tu elección a la premisa 'enfermo'.'",
+              "puntuacion": -5,
+              "siguiente_ronda": true
+            }
+          }
+        },
+        {
+          "pregunta": "Lucas tiene una entrevista de trabajo y llueve. ¿Qué debe usar?",
+          "elecciones": ["Traje formal, abrigo y paraguas", "Jeans, chaqueta y gorra", "Camisa, pantalón y tenis"],
+          "consecuencias": {
+            "Traje formal, abrigo y paraguas": {
+              "resultado": "Lucas llega seco, elegante y listo para la entrevista.",
+              "feedback": "Animación: Lucas con traje y paraguas. Mensaje: 'Integraste todas las premisas ('entrevista', 'lluvia').'",
+              "puntuacion": 20,
+              "final": true
+            },
+            "Jeans, chaqueta y gorra": {
+              "resultado": "Lucas llega seco, pero informal.",
+              "feedback": "Animación: Lucas con gorra en la entrevista. Mensaje: 'Cumpliste con 'lluvia', pero no con 'entrevista'.'",
+              "puntuacion": 5,
+              "final": true
+            },
+            "Camisa, pantalón y tenis": {
+              "resultado": "Lucas llega mojado y desaliñado.",
+              "feedback": "Animación: Lucas con camisa mojada. Mensaje: 'Ignoraste la premisa 'lluvia'.'",
+              "puntuacion": -10,
+              "final": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

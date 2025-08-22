@@ -15,6 +15,7 @@ import { CardTitleFormatPipe } from './pipes/card-title-format.pipe';
 import { ExtractTipoPipe } from './pipes/extract-tipo.pipe';
 import { TutorialComponent } from './components/tutorial/tutorial.component';
 import { PuzzleComponent } from './components/puzzle/puzzle.component';
+import { EjerciciosComponent } from './components/ejercicios/ejercicios.component';
 
 
 
@@ -31,7 +32,8 @@ import { PuzzleComponent } from './components/puzzle/puzzle.component';
     CardTitleFormatPipe,
     ExtractTipoPipe,
     TutorialComponent,
-    PuzzleComponent
+    PuzzleComponent,
+    EjerciciosComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { PuzzleComponent } from './components/puzzle/puzzle.component';
     CardsComponent,
     CardTitleFormatPipe,
     TutorialComponent,
-  PuzzleComponent
+    PuzzleComponent,
+    EjerciciosComponent
   ]
 })
 export class SharedModule { }
