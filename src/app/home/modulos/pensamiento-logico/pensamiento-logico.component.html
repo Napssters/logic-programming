@@ -133,12 +133,11 @@
   <!-- Sección 2 -->
   <section *ngIf="selectedSection === 2"
     class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
-    <h1 class="mt-6">Ejemplos</h1>
-    <!-- Aquí puedes agregar el componente de ejemplos o contenido adicional -->
+    <app-game-question-selection [tipo]="1"></app-game-question-selection>
   </section>
   <!-- Sección 3 -->
   <section *ngIf="selectedSection === 3"
     class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
-    <app-game-question-selection></app-game-question-selection>
+    <app-game-question-selection [tipo]="2"></app-game-question-selection>
   </section>
 </div>
