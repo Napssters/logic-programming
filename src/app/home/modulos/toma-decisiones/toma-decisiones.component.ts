@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CarroMascotasGameComponent } from '../../../shared/carro-mascotas-game/carro-mascotas-game.component';
 
 @Component({
   selector: 'app-toma-decisiones',

@@ -187,13 +187,13 @@
         </ul>
         <h3 class="font-semibold text-purple-700">Pseudocódigo ejemplo (score):</h3>
         <pre class="bg-gray-900 text-green-200 rounded-lg p-4 text-sm overflow-x-auto"><code>// criterios = {{ '{' }} rapidez:0.4, costo:0.3, facilidad:0.3 {{ '}' }}
-// opciones = [A,B,C]
-for opcion in opciones:
-    score = 0
-    for criterio in criterios:
-        score += puntaje(opcion, criterio) * criterios[criterio]
-    escoger opcion con max(score)
-</code></pre>
+            // opciones = [A,B,C]
+            for opcion in opciones:
+                score = 0
+                for criterio in criterios:
+                    score += puntaje(opcion, criterio) * criterios[criterio]
+                escoger opcion con max(score)
+            </code></pre>
       </div>
     </div>
   </section>
@@ -201,12 +201,14 @@ for opcion in opciones:
   <section *ngIf="selectedSection === 2"
     class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
     <h1 class="mt-6">Ejemplos</h1>
+    <app-carro-mascotas-game [tipoHijo]="1"></app-carro-mascotas-game>
     <!-- Aquí puedes agregar el componente de ejemplos o contenido adicional -->
   </section>
   <!-- Sección 3 -->
   <section *ngIf="selectedSection === 3"
     class="bg-gray-500/20 backdrop-blur-md p-8 rounded-lg border border-gray-400/30 shadow-lg w-full max-w-7xl mt-2 mb-8">
     <h1 class="mt-6">Ejercicios</h1>
+    <app-carro-mascotas-game [tipoHijo]="2"></app-carro-mascotas-game>
     <!-- Aquí puedes agregar el componente de ejercicios o contenido adicional -->
   </section>
 </div>
