@@ -54,12 +54,40 @@
         {{ ejemploSeleccionado.preguntas[preguntaActualEjemplo].pregunta }}
       </h3>
       <div class="flex flex-wrap gap-4 justify-center">
-        <button *ngFor="let eleccion of ejemploSeleccionado.preguntas[preguntaActualEjemplo].elecciones"
-          class="game-btn-choice px-6 py-3 rounded-full font-bold text-lg shadow-lg transition transform hover:scale-110 hover:bg-gradient-to-r hover:from-pink-400 hover:to-yellow-400 bg-gradient-to-r from-pink-400 to-purple-400 text-white border-2 border-white"
-          (click)="responderEjemplo(eleccion)"
-          [attr.title]="ejemploSeleccionado.preguntas[preguntaActualEjemplo].consecuencias[eleccion]?.feedback || ''">
-          {{ eleccion }}
-        </button>
+        <div class="grid grid-cols-2 gap-4 w-full">
+          <ng-container *ngFor="let eleccion of ejemploSeleccionado.preguntas[preguntaActualEjemplo].elecciones; let i = index">
+            <div class="relative group flex justify-center col-span-2" *ngIf="ejemploSeleccionado.preguntas[preguntaActualEjemplo].elecciones.length % 2 === 1 && i === ejemploSeleccionado.preguntas[preguntaActualEjemplo].elecciones.length - 1">
+              <div class="w-full flex justify-center">
+                <button
+                  class="game-btn-choice mx-auto break-words whitespace-pre-line px-6 py-3 rounded-full font-bold text-lg shadow-lg transition transform hover:scale-110 hover:bg-gradient-to-r hover:from-pink-400 hover:to-yellow-400 bg-gradient-to-r from-pink-400 to-purple-400 text-white border-2 border-white"
+                  (click)="responderEjemplo(eleccion)"
+                  [attr.aria-describedby]="'tooltip-' + eleccion">
+                  {{ eleccion }}
+                </button>
+              </div>
+              <div *ngIf="ejemploSeleccionado.preguntas[preguntaActualEjemplo].consecuencias[eleccion]?.feedback"
+                class="absolute left-1/2 -translate-x-1/2 top-full mt-2 z-20 px-3 py-2 rounded-lg bg-pink-700 text-white text-sm font-medium shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-pre-line min-w-[10rem] max-w-xs"
+                [id]="'tooltip-' + eleccion">
+                {{ ejemploSeleccionado.preguntas[preguntaActualEjemplo].consecuencias[eleccion]?.feedback }}
+              </div>
+            </div>
+            <div class="relative group flex justify-center col-span-1" *ngIf="!(ejemploSeleccionado.preguntas[preguntaActualEjemplo].elecciones.length % 2 === 1 && i === ejemploSeleccionado.preguntas[preguntaActualEjemplo].elecciones.length - 1)">
+              <div class="w-full flex justify-center">
+                <button
+                  class="game-btn-choice w-full break-words whitespace-pre-line px-6 py-3 rounded-full font-bold text-lg shadow-lg transition transform hover:scale-110 hover:bg-gradient-to-r hover:from-pink-400 hover:to-yellow-400 bg-gradient-to-r from-pink-400 to-purple-400 text-white border-2 border-white"
+                  (click)="responderEjemplo(eleccion)"
+                  [attr.aria-describedby]="'tooltip-' + eleccion">
+                  {{ eleccion }}
+                </button>
+              </div>
+              <div *ngIf="ejemploSeleccionado.preguntas[preguntaActualEjemplo].consecuencias[eleccion]?.feedback"
+                class="absolute left-1/2 -translate-x-1/2 top-full mt-2 z-20 px-4 py-3 rounded-lg bg-pink-700 text-white text-sm font-medium shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-pre-line min-w-[16rem] max-w-lg"
+                [id]="'tooltip-' + eleccion">
+                {{ ejemploSeleccionado.preguntas[preguntaActualEjemplo].consecuencias[eleccion]?.feedback }}
+              </div>
+            </div>
+          </ng-container>
+        </div>
       </div>
     </div>
     <!-- Card: Progreso y puntuación -->
