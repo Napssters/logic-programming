@@ -185,181 +185,164 @@
       }
     ],
     "ejercicios": [
-      {
-        "id": 1,
-        "nombre": "Recorrido simple",
-        "tipo": "ejercicio",
-        "mapa": {
-          "layout": [
-            ["g", "g", "g", "g", "g"],
-            ["g", "r", "r", "r", "g"],
-            ["g", "g", "g", "r", "g"],
-            ["g", "g", "g", "r", "g"],
-            ["g", "g", "g", "g", "g"]
-          ],
-          "entidades": [
-            { "tipo": "pet", "nombre": "Conejo", "color": "#A3E635", "pos": [1, 3] },
-            { "tipo": "house", "nombre": "Conejo", "color": "#A3E635", "pos": [3, 1] }
-          ]
-        },
-        "carro": { "pos": [1, 2], "gasolina": 9 }
+    {
+      "id": 1,
+      "nombre": "Iniciación",
+      "tipo": "ejercicio",
+      "mapa": {
+        "layout": [
+          ["g", "g", "g", "g", "g", "g"],
+          ["g", "r", "r", "r", "r", "g"],
+          ["g", "r", "g", "g", "r", "g"],
+          ["g", "r", "r", "r", "r", "g"],
+          ["g", "g", "g", "g", "g", "g"]
+        ],
+        "entidades": [
+          { "tipo": "pet", "nombre": "Perro", "color": "#FFD700", "pos": [1, 1] },
+          { "tipo": "house", "nombre": "Perro", "color": "#FFD700", "pos": [3, 4] }
+        ]
       },
-      {
-        "id": 2,
-        "nombre": "Doble entrega",
-        "tipo": "ejercicio",
-        "mapa": {
-          "layout": [
-            ["g","g","g","g","g","g"],
-            ["g","r","r","r","r","g"],
-            ["g","r","g","g","r","g"],
-            ["g","r","r","r","r","g"],
-            ["g","g","g","g","g","g"]
-          ],
-          "entidades": [
-            { "tipo": "pet", "nombre": "Lobo", "color": "#A9A9A9", "pos": [1,1] },
-            { "tipo": "house", "nombre": "Lobo", "color": "#A9A9A9", "pos": [3,4] },
-            { "tipo": "pet", "nombre": "Zorro", "color": "#FFA500", "pos": [1,4] },
-            { "tipo": "house", "nombre": "Zorro", "color": "#FFA500", "pos": [3,1] }
-          ]
-        },
-        "carro": { "pos": [1,2], "gasolina": 13 }
+      "carro": { "pos": [1, 3], "gasolina": 10 }
+    },
+    {
+      "id": 2,
+      "nombre": "El Anillo",
+      "tipo": "ejercicio",
+      "mapa": {
+        "layout": [
+          ["g", "g", "g", "g", "g", "g", "g"],
+          ["g", "r", "r", "r", "r", "r", "g"],
+          ["g", "r", "g", "g", "g", "r", "g"],
+          ["g", "r", "g", "g", "g", "r", "g"],
+          ["g", "r", "r", "r", "r", "r", "g"],
+          ["g", "g", "g", "g", "g", "g", "g"]
+        ],
+        "entidades": [
+          { "tipo": "pet", "nombre": "Gato", "color": "#87CEEB", "pos": [1, 2] },
+          { "tipo": "house", "nombre": "Gato", "color": "#87CEEB", "pos": [4, 2] }
+        ]
       },
-      {
-        "id": 3,
-        "nombre": "Cruce mixto",
-        "tipo": "ejercicio",
-        "mapa": {
-          "layout": [
-            ["g","g","g","g","g","g"],
-            ["g","r","r","r","r","g"],
-            ["g","r","g","g","r","g"],
-            ["g","r","r","r","r","g"],
-            ["g","g","g","g","g","g"]
-          ],
-          "entidades": [
-            { "tipo": "pet", "nombre": "Perro", "color": "#FFD700", "pos": [1,1] },
-            { "tipo": "house", "nombre": "Perro", "color": "#FFD700", "pos": [3,4] },
-            { "tipo": "pet", "nombre": "Gato", "color": "#87CEEB", "pos": [1,4] },
-            { "tipo": "house", "nombre": "Gato", "color": "#87CEEB", "pos": [3,1] },
-            { "tipo": "pet", "nombre": "Conejo", "color": "#A3E635", "pos": [3,2] },
-            { "tipo": "house", "nombre": "Conejo", "color": "#A3E635", "pos": [1,2] }
-          ]
-        },
-        "carro": { "pos": [1,3], "gasolina": 16 }
+      "carro": { "pos": [2, 1], "gasolina": 15 }
+    },
+    {
+      "id": 3,
+      "nombre": "Doble Cruce",
+      "tipo": "ejercicio",
+      "mapa": {
+        "layout": [
+          ["g", "r", "r", "r", "g", "g", "g"],
+          ["g", "r", "g", "r", "g", "r", "r"],
+          ["g", "r", "g", "r", "r", "r", "g"],
+          ["g", "r", "g", "g", "g", "r", "g"],
+          ["g", "r", "r", "r", "r", "r", "g"]
+        ],
+        "entidades": [
+          { "tipo": "pet", "nombre": "Conejo", "color": "#A3E635", "pos": [0, 1] },
+          { "tipo": "house", "nombre": "Conejo", "color": "#A3E635", "pos": [4, 5] },
+          { "tipo": "pet", "nombre": "Perro", "color": "#FFD700", "pos": [1, 6] },
+          { "tipo": "house", "nombre": "Perro", "color": "#FFD700", "pos": [4, 1] }
+        ]
       },
-      {
-        "id": 4,
-        "nombre": "Ruta alterna",
-        "tipo": "ejercicio",
-        "mapa": {
-          "layout": [
-            ["g","g","g","g","g","g","g"],
-            ["g","r","r","g","r","r","g"],
-            ["g","g","r","g","r","g","g"],
-            ["g","r","r","r","r","r","g"],
-            ["g","g","g","g","g","g","g"]
-          ],
-          "entidades": [
-            { "tipo": "pet", "nombre": "Zorro", "color": "#FFA500", "pos": [1,1] },
-            { "tipo": "house", "nombre": "Zorro", "color": "#FFA500", "pos": [3,5] },
-            { "tipo": "pet", "nombre": "Lobo", "color": "#A9A9A9", "pos": [1,5] },
-            { "tipo": "house", "nombre": "Lobo", "color": "#A9A9A9", "pos": [3,1] },
-            { "tipo": "pet", "nombre": "Gato", "color": "#87CEEB", "pos": [3,2] },
-            { "tipo": "house", "nombre": "Gato", "color": "#87CEEB", "pos": [1,2] },
-            { "tipo": "pet", "nombre": "Perro", "color": "#FFD700", "pos": [3,4] },
-            { "tipo": "house", "nombre": "Perro", "color": "#FFD700", "pos": [1,4] }
-          ]
-        },
-        "carro": { "pos": [1,3], "gasolina": 21 }
+      "carro": { "pos": [2, 4], "gasolina": 26 }
+    },
+    {
+      "id": 4,
+      "nombre": "Callejones",
+      "tipo": "ejercicio",
+      "mapa": {
+        "layout": [
+          ["g", "g", "r", "g", "g", "r", "g"],
+          ["r", "r", "r", "r", "r", "r", "r"],
+          ["r", "g", "r", "g", "r", "g", "r"],
+          ["r", "r", "r", "g", "r", "r", "r"],
+          ["g", "g", "g", "g", "r", "g", "g"]
+        ],
+        "entidades": [
+          { "tipo": "pet", "nombre": "Lobo", "color": "#A9A9A9", "pos": [1, 0] },
+          { "tipo": "house", "nombre": "Lobo", "color": "#A9A9A9", "pos": [0, 5] },
+          { "tipo": "pet", "nombre": "Zorro", "color": "#FFA500", "pos": [3, 6] },
+          { "tipo": "house", "nombre": "Zorro", "color": "#FFA500", "pos": [2, 0] }
+        ]
       },
-      {
-        "id": 5,
-        "nombre": "Cuatro rutas",
-        "tipo": "ejercicio",
-        "mapa": {
-          "layout": [
-            ["g","g","g","g","g","g","g","g"],
-            ["g","r","r","r","r","r","r","g"],
-            ["g","r","g","g","g","g","r","g"],
-            ["g","r","g","r","r","r","r","g"],
-            ["g","r","g","r","g","g","g","g"],
-            ["g","r","r","r","r","r","r","g"],
-            ["g","g","g","g","g","g","r","g"],
-            ["g","g","g","g","g","g","g","g"]
-          ],
-          "entidades": [
-            { "tipo": "pet", "nombre": "Conejo", "color": "#A3E635", "pos": [3,3] },
-            { "tipo": "house", "nombre": "Conejo", "color": "#A3E635", "pos": [1,6] },
-            { "tipo": "pet", "nombre": "Lobo", "color": "#A9A9A9", "pos": [5,6] },
-            { "tipo": "house", "nombre": "Lobo", "color": "#A9A9A9", "pos": [1,1] },
-            { "tipo": "pet", "nombre": "Zorro", "color": "#FFA500", "pos": [5,2] },
-            { "tipo": "house", "nombre": "Zorro", "color": "#FFA500", "pos": [3,1] },
-            { "tipo": "pet", "nombre": "Gato", "color": "#87CEEB", "pos": [3,6] },
-            { "tipo": "house", "nombre": "Gato", "color": "#87CEEB", "pos": [5,1] }
-          ]
-        },
-        "carro": { "pos": [1,3], "gasolina": 28 }
+      "carro": { "pos": [1, 3], "gasolina": 28 }
+    },
+    {
+      "id": 5,
+      "nombre": "La Rueda",
+      "tipo": "ejercicio",
+      "mapa": {
+        "layout": [
+          ["g", "g", "g", "r", "g", "g", "g"],
+          ["g", "r", "g", "r", "g", "r", "g"],
+          ["g", "g", "g", "r", "g", "g", "g"],
+          ["r", "r", "r", "r", "r", "r", "r"],
+          ["g", "g", "g", "r", "g", "g", "g"],
+          ["g", "r", "g", "r", "g", "r", "g"],
+          ["g", "g", "g", "r", "g", "g", "g"]
+        ],
+        "entidades": [
+          { "tipo": "pet", "nombre": "Perro", "color": "#FFD700", "pos": [1, 1] },
+          { "tipo": "house", "nombre": "Perro", "color": "#FFD700", "pos": [5, 5] },
+          { "tipo": "pet", "nombre": "Gato", "color": "#87CEEB", "pos": [1, 5] },
+          { "tipo": "house", "nombre": "Gato", "color": "#87CEEB", "pos": [5, 1] },
+          { "tipo": "pet", "nombre": "Conejo", "color": "#A3E635", "pos": [3, 0] },
+          { "tipo": "house", "nombre": "Conejo", "color": "#A3E635", "pos": [3, 6] }
+        ]
       },
-      {
-        "id": 6,
-        "nombre": "Cinco rutas mixtas",
-        "tipo": "ejercicio",
-        "mapa": {
-          "layout": [
-            ["g","g","g","g","g","g","g","g","g"],
-            ["g","r","r","r","r","r","r","r","g"],
-            ["g","r","g","g","g","g","g","r","g"],
-            ["g","r","g","r","r","r","g","r","g"],
-            ["g","r","g","r","g","g","g","r","g"],
-            ["g","r","r","r","r","r","r","r","g"],
-            ["g","g","g","g","g","g","g","r","g"],
-            ["g","g","g","g","g","g","g","g","g"]
-          ],
-          "entidades": [
-            { "tipo": "pet", "nombre": "Lobo", "color": "#A9A9A9", "pos": [3,3] },
-            { "tipo": "house", "nombre": "Lobo", "color": "#A9A9A9", "pos": [1,7] },
-            { "tipo": "pet", "nombre": "Zorro", "color": "#FFA500", "pos": [5,7] },
-            { "tipo": "house", "nombre": "Zorro", "color": "#FFA500", "pos": [1,1] },
-            { "tipo": "pet", "nombre": "Conejo", "color": "#A3E635", "pos": [5,2] },
-            { "tipo": "house", "nombre": "Conejo", "color": "#A3E635", "pos": [3,1] },
-            { "tipo": "pet", "nombre": "Gato", "color": "#87CEEB", "pos": [3,7] },
-            { "tipo": "house", "nombre": "Gato", "color": "#87CEEB", "pos": [5,1] },
-            { "tipo": "pet", "nombre": "Perro", "color": "#FFD700", "pos": [1,4] },
-            { "tipo": "house", "nombre": "Perro", "color": "#FFD700", "pos": [5,4] }
-          ]
-        },
-        "carro": { "pos": [1,3], "gasolina": 35 }
+      "carro": { "pos": [3, 3], "gasolina": 30 }
+    },
+    {
+      "id": 6,
+      "nombre": "Laberinto Urbano",
+      "tipo": "ejercicio",
+      "mapa": {
+        "layout": [
+          ["r", "r", "r", "g", "r", "r", "r", "r", "r"],
+          ["r", "g", "r", "g", "r", "g", "g", "g", "r"],
+          ["r", "g", "r", "r", "r", "g", "r", "r", "r"],
+          ["r", "g", "g", "g", "g", "g", "r", "g", "g"],
+          ["r", "r", "r", "r", "r", "r", "r", "g", "r"],
+          ["g", "g", "r", "g", "g", "g", "g", "g", "r"],
+          ["r", "r", "r", "r", "r", "r", "r", "r", "r"]
+        ],
+        "entidades": [
+          { "tipo": "pet", "nombre": "Gato", "color": "#87CEEB", "pos": [0, 0] },
+          { "tipo": "house", "nombre": "Gato", "color": "#87CEEB", "pos": [6, 8] },
+          { "tipo": "pet", "nombre": "Conejo", "color": "#A3E635", "pos": [0, 8] },
+          { "tipo": "house", "nombre": "Conejo", "color": "#A3E635", "pos": [6, 0] },
+          { "tipo": "pet", "nombre": "Perro", "color": "#FFD700", "pos": [2, 3] },
+          { "tipo": "house", "nombre": "Perro", "color": "#FFD700", "pos": [4, 5] }
+        ]
       },
-      {
-        "id": 7,
-        "nombre": "Desafío final",
-        "tipo": "ejercicio",
-        "mapa": {
-          "layout": [
-            ["g","g","g","g","g","g","g","g","g","g"],
-            ["g","r","r","r","r","r","r","r","r","g"],
-            ["g","r","g","g","g","g","g","g","r","g"],
-            ["g","r","g","r","r","r","g","g","r","g"],
-            ["g","r","g","r","g","g","g","g","r","g"],
-            ["g","r","r","r","r","r","r","r","r","g"],
-            ["g","g","g","g","g","g","g","g","r","g"],
-            ["g","g","g","g","g","g","g","g","g","g"]
-          ],
-          "entidades": [
-            { "tipo": "pet", "nombre": "Perro", "color": "#FFD700", "pos": [3,3] },
-            { "tipo": "house", "nombre": "Perro", "color": "#FFD700", "pos": [1,8] },
-            { "tipo": "pet", "nombre": "Lobo", "color": "#A9A9A9", "pos": [5,8] },
-            { "tipo": "house", "nombre": "Lobo", "color": "#A9A9A9", "pos": [1,1] },
-            { "tipo": "pet", "nombre": "Conejo", "color": "#A3E635", "pos": [5,2] },
-            { "tipo": "house", "nombre": "Conejo", "color": "#A3E635", "pos": [3,1] },
-            { "tipo": "pet", "nombre": "Zorro", "color": "#FFA500", "pos": [3,8] },
-            { "tipo": "house", "nombre": "Zorro", "color": "#FFA500", "pos": [5,1] },
-            { "tipo": "pet", "nombre": "Gato", "color": "#87CEEB", "pos": [1,5] },
-            { "tipo": "house", "nombre": "Gato", "color": "#87CEEB", "pos": [5,5] }
-          ]
-        },
-        "carro": { "pos": [1,4], "gasolina": 41 }
-      }
+      "carro": { "pos": [4, 3], "gasolina": 45 }
+    },
+    {
+      "id": 7,
+      "nombre": "Reto Final: Metrópolis",
+      "tipo": "ejercicio",
+      "mapa": {
+        "layout": [
+          ["g", "r", "g", "r", "r", "r", "g", "r", "r", "g"],
+          ["g", "r", "r", "r", "g", "r", "r", "r", "g", "g"],
+          ["g", "g", "g", "r", "g", "r", "g", "r", "g", "r"],
+          ["r", "r", "r", "r", "r", "r", "g", "r", "r", "r"],
+          ["r", "g", "g", "g", "g", "g", "g", "r", "g", "g"],
+          ["r", "r", "r", "r", "r", "r", "r", "r", "g", "r"],
+          ["g", "g", "r", "g", "g", "r", "g", "r", "g", "r"],
+          ["r", "r", "r", "g", "r", "r", "r", "r", "g", "r"]
+        ],
+        "entidades": [
+          { "tipo": "pet", "nombre": "Perro", "color": "#FFD700", "pos": [0, 7] },
+          { "tipo": "house", "nombre": "Perro", "color": "#FFD700", "pos": [7, 0] },
+          { "tipo": "pet", "nombre": "Gato", "color": "#87CEEB", "pos": [3, 0] },
+          { "tipo": "house", "nombre": "Gato", "color": "#87CEEB", "pos": [2, 9] },
+          { "tipo": "pet", "nombre": "Conejo", "color": "#A3E635", "pos": [5, 9] },
+          { "tipo": "house", "nombre": "Conejo", "color": "#A3E635", "pos": [0, 1] },
+          { "tipo": "pet", "nombre": "Lobo", "color": "#A9A9A9", "pos": [7, 4] },
+          { "tipo": "house", "nombre": "Lobo", "color": "#A9A9A9", "pos": [1, 7] }
+        ]
+      },
+      "carro": { "pos": [3, 4], "gasolina": 65 }
+    }
     ]
 }
