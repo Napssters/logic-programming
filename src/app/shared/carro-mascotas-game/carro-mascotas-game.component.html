@@ -6,63 +6,48 @@
   </header>
 
   <div class="game-area">
-    <main class="game-board" [ngStyle]="getGridStyles()">
+    <div style="display: flex; flex-direction: column;">
+      <div style="width: 621px; height: 560px; display: flex; justify-content: center; align-items: center; background: rgba(41, 41, 41, 0.25); backdrop-filter: blur(10px); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);">
+        <main class="game-board" [ngStyle]="getGridStyles()">
 
-      <!-- Celdas del mapa -->
+        <!-- Celdas del mapa -->
 
-      <div *ngFor="let cell of flatLayout; let i = index" [class]="'cell ' + cell.type + ' ' + cell.orientation">
+        <div *ngFor="let cell of flatLayout; let i = index" [class]="'cell ' + cell.type + ' ' + cell.orientation">
 
-        <!-- Indicador de ruta óptima -->
-        <div *ngIf="cell.isOptimal" class="optimal-path-indicator"></div>
+          <!-- Indicador de ruta óptima -->
+          <div *ngIf="cell.isOptimal" class="optimal-path-indicator"></div>
 
-        <!-- Elementos del juego en la celda con color de fondo -->
-        <div *ngIf="cell.entity === 'house'" class="game-element house"
-          [ngStyle]="{'background-color': getEntityColor(cell), 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}">
-          <span
-            style="font-size:2.2rem; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">🏠</span>
+          <!-- Elementos del juego en la celda con color de fondo -->
+          <div *ngIf="cell.entity === 'house'" class="game-element house"
+            [ngStyle]="{'background-color': getEntityColor(cell), 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}">
+            <span
+              style="font-size:2.2rem; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">🏠</span>
+          </div>
+          <div *ngIf="cell.entity === 'pet'" class="game-element pet"
+            [ngStyle]="{'background-color': getEntityColor(cell), 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}">
+            <span
+              style="font-size:2.2rem; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">{{
+              getEmojiAnimal(cell.entityName) }}</span>
+          </div>
         </div>
-        <div *ngIf="cell.entity === 'pet'" class="game-element pet"
-          [ngStyle]="{'background-color': getEntityColor(cell), 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}">
-          <span
-            style="font-size:2.2rem; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">{{
-            getEmojiAnimal(cell.entityName) }}</span>
+
+        <!-- Carro (elemento móvil) sin fondo -->
+        <div class="game-element car" [ngStyle]="getCarStyles()">
+          <span style="font-size:2.2rem; background: none;">{{ getEmojiCarro() }}</span>
         </div>
-      </div>
 
-      <!-- Carro (elemento móvil) sin fondo -->
-      <div class="game-element car" [ngStyle]="getCarStyles()">
-        <span style="font-size:2.2rem; background: none;">{{ getEmojiCarro() }}</span>
-      </div>
-
-      <!-- Overlay para mensajes -->
-      <div *ngIf="mensaje" class="message-overlay">
-        <div class="message-box">
-          <h2>{{ mensaje }}</h2>
-          <button class="action-btn" (click)="siguienteNivel()">Siguiente Nivel</button>
+        <!-- Overlay para mensajes -->
+        <div *ngIf="mensaje" class="message-overlay">
+          <div class="message-box">
+            <h2>{{ mensaje }}</h2>
+            <button class="action-btn" (click)="siguienteNivel()">Siguiente Nivel</button>
+          </div>
         </div>
+
+      </main>
       </div>
-
-    </main>
-
-    <aside class="sidebar">
-      <div class="info-box">
-        <h3>Gasolina</h3>
-        <p class="value">{{ gasolinaRestante }}</p>
-      </div>
-
-      <div class="info-box">
-        <h3>Controles</h3>
-        <p class="controls-info">Usa las <strong>flechas</strong> del teclado para moverte.</p>
-      </div>
-
-      <div class="info-box">
-        <h3>Mascotas</h3>
-        <p *ngIf="mascotasRecogidas.length === 0">Ninguna a bordo</p>
-        <p *ngFor="let pet of mascotasRecogidas" class="value">{{ getEmojiAnimal(pet) }}</p>
-      </div>
-
-      <div class="action-buttons">
-        <div style="display:flex;gap:1rem;justify-content:center;align-items:center;">
+      <div style="display: flex; justify-content: flex-end; padding-top: 1rem;">
+        <div style="display:flex; gap:1rem; background:rgba(255,255,255,0.25); border-radius:1.5rem; box-shadow:0 4px 24px rgba(0,0,0,0.08); padding:1.2rem 1.5rem;">
           <!-- Anterior -->
           <div class="group" style="position:relative;">
             <button (click)="anteriorNivel()"
@@ -123,7 +108,27 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="info-box">
+        <h3>Gasolina</h3>
+        <p class="value">{{ gasolinaRestante }}</p>
+      </div>
+
+      <div class="info-box">
+        <h3>Controles</h3>
+        <p class="controls-info">Usa las <strong>flechas</strong> del teclado para moverte.</p>
+      </div>
+
+      <div class="info-box">
+        <h3>Mascotas</h3>
+        <p *ngIf="mascotasRecogidas.length === 0">Ninguna a bordo</p>
+        <p *ngFor="let pet of mascotasRecogidas" class="value">{{ getEmojiAnimal(pet) }}</p>
+      </div>
+
     </aside>
   </div>
+
 
 </div>

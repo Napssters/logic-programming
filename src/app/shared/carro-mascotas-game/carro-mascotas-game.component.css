@@ -142,29 +142,32 @@
 }
 
 .info-box, .controls-box {
-  background-color: #fff;
+  background: rgba(41, 41, 41, 0.25); /* Semi-transparent background */
+  backdrop-filter: blur(5px); /* Frosted glass effect */
+  border-radius: 15px; /* Rounded corners */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* Subtle border */
   padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   text-align: center;
+  color: #fff; /* White text to contrast with the dark, glassy background */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .info-box h3, .controls-box h3 {
   font-family: var(--font-display);
   font-size: 1.5rem;
   margin-top: 0;
-  color: var(--color-ui-primary);
+  color: #fff; /* White text */
 }
 
 .info-box .value {
   font-size: 2rem;
   font-weight: 600;
-  color: var(--color-car);
+  color: #fff; /* White text */
 }
 
 .controls-info {
     font-size: 0.9rem;
-    color: var(--color-ui-secondary);
+    color: #fff;
 }
 
 .action-buttons {
