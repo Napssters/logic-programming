@@ -1,0 +1,139 @@
+{
+  "ejemplos": [
+    {
+      "id": 1,
+      "gasolina": 10,
+      "carro": { "x": 0, "y": 0 },
+      "animales": [ { "nombre": "Perro", "x": 2, "y": 1, "casa": { "x": 4, "y": 3 } } ],
+      "size": { "cols": 5, "rows": 5 },
+      "feedback": [
+        "El carro inicia en (0,0) con 10 de gasolina.",
+        "Mueve el carro a la posición del perro (2,1).", 
+        "Recoge al perro y llévalo a su casa (4,3)."
+      ]
+    },
+    {
+      "id": 2,
+      "gasolina": 12,
+      "carro": { "x": 1, "y": 1 },
+      "animales": [ { "nombre": "Gato", "x": 3, "y": 2, "casa": { "x": 0, "y": 4 } } ],
+      "size": { "cols": 5, "rows": 5 },
+      "feedback": [
+        "El carro inicia en (1,1) con 12 de gasolina.",
+        "Mueve el carro a la posición del gato (3,2).", 
+        "Recoge al gato y llévalo a su casa (0,4)."
+      ]
+    },
+    {
+      "id": 3,
+      "gasolina": 15,
+      "carro": { "x": 0, "y": 4 },
+      "animales": [ { "nombre": "Conejo", "x": 2, "y": 2, "casa": { "x": 4, "y": 0 } } ],
+      "size": { "cols": 5, "rows": 5 },
+      "feedback": [
+        "El carro inicia en (0,4) con 15 de gasolina.",
+        "Mueve el carro a la posición del conejo (2,2).", 
+        "Recoge al conejo y llévalo a su casa (4,0)."
+      ]
+    },
+    {
+      "id": 4,
+      "gasolina": 18,
+      "carro": { "x": 2, "y": 2 },
+      "animales": [ { "nombre": "Tortuga", "x": 0, "y": 0, "casa": { "x": 4, "y": 4 } } ],
+      "size": { "cols": 5, "rows": 5 },
+      "feedback": [
+        "El carro inicia en (2,2) con 18 de gasolina.",
+        "Mueve el carro a la posición de la tortuga (0,0).", 
+        "Recoge a la tortuga y llévala a su casa (4,4)."
+      ]
+    },
+    {
+      "id": 5,
+      "gasolina": 20,
+      "carro": { "x": 4, "y": 0 },
+      "animales": [ { "nombre": "Pájaro", "x": 1, "y": 3, "casa": { "x": 3, "y": 1 } } ],
+      "size": { "cols": 5, "rows": 5 },
+      "feedback": [
+        "El carro inicia en (4,0) con 20 de gasolina.",
+        "Mueve el carro a la posición del pájaro (1,3).", 
+        "Recoge al pájaro y llévalo a su casa (3,1)."
+      ]
+    },
+    {
+      "id": 6,
+      "gasolina": 22,
+      "carro": { "x": 3, "y": 4 },
+      "animales": [ { "nombre": "Ratón", "x": 0, "y": 2, "casa": { "x": 2, "y": 0 } } ],
+      "size": { "cols": 5, "rows": 5 },
+      "feedback": [
+        "El carro inicia en (3,4) con 22 de gasolina.",
+        "Mueve el carro a la posición del ratón (0,2).", 
+        "Recoge al ratón y llévalo a su casa (2,0)."
+      ]
+    },
+    {
+      "id": 7,
+      "gasolina": 25,
+      "carro": { "x": 2, "y": 0 },
+      "animales": [ { "nombre": "Caballo", "x": 4, "y": 2, "casa": { "x": 0, "y": 3 } } ],
+      "size": { "cols": 5, "rows": 5 },
+      "feedback": [
+        "El carro inicia en (2,0) con 25 de gasolina.",
+        "Mueve el carro a la posición del caballo (4,2).", 
+        "Recoge al caballo y llévalo a su casa (0,3)."
+      ]
+    }
+  ],
+  "ejercicios": [
+    {
+      "id": 1,
+      "gasolina": 10,
+      "carro": { "x": 0, "y": 0 },
+      "animales": [ { "nombre": "Perro", "x": 2, "y": 1, "casa": { "x": 4, "y": 3 } } ],
+      "size": { "cols": 5, "rows": 5 }
+    },
+    {
+      "id": 2,
+      "gasolina": 12,
+      "carro": { "x": 1, "y": 1 },
+      "animales": [ { "nombre": "Gato", "x": 3, "y": 2, "casa": { "x": 0, "y": 4 } } ],
+      "size": { "cols": 5, "rows": 5 }
+    },
+    {
+      "id": 3,
+      "gasolina": 15,
+      "carro": { "x": 0, "y": 4 },
+      "animales": [ { "nombre": "Conejo", "x": 2, "y": 2, "casa": { "x": 4, "y": 0 } } ],
+      "size": { "cols": 5, "rows": 5 }
+    },
+    {
+      "id": 4,
+      "gasolina": 18,
+      "carro": { "x": 2, "y": 2 },
+      "animales": [ { "nombre": "Tortuga", "x": 0, "y": 0, "casa": { "x": 4, "y": 4 } } ],
+      "size": { "cols": 5, "rows": 5 }
+    },
+    {
+      "id": 5,
+      "gasolina": 20,
+      "carro": { "x": 4, "y": 0 },
+      "animales": [ { "nombre": "Pájaro", "x": 1, "y": 3, "casa": { "x": 3, "y": 1 } } ],
+      "size": { "cols": 5, "rows": 5 }
+    },
+    {
+      "id": 6,
+      "gasolina": 22,
+      "carro": { "x": 3, "y": 4 },
+      "animales": [ { "nombre": "Ratón", "x": 0, "y": 2, "casa": { "x": 2, "y": 0 } } ],
+      "size": { "cols": 5, "rows": 5 }
+    },
+    {
+      "id": 7,
+      "gasolina": 25,
+      "carro": { "x": 2, "y": 0 },
+      "animales": [ { "nombre": "Caballo", "x": 4, "y": 2, "casa": { "x": 0, "y": 3 } } ],
+      "size": { "cols": 5, "rows": 5 }
+    }
+  ]
+}

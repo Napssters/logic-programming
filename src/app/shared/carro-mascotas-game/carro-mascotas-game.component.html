@@ -1,10 +1,54 @@
-<div>
-  <ng-container *ngIf="tipoHijo === 1">
-    <!-- Ejemplo -->
-    <p>Ejemplo de Carro Mascotas Game</p>
-  </ng-container>
-  <ng-container *ngIf="tipoHijo === 2">
-    <!-- Ejercicio -->
-    <p>Ejercicio de Carro Mascotas Game</p>
-  </ng-container>
+  <div *ngIf="haGanado()" class="alert alert-success text-center">
+    ¡Ganaste! Has llevado el animal a su casa correctamente.
+  </div>
+<div *ngIf="nivelActual">
+  <h3>Nivel {{indiceNivel + 1}}</h3>
+  <p>Gasolina restante: {{gasolinaRestante}}</p>
+  <p>Posición actual del carro: ({{posicionCarro?.x}}, {{posicionCarro?.y}})</p>
+  <div *ngFor="let animal of nivelActual.animales">
+    <p>Animal: {{animal.nombre}} en ({{animal.x}}, {{animal.y}}), Casa en ({{animal.casa.x}}, {{animal.casa.y}})</p>
+  </div>
+  <p>Tamaño del mapa: {{nivelActual.size.cols}} x {{nivelActual.size.rows}}</p>
+
+  <!-- Visualización 2D -->
+  <div class="table-responsive mb-3">
+    <table class="table table-bordered text-center align-middle carro-mascotas-grid">
+      <tbody>
+        <tr *ngFor="let y of getFilas()">
+          <td *ngFor="let x of getColumnas()"
+              [ngClass]="{
+                'bg-road': true,
+                'bg-success': esCarro(x, y),
+                'bg-warning': esAnimal(x, y) && !animalesRecogidos[esAnimal(x, y)?.nombre],
+                'bg-info': esCasa(x, y)
+              }">
+            <span *ngIf="esCarro(x, y)">{{getEmojiCarro()}}</span>
+            <span *ngIf="esAnimal(x, y) && !animalesRecogidos[esAnimal(x, y)?.nombre]">{{getEmojiAnimal(esAnimal(x, y)?.nombre)}}</span>
+            <span *ngIf="esCasa(x, y)">🏠</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="tieneAnimalesRecogidos()" class="alert alert-info text-center">
+    ¡Has recogido un animal!
+  </div>
+
+  <div class="d-flex justify-content-center mb-3">
+    <button class="btn btn-outline-dark mx-1" (click)="moverCarro('up')">⬆️</button>
+    <button class="btn btn-outline-dark mx-1" (click)="moverCarro('left')">⬅️</button>
+    <button class="btn btn-outline-dark mx-1" (click)="moverCarro('down')">⬇️</button>
+    <button class="btn btn-outline-dark mx-1" (click)="moverCarro('right')">➡️</button>
+  </div>
+
+  <div *ngIf="tipoHijo === 1 && nivelActual.feedback">
+    <h4>Feedback paso a paso:</h4>
+    <ul>
+      <li *ngFor="let paso of nivelActual.feedback">{{paso}}</li>
+    </ul>
+  </div>
+
+  <button class="btn btn-outline-primary me-2" (click)="anteriorNivel()" [disabled]="indiceNivel === 0">Anterior</button>
+  <button class="btn btn-outline-primary" (click)="siguienteNivel()" [disabled]="indiceNivel === niveles.length - 1">Siguiente</button>
 </div>
