@@ -10,22 +10,22 @@
 
       <!-- Celdas del mapa -->
 
-      <div *ngFor="let cell of flatLayout; let i = index"
-           [class]="'cell ' + cell.type + ' ' + cell.orientation">
+      <div *ngFor="let cell of flatLayout; let i = index" [class]="'cell ' + cell.type + ' ' + cell.orientation">
 
         <!-- Indicador de ruta óptima -->
         <div *ngIf="cell.isOptimal" class="optimal-path-indicator"></div>
 
         <!-- Elementos del juego en la celda con color de fondo -->
-        <div *ngIf="cell.entity === 'house'"
-             class="game-element house"
-             [ngStyle]="{'background-color': getEntityColor(cell), 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}">
-          <span style="font-size:2.2rem; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">🏠</span>
+        <div *ngIf="cell.entity === 'house'" class="game-element house"
+          [ngStyle]="{'background-color': getEntityColor(cell), 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}">
+          <span
+            style="font-size:2.2rem; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">🏠</span>
         </div>
-        <div *ngIf="cell.entity === 'pet'"
-             class="game-element pet"
-             [ngStyle]="{'background-color': getEntityColor(cell), 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}">
-          <span style="font-size:2.2rem; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">{{ getEmojiAnimal(cell.entityName) }}</span>
+        <div *ngIf="cell.entity === 'pet'" class="game-element pet"
+          [ngStyle]="{'background-color': getEntityColor(cell), 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}">
+          <span
+            style="font-size:2.2rem; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">{{
+            getEmojiAnimal(cell.entityName) }}</span>
         </div>
       </div>
 
@@ -66,8 +66,8 @@
         <button class="action-btn" *ngIf="esEjemplo()" (click)="toggleRuta()">
           {{ mostrarRuta ? 'Ocultar Ruta' : 'Mostrar Ruta' }}
         </button>
-  <button class="action-btn" (click)="anteriorNivel()">Anterior</button>
-  <button class="action-btn" (click)="siguienteNivel()">Siguiente</button>
+        <button class="action-btn" (click)="anteriorNivel()">Anterior</button>
+        <button class="action-btn" (click)="siguienteNivel()">Siguiente</button>
       </div>
     </aside>
   </div>
