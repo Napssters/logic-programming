@@ -1,151 +1,294 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
+// --- Interfaces para la nueva estructura de datos ---
+interface Entidad {
+  tipo: 'pet' | 'house';
+  nombre: string;
+  pos: [number, number]; // [row, col]
+}
+
+interface Mapa {
+  layout: string[][];
+  entidades: Entidad[];
+}
+
+interface Nivel {
+  id: number;
+  nombre: string;
+  tipo: 'ejemplo' | 'ejercicio';
+  mapa: Mapa;
+  carro: {
+    pos: [number, number];
+    gasolina: number;
+  };
+  rutaOptima?: [number, number][];
+}
+
+interface Cell {
+  type: 'grass' | 'road';
+  orientation: 'horizontal' | 'vertical' | 'intersection' | 'none';
+  entity: 'pet' | 'house' | null;
+  entityName?: string;
+  isOptimal: boolean;
+  pos: [number, number];
+}
+
 @Component({
   selector: 'app-carro-mascotas-game',
   templateUrl: './carro-mascotas-game.component.html',
   styleUrls: ['./carro-mascotas-game.component.css']
 })
 export class CarroMascotasGameComponent implements OnInit {
-  ngOnInit() {
-    this.http.get<any>('assets/jsons-base/niveles-carro-mascotas.json').subscribe(data => {
-      this.nivelesEjemplo = data.ejemplos;
-      this.nivelesEjercicio = data.ejercicios;
+
+  @Input() tipoHijo: number = 1; // 1 para ejemplos, 2 para ejercicios
+
+  niveles: Nivel[] = [];
+  nivelActual!: Nivel;
+  indiceNivel: number = 0;
+
+  // --- Estado del juego ---
+  posicionCarro: [number, number] = [0, 0];
+  gasolinaRestante: number = 0;
+  mascotasRecogidas: string[] = [];
+  casasVisitadas: string[] = [];
+  mensaje: string | null = null;
+
+  // --- Renderización ---
+  flatLayout: Cell[] = [];
+  mostrarRuta: boolean = false;
+
+  constructor(private http: HttpClient) { }
+
+  ngOnInit(): void {
+    this.cargarNiveles();
+  }
+
+  // --- Control por Teclado ---
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    if (this.mensaje) return; // No hacer nada si hay un mensaje en pantalla
+
+    let dir: 'arriba' | 'abajo' | 'izquierda' | 'derecha' | null = null;
+    switch (event.key) {
+      case 'ArrowUp':
+        dir = 'arriba';
+        break;
+      case 'ArrowDown':
+        dir = 'abajo';
+        break;
+      case 'ArrowLeft':
+        dir = 'izquierda';
+        break;
+      case 'ArrowRight':
+        dir = 'derecha';
+        break;
+    }
+
+    if (dir) {
+      event.preventDefault(); // Prevenir scroll de la página
+      this.moverCarro(dir);
+    }
+  }
+
+  getEntityColor(cell: Cell): string {
+    if (!cell.entity) return 'transparent';
+    const entidad = this.nivelActual.mapa.entidades.find(e => e.pos[0] === cell.pos[0] && e.pos[1] === cell.pos[1] && e.tipo === cell.entity);
+    return entidad && (entidad as any).color ? (entidad as any).color : 'transparent';
+  }
+
+  cargarNiveles(): void {
+    this.http.get<{ ejemplos: Nivel[], ejercicios: Nivel[] }>('/assets/jsons-base/niveles-carro-mascotas.json').subscribe(data => {
+      const nivelesSource = this.tipoHijo === 1 ? data.ejemplos : data.ejercicios;
+      this.niveles = JSON.parse(JSON.stringify(nivelesSource)); // Deep copy para poder reiniciar
       this.cargarNivel(0);
     });
-    window.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
 
-  ngOnDestroy() {
-    window.removeEventListener('keydown', this.handleKeyDown.bind(this));
+  cargarNivel(index: number): void {
+    if (index < 0 || index >= this.niveles.length) return;
+
+    this.indiceNivel = index;
+    this.nivelActual = JSON.parse(JSON.stringify(this.niveles[index])); // Deep copy del nivel para evitar mutaciones
+    this.mostrarRuta = false;
+    this.reiniciarNivel();
   }
 
-  handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'ArrowUp') {
-      this.moverCarro('up');
-    } else if (event.key === 'ArrowDown') {
-      this.moverCarro('down');
-    } else if (event.key === 'ArrowLeft') {
-      this.moverCarro('left');
-    } else if (event.key === 'ArrowRight') {
-      this.moverCarro('right');
-    }
-  }
-  haGanado(): boolean {
-    // Gana si todos los animales han sido recogidos y entregados en su casa
-    if (!this.nivelActual) return false;
-    return this.nivelActual.animales.every(animal => {
-      // Animal recogido y el carro está en la casa del animal y el animal ya no está en el carro
-      return this.animalesRecogidos[animal.nombre] &&
-        this.posicionCarro.x === animal.casa.x &&
-        this.posicionCarro.y === animal.casa.y;
-    });
-  }
-  tieneAnimalesRecogidos(): boolean {
-    return Object.values(this.animalesRecogidos).some(v => v);
-  }
-  @Input() tipoHijo: 1 | 2 = 1;
-  nivelActual: any = null;
-  nivelesEjemplo: any[] = [];
-  nivelesEjercicio: any[] = [];
-  indiceNivel: number = 0;
-  // Estado del juego
-  posicionCarro: { x: number, y: number } | null = null;
-  gasolinaRestante: number = 0;
-  camino: { x: number, y: number }[] = [];
-  animalesRecogidos: { [nombre: string]: boolean } = {};
-
-  constructor(private http: HttpClient) {}
-
-  get niveles() {
-    return this.tipoHijo === 1 ? this.nivelesEjemplo : this.nivelesEjercicio;
-  }
-
-  // ...existing code...
-
-  cargarNivel(indice: number) {
-    this.indiceNivel = indice;
-    this.nivelActual = this.niveles[indice];
-    // Inicializar estado del juego
-    this.posicionCarro = { ...this.nivelActual.carro };
-    this.gasolinaRestante = this.nivelActual.gasolina;
-    this.camino = [ { ...this.posicionCarro } ];
-    this.animalesRecogidos = {};
-    for (const animal of this.nivelActual.animales) {
-      this.animalesRecogidos[animal.nombre] = false;
+  reiniciarNivel(): void {
+    // Usar el estado limpio de nivelActual
+    this.posicionCarro = [...this.nivelActual.carro.pos];
+    this.gasolinaRestante = this.nivelActual.carro.gasolina;
+    this.mascotasRecogidas = [];
+    this.casasVisitadas = [];
+    this.mensaje = null;
+    this.generarFlatLayout();
+    if (this.mostrarRuta) {
+      this.aplicarRutaOptima();
     }
   }
 
-  siguienteNivel() {
-    if (this.indiceNivel < this.niveles.length - 1) {
-      this.cargarNivel(this.indiceNivel + 1);
-    }
-  }
+  generarFlatLayout(): void {
+    const layout = this.nivelActual.mapa.layout;
+    const entidades = this.nivelActual.mapa.entidades;
+    this.flatLayout = [];
 
-  anteriorNivel() {
-    if (this.indiceNivel > 0) {
-      this.cargarNivel(this.indiceNivel - 1);
-    }
-  }
-
-  getFilas(): number[] {
-    return this.nivelActual ? Array(this.nivelActual.size.rows).fill(0).map((_, i) => i) : [];
-  }
-
-  getColumnas(): number[] {
-    return this.nivelActual ? Array(this.nivelActual.size.cols).fill(0).map((_, i) => i) : [];
-  }
-
-  esCarro(x: number, y: number): boolean {
-    return this.posicionCarro && this.posicionCarro.x === x && this.posicionCarro.y === y;
-  }
-
-  esCamino(x: number, y: number): boolean {
-    return this.camino.some(pos => pos.x === x && pos.y === y);
-  }
-
-  esAnimal(x: number, y: number): any {
-    return this.nivelActual ? this.nivelActual.animales.find(a => a.x === x && a.y === y) : null;
-  }
-
-  esCasa(x: number, y: number): any {
-    return this.nivelActual ? this.nivelActual.animales.find(a => a.casa.x === x && a.casa.y === y) : null;
-  }
-
-  moverCarro(direccion: 'up' | 'down' | 'left' | 'right') {
-    if (!this.posicionCarro || this.gasolinaRestante <= 0) return;
-    let { x, y } = this.posicionCarro;
-    if (direccion === 'up' && y > 0) y--;
-    if (direccion === 'down' && y < this.nivelActual.size.rows - 1) y++;
-    if (direccion === 'left' && x > 0) x--;
-    if (direccion === 'right' && x < this.nivelActual.size.cols - 1) x++;
-    // Solo mover si cambia la posición
-    if (x !== this.posicionCarro.x || y !== this.posicionCarro.y) {
-      this.posicionCarro = { x, y };
-      this.gasolinaRestante--;
-      this.camino.push({ x, y });
-      // Recoger animal si está en la posición
-      for (const animal of this.nivelActual.animales) {
-        if (animal.x === x && animal.y === y) {
-          this.animalesRecogidos[animal.nombre] = true;
-        }
+    for (let r = 0; r < layout.length; r++) {
+      for (let c = 0; c < layout[r].length; c++) {
+        const entidadAqui = entidades.find(e => e.pos[0] === r && e.pos[1] === c);
+        const cell: Cell = {
+          type: layout[r][c] === 'r' ? 'road' : 'grass',
+          orientation: this.getRoadOrientation(r, c),
+          entity: entidadAqui ? entidadAqui.tipo : null,
+          entityName: entidadAqui ? entidadAqui.nombre : undefined,
+          isOptimal: false,
+          pos: [r, c]
+        };
+        this.flatLayout.push(cell);
       }
     }
   }
 
-  getEmojiAnimal(nombre: string): string {
-    const emojis: { [key: string]: string } = {
-      'Perro': '🐶',
-      'Gato': '🐱',
-      'Conejo': '🐰',
-      'Tortuga': '🐢',
-      'Pájaro': '🐦',
-      'Ratón': '🐭',
-      'Caballo': '🐴'
+  moverCarro(direccion: 'arriba' | 'abajo' | 'izquierda' | 'derecha'): void {
+    if (this.mensaje || this.gasolinaRestante <= 0) return;
+
+    let [row, col] = this.posicionCarro;
+    const newPos: [number, number] = [row, col];
+
+    if (direccion === 'arriba') newPos[0]--;
+    if (direccion === 'abajo') newPos[0]++;
+    if (direccion === 'izquierda') newPos[1]--;
+    if (direccion === 'derecha') newPos[1]++;
+
+    if (this.esMovimientoValido(newPos)) {
+      this.posicionCarro = newPos;
+      this.gasolinaRestante--;
+      this.verificarInteracciones();
+      this.verificarCondicionVictoria();
+    }
+  }
+
+  esMovimientoValido(pos: [number, number]): boolean {
+    const [r, c] = pos;
+    const layout = this.nivelActual.mapa.layout;
+    return r >= 0 && r < layout.length && c >= 0 && c < layout[0].length && layout[r][c] === 'r';
+  }
+
+  verificarInteracciones(): void {
+    const [r, c] = this.posicionCarro;
+    const entidad = this.nivelActual.mapa.entidades.find(e => e.pos[0] === r && e.pos[1] === c);
+
+    if (!entidad) return;
+
+    if (entidad.tipo === 'pet' && !this.mascotasRecogidas.includes(entidad.nombre)) {
+      this.mascotasRecogidas.push(entidad.nombre);
+      // Ocultar la mascota del mapa visualmente
+      const cellInLayout = this.flatLayout.find(cell => cell.pos[0] === r && cell.pos[1] === c);
+      if(cellInLayout) cellInLayout.entity = null;
+    }
+
+    if (entidad.tipo === 'house' && this.mascotasRecogidas.includes(entidad.nombre)) {
+      // Solo se visita la casa si se tiene la mascota correcta
+      if (!this.casasVisitadas.includes(entidad.nombre)) {
+        this.casasVisitadas.push(entidad.nombre);
+        this.mascotasRecogidas = this.mascotasRecogidas.filter(m => m !== entidad.nombre);
+      }
+    }
+  }
+
+  verificarCondicionVictoria(): void {
+    const totalMascotas = this.nivelActual.mapa.entidades.filter(e => e.tipo === 'pet').length;
+    const todasEntregadas = this.casasVisitadas.length === totalMascotas;
+
+    if (todasEntregadas) {
+      this.mensaje = '¡Felicidades!';
+    } else if (this.gasolinaRestante <= 0) {
+      this.mensaje = '¡Te quedaste sin gasolina!';
+    }
+  }
+
+  getGridStyles() {
+    if (!this.nivelActual) return {};
+    const layout = this.nivelActual.mapa.layout;
+    return {
+      'grid-template-columns': `repeat(${layout[0].length}, 60px)`,
+      'grid-template-rows': `repeat(${layout.length}, 60px)`
     };
-    return emojis[nombre] || '🐾';
+  }
+
+  getCarStyles() {
+    if (!this.nivelActual) return {};
+    return {
+      'transform': `translate(${this.posicionCarro[1] * 60}px, ${this.posicionCarro[0] * 60}px)`
+    };
+  }
+
+  getEmojiAnimal(nombre: string | undefined): string {
+    if (nombre === 'Perro') return '🐶';
+    if (nombre === 'Gato') return '🐱';
+    if (nombre === 'Conejo') return '🐰';
+    if (nombre === 'Zorro') return '🦊';
+    if (nombre === 'Lobo') return '🐺';
+    if (nombre === 'Pato') return '🦆';
+    if (nombre === 'Vaca') return '🐮';
+    if (nombre === 'Cerdo') return '🐷';
+    if (nombre === 'Caballo') return '🐴';
+    if (nombre === 'Oveja') return '🐑';
+    return '❓';
   }
 
   getEmojiCarro(): string {
-    return '🚙'; // Carro sin fondo
+    return this.mascotasRecogidas.length > 0 ? '🚕' : '🚗';
+  }
+
+  esEjemplo(): boolean {
+    return this.nivelActual?.tipo === 'ejemplo';
+  }
+
+  toggleRuta(): void {
+    this.mostrarRuta = !this.mostrarRuta;
+    // Limpiar la ruta anterior y aplicarla si es necesario
+    this.flatLayout.forEach(c => c.isOptimal = false);
+    if (this.mostrarRuta) {
+      this.aplicarRutaOptima();
+    }
+  }
+
+  aplicarRutaOptima(): void {
+    if (!this.nivelActual.rutaOptima) return;
+    this.nivelActual.rutaOptima.forEach(pos => {
+      const cell = this.flatLayout.find(c => c.pos[0] === pos[0] && c.pos[1] === pos[1]);
+      if (cell) {
+        cell.isOptimal = true;
+      }
+    });
+  }
+
+  getRoadOrientation(r: number, c: number): 'horizontal' | 'vertical' | 'intersection' | 'none' {
+    if (!this.nivelActual) return 'none';
+    const layout = this.nivelActual.mapa.layout;
+    if (layout[r][c] !== 'r') return 'none';
+
+    const hasUp = r > 0 && layout[r - 1][c] === 'r';
+    const hasDown = r < layout.length - 1 && layout[r + 1][c] === 'r';
+    const hasLeft = c > 0 && layout[r][c - 1] === 'r';
+    const hasRight = c < layout[0].length - 1 && layout[r][c + 1] === 'r';
+
+    const vertical = hasUp || hasDown;
+    const horizontal = hasLeft || hasRight;
+
+    if (vertical && horizontal) return 'intersection';
+    if (vertical) return 'vertical';
+    if (horizontal) return 'horizontal';
+    return 'horizontal';
+  }
+
+  siguienteNivel(): void {
+  this.mensaje = null;
+  this.cargarNivel(this.indiceNivel + 1);
+  }
+
+  anteriorNivel(): void {
+  this.mensaje = null;
+  this.cargarNivel(this.indiceNivel - 1);
   }
 }

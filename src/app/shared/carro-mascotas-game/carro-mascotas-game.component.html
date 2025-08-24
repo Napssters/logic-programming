@@ -1,54 +1,75 @@
-  <div *ngIf="haGanado()" class="alert alert-success text-center">
-    ¡Ganaste! Has llevado el animal a su casa correctamente.
-  </div>
-<div *ngIf="nivelActual">
-  <h3>Nivel {{indiceNivel + 1}}</h3>
-  <p>Gasolina restante: {{gasolinaRestante}}</p>
-  <p>Posición actual del carro: ({{posicionCarro?.x}}, {{posicionCarro?.y}})</p>
-  <div *ngFor="let animal of nivelActual.animales">
-    <p>Animal: {{animal.nombre}} en ({{animal.x}}, {{animal.y}}), Casa en ({{animal.casa.x}}, {{animal.casa.y}})</p>
-  </div>
-  <p>Tamaño del mapa: {{nivelActual.size.cols}} x {{nivelActual.size.rows}}</p>
+<div class="container" *ngIf="nivelActual">
 
-  <!-- Visualización 2D -->
-  <div class="table-responsive mb-3">
-    <table class="table table-bordered text-center align-middle carro-mascotas-grid">
-      <tbody>
-        <tr *ngFor="let y of getFilas()">
-          <td *ngFor="let x of getColumnas()"
-              [ngClass]="{
-                'bg-road': true,
-                'bg-success': esCarro(x, y),
-                'bg-warning': esAnimal(x, y) && !animalesRecogidos[esAnimal(x, y)?.nombre],
-                'bg-info': esCasa(x, y)
-              }">
-            <span *ngIf="esCarro(x, y)">{{getEmojiCarro()}}</span>
-            <span *ngIf="esAnimal(x, y) && !animalesRecogidos[esAnimal(x, y)?.nombre]">{{getEmojiAnimal(esAnimal(x, y)?.nombre)}}</span>
-            <span *ngIf="esCasa(x, y)">🏠</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <header class="header">
+    <h1 class="title">Carro Recolector</h1>
+    <p class="level-indicator">Nivel {{ indiceNivel + 1 }}: {{ nivelActual.nombre }}</p>
+  </header>
+
+  <div class="game-area">
+    <main class="game-board" [ngStyle]="getGridStyles()">
+
+      <!-- Celdas del mapa -->
+
+      <div *ngFor="let cell of flatLayout; let i = index"
+           [class]="'cell ' + cell.type + ' ' + cell.orientation">
+
+        <!-- Indicador de ruta óptima -->
+        <div *ngIf="cell.isOptimal" class="optimal-path-indicator"></div>
+
+        <!-- Elementos del juego en la celda con color de fondo -->
+        <div *ngIf="cell.entity === 'house'"
+             class="game-element house"
+             [ngStyle]="{'background-color': getEntityColor(cell)}">
+          <span style="font-size:2.2rem;">🏠</span>
+        </div>
+        <div *ngIf="cell.entity === 'pet'"
+             class="game-element pet"
+             [ngStyle]="{'background-color': getEntityColor(cell)}">
+          <span style="font-size:2.2rem;">{{ getEmojiAnimal(cell.entityName) }}</span>
+        </div>
+      </div>
+
+      <!-- Carro (elemento móvil) sin fondo -->
+      <div class="game-element car" [ngStyle]="getCarStyles()">
+        <span style="font-size:2.2rem; background: none;">{{ getEmojiCarro() }}</span>
+      </div>
+
+      <!-- Overlay para mensajes -->
+      <div *ngIf="mensaje" class="message-overlay">
+        <div class="message-box">
+          <h2>{{ mensaje }}</h2>
+          <button class="action-btn" (click)="siguienteNivel()">Siguiente Nivel</button>
+        </div>
+      </div>
+
+    </main>
+
+    <aside class="sidebar">
+      <div class="info-box">
+        <h3>Gasolina</h3>
+        <p class="value">{{ gasolinaRestante }}</p>
+      </div>
+
+      <div class="info-box">
+        <h3>Controles</h3>
+        <p class="controls-info">Usa las <strong>flechas</strong> del teclado para moverte.</p>
+      </div>
+
+      <div class="info-box">
+        <h3>Mascotas</h3>
+        <p *ngIf="mascotasRecogidas.length === 0">Ninguna a bordo</p>
+        <p *ngFor="let pet of mascotasRecogidas" class="value">{{ getEmojiAnimal(pet) }}</p>
+      </div>
+
+      <div class="action-buttons">
+        <button class="action-btn" (click)="reiniciarNivel()">Reiniciar</button>
+        <button class="action-btn" *ngIf="esEjemplo()" (click)="toggleRuta()">
+          {{ mostrarRuta ? 'Ocultar Ruta' : 'Mostrar Ruta' }}
+        </button>
+  <button class="action-btn" (click)="anteriorNivel()">Anterior</button>
+  <button class="action-btn" (click)="siguienteNivel()">Siguiente</button>
+      </div>
+    </aside>
   </div>
 
-  <div *ngIf="tieneAnimalesRecogidos()" class="alert alert-info text-center">
-    ¡Has recogido un animal!
-  </div>
-
-  <div class="d-flex justify-content-center mb-3">
-    <button class="btn btn-outline-dark mx-1" (click)="moverCarro('up')">⬆️</button>
-    <button class="btn btn-outline-dark mx-1" (click)="moverCarro('left')">⬅️</button>
-    <button class="btn btn-outline-dark mx-1" (click)="moverCarro('down')">⬇️</button>
-    <button class="btn btn-outline-dark mx-1" (click)="moverCarro('right')">➡️</button>
-  </div>
-
-  <div *ngIf="tipoHijo === 1 && nivelActual.feedback">
-    <h4>Feedback paso a paso:</h4>
-    <ul>
-      <li *ngFor="let paso of nivelActual.feedback">{{paso}}</li>
-    </ul>
-  </div>
-
-  <button class="btn btn-outline-primary me-2" (click)="anteriorNivel()" [disabled]="indiceNivel === 0">Anterior</button>
-  <button class="btn btn-outline-primary" (click)="siguienteNivel()" [disabled]="indiceNivel === niveles.length - 1">Siguiente</button>
 </div>

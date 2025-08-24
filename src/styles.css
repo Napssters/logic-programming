@@ -1,3 +1,17 @@
+/* Variables globales para todo el proyecto */
+:root {
+  --font-main: 'Inter', sans-serif;
+  --font-display: 'Fredoka One', cursive;
+  --color-grass: #aed581; /* Un verde césped más vivo */
+  --color-road: #78716c; /* Gris piedra para la carretera */
+  --color-road-line: #fde047; /* Amarillo para las líneas */
+  --color-car: #ef4444; /* Rojo */
+  --color-house: #fb923c; /* Naranja */
+  --color-pet: #60a5fa; /* Azul */
+  --color-ui-bg: #f5f5f4;
+  --color-ui-primary: #292524;
+  --color-ui-secondary: #a8a29e;
+}
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/primeng/resources/themes/soho-light/theme.css";
 @import "primeicons/primeicons.css";
