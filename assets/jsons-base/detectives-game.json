@@ -1,0 +1,2652 @@
+{
+  "ejemplos": [
+    {
+      "id": 1,
+      "ambito": "Medicina",
+      "titulo": "El Caso del Paciente Misterioso",
+      "introduccion": {
+        "tituloCard": "Hospital Central: Un Misterio Médico",
+        "narrativa": "Eres el Detective Creativo, convocado al Hospital Central en una noche agitada. Carlos Ramírez, de 45 años, llega con fiebre alta, erupción cutánea en brazos y piernas, y fatiga que lo deja postrado. Las pruebas estándar (sangre, rayos X) no muestran nada. La familia está desesperada, y el estado de Carlos empeora cada hora. Tienes 24 horas para diagnosticar y salvarlo. Investiga: interroga testigos, analiza evidencias y toma decisiones creativas para descubrir la causa oculta.",
+        "objetivo": "Diagnosticar a Carlos usando solución creativa, combinando pistas de múltiples perspectivas."
+      },
+      "etapas": [
+        {
+          "id": "etapa1",
+          "tipo": "interrogatorio",
+          "tituloCard": "Interroga a la Familia",
+          "descripcion": "En la sala de espera, hablas con la esposa y el hijo de Carlos. Elige la pregunta que revele la pista más útil para avanzar.",
+          "opciones": [
+            {
+              "texto": "¿Ha viajado recientemente a algún lugar exótico?",
+              "resultado": "Esposa: 'Estuvo en la selva amazónica hace 2 semanas, lo picó un mosquito, pero no le dio importancia.' Avanza con pista clave.",
+              "avanzaA": "etapa2",
+              "esCorrecta": true,
+              "puntaje": 10
+            },
+            {
+              "texto": "¿Qué comió en las últimas 48 horas?",
+              "resultado": "Hijo: 'Comida casera, nada raro.' Descarta intoxicación, pero no avanza mucho.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -2
+            },
+            {
+              "texto": "¿Tiene antecedentes médicos graves?",
+              "resultado": "Esposa: 'Solo alergias leves.' Pista menor, pero útil para contexto.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": 3
+            },
+            {
+              "texto": "¿Ha estado bajo estrés extremo?",
+              "resultado": "Hijo: 'Trabaja mucho, pero nada fuera de lo normal.' No relevante, retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "¿Contacto con animales?",
+              "resultado": "Esposa: 'Solo su perro.' No relevante, retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -2
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Historia de Viaje",
+              "contenido": "🔍 Carlos estuvo en la selva amazónica. Picadura de mosquito sugiere posible enfermedad vectorial (malaria, dengue)."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista Familiar",
+              "contenido": "📝 La familia aporta contexto ambiental crucial para diagnósticos no estándar."
+            }
+          ]
+        },
+        {
+          "id": "etapa2",
+          "tipo": "analisis",
+          "tituloCard": "Analiza en el Laboratorio",
+          "descripcion": "Con la pista del viaje, revisas muestras en el laboratorio. Selecciona el test más prometedor para confirmar la hipótesis.",
+          "opciones": [
+            {
+              "texto": "Repetir pruebas estándar de sangre",
+              "resultado": "Negativas otra vez. Pierdes tiempo valioso.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Test rápido para malaria",
+              "resultado": "Positivo para malaria. Avanzas a tratamiento con confianza.",
+              "avanzaA": "etapa3",
+              "esCorrecta": true,
+              "puntaje": 15
+            },
+            {
+              "texto": "Biopsia de piel para erupción",
+              "resultado": "Muestra inflamación inespecífica, demora 48h. Pista: Sugiere infección sistémica.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": 5
+            },
+            {
+              "texto": "Test de dengue",
+              "resultado": "Negativo, pero valida enfoque de enfermedades tropicales. Retry con más precisión.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": 2
+            },
+            {
+              "texto": "Ecografía abdominal",
+              "resultado": "Normal. No relevante para síntomas. Retry.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -3
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Reporte de Laboratorio",
+              "contenido": "🔍 Fiebre y erupción sugieren enfermedad vectorial. Malaria es la principal sospechosa."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista Médica Global",
+              "contenido": "📝 Tests estándar fallan en enfermedades tropicales; se necesitan pruebas específicas."
+            },
+            {
+              "cardTipo": "idea",
+              "titulo": "Ideas de Diagnóstico",
+              "contenido": "💡 Idea 1: Antibióticos (tradicional, inefectivo). Idea 2: Antimaláricos (creativa por viaje)."
+            }
+          ]
+        },
+        {
+          "id": "etapa3",
+          "tipo": "decision",
+          "tituloCard": "Decide el Tratamiento",
+          "descripcion": "El test confirma malaria. Selecciona la acción para salvar a Carlos.",
+          "opciones": [
+            {
+              "texto": "Iniciar antimaláricos inmediatamente",
+              "resultado": "Correcto: Acción rápida basada en evidencia sólida.",
+              "avanzaA": "etapa4",
+              "esCorrecta": true,
+              "puntaje": 20
+            },
+            {
+              "texto": "Esperar confirmación de otro laboratorio",
+              "resultado": "Demora crítica. Carlos empeora, retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -10
+            },
+            {
+              "texto": "Tratar como infección bacteriana",
+              "resultado": "Antibióticos no funcionan. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Consultar especialista remoto",
+              "resultado": "Lento, pero aporta contexto. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": 0
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista de Urgencia",
+              "contenido": "📝 En enfermedades tropicales, la rapidez salva vidas."
+            }
+          ]
+        },
+        {
+          "id": "etapa4",
+          "tipo": "evaluacion",
+          "tituloCard": "Evalúa el Resultado",
+          "descripcion": "Carlos responde al tratamiento. Selecciona cómo mejorar la solución para cerrar el caso.",
+          "opciones": [
+            {
+              "texto": "Monitorear recuperación y ajustar dosis",
+              "resultado": "Correcto: Iteración asegura éxito a largo plazo.",
+              "avanzaA": "final",
+              "esCorrecta": true,
+              "puntaje": 15
+            },
+            {
+              "texto": "Cambiar a otro medicamento",
+              "resultado": "Innecesario, riesgo de efectos secundarios.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Descartar malaria y reevaluar",
+              "resultado": "Error: Ignora evidencia confirmada.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -7
+            },
+            {
+              "texto": "Alta inmediata",
+              "resultado": "Riesgo de recaída. Retry.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -5
+            }
+          ],
+          "solucionCorrecta": "Monitorear recuperación y ajustar dosis",
+          "pasosGuiados": [
+            "Paso 1: Identificaste el problema preciso: Síntomas no detectados por tests comunes.",
+            "Paso 2: Analizaste perspectivas: La familia dio la pista clave del viaje.",
+            "Paso 3: Generaste ideas: Test de malaria fue out-of-the-box.",
+            "Paso 4: Evaluaste: Acción rápida y efectiva.",
+            "Paso 5: Iteraste: Monitoreo asegura recuperación."
+          ],
+          "explicacion": "Solución creativa: Combinaste pista ambiental (selva) con medicina moderna (test rápido), rompiendo el patrón de tests estándar. Beneficios: Salvaste a Carlos, redujiste costos hospitalarios, satisfacción de familia y médicos."
+        }
+      ],
+      "finalExplicacion": "¡Caso resuelto, detective! Aprendiste a usar perspectivas múltiples (familia, médica global) y pensamiento out-of-the-box para diagnósticos innovadores. Tu enfoque creativo salvó una vida. Puntaje final: [Calculado]."
+    },
+    {
+      "id": 2,
+      "ambito": "Comida",
+      "titulo": "El Caso del Banquete Fallido",
+      "introduccion": {
+        "tituloCard": "Caos en la Cocina Nupcial",
+        "narrativa": "Detective Creativo, estás en una boda de lujo. El chef estrella se desmaya por fiebre, y el plato principal (filet mignon para 100 personas) se quema en el horno. Los invitados murmuran, la novia llora, y solo tienes 30 minutos para servir algo digno. Investiga: interroga al equipo de cocina, revisa la despensa y crea un plato creativo con lo disponible (vegetales frescos, pasta seca, especias exóticas).",
+        "objetivo": "Improvisar un menú que sorprenda a los invitados y salve la boda."
+      },
+      "etapas": [
+        {
+          "id": "etapa1",
+          "tipo": "interrogatorio",
+          "tituloCard": "Habla con el Sous-Chef",
+          "descripcion": "El sous-chef está nervioso pero conoce la cocina. Pregunta para descubrir recursos útiles.",
+          "opciones": [
+            {
+              "texto": "¿Qué hay en la despensa?",
+              "resultado": "Sous-chef: 'Vegetales frescos, pasta seca, especias exóticas.' Avanza con pista clave.",
+              "avanzaA": "etapa2",
+              "esCorrecta": true,
+              "puntaje": 10
+            },
+            {
+              "texto": "¿Podemos salvar el filet?",
+              "resultado": "Sous-chef: 'Quemado por fuera, crudo dentro.' No viable, retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "¿Hay otro chef disponible?",
+              "resultado": "Sous-chef: 'Solo novatos, no listos.' Pista menor, pero no avanza.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -2
+            },
+            {
+              "texto": "¿Qué quieren los invitados?",
+              "resultado": "Sous-chef: 'Algo gourmet, algunos son veganos.' Pista útil, avanza.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": 5
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Inventario de Despensa",
+              "contenido": "🔍 Vegetales frescos (calabacín, pimientos), pasta seca, especias (cúrcuma, albahaca)."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista de Invitados",
+              "contenido": "📝 Los invitados esperan algo sofisticado; algunos prefieren opciones veganas."
+            }
+          ]
+        },
+        {
+          "id": "etapa2",
+          "tipo": "analisis",
+          "tituloCard": "Revisa la Despensa",
+          "descripcion": "Con la lista de ingredientes, elige una combinación creativa para un nuevo plato.",
+          "opciones": [
+            {
+              "texto": "Preparar pasta primavera con vegetales y especias",
+              "resultado": "Idea creativa: Combina ingredientes disponibles en plato vegano elegante.",
+              "avanzaA": "etapa3",
+              "esCorrecta": true,
+              "puntaje": 15
+            },
+            {
+              "texto": "Servir vegetales solos asados",
+              "resultado": "Demasiado simple, invitados decepcionados. Retry.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Hacer sopa de vegetales",
+              "resultado": "Viable, pero no gourmet. Pista: Necesita más sofisticación.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": 3
+            },
+            {
+              "texto": "Intentar salvar filet cortando quemado",
+              "resultado": "Sabor amargo persiste. Retry.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -4
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "idea",
+              "titulo": "Ideas de Menú",
+              "contenido": "💡 Idea 1: Pasta primavera (fusión vegana). Idea 2: Sopa (simple, no ideal)."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista del Chef",
+              "contenido": "📝 Un plato debe ser visualmente atractivo y rápido de preparar."
+            }
+          ]
+        },
+        {
+          "id": "etapa3",
+          "tipo": "decision",
+          "tituloCard": "Cocina una Prueba",
+          "descripcion": "Preparas una muestra de pasta primavera. Ajusta el sabor según retroalimentación del sous-chef.",
+          "opciones": [
+            {
+              "texto": "Añadir especias exóticas (cúrcuma, albahaca)",
+              "resultado": "Correcto: Eleva el plato a nivel gourmet.",
+              "avanzaA": "etapa4",
+              "esCorrecta": true,
+              "puntaje": 20
+            },
+            {
+              "texto": "Usar solo sal y pimienta",
+              "resultado": "Soso, no impresiona. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Añadir queso rallado",
+              "resultado": "No vegano, algunos invitados no comen. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "Servir sin probar",
+              "resultado": "Riesgo de sabor desbalanceado. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -7
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Feedback del Sous-Chef",
+              "contenido": "🔍 Especias exóticas dan un toque único y sofisticado."
+            }
+          ]
+        },
+        {
+          "id": "etapa4",
+          "tipo": "evaluacion",
+          "tituloCard": "Sirve y Evalúa",
+          "descripcion": "El plato se sirve. Evalúa cómo mejorar la experiencia para los invitados.",
+          "opciones": [
+            {
+              "texto": "Decorar con hierbas frescas y servir rápido",
+              "resultado": "Correcto: Estética y rapidez aseguran éxito.",
+              "avanzaA": "final",
+              "esCorrecta": true,
+              "puntaje": 15
+            },
+            {
+              "texto": "Cambiar a otro plato ahora",
+              "resultado": "Imposible por tiempo. Retry.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Servir sin decoración",
+              "resultado": "Falta impacto visual. Retry.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -3
+            }
+          ],
+          "solucionCorrecta": "Decorar con hierbas frescas y servir rápido",
+          "pasosGuiados": [
+            "Paso 1: Identificaste el problema: Plato principal quemado.",
+            "Paso 2: Perspectivas: Invitados quieren gourmet, sous-chef dio recursos.",
+            "Paso 3: Ideas: Pasta primavera fue out-of-the-box.",
+            "Paso 4: Evaluaste: Viable, vegano, rápido.",
+            "Paso 5: Iteraste: Especias y decoración elevaron experiencia."
+          ],
+          "explicacion": "Solución creativa: Transformaste recursos limitados (pasta, vegetales) en un plato gourmet, usando especias de forma no convencional. Beneficios: Salvaste la boda, impresionaste a los invitados."
+        }
+      ],
+      "finalExplicacion": "¡Caso resuelto, detective! Convertiste un desastre en un triunfo culinario con pensamiento creativo. Aprendiste a usar recursos disponibles de forma innovadora. Puntaje final: [Calculado]."
+    },
+    {
+      "id": 3,
+      "ambito": "Astronautas",
+      "titulo": "El Caso de la Nave Averiada",
+      "introduccion": {
+        "tituloCard": "Crisis en la Órbita",
+        "narrativa": "Eres Detective Creativo en una misión espacial. Una fuga microscópica en el casco de la nave reduce el oxígeno lentamente. La tripulación está en pánico, y la Tierra está a días de distancia. Tienes 48 horas de oxígeno. Investiga: revisa sistemas, consulta a la tripulación, usa materiales a bordo (cinta adhesiva, plásticos, herramientas) para una solución creativa.",
+        "objetivo": "Reparar la fuga y salvar la misión."
+      },
+      "etapas": [
+        {
+          "id": "etapa1",
+          "tipo": "exploracion",
+          "tituloCard": "Inspecciona la Nave",
+          "descripcion": "Buscas la fuente de la fuga. Selecciona dónde investigar primero.",
+          "opciones": [
+            {
+              "texto": "Revisar panel exterior del casco",
+              "resultado": "Encuentras zona sospechosa: pequeña grieta. Avanza.",
+              "avanzaA": "etapa2",
+              "esCorrecta": true,
+              "puntaje": 10
+            },
+            {
+              "texto": "Chequear sistema de ventilación",
+              "resultado": "Normal, no es la fuente. Retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "Revisar tanques de oxígeno",
+              "resultado": "Funcionan, pero presión baja. Pista menor.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": 2
+            },
+            {
+              "texto": "Ignorar y esperar datos",
+              "resultado": "Pierdes tiempo crítico. Retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -5
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Reporte de Inspección",
+              "contenido": "🔍 Grieta microscópica detectada en casco exterior, difícil de sellar sin herramientas."
+            }
+          ]
+        },
+        {
+          "id": "etapa2",
+          "tipo": "interrogatorio",
+          "tituloCard": "Consulta al Ingeniero",
+          "descripcion": "Hablas con el ingeniero de la nave. Pregunta cómo reparar la grieta.",
+          "opciones": [
+            {
+              "texto": "¿Qué materiales tenemos a bordo?",
+              "resultado": "Ingeniero: 'Cinta adhesiva fuerte, plásticos, herramientas básicas.' Avanza.",
+              "avanzaA": "etapa3",
+              "esCorrecta": true,
+              "puntaje": 12
+            },
+            {
+              "texto": "¿Podemos usar sellador químico?",
+              "resultado": "Ingeniero: 'No disponible.' Retry.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "¿Reparar desde afuera?",
+              "resultado": "Ingeniero: 'Peligroso sin traje especial.' Pista menor.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": 2
+            },
+            {
+              "texto": "¿Reducir consumo de oxígeno?",
+              "resultado": "Ingeniero: 'Temporal, no soluciona.' Retry.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -2
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Inventario a Bordo",
+              "contenido": "🔍 Cinta adhesiva, plásticos flexibles, herramientas manuales disponibles."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista Histórica",
+              "contenido": "📝 Apollo 13 usó materiales improvisados para reparaciones críticas."
+            }
+          ]
+        },
+        {
+          "id": "etapa3",
+          "tipo": "decision",
+          "tituloCard": "Improvisa la Reparación",
+          "descripcion": "Con materiales identificados, elige cómo sellar la grieta.",
+          "opciones": [
+            {
+              "texto": "Usar cinta adhesiva y plástico como parche",
+              "resultado": "Correcto: Solución improvisada inspirada en Apollo 13.",
+              "avanzaA": "etapa4",
+              "esCorrecta": true,
+              "puntaje": 20
+            },
+            {
+              "texto": "Intentar soldar grieta",
+              "resultado": "No hay equipo de soldadura. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Cubrir con epoxi",
+              "resultado": "No disponible en nave. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "Ignorar y monitorear",
+              "resultado": "Oxígeno sigue bajando. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -7
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "idea",
+              "titulo": "Ideas de Reparación",
+              "contenido": "💡 Idea 1: Parche improvisado (creativo). Idea 2: Soldar (no viable)."
+            }
+          ]
+        },
+        {
+          "id": "etapa4",
+          "tipo": "evaluacion",
+          "tituloCard": "Evalúa la Reparación",
+          "descripcion": "El parche detiene la fuga. Evalúa cómo asegurar la solución.",
+          "opciones": [
+            {
+              "texto": "Monitorear presión y reforzar parche",
+              "resultado": "Correcto: Asegura estabilidad a largo plazo.",
+              "avanzaA": "final",
+              "esCorrecta": true,
+              "puntaje": 15
+            },
+            {
+              "texto": "Reemplazar parche con otro material",
+              "resultado": "Innecesario, riesgo de fallo. Retry.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Evacuar módulo",
+              "resultado": "Drástico, pierde nave. Retry.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -10
+            }
+          ],
+          "solucionCorrecta": "Monitorear presión y reforzar parche",
+          "pasosGuiados": [
+            "Paso 1: Identificaste problema: Fuga microscópica.",
+            "Paso 2: Perspectivas: Ingeniero dio recursos, historia inspiró.",
+            "Paso 3: Ideas: Parche fue out-of-the-box.",
+            "Paso 4: Evaluaste: Solución práctica y viable.",
+            "Paso 5: Iteraste: Monitoreo asegura éxito."
+          ],
+          "explicacion": "Solución creativa: Usaste materiales simples (cinta, plástico) de forma no convencional, inspirado en misiones reales. Beneficios: Salvaste la misión y la tripulación."
+        }
+      ],
+      "finalExplicacion": "¡Caso resuelto, detective! Tu ingenio al usar recursos limitados salvó la misión espacial. Aprendiste a pensar fuera de lo convencional en crisis. Puntaje final: [Calculado]."
+    },
+    {
+      "id": 4,
+      "ambito": "Historia",
+      "titulo": "El Caso del Artefacto Perdido",
+      "introduccion": {
+        "tituloCard": "Excavación en Peligro",
+        "narrativa": "Detective Creativo, estás en una excavación arqueológica en Egipto. Un artefacto antiguo, una estatuilla de Anubis, se rompe al desenterrarlo. El museo espera una pieza estrella para la exposición de mañana. Investiga: recolecta fragmentos, consulta expertos, usa materiales (pegamento, moldes) para restaurar creativamente.",
+        "objetivo": "Restaurar el artefacto para la exposición."
+      },
+      "etapas": [
+        {
+          "id": "etapa1",
+          "tipo": "exploracion",
+          "tituloCard": "Recolecta Fragmentos",
+          "descripcion": "Inspeccionas el sitio de excavación. Elige dónde buscar los fragmentos rotos.",
+          "opciones": [
+            {
+              "texto": "Buscar en la tierra removida",
+              "resultado": "Encuentras 90% de los fragmentos. Avanza.",
+              "avanzaA": "etapa2",
+              "esCorrecta": true,
+              "puntaje": 10
+            },
+            {
+              "texto": "Revisar equipo de excavación",
+              "resultado": "Nada útil, fragmentos no están ahí. Retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "Buscar en la tienda de campaña",
+              "resultado": "Solo herramientas, no fragmentos. Retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -2
+            },
+            {
+              "texto": "Ignorar fragmentos pequeños",
+              "resultado": "Pierdes piezas clave. Retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -5
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Fragmentos Recolectados",
+              "contenido": "🔍 90% de la estatuilla recuperada, pero falta cohesión."
+            }
+          ]
+        },
+        {
+          "id": "etapa2",
+          "tipo": "interrogatorio",
+          "tituloCard": "Consulta al Restaurador",
+          "descripcion": "Hablas con un experto en restauración. Pregunta cómo proceder.",
+          "opciones": [
+            {
+              "texto": "¿Qué materiales usamos para reconstruir?",
+              "resultado": "Experto: 'Pegamento especial, moldes de arcilla disponibles.' Avanza.",
+              "avanzaA": "etapa3",
+              "esCorrecta": true,
+              "puntaje": 12
+            },
+            {
+              "texto": "¿Podemos replicar la pieza?",
+              "resultado": "Experto: 'No ético, el museo exige autenticidad.' Retry.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "¿Exhibir fragmentos rotos?",
+              "resultado": "Experto: 'Menos atractivo, pero posible.' Pista menor.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": 2
+            },
+            {
+              "texto": "¿Buscar otra pieza?",
+              "resultado": "Experto: 'No hay tiempo.' Retry.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -2
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Materiales de Restauración",
+              "contenido": "🔍 Pegamento arqueológico y moldes de arcilla disponibles."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista del Museo",
+              "contenido": "📝 El museo valora autenticidad, pero acepta restauraciones creativas."
+            }
+          ]
+        },
+        {
+          "id": "etapa3",
+          "tipo": "decision",
+          "tituloCard": "Reconstruye el Artefacto",
+          "descripcion": "Con fragmentos y materiales, elige cómo restaurar la estatuilla.",
+          "opciones": [
+            {
+              "texto": "Usar pegamento y moldes para reconstrucción",
+              "resultado": "Correcto: Reconstrucción precisa y auténtica.",
+              "avanzaA": "etapa4",
+              "esCorrecta": true,
+              "puntaje": 20
+            },
+            {
+              "texto": "Pegar sin moldes",
+              "resultado": "Frágil, riesgo de colapso. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Exhibir fragmentos sueltos",
+              "resultado": "No atractivo para exposición. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "Pintar para cubrir daños",
+              "resultado": "No auténtico, museo rechaza. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -7
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "idea",
+              "titulo": "Ideas de Restauración",
+              "contenido": "💡 Idea 1: Reconstrucción precisa (creativa). Idea 2: Exhibir roto (no ideal)."
+            }
+          ]
+        },
+        {
+          "id": "etapa4",
+          "tipo": "evaluacion",
+          "tituloCard": "Presenta al Museo",
+          "descripcion": "La estatuilla está reconstruida. Evalúa cómo presentarla.",
+          "opciones": [
+            {
+              "texto": "Exhibir con nota de restauración",
+              "resultado": "Correcto: Transparencia y autenticidad impresionan.",
+              "avanzaA": "final",
+              "esCorrecta": true,
+              "puntaje": 15
+            },
+            {
+              "texto": "Ocultar restauración",
+              "resultado": "Riesgo ético, museo desconfía. Retry.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Cambiar por réplica",
+              "resultado": "No auténtico, rechazado. Retry.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -7
+            }
+          ],
+          "solucionCorrecta": "Exhibir con nota de restauración",
+          "pasosGuiados": [
+            "Paso 1: Identificaste problema: Artefacto roto.",
+            "Paso 2: Perspectivas: Experto y museo guiaron.",
+            "Paso 3: Ideas: Reconstrucción fue out-of-the-box.",
+            "Paso 4: Evaluaste: Autenticidad clave.",
+            "Paso 5: Iteraste: Nota de restauración añade valor."
+          ],
+          "explicacion": "Solución creativa: Restauraste usando materiales simples, respetando autenticidad. Beneficios: Salvaste exposición y prestigio."
+        }
+      ],
+      "finalExplicacion": "¡Caso resuelto, detective! Tu creatividad preservó un tesoro histórico. Aprendiste a combinar recursos y ética para soluciones únicas. Puntaje final: [Calculado]."
+    },
+    {
+      "id": 5,
+      "ambito": "Deportes",
+      "titulo": "El Caso del Partido Lluvioso",
+      "introduccion": {
+        "tituloCard": "Torneo en Riesgo",
+        "narrativa": "Detective Creativo, estás en un torneo de fútbol local. Una lluvia torrencial inunda el campo minutos antes del partido final. Los fans están empapados pero expectantes, y el equipo depende de este juego. Investiga: busca venues alternos, consulta jugadores, adapta reglas para salvar el torneo.",
+        "objetivo": "Organizar el partido bajo condiciones adversas."
+      },
+      "etapas": [
+        {
+          "id": "etapa1",
+          "tipo": "exploracion",
+          "tituloCard": "Busca Alternativas",
+          "descripcion": "El campo está inutilizable. Explora opciones para el partido.",
+          "opciones": [
+            {
+              "texto": "Inspeccionar gimnasio cubierto cercano",
+              "resultado": "Viable: Espacio pequeño pero seco. Avanza.",
+              "avanzaA": "etapa2",
+              "esCorrecta": true,
+              "puntaje": 10
+            },
+            {
+              "texto": "Esperar a que pare la lluvia",
+              "resultado": "Pronóstico: Lluvia todo el día. Retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Mover a otro campo",
+              "resultado": "Lejos, logística imposible. Retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "Cancelar partido",
+              "resultado": "Decepciona a todos. Retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -7
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Reporte del Gimnasio",
+              "contenido": "🔍 Gimnasio cubierto disponible, pero requiere adaptar reglas."
+            }
+          ]
+        },
+        {
+          "id": "etapa2",
+          "tipo": "interrogatorio",
+          "tituloCard": "Consulta a Jugadores",
+          "descripcion": "Hablas con los capitanes. Pregunta cómo adaptar el juego.",
+          "opciones": [
+            {
+              "texto": "¿Podemos jugar futsal en el gimnasio?",
+              "resultado": "Capitanes: 'Sí, con reglas ajustadas.' Avanza.",
+              "avanzaA": "etapa3",
+              "esCorrecta": true,
+              "puntaje": 12
+            },
+            {
+              "texto": "¿Prefieren posponer?",
+              "resultado": "Capitanes: 'Fans se irán.' Retry.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "¿Jugar en lodo?",
+              "resultado": "Capitanes: 'Peligroso, lesiones.' Retry.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "¿Usar reglas estándar?",
+              "resultado": "Capitanes: 'No cabe en gimnasio.' Retry.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -2
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista de Jugadores",
+              "contenido": "📝 Futsal es viable, requiere menos espacio y reglas flexibles."
+            }
+          ]
+        },
+        {
+          "id": "etapa3",
+          "tipo": "decision",
+          "tituloCard": "Adapta las Reglas",
+          "descripcion": "Configura el partido de futsal. Elige las reglas óptimas.",
+          "opciones": [
+            {
+              "texto": "Futsal con equipos reducidos y balón ligero",
+              "resultado": "Correcto: Ideal para gimnasio, mantiene emoción.",
+              "avanzaA": "etapa4",
+              "esCorrecta": true,
+              "puntaje": 20
+            },
+            {
+              "texto": "Usar reglas de fútbol estándar",
+              "resultado": "No viable en espacio pequeño. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Jugar sin porterías",
+              "resultado": "Confunde a fans. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "Partido de exhibición",
+              "resultado": "Menos competitivo, fans decepcionados. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -4
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "idea",
+              "titulo": "Ideas de Juego",
+              "contenido": "💡 Idea 1: Futsal (adaptado). Idea 2: Exhibición (no competitivo)."
+            }
+          ]
+        },
+        {
+          "id": "etapa4",
+          "tipo": "evaluacion",
+          "tituloCard": "Evalúa el Partido",
+          "descripcion": "El partido de futsal es un éxito. Evalúa cómo mejorar la experiencia.",
+          "opciones": [
+            {
+              "texto": "Añadir música y comentarista",
+              "resultado": "Correcto: Eleva la experiencia para fans.",
+              "avanzaA": "final",
+              "esCorrecta": true,
+              "puntaje": 15
+            },
+            {
+              "texto": "Cambiar reglas a mitad",
+              "resultado": "Confunde a todos. Retry.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Ignorar feedback de fans",
+              "resultado": "Baja satisfacción. Retry.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -3
+            }
+          ],
+          "solucionCorrecta": "Añadir música y comentarista",
+          "pasosGuiados": [
+            "Paso 1: Identificaste problema: Campo inundado.",
+            "Paso 2: Perspectivas: Jugadores sugirieron futsal.",
+            "Paso 3: Ideas: Futsal fue out-of-the-box.",
+            "Paso 4: Evaluaste: Viable y emocionante.",
+            "Paso 5: Iteraste: Música elevó experiencia."
+          ],
+          "explicacion": "Solución creativa: Adaptaste el juego a un espacio nuevo con reglas innovadoras. Beneficios: Salvaste el torneo, fans felices."
+        }
+      ],
+      "finalExplicacion": "¡Caso resuelto, detective! Transformaste un desastre climático en un evento deportivo memorable. Aprendiste a adaptar recursos y reglas creativamente. Puntaje final: [Calculado]."
+    },
+    {
+      "id": 6,
+      "ambito": "Ecología",
+      "titulo": "El Caso del Río Contaminado",
+      "introduccion": {
+        "tituloCard": "Emergencia Ambiental",
+        "narrativa": "Eres Detective Creativo en una reserva natural. Un río local está contaminado por desechos industriales, matando peces y alarmando a la comunidad. No hay fondos para limpieza profesional, y la contaminación se expande. Investiga: analiza el agua, consulta a locales, usa plantas filtrantes para una solución sostenible.",
+        "objetivo": "Limpiar el río con recursos naturales y locales."
+      },
+      "etapas": [
+        {
+          "id": "etapa1",
+          "tipo": "analisis",
+          "tituloCard": "Muestrea el Agua",
+          "descripcion": "Tomas muestras del río. Elige el análisis inicial.",
+          "opciones": [
+            {
+              "texto": "Testear toxinas químicas",
+              "resultado": "Encuentras residuos industriales ligeros. Avanza.",
+              "avanzaA": "etapa2",
+              "esCorrecta": true,
+              "puntaje": 10
+            },
+            {
+              "texto": "Analizar oxígeno del agua",
+              "resultado": "Bajo, pero no identifica causa. Retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "Buscar basura visible",
+              "resultado": "Poca, no es la causa principal. Retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -2
+            },
+            {
+              "texto": "Ignorar análisis",
+              "resultado": "Sin datos, no avanzas. Retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -5
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Reporte de Toxinas",
+              "contenido": "🔍 Residuos industriales ligeros, filtrables con métodos naturales."
+            }
+          ]
+        },
+        {
+          "id": "etapa2",
+          "tipo": "interrogatorio",
+          "tituloCard": "Consulta a la Comunidad",
+          "descripcion": "Hablas con locales que conocen el río. Pregunta por soluciones.",
+          "opciones": [
+            {
+              "texto": "¿Plantas locales que filtren agua?",
+              "resultado": "Local: 'Cañas y lirios absorben toxinas.' Avanza.",
+              "avanzaA": "etapa3",
+              "esCorrecta": true,
+              "puntaje": 12
+            },
+            {
+              "texto": "¿Contratar limpieza profesional?",
+              "resultado": "Local: 'No hay fondos.' Retry.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "¿Cerrar el río?",
+              "resultado": "Local: 'Daño económico.' Pista menor.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": 2
+            },
+            {
+              "texto": "¿Usar químicos?",
+              "resultado": "Local: 'Empeora ecosistema.' Retry.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -5
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Conocimiento Local",
+              "contenido": "🔍 Cañas y lirios son plantas filtrantes efectivas."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista Ecológica",
+              "contenido": "📝 Soluciones naturales son sostenibles y económicas."
+            }
+          ]
+        },
+        {
+          "id": "etapa3",
+          "tipo": "decision",
+          "tituloCard": "Implementa Solución",
+          "descripcion": "Organiza la limpieza. Elige la acción principal.",
+          "opciones": [
+            {
+              "texto": "Plantar cañas y lirios en el río",
+              "resultado": "Correcto: Plantas comienzan a filtrar toxinas.",
+              "avanzaA": "etapa4",
+              "esCorrecta": true,
+              "puntaje": 20
+            },
+            {
+              "texto": "Bombeo químico",
+              "resultado": "Daño adicional al ecosistema. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -7
+            },
+            {
+              "texto": "Cerrar acceso al río",
+              "resultado": "No limpia, afecta comunidad. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Esperar acción gubernamental",
+              "resultado": "Lento, contaminación crece. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -3
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "idea",
+              "titulo": "Ideas de Limpieza",
+              "contenido": "💡 Idea 1: Plantas filtrantes (sostenible). Idea 2: Químicos (dañino)."
+            }
+          ]
+        },
+        {
+          "id": "etapa4",
+          "tipo": "evaluacion",
+          "tituloCard": "Monitorea el Progreso",
+          "descripcion": "Las plantas están funcionando. Evalúa cómo optimizar.",
+          "opciones": [
+            {
+              "texto": "Organizar voluntarios para monitoreo",
+              "resultado": "Correcto: Asegura sostenibilidad.",
+              "avanzaA": "final",
+              "esCorrecta": true,
+              "puntaje": 15
+            },
+            {
+              "texto": "Añadir más plantas sin plan",
+              "resultado": "Satura el río, ineficiente. Retry.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Ignorar monitoreo",
+              "resultado": "Riesgo de fallo a largo plazo. Retry.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -3
+            }
+          ],
+          "solucionCorrecta": "Organizar voluntarios para monitoreo",
+          "pasosGuiados": [
+            "Paso 1: Identificaste problema: Contaminación química.",
+            "Paso 2: Perspectivas: Locales dieron solución natural.",
+            "Paso 3: Ideas: Plantas fueron out-of-the-box.",
+            "Paso 4: Evaluaste: Sostenible y económico.",
+            "Paso 5: Iteraste: Monitoreo asegura éxito."
+          ],
+          "explicacion": "Solución creativa: Usaste plantas locales para una limpieza sostenible, rompiendo el patrón de soluciones costosas. Beneficios: Ecosistema recuperado, comunidad involucrada."
+        }
+      ],
+      "finalExplicacion": "¡Caso resuelto, detective! Salvaste el río con una solución ecológica e innovadora. Aprendiste a usar recursos naturales creativamente. Puntaje final: [Calculado]."
+    },
+    {
+      "id": 7,
+      "ambito": "Arte",
+      "titulo": "El Caso de la Obra Rota",
+      "introduccion": {
+        "tituloCard": "Desastre en la Galería",
+        "narrativa": "Detective Creativo, una escultura estrella, 'El Abrazo', se rompe en transporte a una galería. La exposición es mañana, y el artista está devastado. Investiga: recolecta piezas, consulta curadores, usa materiales (alambres, pegamento) para un giro creativo que salve la muestra.",
+        "objetivo": "Restaurar o reinterpretar la escultura para la exposición."
+      },
+      "etapas": [
+        {
+          "id": "etapa1",
+          "tipo": "exploracion",
+          "tituloCard": "Inspecciona los Restos",
+          "descripcion": "Examinas los fragmentos de la escultura. Elige cómo proceder.",
+          "opciones": [
+            {
+              "texto": "Recolectar todas las piezas rotas",
+              "resultado": "Encuentras fragmentos suficientes para reconstruir. Avanza.",
+              "avanzaA": "etapa2",
+              "esCorrecta": true,
+              "puntaje": 10
+            },
+            {
+              "texto": "Buscar solo piezas grandes",
+              "resultado": "Faltan detalles clave. Retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "Descartar escultura",
+              "resultado": "Pierdes oportunidad de salvarla. Retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Fotografiar restos",
+              "resultado": "No suficiente para exposición. Retry.",
+              "avanzaA": "etapa1",
+              "esCorrecta": false,
+              "puntaje": -2
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Estado de la Escultura",
+              "contenido": "🔍 Fragmentos recuperables, pero requiere técnica creativa."
+            }
+          ]
+        },
+        {
+          "id": "etapa2",
+          "tipo": "interrogatorio",
+          "tituloCard": "Consulta al Curador",
+          "descripcion": "Hablas con el curador de la galería. Pregunta por opciones.",
+          "opciones": [
+            {
+              "texto": "¿Cómo reinterpretar la ruptura?",
+              "resultado": "Curador: 'Convierte fragmentos en arte conceptual.' Avanza.",
+              "avanzaA": "etapa3",
+              "esCorrecta": true,
+              "puntaje": 12
+            },
+            {
+              "texto": "¿Exhibir rota como está?",
+              "resultado": "Curador: 'Menos atractivo, pero posible.' Pista menor.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": 2
+            },
+            {
+              "texto": "¿Replicar la pieza?",
+              "resultado": "Curador: 'No auténtico.' Retry.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "¿Cancelar exposición?",
+              "resultado": "Curador: 'Pérdida total.' Retry.",
+              "avanzaA": "etapa2",
+              "esCorrecta": false,
+              "puntaje": -5
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista Artística",
+              "contenido": "📝 La ruptura puede ser parte del arte si se presenta creativamente."
+            }
+          ]
+        },
+        {
+          "id": "etapa3",
+          "tipo": "decision",
+          "tituloCard": "Reconstruye Creativamente",
+          "descripcion": "Elige cómo transformar los fragmentos en una nueva obra.",
+          "opciones": [
+            {
+              "texto": "Crear 'Abrazo Fragmentado' con alambres y luces",
+              "resultado": "Correcto: Convierte ruptura en arte conceptual.",
+              "avanzaA": "etapa4",
+              "esCorrecta": true,
+              "puntaje": 20
+            },
+            {
+              "texto": "Pegar fragmentos tradicionalmente",
+              "resultado": "Frágil, no impacta. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Exhibir fragmentos sueltos",
+              "resultado": "No cohesivo, confunde. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -3
+            },
+            {
+              "texto": "Usar pintura para cubrir",
+              "resultado": "No auténtico, rechazado. Retry.",
+              "avanzaA": "etapa3",
+              "esCorrecta": false,
+              "puntaje": -7
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "idea",
+              "titulo": "Ideas Artísticas",
+              "contenido": "💡 Idea 1: Arte conceptual (creativo). Idea 2: Pegado tradicional (no impacta)."
+            }
+          ]
+        },
+        {
+          "id": "etapa4",
+          "tipo": "evaluacion",
+          "tituloCard": "Presenta la Obra",
+          "descripcion": "La obra está lista. Evalúa cómo exhibirla.",
+          "opciones": [
+            {
+              "texto": "Presentar con narrativa de resiliencia",
+              "resultado": "Correcto: Conecta emocionalmente con público.",
+              "avanzaA": "final",
+              "esCorrecta": true,
+              "puntaje": 15
+            },
+            {
+              "texto": "Ocultar que está restaurada",
+              "resultado": "Falta de transparencia decepciona. Retry.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -5
+            },
+            {
+              "texto": "Exhibir sin contexto",
+              "resultado": "Público no entiende. Retry.",
+              "avanzaA": "etapa4",
+              "esCorrecta": false,
+              "puntaje": -3
+            }
+          ],
+          "solucionCorrecta": "Presentar con narrativa de resiliencia",
+          "pasosGuiados": [
+            "Paso 1: Identificaste problema: Escultura rota.",
+            "Paso 2: Perspectivas: Curador inspiró enfoque conceptual.",
+            "Paso 3: Ideas: Arte fragmentado fue out-of-the-box.",
+            "Paso 4: Evaluaste: Impacto y autenticidad.",
+            "Paso 5: Iteraste: Narrativa elevó valor."
+          ],
+          "explicacion": "Solución creativa: Transformaste un fallo en una obra conceptual única, usando alambres y narrativa. Beneficios: Éxito en exposición, admiración del público."
+        }
+      ],
+      "finalExplicacion": "¡Caso resuelto, detective! Convertiste un desastre en una obra maestra artística con pensamiento creativo. Puntaje final: [Calculado]."
+    }
+  ],
+  "ejercicios": [
+    {
+      "id": 1,
+      "ambito": "Viajes",
+      "titulo": "El Enigma del Tren Perdido",
+      "introduccion": {
+        "tituloCard": "Caos en la Estación Central",
+        "narrativa": "Detective Creativo, estás en una estación de tren abarrotada. Tu tren a París, necesario para un vuelo internacional, está detenido por una falla mecánica sin hora de arreglo. El vuelo sale en 2 horas, y el tráfico en la ciudad está paralizado. Los pasajeros murmuran, y el tiempo corre. Investiga: explora la estación, habla con viajeros, revisa mapas y encuentra una ruta creativa para llegar al aeropuerto a tiempo.",
+        "objetivo": "L))^Llegar al aeropuerto usando una solución innovadora."
+      },
+      "etapas": [
+        {
+          "id": "etapa1",
+          "tipo": "exploracion",
+          "tituloCard": "Explora la Estación",
+          "descripcion": "Busca alternativas de transporte en la estación abarrotada. Selecciona la acción más útil para avanzar.",
+          "opciones": [
+            {
+              "texto": "Preguntar al staff oficial por actualizaciones",
+              "resultado": "Staff: 'Autobuses llenos, trenes demorados horas.' Desbloquea pista: Apps de rideshare cerca.",
+              "avanzaA": "etapa2",
+              "puntaje": 5,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Esperar anuncios en altavoces",
+              "resultado": "Pierdes 20 minutos. Hint: Busca soluciones activas fuera de la estación.",
+              "avanzaA": "etapa1",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Hablar con otros pasajeros varados",
+              "resultado": "Pasajero: 'Algunos usan apps de carpooling.' Pista: Compartir auto viable.",
+              "avanzaA": "etapa2",
+              "puntaje": 8,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Revisar panel de salidas",
+              "resultado": "Confirma: No trenes pronto. Retry con hint: Explora transporte alterno.",
+              "avanzaA": "etapa1",
+              "puntaje": -2,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Buscar taxis fuera",
+              "resultado": "Taxis atrapados en tráfico. Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "mapa",
+              "titulo": "Mapa de la Ciudad",
+              "contenido": "🔍 Rutas peatonales cortas disponibles; estaciones de bici share a 200m."
+            },
+            {
+              "cardTipo": "testimonio",
+              "titulo": "Charla con Pasajero",
+              "contenido": "📝 Pasajero sugiere compartir auto via app para dividir costo y evitar tráfico."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista Colaborativa",
+              "contenido": "📝 Compartir transporte es común en crisis urbanas; evalúa riesgos."
+            }
+          ]
+        },
+        {
+          "id": "etapa2",
+          "tipo": "decision",
+          "tituloCard": "Elige Transporte Creativo",
+          "descripcion": "Con pistas, selecciona la mejor opción para moverte al aeropuerto.",
+          "opciones": [
+            {
+              "texto": "Organizar carpool con extraños via app",
+              "resultado": "Encuentras grupo, pero evalúa seguridad antes de partir.",
+              "avanzaA": "etapa3",
+              "puntaje": 15,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Rentar bicicleta eléctrica en estación share",
+              "resultado": "Rápido, pero tráfico peatonal complica. Pista: Ciclovías libres.",
+              "avanzaA": "etapa3",
+              "puntaje": 10,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Caminar 5km al aeropuerto",
+              "resultado": "Demasiado lento, llegas tarde. Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -10,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Tomar taxi tradicional",
+              "resultado": "Tráfico bloquea; pierdes tiempo. Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Intentar tren alternativo",
+              "resultado": "No disponible. Retry con hint: Piensa fuera del sistema público.",
+              "avanzaA": "etapa2",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Reporte de Tráfico",
+              "contenido": "🔍 Calles principales colapsadas, pero ciclovías y rutas peatonales libres."
+            },
+            {
+              "cardTipo": "idea",
+              "titulo": "Ideas de Transporte",
+              "contenido": "💡 Idea 1: Carpooling (colaborativo, rápido). Idea 2: Bici eléctrica (independiente)."
+            }
+          ]
+        },
+        {
+          "id": "etapa3",
+          "tipo": "evaluacion",
+          "tituloCard": "Evalúa Riesgos y Avanza",
+          "descripcion": "Estás cerca de llegar al aeropuerto. Evalúa la acción final para asegurar éxito.",
+          "opciones": [
+            {
+              "texto": "Confirmar carpool con conductor verificado",
+              "resultado": "Llegas a tiempo al aeropuerto. Solución creativa: Combinaste colaboración social con tecnología moderna.",
+              "avanzaA": "final",
+              "puntaje": 20,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Seguir en carpool sin verificar conductor",
+              "resultado": "Riesgo de seguridad; retraso menor. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Cambiar a bicicleta a mitad de camino",
+              "resultado": "Confusión, pierdes tiempo. Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -7,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Llamar aerolínea para retrasar vuelo",
+              "resultado": "No posible, pierdes vuelo. Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -10,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista de Seguridad",
+              "contenido": "📝 Verificar conductores en apps reduce riesgos y asegura confianza."
+            }
+          ]
+        }
+      ],
+      "finalFeedback": "¡Caso completado, detective! La solución correcta fue compartir un auto con conductor verificado. Combinaste perspectiva social (colaboración) con recursos modernos (apps), logrando rapidez y seguridad. Puntaje: [Calculado]. Intenta de nuevo para mejorar tu camino."
+    },
+    {
+      "id": 2,
+      "ambito": "Educación",
+      "titulo": "El Enigma de la Clase Aburrida",
+      "introduccion": {
+        "tituloCard": "Aula sin Inspiración",
+        "narrativa": "Detective Creativo, estás en una escuela secundaria. Los estudiantes están distraídos en una lección de historia sobre la Revolución Francesa, y el examen es mañana. Bostezan, miran sus teléfonos, y el profesor está frustrado. Investiga: consulta a los estudiantes, revisa materiales (videos, juegos, disfraces), y crea una clase que los enganche.",
+        "objetivo": "Diseñar una lección atractiva para mejorar el aprendizaje."
+      },
+      "etapas": [
+        {
+          "id": "etapa1",
+          "tipo": "interrogatorio",
+          "tituloCard": "Habla con los Estudiantes",
+          "descripcion": "Pregunta a los estudiantes qué los motiva para aprender.",
+          "opciones": [
+            {
+              "texto": "¿Qué actividades les gustan?",
+              "resultado": "Estudiante: 'Juegos, historias, actuar.' Avanza con pista clave.",
+              "avanzaA": "etapa2",
+              "puntaje": 10,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "¿Más tarea los ayudaría?",
+              "resultado": "Estudiante: 'No, nos aburre más.' Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "¿Quieren videos?",
+              "resultado": "Estudiante: 'Sí, pero no solo mirar.' Pista menor.",
+              "avanzaA": "etapa2",
+              "puntaje": 5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "¿Prefieren leer solos?",
+              "resultado": "Estudiante: 'Demasiado seco.' Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -2,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "testimonio",
+              "titulo": "Opinión Estudiantil",
+              "contenido": "🔍 Los estudiantes quieren actividades interactivas como juegos o actuación."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista Pedagógica",
+              "contenido": "📝 El aprendizaje activo mejora la retención."
+            }
+          ]
+        },
+        {
+          "id": "etapa2",
+          "tipo": "exploracion",
+          "tituloCard": "Revisa Materiales",
+          "descripcion": "Buscas recursos en el aula para hacer la clase atractiva.",
+          "opciones": [
+            {
+              "texto": "Encontrar disfraces y guiones para rol-play",
+              "resultado": "Materiales disponibles para recrear la Revolución. Avanza.",
+              "avanzaA": "etapa3",
+              "puntaje": 15,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Usar solo videos históricos",
+              "resultado": "Pasivo, estudiantes se distraen. Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Repartir libros de texto",
+              "resultado": "Aumenta aburrimiento. Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Hacer cuestionario",
+              "resultado": "Estresante, no motiva. Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Recursos del Aula",
+              "contenido": "🔍 Disfraces y guiones disponibles para un rol-play interactivo."
+            },
+            {
+              "cardTipo": "idea",
+              "titulo": "Ideas de Enseñanza",
+              "contenido": "💡 Idea 1: Rol-play (inmersivo). Idea 2: Videos (pasivo)."
+            }
+          ]
+        },
+        {
+          "id": "etapa3",
+          "tipo": "decision",
+          "tituloCard": "Diseña la Actividad",
+          "descripcion": "Organiza un rol-play de la Revolución Francesa. Elige el formato.",
+          "opciones": [
+            {
+              "texto": "Estudiantes actúan como personajes históricos",
+              "resultado": "Correcto: Inmersivo y educativo.",
+              "avanzaA": "etapa4",
+              "puntaje": 20,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Rol-play sin preparación",
+              "resultado": "Desorganizado, confunde. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Solo narrar la historia",
+              "resultado": "Pasivo, pierden interés. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Usar video en lugar de rol-play",
+              "resultado": "No interactivo. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista Educativa",
+              "contenido": "📝 La participación activa refuerza el aprendizaje."
+            }
+          ]
+        },
+        {
+          "id": "etapa4",
+          "tipo": "evaluacion",
+          "tituloCard": "Evalúa la Lección",
+          "descripcion": "El rol-play es un éxito. Evalúa cómo mejorar el aprendizaje.",
+          "opciones": [
+            {
+              "texto": "Añadir debate post-rol-play",
+              "resultado": "Correcto: Refuerza comprensión.",
+              "avanzaA": "final",
+              "puntaje": 15,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Repetir rol-play mañana",
+              "resultado": "Innecesario, pierde novedad. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Terminar sin discusión",
+              "resultado": "Falta reflexión, menos efectivo. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            }
+          ],
+          "solucionCorrecta": "Añadir debate post-rol-play",
+          "explicacion": "Solución creativa: Convertiste una clase aburrida en una experiencia inmersiva con rol-play y debate, maximizando el aprendizaje. Beneficios: Mayor retención y entusiasmo."
+        }
+      ],
+      "finalFeedback": "¡Caso completado, detective! La solución correcta fue el rol-play con debate. Transformaste una clase aburrida en una experiencia memorable. Puntaje: [Calculado]."
+    },
+    {
+      "id": 3,
+      "ambito": "Agricultura",
+      "titulo": "El Enigma de la Cosecha Seca",
+      "introduccion": {
+        "tituloCard": "Granja en Crisis",
+        "narrativa": "Eres Detective Creativo en una granja familiar. Una sequía está matando los cultivos de maíz, y la familia depende de la cosecha para sobrevivir. No hay lluvia a la vista, y los recursos son limitados. Investiga: analiza el suelo, consulta a vecinos, usa semillas alternativas y técnicas de riego para salvar la temporada.",
+        "objetivo": "Salvar la cosecha con una solución sostenible y creativa."
+      },
+      "etapas": [
+        {
+          "id": "etapa1",
+          "tipo": "analisis",
+          "tituloCard": "Analiza el Suelo",
+          "descripcion": "Tomas muestras del suelo para entender la situación. Elige el análisis inicial.",
+          "opciones": [
+            {
+              "texto": "Testear retención de agua",
+              "resultado": "Suelo seco, necesita riego eficiente. Avanza con pista clave.",
+              "avanzaA": "etapa2",
+              "puntaje": 10,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Analizar nutrientes",
+              "resultado": "Deficiencia menor, no es el problema principal. Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -2,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Buscar plagas",
+              "resultado": "No hay plagas significativas. Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Ignorar análisis",
+              "resultado": "Sin datos, no puedes avanzar. Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Medir pH del suelo",
+              "resultado": "Normal, no relevante ahora. Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -2,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Reporte de Suelo",
+              "contenido": "🔍 Suelo seco con baja retención de agua, sugiere riego optimizado."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista Agrícola",
+              "contenido": "📝 En sequías, la gestión del agua es más crítica que los nutrientes."
+            }
+          ]
+        },
+        {
+          "id": "etapa2",
+          "tipo": "interrogatorio",
+          "tituloCard": "Consulta a los Vecinos",
+          "descripcion": "Hablas con agricultores vecinos que han enfrentado sequías. Pregunta por soluciones prácticas.",
+          "opciones": [
+            {
+              "texto": "¿Qué cultivos resisten la sequía?",
+              "resultado": "Vecino: 'Mijo y sorgo son resistentes, tenemos semillas.' Avanza.",
+              "avanzaA": "etapa3",
+              "puntaje": 12,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "¿Usar riego por goteo?",
+              "resultado": "Vecino: 'Efectivo, pero necesitas equipo.' Pista menor, avanza.",
+              "avanzaA": "etapa3",
+              "puntaje": 5,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "¿Traer agua de fuera?",
+              "resultado": "Vecino: 'Costoso, no sostenible.' Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "¿Plantar más maíz?",
+              "resultado": "Vecino: 'No sobrevive sin agua.' Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "¿Esperar lluvia?",
+              "resultado": "Vecino: 'Sin pronóstico, arriesgado.' Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Conocimiento Local",
+              "contenido": "🔍 Mijo y sorgo son cultivos resistentes a sequía, disponibles localmente."
+            },
+            {
+              "cardTipo": "idea",
+              "titulo": "Opciones de Cultivo",
+              "contenido": "💡 Idea 1: Cambiar a mijo/sorgo. Idea 2: Riego por goteo (necesita equipo)."
+            }
+          ]
+        },
+        {
+          "id": "etapa3",
+          "tipo": "decision",
+          "tituloCard": "Implementa la Solución",
+          "descripcion": "Con las pistas, elige cómo salvar la cosecha con recursos limitados.",
+          "opciones": [
+            {
+              "texto": "Plantar mijo y usar riego por goteo improvisado",
+              "resultado": "Correcto: Combina cultivos resistentes con riego eficiente.",
+              "avanzaA": "etapa4",
+              "puntaje": 20,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Plantar mijo sin riego",
+              "resultado": "Sobrevive, pero bajo rendimiento. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Continuar con maíz y regar manualmente",
+              "resultado": "Ineficiente, maíz muere. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Esperar apoyo externo",
+              "resultado": "Lento, cosecha perdida. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -7,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Usar fertilizantes",
+              "resultado": "No resuelve falta de agua. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Reporte de Riego",
+              "contenido": "🔍 Riego por goteo improvisado con mangueras perforadas es viable."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista Sostenible",
+              "contenido": "📝 Soluciones locales y de bajo costo son clave en crisis."
+            }
+          ]
+        },
+        {
+          "id": "etapa4",
+          "tipo": "evaluacion",
+          "tituloCard": "Monitorea la Cosecha",
+          "descripcion": "El mijo crece con riego por goteo. Evalúa cómo optimizar para la familia.",
+          "opciones": [
+            {
+              "texto": "Capacitar familia en mantenimiento de riego",
+              "resultado": "Correcto: Asegura sostenibilidad y cosecha estable.",
+              "avanzaA": "final",
+              "puntaje": 15,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Añadir más cultivos sin plan",
+              "resultado": "Satura recursos, ineficiente. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Dejar sin monitoreo",
+              "resultado": "Riesgo de fallo por fugas. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Cambiar a otro cultivo",
+              "resultado": "Innecesario, retrasa progreso. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            }
+          ],
+          "solucionCorrecta": "Capacitar familia en mantenimiento de riego",
+          "explicacion": "Solución creativa: Cambiaste a cultivos resistentes y usaste riego improvisado, rompiendo el patrón de depender del maíz. Beneficios: Cosecha salvada, solución sostenible."
+        }
+      ],
+      "finalFeedback": "¡Caso completado, detective! La solución correcta fue plantar mijo con riego por goteo y capacitar a la familia. Transformaste una crisis agrícola en una oportunidad sostenible. Puntaje: [Calculado]."
+    },
+    {
+      "id": 4,
+      "ambito": "Música",
+      "titulo": "El Enigma del Concierto Cancelado",
+      "introduccion": {
+        "tituloCard": "Escenario Silencioso",
+        "narrativa": "Detective Creativo, tu banda está lista para un concierto crucial, pero el vocalista pierde la voz horas antes. Los fans han pagado, y la reputación de la banda está en juego. Investiga: consulta a los músicos, revisa instrumentos y adapta el set para salvar el evento.",
+        "objetivo": "Reorganizar el concierto con una solución creativa."
+      },
+      "etapas": [
+        {
+          "id": "etapa1",
+          "tipo": "interrogatorio",
+          "tituloCard": "Habla con la Banda",
+          "descripcion": "Consulta a los músicos para encontrar alternativas. Elige la pregunta clave.",
+          "opciones": [
+            {
+              "texto": "¿Quién puede cantar o liderar?",
+              "resultado": "Guitarrista: 'Puedo cantar coros, o hacemos instrumental.' Avanza.",
+              "avanzaA": "etapa2",
+              "puntaje": 10,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "¿Podemos posponer?",
+              "resultado": "Baterista: 'Fans no volverán.' Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "¿Traer cantante invitado?",
+              "resultado": "Bajista: 'No hay tiempo.' Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "¿Usar grabaciones?",
+              "resultado": "Manager: 'No auténtico, fans lo notan.' Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "testimonio",
+              "titulo": "Opinión de la Banda",
+              "contenido": "🔍 Guitarrista puede liderar con coros o set instrumental."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista de Fans",
+              "contenido": "📝 Fans valoran autenticidad y creatividad en vivo."
+            }
+          ]
+        },
+        {
+          "id": "etapa2",
+          "tipo": "exploracion",
+          "tituloCard": "Revisa el Set",
+          "descripcion": "Exploras cómo reorganizar el concierto. Elige la mejor opción.",
+          "opciones": [
+            {
+              "texto": "Crear set instrumental con solos de guitarra",
+              "resultado": "Viable, destaca talento de la banda. Avanza.",
+              "avanzaA": "etapa3",
+              "puntaje": 15,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Guitarrista canta todas las canciones",
+              "resultado": "Voz débil, no convence. Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Reducir concierto a pocas canciones",
+              "resultado": "Decepciona a fans. Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Usar coros pregrabados",
+              "resultado": "No auténtico, fans protestan. Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Capacidades de la Banda",
+              "contenido": "🔍 Guitarrista y baterista pueden liderar un set instrumental."
+            },
+            {
+              "cardTipo": "idea",
+              "titulo": "Opciones de Concierto",
+              "contenido": "💡 Idea 1: Set instrumental (creativo). Idea 2: Cantar forzado (riesgoso)."
+            }
+          ]
+        },
+        {
+          "id": "etapa3",
+          "tipo": "decision",
+          "tituloCard": "Prueba el Set",
+          "descripcion": "Ensayas el set instrumental. Ajusta para maximizar impacto.",
+          "opciones": [
+            {
+              "texto": "Añadir narrativa entre canciones",
+              "resultado": "Correcto: Conecta emocionalmente con fans.",
+              "avanzaA": "etapa4",
+              "puntaje": 20,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Tocar sin narrativa",
+              "resultado": "Falta conexión, menos memorable. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Incluir cantante débil",
+              "resultado": "Baja calidad, decepciona. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Cortar ensayos",
+              "resultado": "Riesgo de errores en vivo. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista del Público",
+              "contenido": "📝 Narrativas en vivo hacen el concierto único."
+            }
+          ]
+        },
+        {
+          "id": "etapa4",
+          "tipo": "evaluacion",
+          "tituloCard": "Evalúa el Concierto",
+          "descripcion": "El set instrumental es un éxito. Evalúa cómo cerrar con impacto.",
+          "opciones": [
+            {
+              "texto": "Invitar a fans a cantar coro final",
+              "resultado": "Correcto: Crea experiencia inolvidable.",
+              "avanzaA": "final",
+              "puntaje": 15,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Terminar sin interacción",
+              "resultado": "Menos memorable. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Añadir efectos visuales caros",
+              "resultado": "No disponibles, innecesario. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Cerrar con canción vocal",
+              "resultado": "Falla por voz débil. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            }
+          ],
+          "solucionCorrecta": "Invitar a fans a cantar coro final",
+          "explicacion": "Solución creativa: Transformaste la crisis en un concierto instrumental único con narrativa y participación del público. Beneficios: Fans felices, reputación intacta."
+        }
+      ],
+      "finalFeedback": "¡Caso completado, detective! La solución correcta fue un set instrumental con narrativa y participación del público. Salvaste el concierto con creatividad. Puntaje: [Calculado]."
+    },
+    {
+      "id": 5,
+      "ambito": "Ciencia",
+      "titulo": "El Enigma del Experimento Fallido",
+      "introduccion": {
+        "tituloCard": "Laboratorio en Caos",
+        "narrativa": "Detective Creativo, estás en un laboratorio químico. Un experimento clave para un grant explota suavemente, perdiendo datos cruciales. El deadline es mañana, y el equipo está desmoralizado. Investiga: revisa notas, consulta al equipo, usa compuestos alternativos para salvar el proyecto.",
+        "objetivo": "Reconstruir el experimento con recursos disponibles."
+      },
+      "etapas": [
+        {
+          "id": "etapa1",
+          "tipo": "exploracion",
+          "tituloCard": "Revisa las Notas",
+          "descripcion": "Buscas pistas en las notas del experimento. Elige dónde enfocarte.",
+          "opciones": [
+            {
+              "texto": "Analizar procedimiento original",
+              "resultado": "Notas: Mezcla inestable, necesita estabilizante. Avanza.",
+              "avanzaA": "etapa2",
+              "puntaje": 10,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Revisar equipo usado",
+              "resultado": "Equipo intacto, no es el problema. Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Buscar datos de backup",
+              "resultado": "No hay backup reciente. Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Ignorar notas",
+              "resultado": "Sin información, no avanzas. Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Reporte del Experimento",
+              "contenido": "🔍 Mezcla inestable por falta de estabilizante químico."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista Científica",
+              "contenido": "📝 Revisar procedimientos es clave para replicar experimentos."
+            }
+          ]
+        },
+        {
+          "id": "etapa2",
+          "tipo": "interrogatorio",
+          "tituloCard": "Consulta al Equipo",
+          "descripcion": "Hablas con los colegas. Pregunta cómo ajustar el experimento.",
+          "opciones": [
+            {
+              "texto": "¿Qué estabilizantes tenemos?",
+              "resultado": "Químico: 'Sustancia X y Y disponibles.' Avanza.",
+              "avanzaA": "etapa3",
+              "puntaje": 12,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "¿Repetir sin cambios?",
+              "resultado": "Químico: 'Riesgo de otra explosión.' Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "¿Usar otro compuesto base?",
+              "resultado": "Químico: 'Cambia resultados, no válido.' Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "¿Pedir extensión de grant?",
+              "resultado": "Químico: 'No hay tiempo.' Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Inventario Químico",
+              "contenido": "🔍 Sustancia X y Y son estabilizantes viables."
+            },
+            {
+              "cardTipo": "idea",
+              "titulo": "Opciones de Ajuste",
+              "contenido": "💡 Idea 1: Usar estabilizante. Idea 2: Repetir sin cambios (riesgoso)."
+            }
+          ]
+        },
+        {
+          "id": "etapa3",
+          "tipo": "decision",
+          "tituloCard": "Modifica el Experimento",
+          "descripcion": "Ajustas la mezcla con estabilizantes. Elige la acción clave.",
+          "opciones": [
+            {
+              "texto": "Usar sustancia X en baja dosis",
+              "resultado": "Correcto: Estabiliza sin alterar resultados.",
+              "avanzaA": "etapa4",
+              "puntaje": 20,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Usar sustancia Y en alta dosis",
+              "resultado": "Interfiere con reacción. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Omitir estabilizante",
+              "resultado": "Explosión otra vez. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -7,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Reducir compuesto base",
+              "resultado": "Resultados no válidos. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Resultados de Prueba",
+              "contenido": "🔍 Sustancia X en baja dosis estabiliza la reacción."
+            }
+          ]
+        },
+        {
+          "id": "etapa4",
+          "tipo": "evaluacion",
+          "tituloCard": "Evalúa el Resultado",
+          "descripcion": "El experimento es estable. Evalúa cómo presentar al grant.",
+          "opciones": [
+            {
+              "texto": "Documentar proceso y resultados",
+              "resultado": "Correcto: Garantiza validez y transparencia.",
+              "avanzaA": "final",
+              "puntaje": 15,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Presentar sin documentación",
+              "resultado": "Falta rigor, grant en riesgo. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Repetir para más datos",
+              "resultado": "No hay tiempo. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Cambiar hipótesis",
+              "resultado": "Inconsistente, confunde. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            }
+          ],
+          "solucionCorrecta": "Documentar proceso y resultados",
+          "explicacion": "Solución creativa: Ajustaste el experimento con un estabilizante y documentaste rigurosamente, salvando el grant. Beneficios: Proyecto viable, equipo motivado."
+        }
+      ],
+      "finalFeedback": "¡Caso completado, detective! La solución correcta fue usar sustancia X y documentar. Transformaste un fallo en un éxito científico. Puntaje: [Calculado]."
+    },
+    {
+      "id": 6,
+      "ambito": "Moda",
+      "titulo": "El Enigma del Desfile Desastre",
+      "introduccion": {
+        "tituloCard": "Pasarela en Riesgo",
+        "narrativa": "Eres Detective Creativo en un desfile de moda de alta costura. El vestido estrella, un diseño único, se rasga en el ensayo final, a 1 hora del show. La diseñadora está en pánico, y los críticos esperan. Investiga: revisa telas, consulta costureras, crea un diseño improvisado para salvar el desfile.",
+        "objetivo": "Reparar o rediseñar el vestido para el desfile."
+      },
+      "etapas": [
+        {
+          "id": "etapa1",
+          "tipo": "exploracion",
+          "tituloCard": "Inspecciona el Daño",
+          "descripcion": "Examinas el vestido roto. Elige dónde enfocarte.",
+          "opciones": [
+            {
+              "texto": "Analizar el rasgón",
+              "resultado": "Rasgón largo en falda, reparable o rediseñable. Avanza.",
+              "avanzaA": "etapa2",
+              "puntaje": 10,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Revisar otras prendas",
+              "resultado": "No hay reemplazo adecuado. Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Ignorar el rasgón",
+              "resultado": "Inaceptable para desfile. Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Fotografiar para archivo",
+              "resultado": "No soluciona, pierde tiempo. Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -2,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Estado del Vestido",
+              "contenido": "🔍 Rasgón en falda, puede coserse o transformarse creativamente."
+            }
+          ]
+        },
+        {
+          "id": "etapa2",
+          "tipo": "interrogatorio",
+          "tituloCard": "Consulta a Costureras",
+          "descripcion": "Hablas con el equipo de costura. Pregunta por soluciones.",
+          "opciones": [
+            {
+              "texto": "¿Qué telas y accesorios tenemos?",
+              "resultado": "Costurera: 'Tul, encaje, cintas disponibles.' Avanza.",
+              "avanzaA": "etapa3",
+              "puntaje": 12,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "¿Coser tradicionalmente?",
+              "resultado": "Costurera: 'Visible, no elegante.' Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "¿Usar otro vestido?",
+              "resultado": "Costurera: 'No es la pieza estrella.' Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "¿Cortar falda?",
+              "resultado": "Costurera: 'Drástico, pero posible.' Pista menor.",
+              "avanzaA": "etapa3",
+              "puntaje": 5,
+              "esRamaCorrecta": true
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Materiales Disponibles",
+              "contenido": "🔍 Tul, encaje y cintas para rediseño creativo."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista de Moda",
+              "contenido": "📝 Transformar defectos en diseño es tendencia en alta costura."
+            }
+          ]
+        },
+        {
+          "id": "etapa3",
+          "tipo": "decision",
+          "tituloCard": "Rediseña el Vestido",
+          "descripcion": "Con materiales, elige cómo salvar el vestido.",
+          "opciones": [
+            {
+              "texto": "Añadir tul y encaje para cubrir rasgón",
+              "resultado": "Correcto: Crea diseño innovador y elegante.",
+              "avanzaA": "etapa4",
+              "puntaje": 20,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Coser rasgón directamente",
+              "resultado": "Visible, no profesional. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Cortar falda a mini",
+              "resultado": "Cambia diseño original, arriesgado. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Usar cintas solas",
+              "resultado": "Insuficiente, no impacta. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "idea",
+              "titulo": "Opciones de Diseño",
+              "contenido": "💡 Idea 1: Tul y encaje (elegante). Idea 2: Corte drástico (riesgoso)."
+            }
+          ]
+        },
+        {
+          "id": "etapa4",
+          "tipo": "evaluacion",
+          "tituloCard": "Presenta en el Desfile",
+          "descripcion": "El vestido rediseñado está listo. Evalúa cómo presentarlo.",
+          "opciones": [
+            {
+              "texto": "Destacar rediseño como innovación",
+              "resultado": "Correcto: Impresiona a críticos con narrativa.",
+              "avanzaA": "final",
+              "puntaje": 15,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Ocultar el rediseño",
+              "resultado": "Falta historia, menos impacto. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Cambiar vestido en el último minuto",
+              "resultado": "Confunde, pierde coherencia. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Presentar sin narrativa",
+              "resultado": "No destaca entre otros. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            }
+          ],
+          "solucionCorrecta": "Destacar rediseño como innovación",
+          "explicacion": "Solución creativa: Transformaste un rasgón en un diseño innovador con tul y encaje, presentado como tendencia. Beneficios: Éxito en desfile, diseñadora agradecida."
+        }
+      ],
+      "finalFeedback": "¡Caso completado, detective! La solución correcta fue rediseñar con tul y encaje, destacándolo como innovación. Salvaste el desfile con creatividad. Puntaje: [Calculado]."
+    },
+    {
+      "id": 7,
+      "ambito": "Aventura",
+      "titulo": "El Enigma de la Montaña Bloqueada",
+      "introduccion": {
+        "tituloCard": "Expedición en Peligro",
+        "narrativa": "Detective Creativo, estás en una expedición montañosa hacia una cima legendaria. Una avalancha bloquea el sendero principal, y los suministros son bajos. El equipo está desanimado, y el tiempo apremia. Investiga: explora rutas, consulta guías, usa equipo (cuerdas, picos) para encontrar un camino alternativo.",
+        "objetivo": "Llegar a la cima con una ruta creativa y segura."
+      },
+      "etapas": [
+        {
+          "id": "etapa1",
+          "tipo": "exploracion",
+          "tituloCard": "Explora el Terreno",
+          "descripcion": "Buscas rutas alternativas tras la avalancha. Elige dónde investigar.",
+          "opciones": [
+            {
+              "texto": "Explorar sendero lateral empinado",
+              "resultado": "Ruta riesgosa pero viable con equipo. Avanza.",
+              "avanzaA": "etapa2",
+              "puntaje": 10,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Intentar despejar avalancha",
+              "resultado": "Demasiado lento, peligroso. Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Buscar cueva cercana",
+              "resultado": "Sin salida, pierde tiempo. Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Regresar al campamento base",
+              "resultado": "Abandona misión. Retry.",
+              "avanzaA": "etapa1",
+              "puntaje": -7,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Reporte del Terreno",
+              "contenido": "🔍 Sendero lateral empinado, necesita cuerdas y picos."
+            },
+            {
+              "cardTipo": "perspectiva",
+              "titulo": "Vista de Escalada",
+              "contenido": "📝 Rutas alternas requieren equipo y precaución."
+            }
+          ]
+        },
+        {
+          "id": "etapa2",
+          "tipo": "interrogatorio",
+          "tituloCard": "Consulta al Guía",
+          "descripcion": "Hablas con el guía local. Pregunta cómo abordar el sendero lateral.",
+          "opciones": [
+            {
+              "texto": "¿Qué equipo usamos para el sendero?",
+              "resultado": "Guía: 'Cuerdas, picos, arneses disponibles.' Avanza.",
+              "avanzaA": "etapa3",
+              "puntaje": 12,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "¿Es seguro sin equipo?",
+              "resultado": "Guía: 'Riesgo de caídas.' Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "¿Buscar otra ruta?",
+              "resultado": "Guía: 'No hay tiempo para explorar más.' Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "¿Esperar rescate?",
+              "resultado": "Guía: 'Demasiado lento, suministros bajos.' Retry.",
+              "avanzaA": "etapa2",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Inventario de Equipo",
+              "contenido": "🔍 Cuerdas, picos y arneses para escalada segura."
+            },
+            {
+              "cardTipo": "idea",
+              "titulo": "Opciones de Ruta",
+              "contenido": "💡 Idea 1: Escalar con equipo (seguro). Idea 2: Sin equipo (riesgoso)."
+            }
+          ]
+        },
+        {
+          "id": "etapa3",
+          "tipo": "decision",
+          "tituloCard": "Escala el Sendero",
+          "descripcion": "Con equipo, elige cómo abordar el sendero empinado.",
+          "opciones": [
+            {
+              "texto": "Usar cuerdas y picos con técnica guiada",
+              "resultado": "Correcto: Escalada segura y efectiva.",
+              "avanzaA": "etapa4",
+              "puntaje": 20,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Escalar sin cuerdas",
+              "resultado": "Riesgo de caídas, peligroso. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -7,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Usar solo picos",
+              "resultado": "Inestable, equipo resbala. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Dividir equipo para explorar",
+              "resultado": "Desorganiza grupo, pierde tiempo. Retry.",
+              "avanzaA": "etapa3",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            }
+          ],
+          "pistasDesbloqueadas": [
+            {
+              "cardTipo": "evidencia",
+              "titulo": "Técnica de Escalada",
+              "contenido": "🔍 Cuerdas y picos usados juntos aseguran estabilidad."
+            }
+          ]
+        },
+        {
+          "id": "etapa4",
+          "tipo": "evaluacion",
+          "tituloCard": "Evalúa la Cima",
+          "descripcion": "Llegas a la cima. Evalúa cómo completar la expedición.",
+          "opciones": [
+            {
+              "texto": "Documentar ruta y capacitar equipo",
+              "resultado": "Correcto: Asegura éxito y seguridad futura.",
+              "avanzaA": "final",
+              "puntaje": 15,
+              "esRamaCorrecta": true
+            },
+            {
+              "texto": "Descender sin documentar",
+              "resultado": "Pierde valor de la ruta. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -3,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Explorar más rutas",
+              "resultado": "Agota suministros. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -5,
+              "esRamaCorrecta": false
+            },
+            {
+              "texto": "Ignorar seguridad en descenso",
+              "resultado": "Riesgo de lesiones. Retry.",
+              "avanzaA": "etapa4",
+              "puntaje": -4,
+              "esRamaCorrecta": false
+            }
+          ],
+          "solucionCorrecta": "Documentar ruta y capacitar equipo",
+          "explicacion": "Solución creativa: Encontraste una ruta alterna con equipo limitado y la documentaste, asegurando éxito. Beneficios: Cima alcanzada, equipo motivado."
+        }
+      ],
+      "finalFeedback": "¡Caso completado, detective! La solución correcta fue escalar con cuerdas y picos, documentando la ruta. Superaste la avalancha con creatividad. Puntaje: [Calculado]."
+    }
+  ]
+}
