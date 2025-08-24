@@ -142,32 +142,33 @@
 }
 
 .info-box, .controls-box {
-  background: rgba(41, 41, 41, 0.25); /* Semi-transparent background */
-  backdrop-filter: blur(5px); /* Frosted glass effect */
-  border-radius: 15px; /* Rounded corners */
-  border: 1px solid rgba(255, 255, 255, 0.18); /* Subtle border */
+  background: linear-gradient(135deg, #36D1DC, #5B86E5);
+  border-radius: 15px;
   padding: 1.5rem;
   text-align: center;
-  color: #fff; /* White text to contrast with the dark, glassy background */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .info-box h3, .controls-box h3 {
   font-family: var(--font-display);
   font-size: 1.5rem;
   margin-top: 0;
-  color: #fff; /* White text */
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 .info-box .value {
   font-size: 2rem;
   font-weight: 600;
-  color: #fff; /* White text */
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 .controls-info {
     font-size: 0.9rem;
-    color: #fff;
+    color: #eee; /* Slightly off-white for the less important text */
 }
 
 .action-buttons {
