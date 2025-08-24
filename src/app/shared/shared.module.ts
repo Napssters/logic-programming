@@ -18,6 +18,7 @@ import { PuzzleComponent } from './components/puzzle/puzzle.component';
 
 import { GameQuestionSelectionComponent } from './components/ejercicios/game-question-selection.component';
 import { CarroMascotasGameComponent } from './carro-mascotas-game/carro-mascotas-game.component';
+import { DetectiveGenericComponent } from './detective-generic/detective-generic.component';
 
 
 
@@ -36,7 +37,8 @@ import { CarroMascotasGameComponent } from './carro-mascotas-game/carro-mascotas
     TutorialComponent,
     PuzzleComponent,
   GameQuestionSelectionComponent,
-  CarroMascotasGameComponent
+  CarroMascotasGameComponent,
+  DetectiveGenericComponent
   ],
   imports: [
     CommonModule,
@@ -57,7 +59,8 @@ import { CarroMascotasGameComponent } from './carro-mascotas-game/carro-mascotas
     TutorialComponent,
     PuzzleComponent,
   GameQuestionSelectionComponent,
-  CarroMascotasGameComponent
+  CarroMascotasGameComponent,
+  DetectiveGenericComponent
   ]
 })
 export class SharedModule { }

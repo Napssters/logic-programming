@@ -1,0 +1,59 @@
+<div class="container mt-4" *ngIf="caso">
+  <div class="card">
+    <div class="card-header">{{ etapaActual.tituloCard }}</div>
+    <div class="card-body">
+      <p class="fade-in">{{ etapaActual.descripcion || etapaActual.narrativa }}</p>
+      <div class="list-group mb-3" *ngIf="etapaActual.pistasDesbloqueadas">
+        <div class="list-group-item" *ngFor="let pista of etapaActual.pistasDesbloqueadas">
+          <strong>{{ pista.titulo }}</strong>: {{ pista.contenido }}
+        </div>
+      </div>
+      <div *ngIf="etapaActual.pasosGuiados" class="list-group mb-3">
+        <div class="list-group-item" *ngFor="let paso of etapaActual.pasosGuiados">
+          {{ paso }}
+        </div>
+      </div>
+      <div *ngIf="etapaActual.explicacion" class="alert alert-success">
+        {{ etapaActual.explicacion }}
+      </div>
+      <ng-container *ngIf="etapaActual.opciones">
+        <div *ngIf="tipo === 1">
+          <button *ngFor="let opcion of etapaActual.opciones"
+                  class="btn btn-outline-primary m-1"
+                  [ngClass]="{'btn-success': opcion.esCorrecta && seleccionHecha, 'btn-secondary': seleccionHecha && !opcion.esCorrecta}"
+                  [disabled]="seleccionHecha"
+                  (click)="seleccionarOpcion(opcion)">
+            {{ opcion.texto }}
+          </button>
+        </div>
+        <form *ngIf="tipo === 2">
+          <div class="form-check" *ngFor="let opcion of etapaActual.opciones; let i = index">
+            <input class="form-check-input" type="radio" [value]="i" [(ngModel)]="seleccion" name="opcion" [id]="'opcion-' + i" [disabled]="seleccionHecha">
+            <label class="form-check-label" [for]="'opcion-' + i">{{ opcion.texto }}</label>
+          </div>
+          <button class="btn btn-primary mt-3" (click)="submitOpcion(seleccion)" [disabled]="seleccion === null">Investigar</button>
+        </form>
+      </ng-container>
+      <div *ngIf="mostrarFeedback" class="alert alert-info fade-in">
+        {{ feedback }}
+      </div>
+      <button class="btn btn-success mt-3" *ngIf="mostrarSiguiente" (click)="avanzarEtapa()">Siguiente</button>
+    </div>
+  </div>
+  <div class="modal" *ngIf="etapaActual.id === 'final'" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ etapaActual.tituloCard }}</h5>
+        </div>
+        <div class="modal-body">
+          <p>{{ etapaActual.descripcion }}</p>
+          <p>Puntaje: {{ puntaje }}</p>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-secondary" routerLink="/menu">Volver al Menú</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
