@@ -1,27 +1,8 @@
-.card {
-  border: 2px solid #007bff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  background: linear-gradient(180deg, #f8f9fa, #e9ecef);
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.list-group-item {
-  background: #fff;
-  border-left: 4px solid #007bff;
-  margin-bottom: 5px;
-}
-.btn-primary, .btn-success, .btn-outline-primary {
-  transition: all 0.3s;
-}
-.btn-primary:hover, .btn-success:hover, .btn-outline-primary:hover {
-  transform: scale(1.05);
-}
-.fade-in {
-  animation: fadeIn 0.5s;
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.alert-info {
-  background: #d1ecf1;
-  border-color: #bee5eb;
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
 }
