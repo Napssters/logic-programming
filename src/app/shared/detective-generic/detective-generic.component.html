@@ -20,6 +20,11 @@
         <h3 class="text-xl font-semibold mb-2">{{ etapaActual.tituloCard }}</h3>
         <p class="text-gray-700 mb-4">{{ etapaActual.descripcion || etapaActual.narrativa }}</p>
 
+        <!-- Botón Comenzar si está en introducción -->
+        <button *ngIf="enIntroduccion" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300" (click)="avanzarEtapa()">
+          Comenzar
+        </button>
+
         <!-- Pasos guiados (para ejemplos) -->
         <div *ngIf="etapaActual.pasosGuiados" class="space-y-2 mb-4">
           <div *ngFor="let paso of etapaActual.pasosGuiados" class="p-3 bg-gray-50 border-l-4 border-blue-500">
@@ -32,36 +37,22 @@
           {{ etapaActual.explicacion }}
         </div>
 
-        <!-- Opciones -->
-        <ng-container *ngIf="etapaActual.opciones">
-          <!-- Ejemplos: Botones -->
-          <div *ngIf="tipo === 1" class="space-x-2 space-y-2">
+        <!-- Opciones solo si no está en introducción ni en final -->
+        <ng-container *ngIf="!enIntroduccion && etapaActual.opciones">
+          <!-- Botones para ambos tipos -->
+          <div class="space-x-2 space-y-2">
             <button *ngFor="let opcion of etapaActual.opciones; let i = index"
                     class="px-4 py-2 rounded-lg transition duration-300"
                     [ngClass]="{
-                      'bg-blue-500 text-white hover:bg-blue-600': !seleccionHecha,
-                      'bg-green-500 text-white': opcion.esCorrecta && seleccionHecha,
-                      'bg-gray-400 text-white cursor-not-allowed': seleccionHecha && !opcion.esCorrecta
+                      'bg-blue-500 text-white hover:bg-blue-600': !seleccionadas[i],
+                      'bg-green-500 text-white': ((tipo === 1 && opcion.esCorrecta) || (tipo === 2 && opcion.esRamaCorrecta)) && seleccionadas[i],
+                      'bg-gray-400 text-white cursor-not-allowed': seleccionadas[i] && !((tipo === 1 && opcion.esCorrecta) || (tipo === 2 && opcion.esRamaCorrecta))
                     }"
-                    [disabled]="seleccionHecha"
+                    [disabled]="seleccionadas[i]"
                     (click)="seleccionarOpcion(opcion, i)">
               {{ opcion.texto }}
             </button>
           </div>
-
-          <!-- Ejercicios: Radios -->
-          <form *ngIf="tipo === 2" class="space-y-3">
-            <div *ngFor="let opcion of etapaActual.opciones; let i = index" class="flex items-center">
-              <input type="radio" [id]="'opcion-' + i" [value]="i" [(ngModel)]="seleccion" name="opcion"
-                     class="h-4 w-4 text-blue-600 focus:ring-blue-500"
-                     [disabled]="seleccionHecha">
-              <label [for]="'opcion-' + i" class="ml-2 text-gray-700">{{ opcion.texto }}</label>
-            </div>
-            <button type="button" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
-                    (click)="submitOpcion()" [disabled]="seleccion === null || seleccionHecha">
-              Investigar
-            </button>
-          </form>
         </ng-container>
 
         <!-- Feedback -->
@@ -70,7 +61,7 @@
         </div>
 
         <!-- Botón Siguiente -->
-        <button *ngIf="mostrarSiguiente" class="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300"
+        <button *ngIf="mostrarSiguiente && !enIntroduccion" class="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300"
                 (click)="avanzarEtapa()">
           Siguiente
         </button>

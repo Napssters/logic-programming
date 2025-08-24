@@ -31,7 +31,9 @@ export class DetectiveGenericComponent implements OnInit {
   data: { ejemplos: Caso[]; ejercicios: Caso[] } | null = null;
   casoSeleccionado: Caso | null = null;
   etapaActual: any = null;
+  enIntroduccion: boolean = true;
   seleccion: number | null = null; // Índice de la opción seleccionada
+  seleccionadas: boolean[] = [];
   seleccionHecha = false;
   mostrarSiguiente = false;
   feedback = '';
@@ -71,12 +73,16 @@ export class DetectiveGenericComponent implements OnInit {
   seleccionarCaso(caso: Caso) {
     this.casoSeleccionado = caso;
     this.etapaActual = caso.introduccion;
+    this.enIntroduccion = true;
     this.resetEstado();
+    this.seleccionadas = [];
   }
 
   seleccionarOpcion(opcion: any, index: number) {
+    if (!this.seleccionadas.length && this.etapaActual.opciones) {
+      this.seleccionadas = this.etapaActual.opciones.map(() => false);
+    }
     this.seleccion = index;
-    this.seleccionHecha = true;
     this.feedback = opcion.resultado;
     this.mostrarFeedback = true;
     this.puntaje += opcion.puntaje || 0;
@@ -91,9 +97,27 @@ export class DetectiveGenericComponent implements OnInit {
       this.pistasDesbloqueadas.push(...this.etapaActual.pistasDesbloqueadas);
     }
 
-    this.mostrarSiguiente = (this.tipo === 1 && opcion.esCorrecta) || (this.tipo === 2 && opcion.esRamaCorrecta);
-    if (this.tipo === 2 && !opcion.esRamaCorrecta) {
-      this.mostrarSiguiente = false; // Forzar retry en ejercicios
+    // Marcar la opción como seleccionada
+    this.seleccionadas[index] = true;
+
+    // Lógica para ejemplos (tipo 1): todas las correctas deben ser seleccionadas
+    if (this.tipo === 1) {
+      const correctas = this.etapaActual.opciones.filter((o: any) => o.esCorrecta);
+      const todasCorrectasSeleccionadas = correctas.every((o: any, i: number) => {
+        const idx = this.etapaActual.opciones.indexOf(o);
+        return this.seleccionadas[idx];
+      });
+      this.mostrarSiguiente = todasCorrectasSeleccionadas;
+      this.seleccionHecha = false; // nunca bloquear
+    } else if (this.tipo === 2) {
+      // Para ejercicios, usar esRamaCorrecta
+      const correctas = this.etapaActual.opciones.filter((o: any) => o.esRamaCorrecta);
+      const todasCorrectasSeleccionadas = correctas.every((o: any, i: number) => {
+        const idx = this.etapaActual.opciones.indexOf(o);
+        return this.seleccionadas[idx];
+      });
+      this.mostrarSiguiente = todasCorrectasSeleccionadas;
+      this.seleccionHecha = false; // nunca bloquear
     }
   }
 
@@ -105,6 +129,13 @@ export class DetectiveGenericComponent implements OnInit {
   }
 
   avanzarEtapa() {
+    // Si estamos en la introducción, pasar a la primera etapa
+    if (this.enIntroduccion && this.casoSeleccionado && this.casoSeleccionado.etapas.length > 0) {
+      this.etapaActual = this.casoSeleccionado.etapas[0];
+      this.enIntroduccion = false;
+      this.resetEstado();
+      return;
+    }
     if (!this.etapaActual.opciones) return;
     const opcionSeleccionada = this.etapaActual.opciones.find((o: any) => (this.tipo === 1 && o.esCorrecta) || (this.tipo === 2 && o.esRamaCorrecta)) || this.etapaActual.opciones[0];
     const nextEtapaId = opcionSeleccionada.avanzaA;
@@ -128,6 +159,7 @@ export class DetectiveGenericComponent implements OnInit {
 
   resetEstado() {
     this.seleccion = null;
+    this.seleccionadas = [];
     this.seleccionHecha = false;
     this.mostrarSiguiente = false;
     this.mostrarFeedback = false;
