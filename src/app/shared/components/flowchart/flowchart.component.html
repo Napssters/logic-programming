@@ -14,9 +14,22 @@
       <svg [attr.width]="svgWidth" [attr.height]="svgHeight" style="background: #f8fafc; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
         <!-- Conexiones -->
         <ng-container *ngFor="let conn of svgConnections">
-          <line [attr.x1]="conn.x1" [attr.y1]="conn.y1" [attr.x2]="conn.x2" [attr.y2]="conn.y2"
-            [attr.stroke]="conn.isActive ? '#60a5fa' : (conn.isLoop ? '#60a5fa' : '#60a5fa')"
-            stroke-width="3" marker-end="url(#arrowhead)" />
+          <ng-container *ngIf="isPolyline(conn)">
+            <polyline
+              [attr.points]="getPolylinePoints(conn)"
+              [attr.stroke]="conn.isActive ? '#60a5fa' : (conn.isLoop ? '#60a5fa' : '#60a5fa')"
+              stroke-width="3"
+              fill="none"
+              marker-end="url(#arrowhead)"
+            />
+          </ng-container>
+          <ng-container *ngIf="isLine(conn)">
+            <line
+              *ngIf="getLineCoords(conn) as coords"
+              [attr.x1]="coords.x1" [attr.y1]="coords.y1" [attr.x2]="coords.x2" [attr.y2]="coords.y2"
+              [attr.stroke]="conn.isActive ? '#60a5fa' : (conn.isLoop ? '#60a5fa' : '#60a5fa')"
+              stroke-width="3" marker-end="url(#arrowhead)" />
+          </ng-container>
         </ng-container>
         <defs>
           <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">

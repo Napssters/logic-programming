@@ -35,7 +35,7 @@ export class FlowchartComponent implements OnChanges {
   blockGapY = 100;
   blockGapX = 220;
   decisionPoints = '';
-  svgConnections: { x1: number, y1: number, x2: number, y2: number, isLoop?: boolean, isActive?: boolean }[] = [];
+  svgConnections: ({ x1: number, y1: number, x2: number, y2: number, isLoop?: boolean, isActive?: boolean } | { points: { x: number, y: number }[], isLoop?: boolean, isActive?: boolean })[] = [];
   svgBlocks: { step: FlowchartStep, x: number, y: number, isActive?: boolean }[] = [];
 
   ngOnChanges(changes: SimpleChanges) {
@@ -99,27 +99,34 @@ export class FlowchartComponent implements OnChanges {
       if (blockPositions[step.id] && !isLastVisible) {
         lastX = blockPositions[step.id].x;
         lastY = blockPositions[step.id].y;
+        // Si es loopBack, siempre usar polyline con quiebres
         if (step.loopBack && lastDecisionBlock) {
-          // Determinar si el bloque está a la derecha o izquierda del decision
-          let loopStartX, loopStartY;
-          if (lastX > lastDecisionBlock.x) {
-            // Bloque está a la derecha, flecha sale del costado izquierdo
-            loopStartX = lastX;
-            loopStartY = lastY + this.blockHeight / 2;
-          } else if (lastX < lastDecisionBlock.x) {
-            // Bloque está a la izquierda, flecha sale del costado derecho
-            loopStartX = lastX + this.blockWidth;
-            loopStartY = lastY + this.blockHeight / 2;
-          } else {
-            // Mismo eje X, sale del centro inferior
-            loopStartX = lastX + this.blockWidth / 2;
-            loopStartY = lastY + this.blockHeight;
+          // Calcular puntos para quiebres horizontales y verticales
+          const startX = lastX + this.blockWidth / 2;
+          const startY = lastY + this.blockHeight;
+          const endX = lastDecisionBlock.x + this.blockWidth / 2;
+          const endY = lastDecisionBlock.y + this.blockHeight / 2;
+          // Quiebre horizontal, vertical, horizontal
+          const breakOffsetY = 40; // Separación vertical del quiebre
+          const breakOffsetX = 80; // Separación horizontal del quiebre
+          let midY = startY + breakOffsetY;
+          let midX1 = startX;
+          let midX2 = endX;
+          if (startX < endX) {
+            midX1 = startX + breakOffsetX;
+            midX2 = endX - breakOffsetX;
+          } else if (startX > endX) {
+            midX1 = startX - breakOffsetX;
+            midX2 = endX + breakOffsetX;
           }
+          const points = [
+            { x: startX, y: startY },
+            { x: midX1, y: midY },
+            { x: midX2, y: midY },
+            { x: endX, y: endY }
+          ];
           this.svgConnections.push({
-            x1: loopStartX,
-            y1: loopStartY,
-            x2: lastDecisionBlock.x + this.blockWidth / 2,
-            y2: lastDecisionBlock.y + this.blockHeight / 2,
+            points,
             isLoop: true,
             isActive: step.id === currentActiveId
           });
@@ -163,11 +170,17 @@ export class FlowchartComponent implements OnChanges {
             }
             this.svgBlocks.push({ step, x, y, isActive: step.id === currentActiveId });
             blockPositions[step.id] = { x, y };
+            // Conexión condicional: horizontal primero, luego vertical
+            const endX = x + this.blockWidth / 2;
+            const endY = y + this.blockHeight / 2;
+            // Solo dos quiebres: horizontal hasta la mitad del bloque destino, luego vertical
+            const points = [
+              { x: startX, y: startY },
+              { x: endX, y: startY }, // horizontal
+              { x: endX, y: endY }    // vertical
+            ];
             this.svgConnections.push({
-              x1: startX,
-              y1: startY,
-              x2: x + this.blockWidth / 2,
-              y2: y,
+              points,
               isActive: step.id === currentActiveId
             });
             lastX = x;
@@ -193,12 +206,22 @@ export class FlowchartComponent implements OnChanges {
             lastDecisionBlock = { x, y };
           }
         }
+        // Si es loopBack, usar polyline con quiebres (no línea diagonal)
         if (step.loopBack && lastDecisionBlock) {
+          // Trayectoria: vertical abajo, horizontal, vertical arriba
+          const startX = lastX + this.blockWidth / 2;
+          const startY = lastY + this.blockHeight;
+          const endX = lastDecisionBlock.x + this.blockWidth / 2;
+          const endY = lastDecisionBlock.y + this.blockHeight / 2;
+          const offsetY = 60; // cuánto baja antes de girar
+          const points = [
+            { x: startX, y: startY }, // punto de salida (abajo del bloque)
+            { x: startX, y: startY + offsetY }, // baja en vertical
+            { x: endX, y: startY + offsetY },   // mueve en horizontal
+            { x: endX, y: endY }                // sube en vertical hasta el destino
+          ];
           this.svgConnections.push({
-            x1: lastX + this.blockWidth / 2,
-            y1: lastY + this.blockHeight,
-            x2: lastDecisionBlock.x + this.blockWidth / 2,
-            y2: lastDecisionBlock.y + this.blockHeight / 2,
+            points,
             isLoop: true,
             isActive: step.id === currentActiveId
           });
@@ -211,6 +234,27 @@ export class FlowchartComponent implements OnChanges {
     this.svgHeight = y0 + this.svgBlocks.length * this.blockGapY + this.blockHeight;
   }
 
+  isPolyline(conn: any): boolean {
+    return !!conn.points && Array.isArray(conn.points);
+  }
+
+  isLine(conn: any): boolean {
+    return conn.x1 !== undefined && conn.y1 !== undefined && conn.x2 !== undefined && conn.y2 !== undefined;
+  }
+
+  getPolylinePoints(conn: any): string {
+    if (conn.points && Array.isArray(conn.points)) {
+      return conn.points.map((p: { x: number; y: number }) => `${p.x},${p.y}`).join(' ');
+    }
+    return '';
+  }
+
+  getLineCoords(conn: any): { x1: number, y1: number, x2: number, y2: number } | null {
+    if (conn.x1 !== undefined && conn.y1 !== undefined && conn.x2 !== undefined && conn.y2 !== undefined) {
+      return { x1: conn.x1, y1: conn.y1, x2: conn.x2, y2: conn.y2 };
+    }
+    return null;
+  }
   getBlockColor(type: string): string {
     switch (type) {
       case 'decision': return '#fef3c7';
