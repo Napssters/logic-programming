@@ -3,7 +3,7 @@
     {
       "id": 1,
       "ambito": "Medicina",
-      "titulo": "El Caso del Paciente Misterioso",
+      "titulo": "El Paciente Misterioso",
       "introduccion": {
         "tituloCard": "Hospital Central: Un Misterio Médico",
         "narrativa": "Eres el Detective Creativo, convocado al Hospital Central en una noche agitada. Carlos Ramírez, de 45 años, llega con fiebre alta, erupción cutánea en brazos y piernas, y fatiga que lo deja postrado. Las pruebas estándar (sangre, rayos X) no muestran nada. La familia está desesperada, y el estado de Carlos empeora cada hora. Tienes 24 horas para diagnosticar y salvarlo. Investiga: interroga testigos, analiza evidencias y toma decisiones creativas para descubrir la causa oculta.",
@@ -205,11 +205,10 @@
           ],
           "solucionCorrecta": "Monitorear recuperación y ajustar dosis",
           "pasosGuiados": [
-            "Paso 1: Identificaste el problema preciso: Síntomas no detectados por tests comunes.",
-            "Paso 2: Analizaste perspectivas: La familia dio la pista clave del viaje.",
-            "Paso 3: Generaste ideas: Test de malaria fue out-of-the-box.",
-            "Paso 4: Evaluaste: Acción rápida y efectiva.",
-            "Paso 5: Iteraste: Monitoreo asegura recuperación."
+            "Paso 1: Detectaste síntomas inusuales y buscaste pistas clave.",
+            "Paso 2: Analizaste perspectivas y generaste hipótesis creativas.",
+            "Paso 3: Confirmaste la causa y aplicaste la solución.",
+            "Paso 4: Monitoreaste la recuperación para asegurar el éxito."
           ],
           "explicacion": "Solución creativa: Combinaste pista ambiental (selva) con medicina moderna (test rápido), rompiendo el patrón de tests estándar. Beneficios: Salvaste a Carlos, redujiste costos hospitalarios, satisfacción de familia y médicos."
         }
@@ -219,7 +218,7 @@
     {
       "id": 2,
       "ambito": "Comida",
-      "titulo": "El Caso del Banquete Fallido",
+      "titulo": "El Banquete Fallido",
       "introduccion": {
         "tituloCard": "Caos en la Cocina Nupcial",
         "narrativa": "Detective Creativo, estás en una boda de lujo. El chef estrella se desmaya por fiebre, y el plato principal (filet mignon para 100 personas) se quema en el horno. Los invitados murmuran, la novia llora, y solo tienes 30 minutos para servir algo digno. Investiga: interroga al equipo de cocina, revisa la despensa y crea un plato creativo con lo disponible (vegetales frescos, pasta seca, especias exóticas).",
@@ -395,11 +394,10 @@
           ],
           "solucionCorrecta": "Decorar con hierbas frescas y servir rápido",
           "pasosGuiados": [
-            "Paso 1: Identificaste el problema: Plato principal quemado.",
-            "Paso 2: Perspectivas: Invitados quieren gourmet, sous-chef dio recursos.",
-            "Paso 3: Ideas: Pasta primavera fue out-of-the-box.",
-            "Paso 4: Evaluaste: Viable, vegano, rápido.",
-            "Paso 5: Iteraste: Especias y decoración elevaron experiencia."
+            "Paso 1: Detectaste el problema y recursos disponibles.",
+            "Paso 2: Ideaste una solución creativa con los ingredientes.",
+            "Paso 3: Mejoraste el plato y la presentación.",
+            "Paso 4: Sorprendiste a los invitados con el resultado."
           ],
           "explicacion": "Solución creativa: Transformaste recursos limitados (pasta, vegetales) en un plato gourmet, usando especias de forma no convencional. Beneficios: Salvaste la boda, impresionaste a los invitados."
         }
@@ -409,7 +407,7 @@
     {
       "id": 3,
       "ambito": "Astronautas",
-      "titulo": "El Caso de la Nave Averiada",
+      "titulo": "La Nave Averiada",
       "introduccion": {
         "tituloCard": "Crisis en la Órbita",
         "narrativa": "Eres Detective Creativo en una misión espacial. Una fuga microscópica en el casco de la nave reduce el oxígeno lentamente. La tripulación está en pánico, y la Tierra está a días de distancia. Tienes 48 horas de oxígeno. Investiga: revisa sistemas, consulta a la tripulación, usa materiales a bordo (cinta adhesiva, plásticos, herramientas) para una solución creativa.",
@@ -580,11 +578,10 @@
           ],
           "solucionCorrecta": "Monitorear presión y reforzar parche",
           "pasosGuiados": [
-            "Paso 1: Identificaste problema: Fuga microscópica.",
-            "Paso 2: Perspectivas: Ingeniero dio recursos, historia inspiró.",
-            "Paso 3: Ideas: Parche fue out-of-the-box.",
-            "Paso 4: Evaluaste: Solución práctica y viable.",
-            "Paso 5: Iteraste: Monitoreo asegura éxito."
+            "Paso 1: Localizaste el origen del problema.",
+            "Paso 2: Consultaste recursos y opciones creativas.",
+            "Paso 3: Implementaste una reparación improvisada.",
+            "Paso 4: Reforzaste y monitoreaste la solución."
           ],
           "explicacion": "Solución creativa: Usaste materiales simples (cinta, plástico) de forma no convencional, inspirado en misiones reales. Beneficios: Salvaste la misión y la tripulación."
         }
@@ -594,7 +591,7 @@
     {
       "id": 4,
       "ambito": "Historia",
-      "titulo": "El Caso del Artefacto Perdido",
+      "titulo": "El Artefacto Perdido",
       "introduccion": {
         "tituloCard": "Excavación en Peligro",
         "narrativa": "Detective Creativo, estás en una excavación arqueológica en Egipto. Un artefacto antiguo, una estatuilla de Anubis, se rompe al desenterrarlo. El museo espera una pieza estrella para la exposición de mañana. Investiga: recolecta fragmentos, consulta expertos, usa materiales (pegamento, moldes) para restaurar creativamente.",
@@ -765,11 +762,10 @@
           ],
           "solucionCorrecta": "Exhibir con nota de restauración",
           "pasosGuiados": [
-            "Paso 1: Identificaste problema: Artefacto roto.",
-            "Paso 2: Perspectivas: Experto y museo guiaron.",
-            "Paso 3: Ideas: Reconstrucción fue out-of-the-box.",
-            "Paso 4: Evaluaste: Autenticidad clave.",
-            "Paso 5: Iteraste: Nota de restauración añade valor."
+            "Paso 1: Recolectaste fragmentos y consultaste expertos.",
+            "Paso 2: Restauraste el artefacto con técnicas creativas.",
+            "Paso 3: Presentaste la pieza con autenticidad.",
+            "Paso 4: Añadiste valor con transparencia en la restauración."
           ],
           "explicacion": "Solución creativa: Restauraste usando materiales simples, respetando autenticidad. Beneficios: Salvaste exposición y prestigio."
         }
@@ -779,7 +775,7 @@
     {
       "id": 5,
       "ambito": "Deportes",
-      "titulo": "El Caso del Partido Lluvioso",
+      "titulo": "El Partido Lluvioso",
       "introduccion": {
         "tituloCard": "Torneo en Riesgo",
         "narrativa": "Detective Creativo, estás en un torneo de fútbol local. Una lluvia torrencial inunda el campo minutos antes del partido final. Los fans están empapados pero expectantes, y el equipo depende de este juego. Investiga: busca venues alternos, consulta jugadores, adapta reglas para salvar el torneo.",
@@ -945,11 +941,10 @@
           ],
           "solucionCorrecta": "Añadir música y comentarista",
           "pasosGuiados": [
-            "Paso 1: Identificaste problema: Campo inundado.",
-            "Paso 2: Perspectivas: Jugadores sugirieron futsal.",
-            "Paso 3: Ideas: Futsal fue out-of-the-box.",
-            "Paso 4: Evaluaste: Viable y emocionante.",
-            "Paso 5: Iteraste: Música elevó experiencia."
+            "Paso 1: Buscaste alternativas ante la adversidad.",
+            "Paso 2: Adaptaste reglas y formato del juego.",
+            "Paso 3: Mejoraste la experiencia para los participantes.",
+            "Paso 4: Celebraste el éxito del evento adaptado."
           ],
           "explicacion": "Solución creativa: Adaptaste el juego a un espacio nuevo con reglas innovadoras. Beneficios: Salvaste el torneo, fans felices."
         }
@@ -959,7 +954,7 @@
     {
       "id": 6,
       "ambito": "Ecología",
-      "titulo": "El Caso del Río Contaminado",
+      "titulo": "El Río Contaminado",
       "introduccion": {
         "tituloCard": "Emergencia Ambiental",
         "narrativa": "Eres Detective Creativo en una reserva natural. Un río local está contaminado por desechos industriales, matando peces y alarmando a la comunidad. No hay fondos para limpieza profesional, y la contaminación se expande. Investiga: analiza el agua, consulta a locales, usa plantas filtrantes para una solución sostenible.",
@@ -1130,11 +1125,10 @@
           ],
           "solucionCorrecta": "Organizar voluntarios para monitoreo",
           "pasosGuiados": [
-            "Paso 1: Identificaste problema: Contaminación química.",
-            "Paso 2: Perspectivas: Locales dieron solución natural.",
-            "Paso 3: Ideas: Plantas fueron out-of-the-box.",
-            "Paso 4: Evaluaste: Sostenible y económico.",
-            "Paso 5: Iteraste: Monitoreo asegura éxito."
+            "Paso 1: Analizaste la causa de la contaminación.",
+            "Paso 2: Aplicaste soluciones naturales y sostenibles.",
+            "Paso 3: Organizaste el monitoreo comunitario.",
+            "Paso 4: Aseguraste la recuperación del ecosistema."
           ],
           "explicacion": "Solución creativa: Usaste plantas locales para una limpieza sostenible, rompiendo el patrón de soluciones costosas. Beneficios: Ecosistema recuperado, comunidad involucrada."
         }
@@ -1144,7 +1138,7 @@
     {
       "id": 7,
       "ambito": "Arte",
-      "titulo": "El Caso de la Obra Rota",
+      "titulo": "La Obra Rota",
       "introduccion": {
         "tituloCard": "Desastre en la Galería",
         "narrativa": "Detective Creativo, una escultura estrella, 'El Abrazo', se rompe en transporte a una galería. La exposición es mañana, y el artista está devastado. Investiga: recolecta piezas, consulta curadores, usa materiales (alambres, pegamento) para un giro creativo que salve la muestra.",
@@ -1310,11 +1304,10 @@
           ],
           "solucionCorrecta": "Presentar con narrativa de resiliencia",
           "pasosGuiados": [
-            "Paso 1: Identificaste problema: Escultura rota.",
-            "Paso 2: Perspectivas: Curador inspiró enfoque conceptual.",
-            "Paso 3: Ideas: Arte fragmentado fue out-of-the-box.",
-            "Paso 4: Evaluaste: Impacto y autenticidad.",
-            "Paso 5: Iteraste: Narrativa elevó valor."
+            "Paso 1: Reuniste los fragmentos y consultaste al curador.",
+            "Paso 2: Reinterpretaste la obra con creatividad.",
+            "Paso 3: Presentaste la pieza con una narrativa inspiradora.",
+            "Paso 4: Lograste el éxito en la exposición."
           ],
           "explicacion": "Solución creativa: Transformaste un fallo en una obra conceptual única, usando alambres y narrativa. Beneficios: Éxito en exposición, admiración del público."
         }
@@ -1326,7 +1319,7 @@
     {
       "id": 1,
       "ambito": "Viajes",
-      "titulo": "El Enigma del Tren Perdido",
+  "titulo": "Tren Perdido",
       "introduccion": {
         "tituloCard": "Caos en la Estación Central",
         "narrativa": "Detective Creativo, estás en una estación de tren abarrotada. Tu tren a París, necesario para un vuelo internacional, está detenido por una falla mecánica sin hora de arreglo. El vuelo sale en 2 horas, y el tráfico en la ciudad está paralizado. Los pasajeros murmuran, y el tiempo corre. Investiga: explora la estación, habla con viajeros, revisa mapas y encuentra una ruta creativa para llegar al aeropuerto a tiempo.",
@@ -1497,7 +1490,7 @@
     {
       "id": 2,
       "ambito": "Educación",
-      "titulo": "El Enigma de la Clase Aburrida",
+  "titulo": "Clase Aburrida",
       "introduccion": {
         "tituloCard": "Aula sin Inspiración",
         "narrativa": "Detective Creativo, estás en una escuela secundaria. Los estudiantes están distraídos en una lección de historia sobre la Revolución Francesa, y el examen es mañana. Bostezan, miran sus teléfonos, y el profesor está frustrado. Investiga: consulta a los estudiantes, revisa materiales (videos, juegos, disfraces), y crea una clase que los enganche.",
@@ -1680,7 +1673,7 @@
     {
       "id": 3,
       "ambito": "Agricultura",
-      "titulo": "El Enigma de la Cosecha Seca",
+  "titulo": "Cosecha Seca",
       "introduccion": {
         "tituloCard": "Granja en Crisis",
         "narrativa": "Eres Detective Creativo en una granja familiar. Una sequía está matando los cultivos de maíz, y la familia depende de la cosecha para sobrevivir. No hay lluvia a la vista, y los recursos son limitados. Investiga: analiza el suelo, consulta a vecinos, usa semillas alternativas y técnicas de riego para salvar la temporada.",
@@ -1896,7 +1889,7 @@
     {
       "id": 4,
       "ambito": "Música",
-      "titulo": "El Enigma del Concierto Cancelado",
+  "titulo": "Concierto Cancelado",
       "introduccion": {
         "tituloCard": "Escenario Silencioso",
         "narrativa": "Detective Creativo, tu banda está lista para un concierto crucial, pero el vocalista pierde la voz horas antes. Los fans han pagado, y la reputación de la banda está en juego. Investiga: consulta a los músicos, revisa instrumentos y adapta el set para salvar el evento.",
@@ -2086,7 +2079,7 @@
     {
       "id": 5,
       "ambito": "Ciencia",
-      "titulo": "El Enigma del Experimento Fallido",
+  "titulo": "Experimento Fallido",
       "introduccion": {
         "tituloCard": "Laboratorio en Caos",
         "narrativa": "Detective Creativo, estás en un laboratorio químico. Un experimento clave para un grant explota suavemente, perdiendo datos cruciales. El deadline es mañana, y el equipo está desmoralizado. Investiga: revisa notas, consulta al equipo, usa compuestos alternativos para salvar el proyecto.",
@@ -2276,7 +2269,7 @@
     {
       "id": 6,
       "ambito": "Moda",
-      "titulo": "El Enigma del Desfile Desastre",
+  "titulo": "Desfile Desastre",
       "introduccion": {
         "tituloCard": "Pasarela en Riesgo",
         "narrativa": "Eres Detective Creativo en un desfile de moda de alta costura. El vestido estrella, un diseño único, se rasga en el ensayo final, a 1 hora del show. La diseñadora está en pánico, y los críticos esperan. Investiga: revisa telas, consulta costureras, crea un diseño improvisado para salvar el desfile.",
@@ -2461,7 +2454,7 @@
     {
       "id": 7,
       "ambito": "Aventura",
-      "titulo": "El Enigma de la Montaña Bloqueada",
+  "titulo": "Montaña Bloqueada",
       "introduccion": {
         "tituloCard": "Expedición en Peligro",
         "narrativa": "Detective Creativo, estás en una expedición montañosa hacia una cima legendaria. Una avalancha bloquea el sendero principal, y los suministros son bajos. El equipo está desanimado, y el tiempo apremia. Investiga: explora rutas, consulta guías, usa equipo (cuerdas, picos) para encontrar un camino alternativo.",

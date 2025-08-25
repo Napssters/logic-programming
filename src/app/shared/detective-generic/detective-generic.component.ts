@@ -55,7 +55,10 @@ export class DetectiveGenericComponent implements OnInit {
     this.http.get<{ ejemplos: Caso[]; ejercicios: Caso[] }>('assets/jsons-base/detectives-game.json').subscribe({
       next: (data) => {
         this.data = data;
-        this.seleccionarCaso(this.tipo === 1 ? data.ejemplos[0] : data.ejercicios[0]);
+        // No seleccionar ningún caso por defecto
+        this.casoSeleccionado = null;
+        this.etapaActual = null;
+        this.enIntroduccion = true;
       },
       error: (err) => console.error('Error al cargar el JSON:', err)
     });

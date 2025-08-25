@@ -13,6 +13,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { CardTitleFormatPipe } from './pipes/card-title-format.pipe';
 import { ExtractTipoPipe } from './pipes/extract-tipo.pipe';
+import { BorrarCasoPipe } from './borrar-caso.pipe';
 import { TutorialComponent } from './components/tutorial/tutorial.component';
 import { PuzzleComponent } from './components/puzzle/puzzle.component';
 
@@ -32,8 +33,9 @@ import { DetectiveGenericComponent } from './detective-generic/detective-generic
     BlocklyExerciseComponent,
     ModalComponent,
     CardsComponent,
-    CardTitleFormatPipe,
-    ExtractTipoPipe,
+  CardTitleFormatPipe,
+  ExtractTipoPipe,
+  BorrarCasoPipe,
     TutorialComponent,
     PuzzleComponent,
   GameQuestionSelectionComponent,
@@ -55,7 +57,8 @@ import { DetectiveGenericComponent } from './detective-generic/detective-generic
     BlocklyExerciseComponent,
     ModalComponent,
     CardsComponent,
-    CardTitleFormatPipe,
+  CardTitleFormatPipe,
+  BorrarCasoPipe,
     TutorialComponent,
     PuzzleComponent,
   GameQuestionSelectionComponent,

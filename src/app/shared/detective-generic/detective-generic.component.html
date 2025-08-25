@@ -1,42 +1,87 @@
-<div class="container mx-auto p-4">
-  <div class="flex flex-col md:flex-row gap-4">
-    <!-- Lista de casos -->
-    <div class="md:w-1/4">
-      <div class="space-y-2">
-        <button *ngFor="let caso of (tipo === 1 ? data?.ejemplos : data?.ejercicios)"
-                class="w-full text-left p-3 rounded-lg transition duration-300 font-semibold text-white shadow-md border-none outline-none focus:ring-2 focus:ring-blue-400 hover:from-green-400 hover:to-blue-500 hover:bg-gradient-to-r hover:text-white"
-                [ngClass]="casoSeleccionado?.id === caso.id
-                  ? 'from-green-400 to-blue-500 bg-gradient-to-r ring-2 ring-green-400'
-                  : 'from-blue-500 to-green-400 bg-gradient-to-r'"
-                (click)="seleccionarCaso(caso)">
-          {{ caso.titulo }}
-        </button>
+<div class="container mx-auto p-4 w-full ">
+  <div class="flex flex-col md:flex-row gap-4 ">
+    <!-- Lista de casos como cards -->
+    <div class="w-full max-w-7xl mx-auto" *ngIf="!casoSeleccionado">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
+        <div *ngFor="let caso of (tipo === 1 ? data?.ejemplos : data?.ejercicios)"
+          class="aspect-square min-h-[320px] min-w-[320px] max-w-md w-full rounded-2xl bg-white shadow-xl border border-gray-100 p-0 flex flex-col items-stretch transition-transform hover:scale-105 mx-auto overflow-hidden">
+          <!-- Barra superior con acento y icono -->
+          <div class="h-3 bg-gradient-to-r from-green-400 to-blue-400 w-full"></div>
+          <div class="flex flex-col items-center justify-center flex-1 px-6 py-4">
+            <h3 class="text-xl font-bold text-gray-800 mb-2 text-left flex items-center gap-2 mt-4 w-full">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-100 shadow">
+                <svg class="w-7 h-7 text-green-500" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="7" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </span>
+              <span>{{ caso.titulo }}</span>
+            </h3>
+            <div
+              class="bg-gradient-to-br from-blue-50 via-purple-50 to-white border-l-4 border-l-transparent shadow rounded-xl px-2 py-3 w-full mb-2 overflow-auto relative">
+              <div class="absolute left-0 top-0 h-full w-1.5 rounded-l-xl bg-gradient-to-b from-green-400 to-blue-400">
+              </div>
+              <p class="text-gray-700 text-sm" style="text-align: justify; white-space: pre-line;">
+                {{ ((caso.introduccion?.objetivo && caso.introduccion?.objetivo.length > 10)
+                ? (caso.introduccion?.objetivo + ' ' + (caso.introduccion?.narrativa || ''))
+                : (caso.introduccion?.narrativa || 'Resuelve el misterio.')) | slice:0:220 }}
+                {{ ((caso.introduccion?.objetivo && caso.introduccion?.objetivo.length > 10)
+                ? (caso.introduccion?.objetivo + ' ' + (caso.introduccion?.narrativa || ''))
+                : (caso.introduccion?.narrativa || 'Resuelve el misterio.')).length > 220 ? '...' : '' }}
+              </p>
+            </div>
+            <div class="flex-grow"></div>
+            <button
+              class="mb-2 px-6 py-3 rounded-lg font-semibold transition duration-300 bg-gradient-to-r from-blue-500 to-green-400 text-white shadow-md border-none outline-none focus:ring-2 focus:ring-blue-400 hover:from-green-400 hover:to-blue-500 hover:bg-gradient-to-r hover:text-white"
+              (click)="seleccionarCaso(caso)">
+              Resolver el misterio
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Contenido del caso -->
-    <div class="md:w-3/4" *ngIf="casoSeleccionado">
+    <div class="flex flex-row gap-4 w-full justify-center" *ngIf="casoSeleccionado">
+      <!-- Historial de decisiones -->
+      <div *ngIf="historial.length > 0"
+  class="bg-white shadow-lg rounded-lg p-4 mb-4 w-[25%] min-w-[180px] h-[410px] overflow-y-auto">
+        <h3 class="text-base font-semibold mb-2">Historial de Decisiones</h3>
+        <ul class="space-y-1">
+          <li *ngFor="let decision of historial" class="p-2 bg-gray-50 border-l-4 border-blue-500 text-sm">
+            <strong>Etapa {{ decision.etapa }}:</strong> {{ decision.opcion }} - {{ decision.resultado }} (Puntaje: {{ decision.puntaje }})
+          </li>
+        </ul>
+      </div>
+
       <!-- Introducción o etapa actual -->
-      <div class="bg-white shadow-lg rounded-lg p-6 mb-4 animate-fade-in">
+      <div class="bg-white shadow-lg rounded-lg p-6 mb-4 animate-fade-in w-[50%] min-w-[260px]">
         <h3 class="text-xl font-semibold mb-2">{{ etapaActual.tituloCard }}</h3>
         <p class="text-gray-700 mb-4">{{ etapaActual.descripcion || etapaActual.narrativa }}</p>
 
         <!-- Botón Comenzar si está en introducción -->
-  <button *ngIf="enIntroduccion"
-    class="px-4 py-2 rounded-lg font-semibold transition duration-300 bg-gradient-to-r from-blue-500 to-green-400 text-white shadow-md border-none outline-none focus:ring-2 focus:ring-blue-400 hover:from-green-400 hover:to-blue-500 hover:bg-gradient-to-r hover:text-white"
-    (click)="avanzarEtapa()">
-    Comenzar
-  </button>
+        <button *ngIf="enIntroduccion"
+          class="px-4 py-2 rounded-lg font-semibold transition duration-300 bg-gradient-to-r from-blue-500 to-green-400 text-white shadow-md border-none outline-none focus:ring-2 focus:ring-blue-400 hover:from-green-400 hover:to-blue-500 hover:bg-gradient-to-r hover:text-white"
+          (click)="avanzarEtapa()">
+          Comenzar
+        </button>
 
         <!-- Pasos guiados (para ejemplos) -->
-        <div *ngIf="etapaActual.pasosGuiados" class="space-y-2 mb-4">
+        <div *ngIf="etapaActual.pasosGuiados && tipo === 1" class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+          <div *ngFor="let paso of etapaActual.pasosGuiados; let i = index" class="flex items-start gap-3 rounded-xl bg-gradient-to-r from-green-50 via-blue-50 to-white shadow p-3 border-l-4 border-green-300 min-h-[60px]">
+            <div class="flex items-center justify-center w-7 h-7 rounded-full bg-green-200 text-green-700 font-bold text-base shadow-inner">{{ i + 1 }}</div>
+            <div class="flex-1 text-gray-700 text-sm leading-tight">{{ paso }}</div>
+          </div>
+        </div>
+        <div *ngIf="etapaActual.pasosGuiados && tipo !== 1" class="space-y-2 mb-4">
           <div *ngFor="let paso of etapaActual.pasosGuiados" class="p-3 bg-gray-50 border-l-4 border-blue-500">
             {{ paso }}
           </div>
         </div>
 
         <!-- Explicación (si existe) -->
-        <div *ngIf="etapaActual.explicacion" class="p-3 bg-green-100 text-green-800 rounded-lg">
+  <div *ngIf="etapaActual.explicacion" class="p-3 bg-green-100 text-green-800 rounded-lg mb-4">
           {{ etapaActual.explicacion }}
         </div>
 
@@ -45,14 +90,11 @@
           <!-- Botones para ambos tipos -->
           <div class="space-x-2 space-y-2">
             <button *ngFor="let opcion of etapaActual.opciones; let i = index"
-                    class="px-4 py-2 rounded-lg transition duration-300"
-                    [ngClass]="{
+              class="px-4 py-2 rounded-lg transition duration-300" [ngClass]="{
                       'bg-blue-500 text-white hover:bg-blue-600': !seleccionadas[i],
                       'bg-green-500 text-white': ((tipo === 1 && opcion.esCorrecta) || (tipo === 2 && opcion.esRamaCorrecta)) && seleccionadas[i],
                       'bg-gray-400 text-white cursor-not-allowed': seleccionadas[i] && !((tipo === 1 && opcion.esCorrecta) || (tipo === 2 && opcion.esRamaCorrecta))
-                    }"
-                    [disabled]="seleccionadas[i]"
-                    (click)="seleccionarOpcion(opcion, i)">
+                    }" [disabled]="seleccionadas[i]" (click)="seleccionarOpcion(opcion, i)">
               {{ opcion.texto }}
             </button>
           </div>
@@ -64,33 +106,25 @@
         </div>
 
         <!-- Botón Siguiente -->
-  <button *ngIf="mostrarSiguiente && !enIntroduccion"
-    class="mt-4 px-4 py-2 rounded-lg font-semibold transition duration-300 bg-gradient-to-r from-blue-500 to-green-400 text-white shadow-md border-none outline-none focus:ring-2 focus:ring-blue-400 hover:from-green-400 hover:to-blue-500 hover:bg-gradient-to-r hover:text-white"
-    (click)="avanzarEtapa()">
-    Siguiente
-  </button>
+        <button *ngIf="mostrarSiguiente && !enIntroduccion"
+          class="mt-4 px-4 py-2 rounded-lg font-semibold transition duration-300 bg-gradient-to-r from-blue-500 to-green-400 text-white shadow-md border-none outline-none focus:ring-2 focus:ring-blue-400 hover:from-green-400 hover:to-blue-500 hover:bg-gradient-to-r hover:text-white"
+          (click)="avanzarEtapa()">
+          Siguiente
+        </button>
       </div>
 
       <!-- Pistas desbloqueadas -->
-      <div *ngIf="pistasDesbloqueadas.length > 0" class="bg-white shadow-lg rounded-lg p-6 mb-4">
-        <h3 class="text-xl font-semibold mb-2">Pistas Desbloqueadas</h3>
-        <div *ngFor="let pista of pistasDesbloqueadas" class="p-3 bg-gray-50 border-l-4 border-blue-500 mb-2">
+      <div *ngIf="pistasDesbloqueadas.length > 0"
+  class="bg-white shadow-lg rounded-lg p-4 mb-4 w-[25%] min-w-[180px] h-[410px] overflow-y-auto">
+        <h3 class="text-base font-semibold mb-2">Pistas Desbloqueadas</h3>
+        <div *ngFor="let pista of pistasDesbloqueadas" class="p-2 bg-gray-50 border-l-4 border-blue-500 mb-1 text-sm">
           <strong>{{ pista.titulo }}</strong>: {{ pista.contenido }}
         </div>
       </div>
 
-      <!-- Historial de decisiones -->
-      <div *ngIf="historial.length > 0" class="bg-white shadow-lg rounded-lg p-6 mb-4">
-        <h3 class="text-xl font-semibold mb-2">Historial de Decisiones</h3>
-        <ul class="space-y-2">
-          <li *ngFor="let decision of historial" class="p-3 bg-gray-50 border-l-4 border-blue-500">
-            <strong>Etapa {{ decision.etapa }}:</strong> {{ decision.opcion }} - {{ decision.resultado }} (Puntaje: {{ decision.puntaje }})
-          </li>
-        </ul>
-      </div>
-
       <!-- Puntaje fijo -->
-      <div class="fixed bottom-0 right-0 z-50 mb-4 mr-4 bg-gradient-to-br from-blue-500 via-cyan-400 to-blue-300 text-white shadow-xl rounded-xl px-4 py-2 flex items-center border-2 border-white/20 backdrop-blur-md">
+      <div
+        class="fixed bottom-0 right-0 z-50 mb-4 mr-4 bg-gradient-to-br from-blue-500 via-cyan-400 to-blue-300 text-white shadow-xl rounded-xl px-4 py-2 flex items-center border-2 border-white/20 backdrop-blur-md">
         <span class="text-base font-semibold drop-shadow">Puntaje:</span>
         <span class="ml-2 text-lg font-bold drop-shadow">{{ puntaje }}</span>
       </div>
@@ -98,16 +132,23 @@
   </div>
 
   <!-- Modal final -->
-  <div *ngIf="mostrarModalFinal" class="fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center animate-fade-in">
-    <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full border-4 border-blue-200 relative flex flex-col items-center">
-      <div class="absolute -top-8 left-1/2 -translate-x-1/2 flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 via-cyan-400 to-green-400 rounded-full shadow-lg border-4 border-white">
-        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+  <div *ngIf="mostrarModalFinal"
+    class="fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center animate-fade-in">
+    <div
+      class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full border-4 border-blue-200 relative flex flex-col items-center">
+      <div
+        class="absolute -top-8 left-1/2 -translate-x-1/2 flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 via-cyan-400 to-green-400 rounded-full shadow-lg border-4 border-white">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+        </svg>
       </div>
       <h3 class="text-2xl font-bold mb-2 mt-8 text-blue-700 text-center drop-shadow">{{ etapaActual.tituloCard }}</h3>
       <p class="text-gray-700 mb-4 text-center">{{ etapaActual.descripcion }}</p>
-      <p class="text-lg font-semibold text-green-600 mb-6 text-center">Puntaje Final: <span class="font-bold">{{ puntaje }}</span></p>
-      <button class="px-6 py-2 rounded-lg font-semibold transition duration-300 bg-gradient-to-r from-blue-500 to-green-400 text-white shadow-md border-none outline-none focus:ring-2 focus:ring-blue-400 hover:from-green-400 hover:to-blue-500 hover:bg-gradient-to-r hover:text-white"
-              (click)="cerrarModal()">
+      <p class="text-lg font-semibold text-green-600 mb-6 text-center">Puntaje Final: <span class="font-bold">{{ puntaje
+          }}</span></p>
+      <button
+        class="px-6 py-2 rounded-lg font-semibold transition duration-300 bg-gradient-to-r from-blue-500 to-green-400 text-white shadow-md border-none outline-none focus:ring-2 focus:ring-blue-400 hover:from-green-400 hover:to-blue-500 hover:bg-gradient-to-r hover:text-white"
+        (click)="cerrarModal()">
         Volver al Inicio
       </button>
     </div>
