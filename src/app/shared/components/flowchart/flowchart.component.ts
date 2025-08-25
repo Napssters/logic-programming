@@ -84,15 +84,15 @@ export class FlowchartComponent implements OnChanges {
         // Si el anterior es decision, ramifica
         const prev = this.visibleSteps[i - 1];
         if (prev.type === 'decision') {
-          // Si este paso es rama 'yes', va a la derecha; si es 'no', a la izquierda
-          let x = x0;
-          if (prev.branches && prev.branches.yes === step.id) x = x0 + branchOffset;
-          if (prev.branches && prev.branches.no === step.id) x = x0 - branchOffset;
+          // La rama se abre desde la posición actual del bloque anterior
+          let x = lastX;
+          if (prev.branches && prev.branches.yes === step.id) x = lastX + branchOffset;
+          if (prev.branches && prev.branches.no === step.id) x = lastX - branchOffset;
           let y = lastY + this.blockGapY;
           this.svgBlocks.push({ step, x, y });
           // Conexión desde el rombo
           this.svgConnections.push({
-            x1: x0 + this.blockWidth / 2,
+            x1: lastX + this.blockWidth / 2,
             y1: lastY + this.blockHeight,
             x2: x + this.blockWidth / 2,
             y2: y
