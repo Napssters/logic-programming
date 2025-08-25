@@ -57,12 +57,35 @@
                 </div>
               </div>
             </foreignObject>
+            <!-- Etiquetas de ramas de decisión: solo si los botones NO están activos -->
+            <ng-container *ngIf="block.step.type === 'decision' && !(i === svgBlocks.length - 1 && block.step.id === currentStepId)">
+              <!-- Modo bucle: 'Sí' abajo, 'No' derecha -->
+              <ng-container *ngIf="hasLoopBack(); else normalLabels">
+                <!-- 'Sí' abajo -->
+                <text [attr.x]="blockWidth/2 - 24" [attr.y]="blockHeight + 18" text-anchor="middle" font-size="14" fill="#22c55e" font-weight="bold">Sí</text>
+                <!-- 'No' derecha -->
+                <text [attr.x]="blockWidth + 32" [attr.y]="blockHeight/2 - 14" text-anchor="start" font-size="14" fill="#ef4444" font-weight="bold">No</text>
+              </ng-container>
+              <!-- Modo normal: 'Sí' derecha, 'No' izquierda -->
+              <ng-template #normalLabels>
+                <text [attr.x]="blockWidth + 40" [attr.y]="blockHeight/2 - 14" text-anchor="start" font-size="14" fill="#22c55e" font-weight="bold">Sí</text>
+                <text [attr.x]="-40" [attr.y]="blockHeight/2 - 14" text-anchor="end" font-size="14" fill="#ef4444" font-weight="bold">No</text>
+              </ng-template>
+            </ng-container>
             <!-- Botones de decisión solo si es el último bloque visible y es el paso actual -->
-            <foreignObject *ngIf="block.step.type === 'decision' && i === svgBlocks.length - 1 && block.step.id === currentStepId" [attr.x]="blockWidth/2 - 90" [attr.y]="blockHeight + 10" [attr.width]="180" [attr.height]="40">
-              <div style="display: flex; justify-content: space-between; align-items: center; width: 180px;">
-                <button (click)="chooseBranch('no')" class="px-4 py-1 bg-red-500 text-white rounded shadow hover:bg-red-600 font-bold mr-2">No</button>
-                <button (click)="chooseBranch('yes')" class="px-4 py-1 bg-green-500 text-white rounded shadow hover:bg-green-600 font-bold ml-2">Sí</button>
-              </div>
+              <foreignObject *ngIf="block.step.type === 'decision' && i === svgBlocks.length - 1 && block.step.id === currentStepId" [attr.x]="blockWidth/2 - 120" [attr.y]="blockHeight - 80" [attr.width]="240" [attr.height]="60">
+              <ng-container *ngIf="hasLoopBack(); else normalDecisionBtns">
+                <div style="display: flex; justify-content: center; align-items: center; gap: 130px; width: 100%;">
+                  <button (click)="chooseBranch('yes')" class="w-12 h-12 bg-green-500 text-white rounded-full shadow hover:bg-green-600 font-bold flex items-center justify-center text-lg">Sí</button>
+                  <button (click)="chooseBranch('no')" class="w-12 h-12 bg-red-500 text-white rounded-full shadow hover:bg-red-600 font-bold flex items-center justify-center text-lg">No</button>
+                </div>
+              </ng-container>
+              <ng-template #normalDecisionBtns>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 130px; width: 100%;">
+                  <button (click)="chooseBranch('no')" class="w-12 h-12 bg-red-500 text-white rounded-full shadow hover:bg-red-600 font-bold flex items-center justify-center text-lg">No</button>
+                  <button (click)="chooseBranch('yes')" class="w-12 h-12 bg-green-500 text-white rounded-full shadow hover:bg-green-600 font-bold flex items-center justify-center text-lg">Sí</button>
+                </div>
+              </ng-template>
             </foreignObject>
           </g>
         </ng-container>

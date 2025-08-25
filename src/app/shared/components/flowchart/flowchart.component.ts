@@ -93,22 +93,51 @@ export class FlowchartComponent implements OnChanges {
     let lastDecisionBlock: { x: number, y: number } | null = null;
     const blockPositions: { [id: number]: { x: number, y: number } } = {};
     const currentActiveId = this.history.length > 0 ? this.history[this.history.length - 1] : null;
+    const loopMode = this.hasLoopBack();
     for (let i = 0; i < this.visibleSteps.length; i++) {
       const step = this.visibleSteps[i];
       const isLastVisible = (i === this.visibleSteps.length - 1);
       if (blockPositions[step.id] && !isLastVisible) {
         lastX = blockPositions[step.id].x;
         lastY = blockPositions[step.id].y;
-        // Si es loopBack, siempre usar polyline con quiebres
-        if (step.loopBack && lastDecisionBlock) {
-          // Calcular puntos para quiebres horizontales y verticales
+        // Si es loopBack y modo especial, dibujar desde lateral izquierdo del bloque proceso al lateral izquierdo del rombo
+        if (loopMode && step.loopBack && lastDecisionBlock) {
+          const startX = lastX;
+          const startY = lastY + this.blockHeight / 2;
+          const endX = lastDecisionBlock.x;
+          const endY = lastDecisionBlock.y + this.blockHeight / 2;
+          const offsetX = 60;
+          const points = [
+            { x: startX, y: startY },
+            { x: startX - offsetX, y: startY },
+            { x: startX - offsetX, y: endY },
+            { x: endX, y: endY }
+          ];
+          const loopFromId = step.id;
+          const loopToId = this.visibleSteps.find(s => s.id === step.loopBack)?.id;
+          const exists = this.svgConnections.some(conn => {
+            return conn.isLoop &&
+              (conn as any).loopFromId === loopFromId &&
+              (conn as any).loopToId === loopToId;
+          });
+          if (!exists) {
+            this.svgConnections.push({
+              points,
+              isLoop: true,
+              isActive: step.id === currentActiveId,
+              loopFromId,
+              loopToId
+            });
+          }
+        }
+        else if (!loopMode && step.loopBack && lastDecisionBlock) {
+          // Modo normal, mantener la lógica original
           const startX = lastX + this.blockWidth / 2;
           const startY = lastY + this.blockHeight;
           const endX = lastDecisionBlock.x + this.blockWidth / 2;
           const endY = lastDecisionBlock.y + this.blockHeight / 2;
-          // Quiebre horizontal, vertical, horizontal
-          const breakOffsetY = 40; // Separación vertical del quiebre
-          const breakOffsetX = 80; // Separación horizontal del quiebre
+          const breakOffsetY = 40;
+          const breakOffsetX = 80;
           let midY = startY + breakOffsetY;
           let midX1 = startX;
           let midX2 = endX;
@@ -125,8 +154,6 @@ export class FlowchartComponent implements OnChanges {
             { x: midX2, y: midY },
             { x: endX, y: endY }
           ];
-          // Verificar si ya existe una conexión igual
-          // Guardar IDs de origen y destino para loopBack
           const loopFromId = step.id;
           const loopToId = this.visibleSteps.find(s => s.id === step.loopBack)?.id;
           const exists = this.svgConnections.some(conn => {
@@ -166,32 +193,77 @@ export class FlowchartComponent implements OnChanges {
           let x = lastX;
           let y = lastY + this.blockGapY;
           let startX, startY;
-          if (prev.branches && prev.branches.yes === step.id) {
+          // Modo especial para loopBack: sí abajo, no derecha
+          if (loopMode && prev.branches && prev.branches.yes === step.id) {
+            x = lastX;
+            y = lastY + this.blockGapY;
+            startX = lastX + this.blockWidth / 2;
+            startY = lastY + this.blockHeight;
+          } else if (loopMode && prev.branches && prev.branches.no === step.id) {
             x = lastX + branchOffset;
-            // Punta derecha del rombo
+            y = lastY;
             startX = lastX + this.blockWidth;
             startY = lastY + this.blockHeight / 2;
-          } else if (prev.branches && prev.branches.no === step.id) {
+          } else if (!loopMode && prev.branches && prev.branches.yes === step.id) {
+            x = lastX + branchOffset;
+            startX = lastX + this.blockWidth;
+            startY = lastY + this.blockHeight / 2;
+          } else if (!loopMode && prev.branches && prev.branches.no === step.id) {
             x = lastX - branchOffset;
-            // Punta izquierda del rombo
             startX = lastX;
             startY = lastY + this.blockHeight / 2;
           } else {
-            // Fallback: centro inferior
             startX = lastX + this.blockWidth / 2;
             startY = lastY + this.blockHeight;
           }
           this.svgBlocks.push({ step, x, y, isActive: step.id === currentActiveId });
           blockPositions[step.id] = { x, y };
-          // Conexión condicional: horizontal primero, luego vertical
-          const endX = x + this.blockWidth / 2;
-          const endY = y + this.blockHeight / 2;
-          // Solo dos quiebres: horizontal hasta la mitad del bloque destino, luego vertical
-          const points = [
-            { x: startX, y: startY },
-            { x: endX, y: startY }, // horizontal
-            { x: endX, y: endY }    // vertical
-          ];
+          // Conexión condicional
+          let endX, endY, points;
+          if (loopMode && prev.branches && prev.branches.yes === step.id) {
+            endX = x + this.blockWidth / 2;
+            // Hacemos la flecha vertical más larga y recta
+            const extraLength = 40; // Ajusta este valor para la longitud deseada
+            endY = y - extraLength;
+            points = [
+              { x: startX, y: startY },
+              { x: startX, y: endY }, // recta vertical más larga
+              { x: endX, y: endY },   // horizontal hasta el centro del bloque destino
+              { x: endX, y: y }       // vertical hasta el borde superior del bloque destino
+            ];
+          } else if (loopMode && prev.branches && prev.branches.no === step.id) {
+            endX = x;
+            endY = y + this.blockHeight / 2;
+            points = [
+              { x: startX, y: startY },
+              { x: endX, y: startY },
+              { x: endX, y: endY }
+            ];
+          } else if (!loopMode && prev.branches && prev.branches.yes === step.id) {
+            endX = x + this.blockWidth / 2;
+            endY = y + this.blockHeight / 2;
+            points = [
+              { x: startX, y: startY },
+              { x: endX, y: startY },
+              { x: endX, y: endY }
+            ];
+          } else if (!loopMode && prev.branches && prev.branches.no === step.id) {
+            endX = x + this.blockWidth / 2;
+            endY = y + this.blockHeight / 2;
+            points = [
+              { x: startX, y: startY },
+              { x: endX, y: startY },
+              { x: endX, y: endY }
+            ];
+          } else {
+            endX = x + this.blockWidth / 2;
+            endY = y + this.blockHeight / 2;
+            points = [
+              { x: startX, y: startY },
+              { x: endX, y: startY },
+              { x: endX, y: endY }
+            ];
+          }
           this.svgConnections.push({
             points,
             isActive: step.id === currentActiveId
@@ -219,22 +291,60 @@ export class FlowchartComponent implements OnChanges {
             lastDecisionBlock = { x, y };
           }
         }
-        // Si es loopBack, usar polyline con quiebres (no línea diagonal)
-        if (step.loopBack && lastDecisionBlock) {
-          // Trayectoria: vertical abajo, horizontal, vertical arriba
+        // Si es loopBack y modo especial, dibujar desde lateral izquierdo del bloque proceso al lateral izquierdo del rombo
+        if (loopMode && step.loopBack && lastDecisionBlock) {
+          const startX = lastX;
+          const startY = lastY + this.blockHeight / 2;
+          const endX = lastDecisionBlock.x;
+          const endY = lastDecisionBlock.y + this.blockHeight / 2;
+          const offsetX = 60;
+          const points = [
+            { x: startX, y: startY },
+            { x: startX - offsetX, y: startY },
+            { x: startX - offsetX, y: endY },
+            { x: endX, y: endY }
+          ];
+          const loopFromId = step.id;
+          const loopToId = this.visibleSteps.find(s => s.id === step.loopBack)?.id;
+          const exists = this.svgConnections.some(conn => {
+            return conn.isLoop &&
+              (conn as any).loopFromId === loopFromId &&
+              (conn as any).loopToId === loopToId;
+          });
+          if (!exists) {
+            this.svgConnections.push({
+              points,
+              isLoop: true,
+              isActive: step.id === currentActiveId,
+              loopFromId,
+              loopToId
+            });
+          }
+        }
+        else if (!loopMode && step.loopBack && lastDecisionBlock) {
+          // Modo normal, mantener la lógica original
           const startX = lastX + this.blockWidth / 2;
           const startY = lastY + this.blockHeight;
           const endX = lastDecisionBlock.x + this.blockWidth / 2;
           const endY = lastDecisionBlock.y + this.blockHeight / 2;
-          const offsetY = 60; // cuánto baja antes de girar
+          const breakOffsetY = 40;
+          const breakOffsetX = 80;
+          let midY = startY + breakOffsetY;
+          let midX1 = startX;
+          let midX2 = endX;
+          if (startX < endX) {
+            midX1 = startX + breakOffsetX;
+            midX2 = endX - breakOffsetX;
+          } else if (startX > endX) {
+            midX1 = startX - breakOffsetX;
+            midX2 = endX + breakOffsetX;
+          }
           const points = [
-            { x: startX, y: startY }, // punto de salida (abajo del bloque)
-            { x: startX, y: startY + offsetY }, // baja en vertical
-            { x: endX, y: startY + offsetY },   // mueve en horizontal
-            { x: endX, y: endY }                // sube en vertical hasta el destino
+            { x: startX, y: startY },
+            { x: midX1, y: midY },
+            { x: midX2, y: midY },
+            { x: endX, y: endY }
           ];
-          // Verificar si ya existe una conexión igual
-          // Guardar IDs de origen y destino para loopBack
           const loopFromId = step.id;
           const loopToId = this.visibleSteps.find(s => s.id === step.loopBack)?.id;
           const exists = this.svgConnections.some(conn => {
@@ -363,5 +473,10 @@ export class FlowchartComponent implements OnChanges {
   resetDiagram(): void {
     this.resetSteps();
     this.updateSVGLayout();
+  }
+
+  // --- FUNCIONES AUXILIARES PARA MODO LOOPBACK ---
+  hasLoopBack(): boolean {
+    return this.steps.some(s => typeof s.loopBack === 'number');
   }
 }
