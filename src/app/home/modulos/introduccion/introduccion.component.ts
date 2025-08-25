@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FlowchartStep } from '../../../shared/interfaces/flowchart.interface';
 import { FlowchartComponent } from '../../../shared/components/flowchart/flowchart.component';
+import { NavigationService } from '../../../shared/services/navigation.service';
 
 interface ModuleCard {
   title: string;
@@ -45,7 +47,7 @@ export class IntroduccionComponent implements OnInit {
   currentExampleIndex: number = 0;
   currentExample: Example | null = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private navigationService: NavigationService) { }
 
   ngOnInit(): void {
     this.loadModules();
@@ -57,7 +59,7 @@ export class IntroduccionComponent implements OnInit {
       next: (data) => {
         this.allModules = data.cards;
         // Filtrar para excluir la primera tarjeta de "Introducción" para mostrar en la lista
-        this.moduleCards = data.cards.filter((card, index) => index !== 0);
+        this.moduleCards = data.cards;
         // El índice actual es 0 porque esta es la página de introducción
         this.currentModuleIndex = 0;
         console.log('Modules loaded:', this.allModules.length, 'Current index:', this.currentModuleIndex);
@@ -125,5 +127,9 @@ export class IntroduccionComponent implements OnInit {
   // Getter para obtener el título del diagrama
   get flowchartTitle(): string {
     return this.currentExample ? `Diagrama de Flujo: ${this.currentExample.title}` : '';
+  }
+
+  goToModule(url: string) {
+    this.navigationService.navigateTo(url);
   }
 }

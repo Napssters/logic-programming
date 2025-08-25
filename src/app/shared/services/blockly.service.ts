@@ -5,6 +5,273 @@ import * as Blockly from 'blockly';
   providedIn: 'root'
 })
 export class BlocklyService {
+  /**
+   * Convierte código JS simple a XML de bloques Blockly (solo funciones y return para ejemplo)
+   * @param code Código JS
+   * @returns XML Blockly
+   */
+  codeToBlocksXml(code: string): string {
+    // Parser avanzado para expectedCode: soporta funciones, asignaciones, bucles, condicionales y print
+    let xml = '<xml>';
+    const lines = code.split(/\n|;/).map(l => l.trim()).filter(l => l.length > 0);
+    let blockId = 1;
+    for (let line of lines) {
+      // Función
+      const funcRegex = /^function\s+(\w+)\s*\(([^)]*)\)\s*{(.*)}$/s;
+      const funcMatch = line.match(funcRegex);
+      if (funcMatch) {
+        const funcName = funcMatch[1];
+        const params = funcMatch[2].split(',').map(p => p.trim()).filter(Boolean);
+        const body = funcMatch[3].trim();
+        const returnRegex = /return\s+([^;]+);?/;
+        const returnMatch = body.match(returnRegex);
+        xml += `<block type="procedures_defreturn" id="func${blockId}" x="${40 + blockId * 40}" y="40">`;
+        xml += `<field name="NAME">${funcName}</field>`;
+        xml += `<mutation${params.length ? ` arguments=\"${params.join(',')}\"` : ''}></mutation>`;
+        xml += `<statement name="STACK"></statement>`;
+        if (returnMatch) {
+          xml += `<value name="RETURN">${this.buildArithmeticXml(returnMatch[1])}</value>`;
+        }
+        xml += `</block>`;
+        blockId++;
+        continue;
+      }
+      // Asignación de variable
+      const assignRegex = /^(var|let|const)\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+)$/;
+      const assignMatch = line.match(assignRegex);
+      if (assignMatch) {
+        const varName = assignMatch[2];
+        const expr = assignMatch[3];
+        xml += `<block type="variables_set" id="assign${blockId}" x="${40 + blockId * 40}" y="40">`;
+        xml += `<field name="VAR">${varName}</field>`;
+        xml += `<value name="VALUE">${this.buildArithmeticXml(expr)}</value>`;
+        xml += `</block>`;
+        blockId++;
+        continue;
+      }
+      // Reasignación de variable
+      const reassignRegex = /^([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+)$/;
+      const reassignMatch = line.match(reassignRegex);
+      if (reassignMatch) {
+        const varName = reassignMatch[1];
+        const expr = reassignMatch[2];
+        xml += `<block type="variables_set" id="reassign${blockId}" x="${40 + blockId * 40}" y="40">`;
+        xml += `<field name="VAR">${varName}</field>`;
+        xml += `<value name="VALUE">${this.buildArithmeticXml(expr)}</value>`;
+        xml += `</block>`;
+        blockId++;
+        continue;
+      }
+      // Print
+      const printRegex = /^print\((.+)\)$/;
+      const printMatch = line.match(printRegex);
+      if (printMatch) {
+        xml += `<block type="text_print" id="print${blockId}" x="${40 + blockId * 40}" y="40">`;
+        xml += `<value name="TEXT">${this.buildArithmeticXml(printMatch[1])}</value>`;
+        xml += `</block>`;
+        blockId++;
+        continue;
+      }
+      // If/else condicional
+      const ifRegex = /^if\s*\((.+)\)\s*{(.+)}(\s*else\s*{(.+)})?/s;
+      const ifMatch = line.match(ifRegex);
+      if (ifMatch) {
+        xml += `<block type="controls_if" id="if${blockId}" x="${40 + blockId * 40}" y="40">`;
+        xml += `<value name="IF0">${this.buildArithmeticXml(ifMatch[1])}</value>`;
+        xml += `<statement name="DO0">${this.buildStatementXml(ifMatch[2])}</statement>`;
+        if (ifMatch[4]) {
+          xml += `<statement name="ELSE">${this.buildStatementXml(ifMatch[4])}</statement>`;
+        }
+        xml += `</block>`;
+        blockId++;
+        continue;
+      }
+      // For loop
+      const forRegex = /^for\s*\(let\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(\d+);\s*\1\s*([<>=!]+)\s*(\d+);\s*\1\s*\+=\s*(\d+)\)\s*{(.+)}/s;
+      const forMatch = line.match(forRegex);
+      if (forMatch) {
+        const varName = forMatch[1];
+        const from = forMatch[2];
+        const op = forMatch[3];
+        const to = forMatch[4];
+        const by = forMatch[5];
+        const body = forMatch[6];
+        xml += `<block type="controls_for" id="for${blockId}" x="${40 + blockId * 40}" y="40">`;
+        xml += `<field name="VAR">${varName}</field>`;
+        xml += `<value name="FROM"><block type="math_number"><field name="NUM">${from}</field></block></value>`;
+        xml += `<value name="TO"><block type="math_number"><field name="NUM">${to}</field></block></value>`;
+        xml += `<value name="BY"><block type="math_number"><field name="NUM">${by}</field></block></value>`;
+        xml += `<statement name="DO">${this.buildStatementXml(body)}</statement>`;
+        xml += `</block>`;
+        blockId++;
+        continue;
+      }
+      // While loop
+      const whileRegex = /^while\s*\((.+)\)\s*{(.+)}/s;
+      const whileMatch = line.match(whileRegex);
+      if (whileMatch) {
+        xml += `<block type="controls_whileUntil" id="while${blockId}" x="${40 + blockId * 40}" y="40">`;
+        xml += `<field name="MODE">WHILE</field>`;
+        xml += `<value name="BOOL">${this.buildArithmeticXml(whileMatch[1])}</value>`;
+        xml += `<statement name="DO">${this.buildStatementXml(whileMatch[2])}</statement>`;
+        xml += `</block>`;
+        blockId++;
+        continue;
+      }
+      // Si no se reconoce, ignorar la línea
+    }
+    xml += '</xml>';
+    return xml;
+  }
+
+  /**
+   * Construye XML de bloques para una expresión aritmética, lógica, texto, variable, etc.
+   */
+  private buildArithmeticXml(expr: string): string {
+    expr = expr.trim();
+    // Suma, resta, multiplicación, división
+    const ops = ['+', '-', '*', '/'];
+    for (const op of ops) {
+      // Solo dividir si no está entre comillas (texto)
+      if (expr.indexOf(op) !== -1 && !/^".*"$/.test(expr)) {
+        const parts = expr.split(op);
+        if (parts.length > 1) {
+          let xml = `<block type="math_arithmetic"><field name="OP">${this.opToBlockly(op)}</field>`;
+          xml += `<value name="A">${this.buildArithmeticXml(parts[0])}</value>`;
+          xml += `<value name="B">${this.buildArithmeticXml(parts.slice(1).join(op))}</value>`;
+          xml += `</block>`;
+          return xml;
+        }
+      }
+    }
+    // Comparaciones
+    const compOps = ['==', '!=', '>=', '<=', '>', '<'];
+    for (const op of compOps) {
+      if (expr.indexOf(op) !== -1) {
+        const parts = expr.split(op);
+        if (parts.length === 2) {
+          let xml = `<block type="logic_compare"><field name="OP">${this.compOpToBlockly(op)}</field>`;
+          xml += `<value name="A">${this.buildArithmeticXml(parts[0])}</value>`;
+          xml += `<value name="B">${this.buildArithmeticXml(parts[1])}</value>`;
+          xml += `</block>`;
+          return xml;
+        }
+      }
+    }
+    // Operación lógica AND/OR
+    if (expr.indexOf('&&') !== -1) {
+      const parts = expr.split('&&');
+      let xml = `<block type="logic_operation"><field name="OP">AND</field>`;
+      xml += `<value name="A">${this.buildArithmeticXml(parts[0])}</value>`;
+      xml += `<value name="B">${this.buildArithmeticXml(parts.slice(1).join('&&'))}</value>`;
+      xml += `</block>`;
+      return xml;
+    }
+    if (expr.indexOf('||') !== -1) {
+      const parts = expr.split('||');
+      let xml = `<block type="logic_operation"><field name="OP">OR</field>`;
+      xml += `<value name="A">${this.buildArithmeticXml(parts[0])}</value>`;
+      xml += `<value name="B">${this.buildArithmeticXml(parts.slice(1).join('||'))}</value>`;
+      xml += `</block>`;
+      return xml;
+    }
+    // Texto
+    if (/^".*"$/.test(expr)) {
+      return `<block type="text"><field name="TEXT">${expr.replace(/"/g, '')}</field></block>`;
+    }
+    // Booleano
+    if (expr === 'true' || expr === 'false') {
+      return `<block type="logic_boolean"><field name="BOOL">${expr.toUpperCase()}</field></block>`;
+    }
+    // Número
+    if (/^\d+$/.test(expr)) {
+      return `<block type="math_number"><field name="NUM">${expr}</field></block>`;
+    }
+    // Variable
+    if (/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(expr)) {
+      return `<block type="variables_get"><field name="VAR">${expr}</field></block>`;
+    }
+    // Concatenación de texto
+    if (expr.indexOf('+') !== -1 && /^".*"$/.test(expr.split('+')[0].trim())) {
+      const parts = expr.split('+').map(p => p.trim());
+      let xml = `<block type="text_join"><mutation items="${parts.length}"></mutation>`;
+      parts.forEach((part, idx) => {
+        xml += `<value name="ADD${idx}">${this.buildArithmeticXml(part)}</value>`;
+      });
+      xml += `</block>`;
+      return xml;
+    }
+    return '';
+  }
+
+  /**
+   * Construye XML para el cuerpo de un bloque (statements)
+   */
+  private buildStatementXml(body: string): string {
+    // Separar por ; o \n y procesar cada instrucción
+    const lines = body.split(/;|\n/).map(l => l.trim()).filter(l => l.length > 0);
+    let xml = '';
+    for (let line of lines) {
+      // Print
+      const printRegex = /^print\((.+)\)$/;
+      const printMatch = line.match(printRegex);
+      if (printMatch) {
+        xml += `<block type="text_print"><value name="TEXT">${this.buildArithmeticXml(printMatch[1])}</value></block>`;
+        continue;
+      }
+      // Asignación
+      const assignRegex = /^(var|let|const)?\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+)$/;
+      const assignMatch = line.match(assignRegex);
+      if (assignMatch) {
+        const varName = assignMatch[2];
+        const expr = assignMatch[3];
+        xml += `<block type="variables_set"><field name="VAR">${varName}</field><value name="VALUE">${this.buildArithmeticXml(expr)}</value></block>`;
+        continue;
+      }
+      // Concatenación de texto
+      if (line.indexOf('+') !== -1 && /^".*"$/.test(line.split('+')[0].trim())) {
+        const parts = line.split('+').map(p => p.trim());
+        xml += `<block type="text_join"><mutation items="${parts.length}"></mutation>`;
+        parts.forEach((part, idx) => {
+          xml += `<value name="ADD${idx}">${this.buildArithmeticXml(part)}</value>`;
+        });
+        xml += `</block>`;
+        continue;
+      }
+      // Si no se reconoce, ignorar
+    }
+    return xml;
+  }
+
+  /**
+   * Convierte operador JS a operador Blockly
+   */
+  private opToBlockly(op: string): string {
+    switch (op) {
+      case '+': return 'ADD';
+      case '-': return 'MINUS';
+      case '*': return 'MULTIPLY';
+      case '/': return 'DIVIDE';
+      default: return 'ADD';
+    }
+  }
+
+  /**
+   * Convierte operador de comparación JS a Blockly
+   */
+  private compOpToBlockly(op: string): string {
+    switch (op) {
+      case '==': return 'EQ';
+      case '!=': return 'NEQ';
+      case '>': return 'GT';
+      case '>=': return 'GTE';
+      case '<': return 'LT';
+      case '<=': return 'LTE';
+      default: return 'EQ';
+    }
+  }
+
+
   private workspace: Blockly.WorkspaceSvg | null = null;
 
   constructor() { }

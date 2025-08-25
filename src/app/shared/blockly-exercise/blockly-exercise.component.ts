@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { BlocklyService } from '../services/blockly.service';
 import { BlocklyExercise } from '../interfaces/blockly.interface';
 import * as Blockly from 'blockly';
@@ -9,8 +9,18 @@ import * as Blockly from 'blockly';
   styleUrls: ['./blockly-exercise.component.css']
 })
 export class BlocklyExerciseComponent implements OnInit, OnDestroy, AfterViewInit {
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscapeKey(event: KeyboardEvent) {
+    if (this.showGifModal) {
+      this.showGifModal = false;
+      event.preventDefault();
+    }
+  }
+  showGifModal: boolean = false;
+
   @ViewChild('blocklyDiv', { static: false }) blocklyDiv!: ElementRef;
   @Input() exercises: BlocklyExercise[] = [];
+  @Input() urlgif: string = '';
   @Input() currentExerciseIndex: number = 0;
   @Output() exerciseCompleted = new EventEmitter<{ exerciseId: string, success: boolean }>();
   @Output() nextExercise = new EventEmitter<void>();
@@ -34,7 +44,6 @@ export class BlocklyExerciseComponent implements OnInit, OnDestroy, AfterViewIni
   constructor(private blocklyService: BlocklyService) { }
 
   ngOnInit() {
-    // Componente completamente genérico - requiere que se pasen ejercicios
   }
 
   ngAfterViewInit() {
@@ -44,7 +53,8 @@ export class BlocklyExerciseComponent implements OnInit, OnDestroy, AfterViewIni
   }
 
   ngOnDestroy() {
-    this.blocklyService.dispose();
+  this.blocklyService.dispose();
+  this.hideSolutionToast();
   }
 
   get currentExercise(): BlocklyExercise | null {
@@ -199,6 +209,9 @@ export class BlocklyExerciseComponent implements OnInit, OnDestroy, AfterViewIni
     this.currentVariableCallback = null;
     this.onCancelDeleteVariable = null;
 
+    // Ocultar toast de solución
+    this.hideSolutionToast();
+
     // Forzar ocultamiento de scrollbars después del reset
     setTimeout(() => {
       this.hideBlocklyScrollbars();
@@ -327,5 +340,73 @@ export class BlocklyExerciseComponent implements OnInit, OnDestroy, AfterViewIni
       this.onCancelDeleteVariable();
       this.onCancelDeleteVariable = null;
     }
+  }
+
+  // Toast and solution preview state
+  showSolutionToast = false;
+  solutionToastTimeout: any = null;
+  solutionPreviewWorkspace: Blockly.WorkspaceSvg | null = null;
+
+  showHelpIdea() {
+    this.showSolutionPreview();
+  }
+
+  showSolutionPreview() {
+    if (!this.currentExercise) return;
+    this.showSolutionToast = true;
+    clearTimeout(this.solutionToastTimeout);
+    this.renderSolutionBlocks(this.currentExercise.expectedCode);
+    // Hide toast after 5 seconds unless mouse stays over
+    this.solutionToastTimeout = setTimeout(() => {
+      this.hideSolutionToast();
+    }, 5000);
+  }
+
+  hideSolutionToast() {
+    this.showSolutionToast = false;
+    clearTimeout(this.solutionToastTimeout);
+    // Dispose preview workspace if exists
+    if (this.solutionPreviewWorkspace) {
+      this.solutionPreviewWorkspace.dispose();
+      this.solutionPreviewWorkspace = null;
+    }
+  }
+
+  keepSolutionToast() {
+    clearTimeout(this.solutionToastTimeout);
+    // Keep toast open while mouse is over
+    this.solutionToastTimeout = setTimeout(() => {
+      this.hideSolutionToast();
+    }, 5000);
+  }
+
+  renderSolutionBlocks(expectedCode: string) {
+    // Find the toast container and render Blockly blocks
+    setTimeout(() => {
+      const toastDiv = document.getElementById('solutionToastBlocklyDiv');
+      if (toastDiv) {
+        // Dispose previous workspace
+        if (this.solutionPreviewWorkspace) {
+          this.solutionPreviewWorkspace.dispose();
+        }
+        // Parse code to Blockly XML
+        const xmlText = this.parseExpectedCodeToBlocklyXml(expectedCode);
+        // Use DOMParser for XML string to DOM
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(xmlText, 'text/xml');
+        this.solutionPreviewWorkspace = Blockly.inject(toastDiv, {
+          readOnly: true,
+          scrollbars: false,
+          media: 'media/',
+          renderer: 'zelos',
+        });
+        Blockly.Xml.domToWorkspace(xml.documentElement, this.solutionPreviewWorkspace);
+      }
+    }, 100);
+  }
+
+  parseExpectedCodeToBlocklyXml(expectedCode: string): string {
+  // Usa el servicio para convertir el código JS a bloques Blockly
+  return this.blocklyService.codeToBlocksXml(expectedCode);
   }
 }

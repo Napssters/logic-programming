@@ -114,11 +114,11 @@
               Las variables se usan en casi todo dentro de un programa:
             </p>
             <div class="bg-white p-3 rounded border text-sm">
-              • Para mostrar información al usuario<br>
-              • Para hacer cálculos<br>
-              • Para guardar respuestas del usuario<br>
-              • Para controlar decisiones<br>
-              • Para contar cosas (ej: puntuación)
+              • Con el fin de mostrar información al usuario<br>
+              • A fin de hacer cálculos<br>
+              • Con el propósito de guardar respuestas del usuario<br>
+              • Para poder controlar decisiones<br>
+              • A manera de contar cosas (ej: puntuación)
             </div>
           </div>
 
@@ -296,6 +296,7 @@
             <app-blockly-exercise
               [exercises]="blocklyExercises"
               [currentExerciseIndex]="currentBlocklyExerciseIndex"
+              [urlgif]="urlGifts"
               (exerciseCompleted)="onExerciseCompleted($event)"
               (nextExercise)="onNextBlocklyExercise()"
               (previousExercise)="onPreviousBlocklyExercise()">

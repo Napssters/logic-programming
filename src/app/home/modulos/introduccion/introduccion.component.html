@@ -37,15 +37,22 @@
 
       <div>
         <h2 class="text-xl font-bold mb-4 text-gray-800">🔄 Conceptos Fundamentales y Módulos del Aplicativo</h2>
-        <div class="space-y-3">
-          <div
-            *ngFor="let module of moduleCards"
-            class="p-3 bg-white/70 rounded-md border-l-4 shadow-lg"
-            [style.border-left-color]="module.color">
-            <h3 class="font-bold text-gray-800">{{ module.title }}</h3>
-            <p class="text-sm text-gray-600 text-justify">{{ module.description }}</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Cards de módulos -->
+            <div *ngFor="let module of moduleCards"
+              class="p-3 rounded-md border-l-8 shadow-lg"
+              style="background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%); border-image: linear-gradient(180deg, #3b82f6 0%, #06b6d4 100%) 1 100%; border-left-width: 8px;"
+            >
+              <h3 class="font-bold text-blue-700">{{ module.title }}</h3>
+              <p class="text-sm text-gray-600 text-justify m-0 p-0">{{ module.description }}</p>
+              <div class="flex justify-end">
+                <a (click)="goToModule(module.url)"
+                  class="text-sm text-blue-600 hover:text-blue-800 underline cursor-pointer">
+                  Ir al módulo
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
       </div>
     </div>
 

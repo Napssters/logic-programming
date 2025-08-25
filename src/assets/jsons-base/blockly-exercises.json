@@ -1,6 +1,7 @@
 {
   "variables": {
-    "exercises": [
+    "rtlGifts": "assets/gifts/variables.gif",
+  "exercises": [
       {
         "id": "exercise-1",
         "title": "Crear una Variable",
@@ -74,7 +75,8 @@
     ]
   },
   "condicionales": {
-    "exercises": [
+    "rtlGifts": "assets/gifts/condicionales.gif",
+  "exercises": [
       {
         "id": "conditional-1",
         "title": "Mi Primer Condicional",
@@ -141,7 +143,8 @@
     ]
   },
   "bucles": {
-    "exercises": [
+    "rtlGifts": "assets/gifts/bucles.gif",
+  "exercises": [
       {
         "id": "loop-1",
         "title": "Mi Primer Bucle",
@@ -208,7 +211,8 @@
     ]
   },
   "funciones": {
-    "exercises": [
+    "rtlGifts": "assets/gifts/funciones.gif",
+  "exercises": [
       {
         "id": "func-1",
         "title": "Función para sumar tres números",

@@ -154,7 +154,7 @@
       <div class="overflow-x-auto">
         <div class="flex gap-6 pb-4" style="min-width: max-content;">
 
-          <div *ngFor="let example of examples"
+          <div *ngFor="let example of examples; let i = index"
                class="flex-shrink-0 bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-200 flex flex-col justify-between"
                style="width: 350px; height: 350px;">
 
@@ -162,6 +162,7 @@
             <div class="flex-1 flex flex-col">
               <!-- Icono y título -->
               <div class="flex items-center mb-4">
+                #{{ i + 1 }}
                 <span class="text-3xl mr-3">{{ getIconForExample(example.title) }}</span>
                 <h3 class="text-lg font-semibold text-gray-800 line-clamp-2 leading-tight">{{ getCleanTitle(example.title) }}</h3>
               </div>
@@ -209,6 +210,7 @@
       <app-blockly-exercise
         [exercises]="blocklyExercises"
         [currentExerciseIndex]="currentBlocklyExerciseIndex"
+        [urlgif]="urlGifts"
         (exerciseCompleted)="onBlocklyExerciseCompleted($event)"
         (nextExercise)="nextBlocklyExercise()"
         (previousExercise)="previousBlocklyExercise()">

@@ -16,6 +16,7 @@ interface Example {
   styleUrls: ['./modularidad.component.css']
 })
 export class ModularidadComponent implements OnInit {
+  urlGifts: string = '';
   ejemplos: Example[] = [];
   ejercicios: any[] = [];
   currentBlocklyExerciseIndex: number = 0;
@@ -48,9 +49,11 @@ export class ModularidadComponent implements OnInit {
     this.http.get<any>('assets/jsons-base/blockly-exercises.json').subscribe({
       next: (data) => {
         this.ejercicios = data.funciones?.exercises || [];
+        this.urlGifts = data.funciones?.rtlGifts || '';
       },
       error: (err) => {
         this.ejercicios = [];
+        this.urlGifts = '';
       }
     });
   }

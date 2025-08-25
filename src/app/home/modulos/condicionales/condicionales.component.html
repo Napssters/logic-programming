@@ -82,11 +82,11 @@
               Los condicionales están en casi todo tipo de programa:
             </p>
             <div class="bg-white p-3 rounded border text-sm">
-              • Para verificar permisos de acceso.<br>
-              • Para decidir si un usuario ve cierta información.<br>
-              • Para ejecutar una acción solo si hay datos disponibles.<br>
-              • Para determinar qué mensaje mostrar dependiendo de una respuesta.<br>
-              • Para controlar el flujo de un videojuego (ganar, perder, seguir).
+              • Verificar permisos de acceso.<br>
+              • Decidir si un usuario ve cierta información.<br>
+              • Ejecutar una acción solo si hay datos disponibles.<br>
+              • Determinar qué mensaje mostrar dependiendo de una respuesta.<br>
+              • Controlar el flujo de un videojuego (ganar, perder, seguir).
             </div>
           </div>
 
@@ -130,13 +130,14 @@
         <div class="flex gap-6 pb-4" style="min-width: max-content;">
 
           <!-- Generar tarjetas dinámicamente desde el JSON -->
-          <div *ngFor="let example of examples"
-               class="bg-white/60 backdrop-blur-sm p-6 rounded-lg shadow-md border border-gray-300/50 flex flex-col flex-shrink-0"
-               style="width: 300px; height: 300px;">
+    <div *ngFor="let example of examples; let i = index"
+      class="bg-white/60 backdrop-blur-sm p-6 rounded-lg shadow-md border border-gray-300/50 flex flex-col flex-shrink-0"
+      style="width: 300px; height: 300px;">
 
             <!-- Contenido de la tarjeta -->
             <div class="flex-grow overflow-hidden">
               <h3 class="font-bold text-lg text-gray-800 mb-3 line-clamp-2 flex items-center">
+                 #{{ i + 1 }}
                 <span class="text-2xl mr-2">{{ getIconForExample(example.title) }}</span>
                 {{ getCleanTitle(example.title) }}
               </h3>
@@ -181,6 +182,7 @@
       <app-blockly-exercise
         [exercises]="blocklyExercises"
         [currentExerciseIndex]="currentBlocklyExerciseIndex"
+        [urlgif]="urlGifts"
         (exerciseCompleted)="onBlocklyExerciseCompleted($event)"
         (nextExercise)="nextBlocklyExercise()"
         (previousExercise)="previousBlocklyExercise()">

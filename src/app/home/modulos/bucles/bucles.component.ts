@@ -16,6 +16,8 @@ interface Example {
 })
 export class BuclesComponent implements OnInit {
 
+  urlGifts: string = '';
+
   examples: Example[] = [];
   blocklyExercises: any[] = [];
   currentBlocklyExerciseIndex: number = 0;
@@ -54,10 +56,12 @@ export class BuclesComponent implements OnInit {
     this.http.get<any>('assets/jsons-base/blockly-exercises.json').subscribe({
       next: (data) => {
         this.blocklyExercises = data.bucles?.exercises || [];
+        this.urlGifts = data.bucles?.rtlGifts || '';
       },
       error: (error) => {
         console.error('Error al cargar ejercicios de Blockly:', error);
         this.blocklyExercises = [];
+        this.urlGifts = '';
       }
     });
   }

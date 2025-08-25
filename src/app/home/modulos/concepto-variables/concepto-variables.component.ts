@@ -14,6 +14,7 @@ interface Example {
 interface VariablesData {
   variables: {
     examples: Example[];
+    rtlGifts?: string;
   };
 }
 
@@ -23,10 +24,11 @@ interface VariablesData {
   styleUrls: ['./concepto-variables.component.css']
 })
 export class ConceptoVariablesComponent implements OnInit {
+  urlGifts: string = '';
   @ViewChild('flowchartRef') flowchartComponent!: FlowchartComponent;
 
   // Propiedad para controlar qué sección está activa
-  activeSection: string | null = null;
+  activeSection: string | null = 'examples';
 
   // Propiedades para los ejemplos
   examples: Example[] = [];
@@ -59,15 +61,17 @@ export class ConceptoVariablesComponent implements OnInit {
   }
 
   loadBlocklyExercises(): void {
-    this.http.get<BlocklyExerciseData>('assets/jsons-base/blockly-exercises.json').subscribe({
+    this.http.get<any>('assets/jsons-base/blockly-exercises.json').subscribe({
       next: (data) => {
         if (data.variables && data.variables.exercises) {
           this.blocklyExercises = data.variables.exercises;
+          this.urlGifts = data.variables?.rtlGifts || '';
           console.log('Blockly exercises loaded:', this.blocklyExercises.length);
         }
       },
       error: (error) => {
         console.error('Error cargando ejercicios de Blockly:', error);
+        this.urlGifts = '';
       }
     });
   }

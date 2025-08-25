@@ -14,6 +14,7 @@ interface Example {
 interface CondicionalesData {
   condicionales: {
     examples: Example[];
+    rtlGifts?: string;
   };
 }
 
@@ -23,6 +24,7 @@ interface CondicionalesData {
   styleUrls: ['./condicionales.component.css']
 })
 export class CondicionalesComponent implements OnInit {
+  urlGifts: string = '';
 
   examples: Example[] = [];
 
@@ -56,15 +58,17 @@ export class CondicionalesComponent implements OnInit {
   }
 
   loadBlocklyExercises(): void {
-    this.http.get<BlocklyExerciseData>('assets/jsons-base/blockly-exercises.json').subscribe({
+    this.http.get<any>('assets/jsons-base/blockly-exercises.json').subscribe({
       next: (data) => {
         if (data.condicionales && data.condicionales.exercises) {
           this.blocklyExercises = data.condicionales.exercises;
+          this.urlGifts = data.condicionales?.rtlGifts || '';
           console.log('Blockly exercises loaded:', this.blocklyExercises.length);
         }
       },
       error: (error) => {
         console.error('Error cargando ejercicios de Blockly:', error);
+        this.urlGifts = '';
       }
     });
   }
