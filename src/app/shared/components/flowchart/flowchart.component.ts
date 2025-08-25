@@ -8,6 +8,8 @@ import { FlowchartStep } from '../../interfaces/flowchart.interface';
 })
 
 export class FlowchartComponent implements OnChanges {
+  showSuccess = false;
+  currentMessage = '';
   get progressPercentage(): number {
     if (!this.steps || this.steps.length === 0) return 0;
     // Calcular el total de pasos únicos recorridos en el flujo actual
@@ -33,8 +35,8 @@ export class FlowchartComponent implements OnChanges {
   blockGapY = 80;
   blockGapX = 220;
   decisionPoints = '';
-  svgConnections: { x1: number, y1: number, x2: number, y2: number, isLoop?: boolean }[] = [];
-  svgBlocks: { step: FlowchartStep, x: number, y: number }[] = [];
+  svgConnections: { x1: number, y1: number, x2: number, y2: number, isLoop?: boolean, isActive?: boolean }[] = [];
+  svgBlocks: { step: FlowchartStep, x: number, y: number, isActive?: boolean }[] = [];
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['steps'] && this.steps) {
@@ -67,6 +69,14 @@ export class FlowchartComponent implements OnChanges {
 
   // Actualiza los pasos visibles según el historial
   updateVisibleSteps(): void {
+    // Mostrar toast si se completó el diagrama
+    if (this.visibleSteps.length > 0 && this.getStepById(this.currentStepId)?.type === 'end') {
+      this.showSuccess = true;
+      this.currentMessage = '¡Diagrama de flujo completado! Has visualizado todos los pasos del proceso 🎉';
+      setTimeout(() => {
+        this.showSuccess = false;
+      }, 3000);
+    }
     this.visibleSteps = this.history.map(id => this.getStepById(id)).filter(Boolean) as FlowchartStep[];
     this.updateSVGLayout();
   }
@@ -82,35 +92,33 @@ export class FlowchartComponent implements OnChanges {
     let branchOffset = this.blockGapX;
     let lastDecisionBlock: { x: number, y: number } | null = null;
     const blockPositions: { [id: number]: { x: number, y: number } } = {};
+    const currentActiveId = this.history.length > 0 ? this.history[this.history.length - 1] : null;
     for (let i = 0; i < this.visibleSteps.length; i++) {
       const step = this.visibleSteps[i];
-      // Si el paso ya existe, reutiliza su posición pero si es el último visible, agrégalo como último para mostrar los botones
       const isLastVisible = (i === this.visibleSteps.length - 1);
       if (blockPositions[step.id] && !isLastVisible) {
         lastX = blockPositions[step.id].x;
         lastY = blockPositions[step.id].y;
-        // Si el paso actual tiene loopBack, dibujar flecha al último decision guardado
         if (step.loopBack && lastDecisionBlock) {
           this.svgConnections.push({
             x1: lastX + this.blockWidth / 2,
             y1: lastY + this.blockHeight,
             x2: lastDecisionBlock.x + this.blockWidth / 2,
             y2: lastDecisionBlock.y + this.blockHeight / 2,
-            isLoop: true
+            isLoop: true,
+            isActive: step.id === currentActiveId
           });
         }
         continue;
       }
-      // Si es el último visible y ya existe, agrégalo como último para mostrar los botones
       if (blockPositions[step.id] && isLastVisible) {
         lastX = blockPositions[step.id].x;
         lastY = blockPositions[step.id].y;
-        this.svgBlocks.push({ step, x: lastX, y: lastY });
-        // No agregues conexiones ni actualices lastDecisionBlock
+        this.svgBlocks.push({ step, x: lastX, y: lastY, isActive: step.id === currentActiveId });
         continue;
       }
       if (i === 0) {
-        this.svgBlocks.push({ step, x: x0, y: y0 });
+        this.svgBlocks.push({ step, x: x0, y: y0, isActive: step.id === currentActiveId });
         lastX = x0;
         lastY = y0;
         blockPositions[step.id] = { x: x0, y: y0 };
@@ -118,20 +126,20 @@ export class FlowchartComponent implements OnChanges {
           lastDecisionBlock = { x: x0, y: y0 };
         }
       } else {
-        // Si el anterior es decision, ramifica
         const prev = this.visibleSteps[i - 1];
         if (prev.type === 'decision') {
           let x = lastX;
           if (prev.branches && prev.branches.yes === step.id) x = lastX + branchOffset;
           if (prev.branches && prev.branches.no === step.id) x = lastX - branchOffset;
           let y = lastY + this.blockGapY;
-          this.svgBlocks.push({ step, x, y });
+          this.svgBlocks.push({ step, x, y, isActive: step.id === currentActiveId });
           blockPositions[step.id] = { x, y };
           this.svgConnections.push({
             x1: lastX + this.blockWidth / 2,
             y1: lastY + this.blockHeight,
             x2: x + this.blockWidth / 2,
-            y2: y
+            y2: y,
+            isActive: step.id === currentActiveId
           });
           lastX = x;
           lastY = y;
@@ -139,16 +147,16 @@ export class FlowchartComponent implements OnChanges {
             lastDecisionBlock = { x, y };
           }
         } else {
-          // Secuencial: debajo del anterior
           let x = lastX;
           let y = lastY + this.blockGapY;
-          this.svgBlocks.push({ step, x, y });
+          this.svgBlocks.push({ step, x, y, isActive: step.id === currentActiveId });
           blockPositions[step.id] = { x, y };
           this.svgConnections.push({
             x1: lastX + this.blockWidth / 2,
             y1: lastY + this.blockHeight,
             x2: x + this.blockWidth / 2,
-            y2: y
+            y2: y,
+            isActive: step.id === currentActiveId
           });
           lastX = x;
           lastY = y;
@@ -156,13 +164,14 @@ export class FlowchartComponent implements OnChanges {
             lastDecisionBlock = { x, y };
           }
         }
-        // Si el paso actual tiene loopBack, dibujar flecha al último decision guardado
         if (step.loopBack && lastDecisionBlock) {
           this.svgConnections.push({
             x1: lastX + this.blockWidth / 2,
             y1: lastY + this.blockHeight,
             x2: lastDecisionBlock.x + this.blockWidth / 2,
-            y2: lastDecisionBlock.y + this.blockHeight / 2
+            y2: lastDecisionBlock.y + this.blockHeight / 2,
+            isLoop: true,
+            isActive: step.id === currentActiveId
           });
         }
       }
@@ -175,15 +184,14 @@ export class FlowchartComponent implements OnChanges {
 
   getBlockColor(type: string): string {
     switch (type) {
-      case 'start': return '#bbf7d0';
-      case 'process': return '#dbeafe';
       case 'decision': return '#fef3c7';
       case 'end': return '#bbf7d0';
-      default: return '#f3f4f6';
+      case 'start': return '#bbf7d0';
+      case 'process': return '#d1fae5'; // light green for process blocks
+      default: return '#d1fae5'; // fallback to light green
     }
   }
 
-  // Navegación hacia atrás
   previousStep(): void {
     if (this.history.length > 1) {
       this.history.pop();
@@ -192,32 +200,23 @@ export class FlowchartComponent implements OnChanges {
     }
   }
 
-  // Navegación normal (proceso, inicio, fin)
   nextStep(): void {
-    // Si el diagrama es secuencial (sin next/branches/loopBack), avanzar por índice
     if (!this.steps || this.steps.length === 0 || this.currentStepId === null) return;
     const currentStep = this.getStepById(this.currentStepId);
     if (!currentStep) return;
-
-    // Si el paso es decisión, espera la elección
     if (currentStep.type === 'decision') return;
-
-    // Si el paso tiene next/loopBack, navega por id
     let nextId: number | null = null;
     if (typeof currentStep.next === 'number') {
       nextId = currentStep.next;
     } else if (typeof currentStep.loopBack === 'number') {
       nextId = currentStep.loopBack;
     }
-
-    // Si no tiene next/loopBack, avanzar por índice (compatibilidad secuencial)
     if (!nextId) {
       const currentIndex = this.steps.findIndex(s => s.id === this.currentStepId);
       if (currentIndex < this.steps.length - 1) {
         nextId = this.steps[currentIndex + 1].id;
       }
     }
-
     if (nextId) {
       this.currentStepId = nextId;
       this.history.push(nextId);
@@ -225,11 +224,10 @@ export class FlowchartComponent implements OnChanges {
     }
   }
 
-  // Elegir rama en decisión
   chooseBranch(option: 'yes' | 'no'): void {
     const currentStep = this.getStepById(this.currentStepId!);
     if (!currentStep || currentStep.type !== 'decision') return;
-  const branchId = currentStep.branches && typeof currentStep.branches[option] === 'number' ? currentStep.branches[option] : null;
+    const branchId = currentStep.branches && typeof currentStep.branches[option] === 'number' ? currentStep.branches[option] : null;
     if (branchId) {
       this.currentStepId = branchId;
       this.history.push(branchId);
@@ -237,16 +235,12 @@ export class FlowchartComponent implements OnChanges {
     }
   }
 
-
-  // Indica si hay un siguiente paso disponible (no es decisión ni fin)
   nextStepAvailable(): boolean {
     if (this.currentStepId === null) return false;
     const currentStep = this.getStepById(this.currentStepId);
     if (!currentStep) return false;
     if (currentStep.type === 'decision' || currentStep.type === 'end') return false;
-    // Si tiene next/loopBack, puede avanzar
     if (typeof currentStep.next === 'number' || typeof currentStep.loopBack === 'number') return true;
-    // Si no tiene, verifica si hay un siguiente paso por índice (secuencial)
     const currentIndex = this.steps.findIndex(s => s.id === this.currentStepId);
     return currentIndex < this.steps.length - 1;
   }
@@ -267,7 +261,6 @@ export class FlowchartComponent implements OnChanges {
     return `Paso ${currentIndex} de ${totalSteps}`;
   }
 
-  // Reiniciar el diagrama
   resetDiagram(): void {
     this.resetSteps();
     this.updateSVGLayout();

@@ -15,7 +15,7 @@
         <!-- Conexiones -->
         <ng-container *ngFor="let conn of svgConnections">
           <line [attr.x1]="conn.x1" [attr.y1]="conn.y1" [attr.x2]="conn.x2" [attr.y2]="conn.y2"
-            [attr.stroke]="conn.isLoop ? '#f59e42' : '#60a5fa'"
+            [attr.stroke]="conn.isActive ? '#60a5fa' : (conn.isLoop ? '#60a5fa' : '#60a5fa')"
             stroke-width="3" marker-end="url(#arrowhead)" />
         </ng-container>
         <defs>
@@ -26,8 +26,8 @@
         <!-- Bloques -->
         <ng-container *ngFor="let block of svgBlocks; let i = index">
           <g [attr.transform]="'translate(' + block.x + ',' + block.y + ')'">
-            <rect *ngIf="block.step.type !== 'decision'" [attr.width]="blockWidth" [attr.height]="blockHeight" rx="14" [attr.fill]="getBlockColor(block.step.type)" stroke="#333" stroke-width="2" />
-            <polygon *ngIf="block.step.type === 'decision'" [attr.points]="decisionPoints" [attr.fill]="getBlockColor(block.step.type)" stroke="#b45309" stroke-width="2" />
+            <rect *ngIf="block.step.type !== 'decision'" [attr.width]="blockWidth" [attr.height]="blockHeight" rx="14" [attr.fill]="block.isActive ? '#60a5fa' : getBlockColor(block.step.type)" stroke="#333" stroke-width="2" />
+            <polygon *ngIf="block.step.type === 'decision'" [attr.points]="decisionPoints" [attr.fill]="block.isActive ? '#60a5fa' : getBlockColor(block.step.type)" stroke="#b45309" stroke-width="2" />
             <foreignObject
               [attr.x]="0"
               [attr.y]="0"
@@ -60,13 +60,6 @@
     </div>
 
     <!-- Mensaje de finalización -->
-  <div *ngIf="visibleSteps.length > 0 && getStepById(currentStepId)?.type === 'end'" class="text-center py-4">
-      <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-        <div class="text-4xl mb-2">🎉</div>
-        <p class="text-green-800 font-medium">¡Diagrama de flujo completado!</p>
-        <p class="text-green-600 text-sm">Has visualizado todos los pasos del proceso</p>
-      </div>
-    </div>
 
     <!-- Leyenda -->
     <div class="mt-6 p-4 bg-gray-50 rounded-lg border">
@@ -100,7 +93,7 @@
   </div>
 
   <!-- Controles de navegación FIJOS en la parte inferior -->
-  <div class="bg-white/90 backdrop-blur-sm p-3 rounded-lg border border-gray-300 shadow-sm mt-1 flex-shrink-0">
+  <div class="bg-white/90 backdrop-blur-sm p-3 rounded-lg border border-gray-300 shadow-2xl mt-1 flex-shrink-0" style="position:sticky;bottom: 15px;z-index:100;">
     <!-- Barra de progreso -->
     <div class="mb-3">
       <div class="flex justify-between items-center mb-1">
@@ -153,6 +146,20 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
       </button>
+    </div>
+  </div>
+  <!-- Toast de éxito al finalizar el diagrama -->
+  <div *ngIf="showSuccess" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-green-500 text-white px-8 py-6 rounded-xl shadow-2xl transform transition-all duration-500 ease-in-out max-w-md mx-4">
+      <div class="flex items-center space-x-4">
+        <svg class="w-8 h-8 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <div>
+          <p class="font-bold text-lg">¡Perfecto!</p>
+          <p class="text-sm opacity-90">{{ currentMessage }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
