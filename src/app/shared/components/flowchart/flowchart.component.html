@@ -26,9 +26,18 @@
           <g [attr.transform]="'translate(' + block.x + ',' + block.y + ')'">
             <rect *ngIf="block.step.type !== 'decision'" [attr.width]="blockWidth" [attr.height]="blockHeight" rx="14" [attr.fill]="getBlockColor(block.step.type)" stroke="#333" stroke-width="2" />
             <polygon *ngIf="block.step.type === 'decision'" [attr.points]="decisionPoints" [attr.fill]="getBlockColor(block.step.type)" stroke="#b45309" stroke-width="2" />
-            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="16" font-family="Inter, sans-serif" fill="#222" [attr.transform]="block.step.type === 'decision' ? 'rotate(45 ' + (blockWidth/2) + ' ' + (blockHeight/2) + ')' : null">
-              {{ block.step.text }}
-            </text>
+            <foreignObject
+              [attr.x]="0"
+              [attr.y]="0"
+              [attr.width]="blockWidth"
+              [attr.height]="blockHeight"
+            >
+              <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+                <div style="white-space:pre-line;word-break:break-word;text-align:center;font-size:13px;font-family:Inter,sans-serif;color:#222;padding:4px;line-height:1.2;">
+                  {{ block.step.text }}
+                </div>
+              </div>
+            </foreignObject>
             <!-- Botones de decisión solo si es el último bloque visible y es el paso actual -->
             <foreignObject *ngIf="block.step.type === 'decision' && i === svgBlocks.length - 1 && block.step.id === currentStepId" [attr.x]="blockWidth/2 - 90" [attr.y]="blockHeight + 10" [attr.width]="180" [attr.height]="40">
               <div style="display: flex; justify-content: space-between; align-items: center; width: 180px;">
