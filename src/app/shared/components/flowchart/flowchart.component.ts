@@ -8,8 +8,9 @@ import { FlowchartStep } from '../../interfaces/flowchart.interface';
 })
 
 export class FlowchartComponent implements OnChanges {
-  ngOnInit() {
-    this.resetSteps();
+  get progressPercentage(): number {
+    if (!this.steps || this.steps.length === 0) return 0;
+    return Math.round((this.visibleSteps.length / this.steps.length) * 100);
   }
   @Input() steps: FlowchartStep[] = [];
   @Input() title: string = '';
@@ -18,10 +19,27 @@ export class FlowchartComponent implements OnChanges {
   visibleSteps: FlowchartStep[] = [];
   history: number[] = [];
 
+  // SVG layout helpers
+  svgWidth = 800;
+  svgHeight = 300;
+  blockWidth = 140;
+  blockHeight = 60;
+  blockGapY = 80;
+  blockGapX = 220;
+  decisionPoints = '';
+  svgConnections: { x1: number, y1: number, x2: number, y2: number }[] = [];
+  svgBlocks: { step: FlowchartStep, x: number, y: number }[] = [];
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['steps'] && this.steps) {
       this.resetSteps();
     }
+    this.updateSVGLayout();
+  }
+
+  ngOnInit() {
+    this.resetSteps();
+    this.updateSVGLayout();
   }
 
   getStepById(id: number): FlowchartStep | undefined {
@@ -44,6 +62,73 @@ export class FlowchartComponent implements OnChanges {
   // Actualiza los pasos visibles según el historial
   updateVisibleSteps(): void {
     this.visibleSteps = this.history.map(id => this.getStepById(id)).filter(Boolean) as FlowchartStep[];
+    this.updateSVGLayout();
+  }
+
+  updateSVGLayout(): void {
+    // Calcula posiciones para cada bloque visible
+    this.svgBlocks = [];
+    this.svgConnections = [];
+    let x0 = this.svgWidth / 2 - this.blockWidth / 2;
+    let y0 = 30;
+    let lastX = x0;
+    let lastY = y0;
+    let branchOffset = this.blockGapX;
+    for (let i = 0; i < this.visibleSteps.length; i++) {
+      const step = this.visibleSteps[i];
+      if (i === 0) {
+        this.svgBlocks.push({ step, x: x0, y: y0 });
+        lastX = x0;
+        lastY = y0;
+      } else {
+        // Si el anterior es decision, ramifica
+        const prev = this.visibleSteps[i - 1];
+        if (prev.type === 'decision') {
+          // Si este paso es rama 'yes', va a la derecha; si es 'no', a la izquierda
+          let x = x0;
+          if (prev.branches && prev.branches.yes === step.id) x = x0 + branchOffset;
+          if (prev.branches && prev.branches.no === step.id) x = x0 - branchOffset;
+          let y = lastY + this.blockGapY;
+          this.svgBlocks.push({ step, x, y });
+          // Conexión desde el rombo
+          this.svgConnections.push({
+            x1: x0 + this.blockWidth / 2,
+            y1: lastY + this.blockHeight,
+            x2: x + this.blockWidth / 2,
+            y2: y
+          });
+          lastX = x;
+          lastY = y;
+        } else {
+          // Secuencial: debajo del anterior
+          let x = lastX;
+          let y = lastY + this.blockGapY;
+          this.svgBlocks.push({ step, x, y });
+          this.svgConnections.push({
+            x1: lastX + this.blockWidth / 2,
+            y1: lastY + this.blockHeight,
+            x2: x + this.blockWidth / 2,
+            y2: y
+          });
+          lastX = x;
+          lastY = y;
+        }
+      }
+    }
+    // Para decisiones, el rombo
+    this.decisionPoints = `${this.blockWidth/2},0 ${this.blockWidth},${this.blockHeight/2} ${this.blockWidth/2},${this.blockHeight} 0,${this.blockHeight/2}`;
+    // Ajustar alto del SVG
+    this.svgHeight = y0 + this.svgBlocks.length * this.blockGapY + this.blockHeight;
+  }
+
+  getBlockColor(type: string): string {
+    switch (type) {
+      case 'start': return '#bbf7d0';
+      case 'process': return '#dbeafe';
+      case 'decision': return '#fef3c7';
+      case 'end': return '#bbf7d0';
+      default: return '#f3f4f6';
+    }
   }
 
   // Navegación hacia atrás
@@ -124,56 +209,15 @@ export class FlowchartComponent implements OnChanges {
 
   get progressText(): string {
     const currentStep = this.getStepById(this.currentStepId!);
-    if (currentStep && currentStep.type === 'end') {
-      return `Diagrama completado`;
-    }
-    return `Paso ${this.visibleSteps.length} de ${this.steps.length}`;
+    if (!currentStep) return '';
+    const totalSteps = this.steps.length;
+    const currentIndex = this.history.length;
+    return `Paso ${currentIndex} de ${totalSteps}`;
   }
 
-  get progressPercentage(): number {
-    if (this.steps.length === 0) return 0;
-    const currentStep = this.getStepById(this.currentStepId!);
-    // Si está en el último paso (tipo 'end'), mostrar 100%
-    if (currentStep && currentStep.type === 'end') {
-      return 100;
-    }
-    // Limitar el progreso máximo a 99% si no ha terminado
-    const percent = Math.round((this.visibleSteps.length / this.steps.length) * 100);
-    return percent > 99 ? 99 : percent;
-  }
-
-  getStepClass(type: string): string {
-    const baseClasses = 'inline-block p-3 rounded-lg shadow-md border-2 mb-3 mx-auto min-w-[150px] text-center transition-all duration-300 hover:shadow-lg';
-    switch (type) {
-      case 'start':
-        return `${baseClasses} bg-green-100 border-green-400 text-green-800`;
-      case 'process':
-        return `${baseClasses} bg-blue-100 border-blue-400 text-blue-800`;
-      case 'decision':
-        return `${baseClasses} bg-yellow-100 border-yellow-400 text-yellow-800 transform rotate-45`;
-      case 'end':
-        return `${baseClasses} bg-green-100 border-green-400 text-green-800`;
-      default:
-        return `${baseClasses} bg-gray-100 border-gray-400 text-gray-800`;
-    }
-  }
-
-  getStepIcon(type: string): string {
-    switch (type) {
-      case 'start':
-        return '🟢';
-      case 'process':
-        return '📦';
-      case 'decision':
-        return '🤔';
-      case 'end':
-        return '✅';
-      default:
-        return '📝';
-    }
-  }
-
-  isDecision(type: string): boolean {
-    return type === 'decision';
+  // Reiniciar el diagrama
+  resetDiagram(): void {
+    this.resetSteps();
+    this.updateSVGLayout();
   }
 }
