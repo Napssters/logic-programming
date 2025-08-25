@@ -39,8 +39,12 @@
         <!-- Bloques -->
         <ng-container *ngFor="let block of svgBlocks; let i = index">
           <g [attr.transform]="'translate(' + block.x + ',' + block.y + ')'">
-            <rect *ngIf="block.step.type !== 'decision'" [attr.width]="blockWidth" [attr.height]="blockHeight" rx="14" [attr.fill]="block.isActive ? '#60a5fa' : getBlockColor(block.step.type)" stroke="#333" stroke-width="2" />
-            <polygon *ngIf="block.step.type === 'decision'" [attr.points]="decisionPoints" [attr.fill]="block.isActive ? '#60a5fa' : getBlockColor(block.step.type)" stroke="#b45309" stroke-width="2" />
+            <rect *ngIf="block.step.type !== 'decision'" [attr.width]="blockWidth" [attr.height]="blockHeight" rx="14"
+              [attr.fill]="block.isActive && block.step.type === 'end' ? '#86efac' : (block.isActive ? '#60a5fa' : getBlockColor(block.step.type))"
+              stroke="#333" stroke-width="2" />
+            <polygon *ngIf="block.step.type === 'decision'" [attr.points]="decisionPoints"
+              [attr.fill]="block.isActive ? '#60a5fa' : getBlockColor(block.step.type)"
+              stroke="#b45309" stroke-width="2" />
             <foreignObject
               [attr.x]="0"
               [attr.y]="0"

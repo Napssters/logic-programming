@@ -14,9 +14,9 @@ export class FlowchartComponent implements OnChanges {
     if (!this.steps || this.steps.length === 0) return 0;
     // Calcular el total de pasos únicos recorridos en el flujo actual
     const uniqueSteps = Array.from(new Set(this.history)).length;
-  // Si el flujo terminó en un paso de tipo 'end', mostrar 100%
-  const currentStep = this.getStepById(this.currentStepId!);
-  if (currentStep && currentStep.type === 'end') return 100;
+    // Si el flujo terminó en un paso de tipo 'end', mostrar 100%
+    const currentStep = this.getStepById(this.currentStepId!);
+    if (currentStep && currentStep.type === 'end') return 100;
     // Si hay bucles, nunca pasar de 100%
     return Math.min(100, Math.round((uniqueSteps / this.steps.length) * 100));
   }
@@ -35,7 +35,7 @@ export class FlowchartComponent implements OnChanges {
   blockGapY = 100;
   blockGapX = 220;
   decisionPoints = '';
-  svgConnections: ({ x1: number, y1: number, x2: number, y2: number, isLoop?: boolean, isActive?: boolean } | { points: { x: number, y: number }[], isLoop?: boolean, isActive?: boolean })[] = [];
+  svgConnections: ({ x1: number, y1: number, x2: number, y2: number, isLoop?: boolean, isActive?: boolean, loopFromId?: number, loopToId?: number } | { points: { x: number, y: number }[], isLoop?: boolean, isActive?: boolean, loopFromId?: number, loopToId?: number })[] = [];
   svgBlocks: { step: FlowchartStep, x: number, y: number, isActive?: boolean }[] = [];
 
   ngOnChanges(changes: SimpleChanges) {
@@ -125,11 +125,24 @@ export class FlowchartComponent implements OnChanges {
             { x: midX2, y: midY },
             { x: endX, y: endY }
           ];
-          this.svgConnections.push({
-            points,
-            isLoop: true,
-            isActive: step.id === currentActiveId
+          // Verificar si ya existe una conexión igual
+          // Guardar IDs de origen y destino para loopBack
+          const loopFromId = step.id;
+          const loopToId = this.visibleSteps.find(s => s.id === step.loopBack)?.id;
+          const exists = this.svgConnections.some(conn => {
+            return conn.isLoop &&
+              (conn as any).loopFromId === loopFromId &&
+              (conn as any).loopToId === loopToId;
           });
+          if (!exists) {
+            this.svgConnections.push({
+              points,
+              isLoop: true,
+              isActive: step.id === currentActiveId,
+              loopFromId,
+              loopToId
+            });
+          }
         }
         continue;
       }
@@ -149,45 +162,45 @@ export class FlowchartComponent implements OnChanges {
         }
       } else {
         const prev = this.visibleSteps[i - 1];
-          if (prev.type === 'decision') {
-            let x = lastX;
-            let y = lastY + this.blockGapY;
-            let startX, startY;
-            if (prev.branches && prev.branches.yes === step.id) {
-              x = lastX + branchOffset;
-              // Punta derecha del rombo
-              startX = lastX + this.blockWidth;
-              startY = lastY + this.blockHeight / 2;
-            } else if (prev.branches && prev.branches.no === step.id) {
-              x = lastX - branchOffset;
-              // Punta izquierda del rombo
-              startX = lastX;
-              startY = lastY + this.blockHeight / 2;
-            } else {
-              // Fallback: centro inferior
-              startX = lastX + this.blockWidth / 2;
-              startY = lastY + this.blockHeight;
-            }
-            this.svgBlocks.push({ step, x, y, isActive: step.id === currentActiveId });
-            blockPositions[step.id] = { x, y };
-            // Conexión condicional: horizontal primero, luego vertical
-            const endX = x + this.blockWidth / 2;
-            const endY = y + this.blockHeight / 2;
-            // Solo dos quiebres: horizontal hasta la mitad del bloque destino, luego vertical
-            const points = [
-              { x: startX, y: startY },
-              { x: endX, y: startY }, // horizontal
-              { x: endX, y: endY }    // vertical
-            ];
-            this.svgConnections.push({
-              points,
-              isActive: step.id === currentActiveId
-            });
-            lastX = x;
-            lastY = y;
-            if (step.type === 'decision') {
-              lastDecisionBlock = { x, y };
-            }
+        if (prev.type === 'decision') {
+          let x = lastX;
+          let y = lastY + this.blockGapY;
+          let startX, startY;
+          if (prev.branches && prev.branches.yes === step.id) {
+            x = lastX + branchOffset;
+            // Punta derecha del rombo
+            startX = lastX + this.blockWidth;
+            startY = lastY + this.blockHeight / 2;
+          } else if (prev.branches && prev.branches.no === step.id) {
+            x = lastX - branchOffset;
+            // Punta izquierda del rombo
+            startX = lastX;
+            startY = lastY + this.blockHeight / 2;
+          } else {
+            // Fallback: centro inferior
+            startX = lastX + this.blockWidth / 2;
+            startY = lastY + this.blockHeight;
+          }
+          this.svgBlocks.push({ step, x, y, isActive: step.id === currentActiveId });
+          blockPositions[step.id] = { x, y };
+          // Conexión condicional: horizontal primero, luego vertical
+          const endX = x + this.blockWidth / 2;
+          const endY = y + this.blockHeight / 2;
+          // Solo dos quiebres: horizontal hasta la mitad del bloque destino, luego vertical
+          const points = [
+            { x: startX, y: startY },
+            { x: endX, y: startY }, // horizontal
+            { x: endX, y: endY }    // vertical
+          ];
+          this.svgConnections.push({
+            points,
+            isActive: step.id === currentActiveId
+          });
+          lastX = x;
+          lastY = y;
+          if (step.type === 'decision') {
+            lastDecisionBlock = { x, y };
+          }
         } else {
           let x = lastX;
           let y = lastY + this.blockGapY;
@@ -220,16 +233,29 @@ export class FlowchartComponent implements OnChanges {
             { x: endX, y: startY + offsetY },   // mueve en horizontal
             { x: endX, y: endY }                // sube en vertical hasta el destino
           ];
-          this.svgConnections.push({
-            points,
-            isLoop: true,
-            isActive: step.id === currentActiveId
+          // Verificar si ya existe una conexión igual
+          // Guardar IDs de origen y destino para loopBack
+          const loopFromId = step.id;
+          const loopToId = this.visibleSteps.find(s => s.id === step.loopBack)?.id;
+          const exists = this.svgConnections.some(conn => {
+            return conn.isLoop &&
+              (conn as any).loopFromId === loopFromId &&
+              (conn as any).loopToId === loopToId;
           });
+          if (!exists) {
+            this.svgConnections.push({
+              points,
+              isLoop: true,
+              isActive: step.id === currentActiveId,
+              loopFromId,
+              loopToId
+            });
+          }
         }
       }
     }
     // Para decisiones, el rombo
-    this.decisionPoints = `${this.blockWidth/2},0 ${this.blockWidth},${this.blockHeight/2} ${this.blockWidth/2},${this.blockHeight} 0,${this.blockHeight/2}`;
+    this.decisionPoints = `${this.blockWidth / 2},0 ${this.blockWidth},${this.blockHeight / 2} ${this.blockWidth / 2},${this.blockHeight} 0,${this.blockHeight / 2}`;
     // Ajustar alto del SVG
     this.svgHeight = y0 + this.svgBlocks.length * this.blockGapY + this.blockHeight;
   }
@@ -260,8 +286,8 @@ export class FlowchartComponent implements OnChanges {
       case 'decision': return '#fef3c7';
       case 'end': return '#bbf7d0';
       case 'start': return '#bbf7d0';
-      case 'process': return '#d1fae5'; // light green for process blocks
-      default: return '#d1fae5'; // fallback to light green
+      case 'process': return '#bfdbfe'; // azul clarito más intenso para process
+      default: return '#bfdbfe'; // fallback azul clarito más intenso
     }
   }
 
