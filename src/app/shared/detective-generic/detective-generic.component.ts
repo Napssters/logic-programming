@@ -27,6 +27,7 @@ interface Caso {
   styleUrls: ['./detective-generic.component.css']
 })
 export class DetectiveGenericComponent implements OnInit {
+  opcionesMezcladas: any[] = [];
   @Input() tipo: 1 | 2 = 1; // 1 para ejemplos, 2 para ejercicios
   data: { ejemplos: Caso[]; ejercicios: Caso[] } | null = null;
   casoSeleccionado: Caso | null = null;
@@ -79,6 +80,25 @@ export class DetectiveGenericComponent implements OnInit {
     this.enIntroduccion = true;
     this.resetEstado();
     this.seleccionadas = [];
+    this.actualizarOpcionesMezcladas();
+  }
+
+  // Mezcla Fisher-Yates
+  mezclarArray(array: any[]): any[] {
+    const arr = array.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  actualizarOpcionesMezcladas() {
+    if (this.etapaActual && this.etapaActual.opciones) {
+      this.opcionesMezcladas = this.mezclarArray(this.etapaActual.opciones);
+    } else {
+      this.opcionesMezcladas = [];
+    }
   }
 
   seleccionarOpcion(opcion: any, index: number) {
@@ -103,24 +123,23 @@ export class DetectiveGenericComponent implements OnInit {
     // Marcar la opción como seleccionada
     this.seleccionadas[index] = true;
 
-    // Lógica para ejemplos (tipo 1): todas las correctas deben ser seleccionadas
+    // Mostrar el botón Siguiente solo cuando todas las correctas estén seleccionadas (multi) o la correcta (single)
     if (this.tipo === 1) {
       const correctas = this.etapaActual.opciones.filter((o: any) => o.esCorrecta);
-      const todasCorrectasSeleccionadas = correctas.every((o: any, i: number) => {
+      const todasCorrectasSeleccionadas = correctas.every((o: any) => {
         const idx = this.etapaActual.opciones.indexOf(o);
         return this.seleccionadas[idx];
       });
       this.mostrarSiguiente = todasCorrectasSeleccionadas;
-      this.seleccionHecha = false; // nunca bloquear
+      this.seleccionHecha = false;
     } else if (this.tipo === 2) {
-      // Para ejercicios, usar esRamaCorrecta
       const correctas = this.etapaActual.opciones.filter((o: any) => o.esRamaCorrecta);
-      const todasCorrectasSeleccionadas = correctas.every((o: any, i: number) => {
+      const todasCorrectasSeleccionadas = correctas.every((o: any) => {
         const idx = this.etapaActual.opciones.indexOf(o);
         return this.seleccionadas[idx];
       });
       this.mostrarSiguiente = todasCorrectasSeleccionadas;
-      this.seleccionHecha = false; // nunca bloquear
+      this.seleccionHecha = false;
     }
   }
 
@@ -137,9 +156,11 @@ export class DetectiveGenericComponent implements OnInit {
       this.etapaActual = this.casoSeleccionado.etapas[0];
       this.enIntroduccion = false;
       this.resetEstado();
+      this.actualizarOpcionesMezcladas();
       return;
     }
-    if (!this.etapaActual.opciones) return;
+  if (!this.etapaActual.opciones) return;
+  this.actualizarOpcionesMezcladas();
     const opcionSeleccionada = this.etapaActual.opciones.find((o: any) => (this.tipo === 1 && o.esCorrecta) || (this.tipo === 2 && o.esRamaCorrecta)) || this.etapaActual.opciones[0];
     const nextEtapaId = opcionSeleccionada.avanzaA;
 
@@ -155,8 +176,9 @@ export class DetectiveGenericComponent implements OnInit {
       this.saveProgreso();
       this.mostrarModalFinal = true;
     } else {
-      this.etapaActual = this.casoSeleccionado!.etapas.find(e => e.id === nextEtapaId);
-      this.resetEstado();
+  this.etapaActual = this.casoSeleccionado!.etapas.find(e => e.id === nextEtapaId);
+  this.resetEstado();
+  this.actualizarOpcionesMezcladas();
     }
   }
 
@@ -167,6 +189,10 @@ export class DetectiveGenericComponent implements OnInit {
     this.mostrarSiguiente = false;
     this.mostrarFeedback = false;
     this.feedback = '';
+    // Limpiar opciones mezcladas si no hay opciones
+    if (!this.etapaActual || !this.etapaActual.opciones) {
+      this.opcionesMezcladas = [];
+    }
   }
 
   cerrarModal() {
