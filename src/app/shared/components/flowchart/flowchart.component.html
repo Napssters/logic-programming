@@ -14,7 +14,9 @@
       <svg [attr.width]="svgWidth" [attr.height]="svgHeight" style="background: #f8fafc; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
         <!-- Conexiones -->
         <ng-container *ngFor="let conn of svgConnections">
-          <line [attr.x1]="conn.x1" [attr.y1]="conn.y1" [attr.x2]="conn.x2" [attr.y2]="conn.y2" stroke="#60a5fa" stroke-width="3" marker-end="url(#arrowhead)" />
+          <line [attr.x1]="conn.x1" [attr.y1]="conn.y1" [attr.x2]="conn.x2" [attr.y2]="conn.y2"
+            [attr.stroke]="conn.isLoop ? '#f59e42' : '#60a5fa'"
+            stroke-width="3" marker-end="url(#arrowhead)" />
         </ng-container>
         <defs>
           <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">

@@ -33,7 +33,7 @@ export class FlowchartComponent implements OnChanges {
   blockGapY = 80;
   blockGapX = 220;
   decisionPoints = '';
-  svgConnections: { x1: number, y1: number, x2: number, y2: number }[] = [];
+  svgConnections: { x1: number, y1: number, x2: number, y2: number, isLoop?: boolean }[] = [];
   svgBlocks: { step: FlowchartStep, x: number, y: number }[] = [];
 
   ngOnChanges(changes: SimpleChanges) {
@@ -80,23 +80,53 @@ export class FlowchartComponent implements OnChanges {
     let lastX = x0;
     let lastY = y0;
     let branchOffset = this.blockGapX;
+    let lastDecisionBlock: { x: number, y: number } | null = null;
+    const blockPositions: { [id: number]: { x: number, y: number } } = {};
     for (let i = 0; i < this.visibleSteps.length; i++) {
       const step = this.visibleSteps[i];
+      // Si el paso ya existe, reutiliza su posición pero si es el último visible, agrégalo como último para mostrar los botones
+      const isLastVisible = (i === this.visibleSteps.length - 1);
+      if (blockPositions[step.id] && !isLastVisible) {
+        lastX = blockPositions[step.id].x;
+        lastY = blockPositions[step.id].y;
+        // Si el paso actual tiene loopBack, dibujar flecha al último decision guardado
+        if (step.loopBack && lastDecisionBlock) {
+          this.svgConnections.push({
+            x1: lastX + this.blockWidth / 2,
+            y1: lastY + this.blockHeight,
+            x2: lastDecisionBlock.x + this.blockWidth / 2,
+            y2: lastDecisionBlock.y + this.blockHeight / 2,
+            isLoop: true
+          });
+        }
+        continue;
+      }
+      // Si es el último visible y ya existe, agrégalo como último para mostrar los botones
+      if (blockPositions[step.id] && isLastVisible) {
+        lastX = blockPositions[step.id].x;
+        lastY = blockPositions[step.id].y;
+        this.svgBlocks.push({ step, x: lastX, y: lastY });
+        // No agregues conexiones ni actualices lastDecisionBlock
+        continue;
+      }
       if (i === 0) {
         this.svgBlocks.push({ step, x: x0, y: y0 });
         lastX = x0;
         lastY = y0;
+        blockPositions[step.id] = { x: x0, y: y0 };
+        if (step.type === 'decision') {
+          lastDecisionBlock = { x: x0, y: y0 };
+        }
       } else {
         // Si el anterior es decision, ramifica
         const prev = this.visibleSteps[i - 1];
         if (prev.type === 'decision') {
-          // La rama se abre desde la posición actual del bloque anterior
           let x = lastX;
           if (prev.branches && prev.branches.yes === step.id) x = lastX + branchOffset;
           if (prev.branches && prev.branches.no === step.id) x = lastX - branchOffset;
           let y = lastY + this.blockGapY;
           this.svgBlocks.push({ step, x, y });
-          // Conexión desde el rombo
+          blockPositions[step.id] = { x, y };
           this.svgConnections.push({
             x1: lastX + this.blockWidth / 2,
             y1: lastY + this.blockHeight,
@@ -105,11 +135,15 @@ export class FlowchartComponent implements OnChanges {
           });
           lastX = x;
           lastY = y;
+          if (step.type === 'decision') {
+            lastDecisionBlock = { x, y };
+          }
         } else {
           // Secuencial: debajo del anterior
           let x = lastX;
           let y = lastY + this.blockGapY;
           this.svgBlocks.push({ step, x, y });
+          blockPositions[step.id] = { x, y };
           this.svgConnections.push({
             x1: lastX + this.blockWidth / 2,
             y1: lastY + this.blockHeight,
@@ -118,6 +152,18 @@ export class FlowchartComponent implements OnChanges {
           });
           lastX = x;
           lastY = y;
+          if (step.type === 'decision') {
+            lastDecisionBlock = { x, y };
+          }
+        }
+        // Si el paso actual tiene loopBack, dibujar flecha al último decision guardado
+        if (step.loopBack && lastDecisionBlock) {
+          this.svgConnections.push({
+            x1: lastX + this.blockWidth / 2,
+            y1: lastY + this.blockHeight,
+            x2: lastDecisionBlock.x + this.blockWidth / 2,
+            y2: lastDecisionBlock.y + this.blockHeight / 2
+          });
         }
       }
     }
