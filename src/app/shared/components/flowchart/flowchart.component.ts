@@ -10,7 +10,13 @@ import { FlowchartStep } from '../../interfaces/flowchart.interface';
 export class FlowchartComponent implements OnChanges {
   get progressPercentage(): number {
     if (!this.steps || this.steps.length === 0) return 0;
-    return Math.round((this.visibleSteps.length / this.steps.length) * 100);
+    // Calcular el total de pasos únicos recorridos en el flujo actual
+    const uniqueSteps = Array.from(new Set(this.history)).length;
+  // Si el flujo terminó en un paso de tipo 'end', mostrar 100%
+  const currentStep = this.getStepById(this.currentStepId!);
+  if (currentStep && currentStep.type === 'end') return 100;
+    // Si hay bucles, nunca pasar de 100%
+    return Math.min(100, Math.round((uniqueSteps / this.steps.length) * 100));
   }
   @Input() steps: FlowchartStep[] = [];
   @Input() title: string = '';
