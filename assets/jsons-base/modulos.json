@@ -317,31 +317,41 @@
       },
       {
         "title": "Ejemplo 6: Mariana y la comida",
-        "description": "Mariana tiene hambre. Si hay pan, hace un sándwich; si no hay, prepara cereal.",
+        "description": "Mariana tiene hambre. Si hay pan, revisa si hay jamón; si hay jamón, hace un sándwich de jamón, si no, hace un sándwich solo de pan. Si no hay pan, prepara cereal.",
         "question": "👉 ¿Qué está comprobando Mariana antes de decidir qué comer?",
-          "steps": [
-            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
-            { "id": 2, "text": "Mariana tiene hambre", "type": "process", "next": 3 },
-            { "id": 3, "text": "Revisar la despensa", "type": "process", "next": 4 },
-            { "id": 4, "text": "¿Hay pan disponible?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
-            { "id": 5, "text": "Hacer un sándwich", "type": "process", "next": 7 },
-            { "id": 6, "text": "Preparar cereal", "type": "process", "next": 7 },
-            { "id": 7, "text": "Fin", "type": "end" }
-          ]
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+          { "id": 2, "text": "Mariana tiene hambre", "type": "process", "next": 3 },
+          { "id": 3, "text": "Revisar la despensa", "type": "process", "next": 4 },
+          { "id": 4, "text": "¿Hay pan disponible?", "type": "decision", "branches": { "yes": 5, "no": 8 } },
+          { "id": 5, "text": "¿Hay jamón disponible?", "type": "decision", "branches": { "yes": 6, "no": 7 } },
+          { "id": 6, "text": "Hacer un sándwich de jamón", "type": "process", "next": 9 },
+          { "id": 7, "text": "Hacer un sándwich solo de pan", "type": "process", "next": 9 },
+          { "id": 8, "text": "Preparar cereal", "type": "process", "next": 9 },
+          { "id": 9, "text": "Fin", "type": "end" }
+        ]
       },
       {
         "title": "Ejemplo 7: Javier jugando videojuego",
-        "description": "Javier está jugando un videojuego. Si la vida de su personaje es mayor a 0, sigue jugando; si llega a 0, la partida termina.",
-        "question": "👉 ¿Cuál es la condición que indica que Javier ha perdido?",
-          "steps": [
-            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
-            { "id": 2, "text": "Javier está jugando", "type": "process", "next": 3 },
-            { "id": 3, "text": "Revisar vida del personaje", "type": "process", "next": 4 },
-            { "id": 4, "text": "¿Vida > 0?", "type": "decision", "branches": { "yes": 5, "no": 6 } },
-            { "id": 5, "text": "Seguir jugando", "type": "process", "next": 7 },
-            { "id": 6, "text": "La partida termina (Game Over)", "type": "process", "next": 7 },
-            { "id": 7, "text": "Fin", "type": "end" }
-          ]
+        "description": "Javier está jugando un videojuego. Si la vida de su personaje es mayor a 0, revisa si tiene pociones; si tiene pociones y energía, las usa para seguir jugando, si no, busca recursos. Si la vida llega a 0, Javier guarda la partida, apaga la consola y descansa.",
+        "question": "👉 ¿Qué acciones realiza Javier cuando la vida de su personaje llega a 0?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+          { "id": 2, "text": "Javier está jugando", "type": "process", "next": 3 },
+          { "id": 3, "text": "Revisar vida del personaje", "type": "process", "next": 4 },
+          { "id": 4, "text": "¿Vida > 0?", "type": "decision", "branches": { "yes": 5, "no": 10 } },
+          { "id": 5, "text": "Revisar si tiene pociones", "type": "process", "next": 6 },
+          { "id": 6, "text": "¿Tiene pociones?", "type": "decision", "branches": { "yes": 7, "no": 8 } },
+          { "id": 7, "text": "¿Tiene energía suficiente?", "type": "decision", "branches": { "yes": 13, "no": 14 } },
+          { "id": 8, "text": "Buscar recursos en el mapa", "type": "process", "next": 9 },
+          { "id": 9, "text": "Seguir jugando con recursos encontrados", "type": "process", "next": 15 },
+          { "id": 10, "text": "Guardar la partida", "type": "process", "next": 11 },
+          { "id": 11, "text": "Apagar la consola", "type": "process", "next": 12 },
+          { "id": 12, "text": "Descansar", "type": "process", "next": 15 },
+          { "id": 13, "text": "Usar poción y energía para recuperar vida", "type": "process", "next": 15 },
+          { "id": 14, "text": "Esperar a recuperar energía", "type": "process", "next": 15 },
+          { "id": 15, "text": "Fin", "type": "end" }
+        ]
       }
     ]
   },
@@ -432,23 +442,23 @@
           ]
       },
       {
-        "title": "Juego de adivinanza",
-        "description": "Creaste un juego donde el usuario debe adivinar un número del 1 al 10. El juego continuará hasta que acierte o se rinda.",
-        "question": "👉 ¿Cómo programarías un bucle que permita múltiples intentos hasta acertar?",
-          "steps": [
-            { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
-            { "id": 2, "text": "numero_secreto = 7", "type": "process", "next": 3 },
-            { "id": 3, "text": "adivinado = falso", "type": "process", "next": 4 },
-            { "id": 4, "text": "intentos = 0", "type": "process", "next": 5 },
-            { "id": 5, "text": "¿adivinado == falso?", "type": "decision", "branches": { "yes": 6, "no": 11 } },
-            { "id": 6, "text": "Pedir número al usuario", "type": "process", "next": 7 },
-            { "id": 7, "text": "intentos = intentos + 1", "type": "process", "next": 8 },
-            { "id": 8, "text": "¿numero_usuario == numero_secreto?", "type": "decision", "branches": { "yes": 9, "no": 10 } },
-            { "id": 9, "text": "adivinado = verdadero", "type": "process", "next": 5 },
-            { "id": 10, "text": "Mostrar: 'Muy alto' o 'Muy bajo'", "type": "process", "next": 5, "loopBack": 5 },
-            { "id": 11, "text": "Mostrar: '¡Felicidades! Lo adivinaste en ' + intentos + ' intentos'", "type": "process", "next": 12 },
-            { "id": 12, "text": "Fin", "type": "end" }
-          ]
+        "title": "Revisión de tareas y correos",
+        "description": "Imagina que cada mañana revisas tu lista de tareas pendientes y luego tu bandeja de entrada de correos. Primero, marcas cada tarea como completada una por una. Cuando terminas, pasas a revisar los correos y respondes cada uno hasta que no quede ninguno sin leer.",
+        "question": "👉 ¿Cómo programarías dos bucles secuenciales: uno para completar todas las tareas y otro para responder todos los correos?",
+        "steps": [
+          { "id": 1, "text": "Inicio", "type": "start", "next": 2 },
+          { "id": 2, "text": "tarea_actual = 1", "type": "process", "next": 3 },
+          { "id": 3, "text": "¿tarea_actual <= total_tareas?", "type": "decision", "branches": { "yes": 4, "no": 7 } },
+          { "id": 4, "text": "Marcar tarea como completada", "type": "process", "next": 5 },
+          { "id": 5, "text": "tarea_actual = tarea_actual + 1", "type": "process", "next": 3, "loopBack": 3 },
+          { "id": 7, "text": "correo_actual = 1", "type": "process", "next": 8 },
+          { "id": 8, "text": "¿correo_actual <= total_correos?", "type": "decision", "branches": { "yes": 9, "no": 12 } },
+          { "id": 9, "text": "Leer correo", "type": "process", "next": 10 },
+          { "id": 10, "text": "Responder correo", "type": "process", "next": 11 },
+          { "id": 11, "text": "correo_actual = correo_actual + 1", "type": "process", "next": 8, "loopBack": 8 },
+          { "id": 12, "text": "Mostrar: 'Todas las tareas y correos revisados'", "type": "process", "next": 13 },
+          { "id": 13, "text": "Fin", "type": "end" }
+        ]
       }
     ]
   },
