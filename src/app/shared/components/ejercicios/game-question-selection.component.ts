@@ -187,19 +187,32 @@ export class GameQuestionSelectionComponent {
 
   // Devuelve un emoji según el título del ejemplo
   getEmojiEjemplo(titulo: string): string {
-  if (titulo.toLowerCase().includes('chef')) return '🍳';
-  if (titulo.toLowerCase().includes('ingredientes')) return '🥗';
-  if (titulo.toLowerCase().includes('enfermera')) return '💉';
-  if (titulo.toLowerCase().includes('pacientes')) return '🏥';
-  if (titulo.toLowerCase().includes('tienda')) return '🏪';
-  if (titulo.toLowerCase().includes('estilista')) return '💇‍♂️';
-  if (titulo.toLowerCase().includes('clientas')) return '💁';
-  if (titulo.toLowerCase().includes('organizador')) return '🎉';
-  if (titulo.toLowerCase().includes('fiestas')) return '🎊';
-  if (titulo.toLowerCase().includes('entrenador')) return '🏋️';
-  if (titulo.toLowerCase().includes('deportivo')) return '⚽';
-  if (titulo.toLowerCase().includes('técnico')) return '🔧';
-  if (titulo.toLowerCase().includes('computadoras')) return '💻';
-  return '🧩';
+    if (titulo.toLowerCase().includes('chef')) return '🍳';
+    if (titulo.toLowerCase().includes('ingredientes')) return '🥗';
+    if (titulo.toLowerCase().includes('enfermera')) return '💉';
+    if (titulo.toLowerCase().includes('pacientes')) return '🏥';
+    if (titulo.toLowerCase().includes('tienda')) return '🏪';
+    if (titulo.toLowerCase().includes('estilista')) return '💇‍♂️';
+    if (titulo.toLowerCase().includes('clientas')) return '💁';
+    if (titulo.toLowerCase().includes('organizador')) return '🎉';
+    if (titulo.toLowerCase().includes('fiestas')) return '🎊';
+    if (titulo.toLowerCase().includes('entrenador')) return '🏋️';
+    if (titulo.toLowerCase().includes('deportivo')) return '⚽';
+    if (titulo.toLowerCase().includes('técnico')) return '🔧';
+    if (titulo.toLowerCase().includes('computadoras')) return '💻';
+    return '🧩';
   }
+
+  getMaxScoreForCase(caso: Ejercicio): number {
+    let maxScore = 0;
+    caso.preguntas.forEach(pregunta => {
+      let maxPuntuacion = Math.max(
+        ...Object.values(pregunta.consecuencias)
+          .map((consecuencia: any) => typeof consecuencia.puntuacion === 'number' ? consecuencia.puntuacion : 0)
+      );
+      maxScore += maxPuntuacion;
+    });
+    return maxScore;
+  }
+
 }

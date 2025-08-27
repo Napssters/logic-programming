@@ -202,4 +202,12 @@ export class DetectiveGenericComponent implements OnInit {
     this.pistasDesbloqueadas = [];
     this.historial = [];
   }
+
+  abrirPrimerCaso() {
+    if (this.tipo === 1 && this.data?.ejemplos?.length > 0) {
+      this.seleccionarCaso(this.data.ejemplos[0]);
+    } else if (this.tipo === 2 && this.data?.ejercicios?.length > 0) {
+      this.seleccionarCaso(this.data.ejercicios[0]);
+    }
+  }
 }

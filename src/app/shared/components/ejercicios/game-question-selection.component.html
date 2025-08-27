@@ -19,8 +19,10 @@
         </div>
       </div>
       <div class="flex flex-col items-center mt-auto">
-        <div class="text-xs text-gray-600 mb-2">Puntuación: <span class="font-bold text-blue-700">{{
-            puntuacionesEjemplos[ejemplo.id] || 0 }}</span></div>
+        <div class="text-xs text-gray-600 mb-2">
+          Puntuación: <span class="font-bold text-blue-700">{{ puntuacionesEjemplos[ejemplo.id] || 0 }}</span>
+          <span class="text-gray-500">/ {{ getMaxScoreForCase(ejemplo) }}</span>
+        </div>
         <button
           class="btn-ejemplo w-full bg-gradient-to-r from-blue-400 to-purple-400 text-white font-semibold py-2 px-4 rounded-lg shadow hover:from-blue-500 hover:to-purple-500 transition"
           (click)="seleccionarEjemplo(ejemplo)">Intentar ejemplo</button>
@@ -99,6 +101,7 @@
       </div>
       <div class="text-pink-600 font-extrabold text-lg flex items-center gap-1">
         <span class="emoji-card text-xl">⭐</span> {{ puntuacionEjemplo }}
+        <span class="text-gray-500">/ {{ getMaxScoreForCase(ejemploSeleccionado) }}</span>
       </div>
     </div>
   </div>
@@ -142,8 +145,10 @@
         </div>
       </div>
       <div class="flex flex-col items-center mt-auto">
-        <div class="text-xs text-gray-600 mb-2">Puntuación: <span class="font-bold text-yellow-700">{{
-            puntuacionesEjercicios[ejercicio.id] || 0 }}</span></div>
+        <div class="text-xs text-gray-600 mb-2">
+          Puntuación: <span class="font-bold text-yellow-700">{{ puntuacionesEjercicios[ejercicio.id] || 0 }}</span>
+          <span class="text-gray-500">/ {{ getMaxScoreForCase(ejercicio) }}</span>
+        </div>
         <button
           class="btn-ejercicio w-full bg-gradient-to-r from-green-500 to-blue-400 text-white font-semibold py-2 px-4 rounded-lg shadow hover:from-green-600 hover:to-blue-500 transition"
           (click)="seleccionarEjercicio(ejercicio)">Intentémoslo</button>
@@ -194,6 +199,7 @@
       </div>
       <div class="text-green-600 font-extrabold text-lg flex items-center gap-1">
         <span class="emoji-card text-xl">⭐</span> {{ puntuacion }}
+        <span class="text-gray-500">/ {{ getMaxScoreForCase(ejercicioSeleccionado) }}</span>
       </div>
     </div>
   </div>
