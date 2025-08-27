@@ -98,7 +98,7 @@ export class CarroMascotasGameComponent implements OnInit {
   }
 
   cargarNiveles(): void {
-    this.http.get<{ ejemplos: Nivel[], ejercicios: Nivel[] }>('/assets/jsons-base/niveles-carro-mascotas.json').subscribe(data => {
+  this.http.get<{ ejemplos: Nivel[], ejercicios: Nivel[] }>('assets/jsons-base/niveles-carro-mascotas.json').subscribe(data => {
       const nivelesSource = this.tipoHijo === 1 ? data.ejemplos : data.ejercicios;
       this.niveles = JSON.parse(JSON.stringify(nivelesSource)); // Deep copy para poder reiniciar
       this.cargarNivel(0);
