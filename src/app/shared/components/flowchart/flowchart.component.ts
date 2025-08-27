@@ -8,8 +8,34 @@ import { FlowchartStep } from '../../interfaces/flowchart.interface';
 })
 
 export class FlowchartComponent implements OnChanges {
+
+  @Input() steps: FlowchartStep[] = [];
+  @Input() title: string = '';
+
+  // Contador de bucles ejecutados
+  loopCount: number = 0;
   showSuccess = false;
   currentMessage = '';
+  lastDecisionWasNo: boolean = false;
+
+  currentStepId: number | null = null;
+  visibleSteps: FlowchartStep[] = [];
+  comparedBlockIds: number[] = [];
+  history: number[] = [];
+
+  // SVG layout helpers
+  svgIncrease = 0;
+  entryTimes = 0;
+  svgWidth = 800;
+  svgHeight = 300;
+  blockWidth = 140;
+  blockHeight = 60;
+  blockGapY = 100;
+  blockGapX = 220;
+  decisionPoints = '';
+  svgConnections: ({ x1: number, y1: number, x2: number, y2: number, isLoop?: boolean, isActive?: boolean, loopFromId?: number, loopToId?: number } | { points: { x: number, y: number }[], isLoop?: boolean, isActive?: boolean, loopFromId?: number, loopToId?: number })[] = [];
+  svgBlocks: { step: FlowchartStep, x: number, y: number, isActive?: boolean }[] = [];
+
   get progressPercentage(): number {
     if (!this.steps || this.steps.length === 0) return 0;
     // Calcular el total de pasos únicos recorridos en el flujo actual
@@ -20,23 +46,6 @@ export class FlowchartComponent implements OnChanges {
     // Si hay bucles, nunca pasar de 100%
     return Math.min(100, Math.round((uniqueSteps / this.steps.length) * 100));
   }
-  @Input() steps: FlowchartStep[] = [];
-  @Input() title: string = '';
-
-  currentStepId: number | null = null;
-  visibleSteps: FlowchartStep[] = [];
-  history: number[] = [];
-
-  // SVG layout helpers
-  svgWidth = 800;
-  svgHeight = 300;
-  blockWidth = 140;
-  blockHeight = 60;
-  blockGapY = 100;
-  blockGapX = 220;
-  decisionPoints = '';
-  svgConnections: ({ x1: number, y1: number, x2: number, y2: number, isLoop?: boolean, isActive?: boolean, loopFromId?: number, loopToId?: number } | { points: { x: number, y: number }[], isLoop?: boolean, isActive?: boolean, loopFromId?: number, loopToId?: number })[] = [];
-  svgBlocks: { step: FlowchartStep, x: number, y: number, isActive?: boolean }[] = [];
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['steps'] && this.steps) {
@@ -50,6 +59,8 @@ export class FlowchartComponent implements OnChanges {
     this.updateSVGLayout();
   }
 
+
+
   getStepById(id: number): FlowchartStep | undefined {
     return this.steps.find(s => s.id === id);
   }
@@ -57,6 +68,9 @@ export class FlowchartComponent implements OnChanges {
   // Inicializa el diagrama en el primer paso
   resetSteps(): void {
     if (this.steps.length > 0) {
+      this.svgIncrease = 0;
+      this.comparedBlockIds = [];
+      this.entryTimes = 0;
       this.currentStepId = this.steps[0].id;
       this.history = [this.currentStepId];
       this.updateVisibleSteps();
@@ -406,6 +420,8 @@ export class FlowchartComponent implements OnChanges {
       this.history.pop();
       this.currentStepId = this.history[this.history.length - 1];
       this.updateVisibleSteps();
+      this.resetLoopCountIfNeeded();
+      this.lastDecisionWasNo = false;
     }
   }
 
@@ -419,6 +435,8 @@ export class FlowchartComponent implements OnChanges {
       nextId = currentStep.next;
     } else if (typeof currentStep.loopBack === 'number') {
       nextId = currentStep.loopBack;
+      // Si es loopBack, incrementar el contador
+      this.loopCount++;
     }
     if (!nextId) {
       const currentIndex = this.steps.findIndex(s => s.id === this.currentStepId);
@@ -430,6 +448,8 @@ export class FlowchartComponent implements OnChanges {
       this.currentStepId = nextId;
       this.history.push(nextId);
       this.updateVisibleSteps();
+      // Si el siguiente paso no es bucle, resetear el contador
+      this.resetLoopCountIfNeeded();
     }
   }
 
@@ -441,6 +461,44 @@ export class FlowchartComponent implements OnChanges {
       this.currentStepId = branchId;
       this.history.push(branchId);
       this.updateVisibleSteps();
+      this.lastDecisionWasNo = (option === 'no');
+      // Si elige 'no' o sale del bucle, resetear el contador
+      if (option === 'no' || !this.isLoopStep(branchId)) {
+        this.loopCount = 0;
+      }
+      // Llamar a compareBlockIds con el branchId
+      this.compareBlockIds(branchId);
+    }
+  }
+
+  // Compara blockId con el segundo blockId de tipo 'decision' en la lista
+  compareBlockIds(blockId: number): void {
+    // Busca todos los bloques de tipo 'decision' excepto el primero
+    const decisionBlocks = this.steps.filter(s => s.type === 'decision');
+    if (decisionBlocks.length < 2) return;
+    // Construye una lista de todos los branch IDs (yes/no) desde la segunda decisión en adelante
+    const branchIds: number[] = [];
+    for (let i = 1; i < decisionBlocks.length; i++) {
+      const branches = decisionBlocks[i].branches;
+      if (branches) {
+        if (typeof branches.yes === 'number') branchIds.push(branches.yes);
+        if (typeof branches.no === 'number') branchIds.push(branches.no);
+      }
+    }
+    // Si el blockId está dentro de la lista, no sumar svgIncrease
+    if (this.comparedBlockIds.includes(blockId)) return;
+
+    if (branchIds.includes(blockId)) {
+      this.entryTimes++;
+      if (this.entryTimes === 2) {
+        this.svgIncrease += 200;
+      } else {
+        this.svgIncrease += 160;
+      }
+
+      console.log('si pasa ', blockId);
+      console.log('si pasa ', this.svgIncrease);
+      this.comparedBlockIds.push(blockId);
     }
   }
 
@@ -471,12 +529,26 @@ export class FlowchartComponent implements OnChanges {
   }
 
   resetDiagram(): void {
-    this.resetSteps();
-    this.updateSVGLayout();
+  this.resetSteps();
+  this.loopCount = 0;
+  this.updateSVGLayout();
   }
 
   // --- FUNCIONES AUXILIARES PARA MODO LOOPBACK ---
   hasLoopBack(): boolean {
     return this.steps.some(s => typeof s.loopBack === 'number');
   }
-}
+
+  // Verifica si el paso es parte de un bucle
+  isLoopStep(id: number): boolean {
+    const step = this.getStepById(id);
+    return !!step && typeof step.loopBack === 'number';
+  }
+
+  // Resetea el contador si el paso actual no es bucle
+  resetLoopCountIfNeeded(): void {
+    if (!this.isLoopStep(this.currentStepId!)) {
+      this.loopCount = 0;
+    }
+  }
+  }

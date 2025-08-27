@@ -75,8 +75,8 @@ export class BuclesComponent implements OnInit {
       'lavado|platos|lavar': '🍽️',
       'contador|numeros|pares': '🔢',
       'estudiante|calificacion|profesor': '📚',
-      'ahorro|dinero|ahorrar': '�',
-      'juego|adivinanza|adivinar': '🎲'
+      'ahorro|dinero|ahorrar': '💰',
+      'revisión|tareas|correos': '🎲'
     };
 
     for (const [keywords, icon] of Object.entries(iconMap)) {
