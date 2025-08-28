@@ -9,9 +9,9 @@
 .card-link {
   text-decoration: none;
 }
- .card-flip {
-  width: 224px;
-  height: 256px;
+.card-flip {
+  width: 260px;
+  height: 280px;
   position: relative;
   transition: transform 0.6s;
   transform-style: preserve-3d;

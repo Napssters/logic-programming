@@ -32,6 +32,9 @@ interface Cell {
   entityName?: string;
   isOptimal: boolean;
   pos: [number, number];
+  optimalDirection?: 'up' | 'down' | 'left' | 'right';
+  isStart?: boolean;
+  isEnd?: boolean;
 }
 
 @Component({
@@ -40,6 +43,8 @@ interface Cell {
   styleUrls: ['./carro-mascotas-game.component.css']
 })
 export class CarroMascotasGameComponent implements OnInit {
+  // Índice de la casilla óptima actual
+  indiceRutaOptimaActual: number = 0;
 
   @Input() tipoHijo: number = 1; // 1 para ejemplos, 2 para ejercicios
 
@@ -121,6 +126,7 @@ export class CarroMascotasGameComponent implements OnInit {
     this.mascotasRecogidas = [];
     this.casasVisitadas = [];
     this.mensaje = null;
+    this.indiceRutaOptimaActual = 0;
     this.generarFlatLayout();
     if (this.mostrarRuta) {
       this.aplicarRutaOptima();
@@ -164,6 +170,10 @@ export class CarroMascotasGameComponent implements OnInit {
       this.gasolinaRestante--;
       this.verificarInteracciones();
       this.verificarCondicionVictoria();
+      // Actualizar la casilla óptima marcada si la ruta está activa
+      if (this.mostrarRuta) {
+        this.aplicarRutaOptima();
+      }
     }
   }
 
@@ -179,7 +189,11 @@ export class CarroMascotasGameComponent implements OnInit {
 
     if (!entidad) return;
 
-    if (entidad.tipo === 'pet' && !this.mascotasRecogidas.includes(entidad.nombre)) {
+    if (
+      entidad.tipo === 'pet' &&
+      !this.mascotasRecogidas.includes(entidad.nombre) &&
+      !this.casasVisitadas.includes(entidad.nombre)
+    ) {
       this.mascotasRecogidas.push(entidad.nombre);
       // Ocultar la mascota del mapa visualmente
       const cellInLayout = this.flatLayout.find(cell => cell.pos[0] === r && cell.pos[1] === c);
@@ -255,12 +269,19 @@ export class CarroMascotasGameComponent implements OnInit {
 
   aplicarRutaOptima(): void {
     if (!this.nivelActual.rutaOptima) return;
-    this.nivelActual.rutaOptima.forEach(pos => {
-      const cell = this.flatLayout.find(c => c.pos[0] === pos[0] && c.pos[1] === pos[1]);
-      if (cell) {
-        cell.isOptimal = true;
-      }
-    });
+    this.flatLayout.forEach(c => c.isOptimal = false);
+    const ruta = this.nivelActual.rutaOptima;
+    let siguienteIndex = this.indiceRutaOptimaActual;
+    const carroPos = this.posicionCarro;
+    while (siguienteIndex < ruta.length && carroPos[0] === ruta[siguienteIndex][0] && carroPos[1] === ruta[siguienteIndex][1]) {
+      siguienteIndex++;
+    }
+    if (siguienteIndex < ruta.length) {
+      const siguiente = ruta[siguienteIndex];
+      const cell = this.flatLayout.find(c => c.pos[0] === siguiente[0] && c.pos[1] === siguiente[1]);
+      if (cell) cell.isOptimal = true;
+      this.indiceRutaOptimaActual = siguienteIndex;
+    }
   }
 
   getRoadOrientation(r: number, c: number): 'horizontal' | 'vertical' | 'intersection' | 'none' {
@@ -288,7 +309,16 @@ export class CarroMascotasGameComponent implements OnInit {
   }
 
   anteriorNivel(): void {
-  this.mensaje = null;
-  this.cargarNivel(this.indiceNivel - 1);
+    this.mensaje = null;
+    this.cargarNivel(this.indiceNivel - 1);
+  }
+
+  // Devuelve el color de fondo de la casa destino para una mascota
+  getColorCasaMascota(nombreMascota: string): string {
+    if (!this.nivelActual) return 'transparent';
+    // Busca la casa destino de la mascota
+    const casa = this.nivelActual.mapa.entidades.find(e => e.tipo === 'house' && e.nombre === nombreMascota);
+    // Si la casa tiene color, lo usa, si no, color por defecto
+    return casa && (casa as any).color ? (casa as any).color : '#f3ae22'; // color por defecto si no hay color
   }
 }

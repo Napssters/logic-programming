@@ -65,4 +65,15 @@ export class StartPageComponent implements OnInit, OnDestroy {
   closeCardsModal(): void {
     this.showModal = false;
   }
+
+    scrollToModulos(): void {
+      const section = document.getElementById('modulos');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        section.classList.add('animate-glow');
+        setTimeout(() => {
+          section.classList.remove('animate-glow');
+        }, 1200);
+      }
+    }
 }

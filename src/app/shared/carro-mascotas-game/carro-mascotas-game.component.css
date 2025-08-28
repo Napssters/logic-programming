@@ -126,12 +126,17 @@
   margin: auto;
 }
 
-.optimal-path-indicator {
-  width: 30%;
-  height: 30%;
-  background-color: var(--color-road-line);
-  border-radius: 50%;
-  opacity: 0.5;
+.optimal-arrow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: #ff9800;
+  text-shadow: 0 2px 8px #222, 0 0 8px #000;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .sidebar {

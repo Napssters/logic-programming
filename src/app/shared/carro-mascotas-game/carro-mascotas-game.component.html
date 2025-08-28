@@ -12,10 +12,9 @@
 
         <!-- Celdas del mapa -->
 
-        <div *ngFor="let cell of flatLayout; let i = index" [class]="'cell ' + cell.type + ' ' + cell.orientation">
-
-          <!-- Indicador de ruta óptima -->
-          <div *ngIf="cell.isOptimal" class="optimal-path-indicator"></div>
+        <div *ngFor="let cell of flatLayout; let i = index"
+             [class]="'cell ' + cell.type + ' ' + cell.orientation"
+             [ngStyle]="cell.isOptimal ? {'background-color': '#22c55e'} : {}">
 
           <!-- Elementos del juego en la celda con color de fondo -->
           <div *ngIf="cell.entity === 'house'" class="game-element house"
@@ -147,7 +146,10 @@
       <div class="info-box">
         <h3>Mascotas</h3>
         <p *ngIf="mascotasRecogidas.length === 0">Ninguna a bordo</p>
-        <p *ngFor="let pet of mascotasRecogidas" class="value">{{ getEmojiAnimal(pet) }}</p>
+        <span *ngFor="let pet of mascotasRecogidas" class="value"
+          [ngStyle]="{'background-color': getColorCasaMascota(pet), 'border-radius':'0.35em', 'padding':'0.08em 0.32em', 'margin-right':'0.18em', 'display':'inline-block', 'font-size':'1.45rem'}">
+          {{ getEmojiAnimal(pet) }}
+        </span>
       </div>
 
     </aside>

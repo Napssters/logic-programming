@@ -1,40 +1,67 @@
-
-
-
-
-
-<section class="min-h-screen w-full bg-gradient-to-br from-cyan-100 via-white to-blue-100 relative overflow-hidden flex flex-col">
+<section
+  class="min-h-screen w-full bg-gradient-to-br from-cyan-100 via-white to-blue-100 relative overflow-hidden flex flex-col">
   <div class="absolute inset-0 w-full h-full z-0">
-    <img src="assets/img/landing/logica_de_programacion.jpeg" alt="Lógica de Programación" class="w-full h-full object-cover" />
+    <img src="assets/img/landing/logica_de_programacion.jpeg" alt="Lógica de Programación"
+      class="w-full h-full object-cover" />
   </div>
-  <div class="flex flex-col justify-center items-start p-8 z-10 w-full md:w-2/3 relative" style="margin-left:4rem; min-height:100vh; justify-content:center;">
-    <div style="border-radius:2rem;width:87%;max-width:none;max-height:480px;background:rgba(255,255,255,0.18);backdrop-filter:blur(16px);box-shadow:0 8px 32px 0 rgba(31,38,135,0.37);border:1px solid rgba(255,255,255,0.18);padding:2.5rem 2rem;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;margin-left:-2rem;">
+  <div class="flex flex-col justify-center items-start p-8 z-10 w-full md:w-2/3 relative"
+    style="margin-left:4rem; min-height:100vh; justify-content:center;">
+    <div
+      style="border-radius:2rem;width:87%;max-width:none;max-height:480px;background:rgba(255,255,255,0.18);backdrop-filter:blur(16px);box-shadow:0 8px 32px 0 rgba(31,38,135,0.37);border:1px solid rgba(255,255,255,0.18);padding:2.5rem 2rem;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;margin-left:-2rem;">
       <div style="margin-left:2rem;margin-right:2rem;">
-      <div class="w-32 h-32 rounded-full shadow-xl mb-6 flex items-center justify-center bg-white/30 animate-bounce">
-        <img src="assets/img/landing/utp.png" alt="utp" class="w-28 h-28 object-contain" />
-      </div>
-      <h1 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg mb-4 leading-tight">Pensamiento básico de Programador</h1>
-      <p class="text-xl md:text-2xl text-white drop-shadow-lg mb-4 font-semibold">Explorando la Lógica de la Programación</p>
-      <p class="text-base text-white drop-shadow-lg mb-6 w-full text-justify">Aprende lógica de programación de forma visual, interactiva y divertida. Descubre los módulos y comienza tu viaje en el pensamiento computacional.</p>
+        <div class="w-32 h-32 rounded-full shadow-xl mb-6 flex items-center justify-center bg-white/30 animate-bounce">
+          <img src="assets/img/landing/utp.png" alt="utp" class="w-28 h-28 object-contain" />
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg mb-4 leading-tight">Pensamiento básico
+          de Programador</h1>
+        <p class="text-xl md:text-2xl text-white drop-shadow-lg mb-4 font-semibold">Explorando la Lógica de la
+          Programación</p>
+        <p class="text-base text-white drop-shadow-lg mb-6 w-full text-justify">Aprende lógica de programación de forma
+          visual, interactiva y divertida. Descubre los módulos y comienza tu viaje en el pensamiento computacional.</p>
 
-      <div class="flex items-center gap-4">
-        <button class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-6 rounded-full shadow transition-all duration-300" (click)="openCardsModal()">Comenzar ahora</button>
-        <div class="flex flex-col items-start">
-          <a class="text-cyan-700 hover:text-white hover:underline font-semibold text-base cursor-pointer" (click)="openTutorialModal()">¿Cómo usar el aplicativo?</a>
+        <div class="flex items-center gap-4">
+            <button
+              class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-6 rounded-full shadow transition-all duration-300"
+              (click)="scrollToModulos()">Comenzar ahora</button>
+          <div class="flex flex-col items-start">
+            <a class="text-cyan-700 hover:text-white hover:underline font-semibold text-base cursor-pointer"
+              (click)="openTutorialModal()">¿Cómo usar el aplicativo?</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Modal para mostrar los cards de módulos -->
+  <!-- Wave SVG decorativo en la parte inferior, azul arriba y blanco abajo para transición perfecta -->
+  <div class="w-full overflow-hidden relative z-10" style="margin-bottom:-1px;">
+    <svg viewBox="0 0 1920 120" preserveAspectRatio="none" class="block w-full h-32" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="blueToWhite" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#fff" />
+          <stop offset="100%" stop-color="#fff" />
+        </linearGradient>
+      </defs>
+      <path d="M0,40 C480,120 1440,0 1920,80 L1920,120 L0,120 Z" fill="url(#blueToWhite)" />
+    </svg>
+  </div>
+</section>
+
+<!-- Sección para mostrar los cards usando el componente CardsComponent -->
+<section id="modulos" class="w-full flex flex-col items-center py-8 bg-white">
+  <h2 class="text-2xl font-bold mb-6 text-cyan-700">Módulos disponibles</h2>
+  <app-cards [cards]="cards"></app-cards>
+</section>
+
+
+<!-- Modal solo para el tutorial -->
 <app-modal
   [isVisible]="showModal"
   [title]="modalTitle"
   [componentType]="modalComponentType"
-  [componentInputs]="{ cards: cards }"
   (onClose)="closeCardsModal()"
-  [maxWidth]="'max-w-5xl'"
+  [maxWidth]="'max-w-3xl'"
   [maxHeight]="'max-h-[90vh]'"
 ></app-modal>
-</section>
+
+<!-- Footer compartido -->
+<app-footer></app-footer>
