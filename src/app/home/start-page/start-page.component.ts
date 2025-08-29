@@ -19,6 +19,7 @@ export class StartPageComponent implements OnInit, OnDestroy {
   showModal: boolean = false;
   modalComponentType: Type<any> = CardsComponent;
   modalTitle: string = 'Módulos disponibles';
+  tutorialComponent = TutorialComponent;
 
   private modalSubscription?: Subscription;
 

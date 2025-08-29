@@ -88,12 +88,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   // Método para ser llamado por navigation-float al hacer click en menú
   openModulesModalFromMenu(): void {
-    // Navegar a /home y abrir el modal
-    this.router.navigate(['/home']).then(() => {
-      setTimeout(() => {
-        this.modalService.openModal();
-      }, 0);
-    });
+    this.router.navigate(['/home']);
   }
 
   findCurrentModuleIndex(url: string): void {

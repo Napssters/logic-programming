@@ -59,7 +59,7 @@
   [title]="modalTitle"
   [componentType]="modalComponentType"
   (onClose)="closeCardsModal()"
-  [maxWidth]="'max-w-3xl'"
+  [maxWidth]="modalComponentType === tutorialComponent ? 'max-w-5xl' : 'max-w-3xl'"
   [maxHeight]="'max-h-[90vh]'"
 ></app-modal>
 
