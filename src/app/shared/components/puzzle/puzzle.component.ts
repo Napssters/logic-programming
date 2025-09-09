@@ -1,11 +1,21 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
+interface PuzzleBlock {
+  id: number;
+  text: string;
+  color?: string;
+  hoverColor?: string;
+}
 @Component({
   selector: 'app-puzzle',
   templateUrl: './puzzle.component.html',
   styleUrls: ['./puzzle.component.css']
 })
 export class PuzzleComponent {
+  showSuggestionToast: boolean = false;
+  // ...existing code...
+  // --- SUGERENCIA DE BLOQUE CORRECTO (para el toast de ayuda) ---
+  suggestedBlock: PuzzleBlock | null = null;
   showSuccess: boolean = false;
   showError: boolean = false;
   currentMessage: string = '';
@@ -20,6 +30,7 @@ export class PuzzleComponent {
   @Input() validationResult: string = '';
   @Output() previousExample = new EventEmitter<void>();
   @Output() nextExample = new EventEmitter<void>();
+  @Input() isExercise: boolean = false;
   stepIndex: number = 0;
 
   get currentStep(): any {
@@ -283,5 +294,27 @@ export class PuzzleComponent {
         }
       }
     }
+  }
+
+  /**
+   * Busca un bloque correcto que aún no esté en el drop y lo selecciona al azar.
+   * Se basa en la lógica de validación de ejercicios.
+   */
+  suggestMissingBlock() {
+    if (!this.currentExample?.answer || !Array.isArray(this.currentExample.answer)) {
+      this.suggestedBlock = null;
+      return;
+    }
+    // Obtener los textos de los bloques en el drop
+    const dropBlocks = this.dropMatrix.flat().filter(b => b !== null).map(b => (b as any).text);
+    // Filtrar los bloques de la respuesta que NO están en el drop
+    const missingBlocks = this.currentExample.answer.filter((a: any) => !dropBlocks.includes(a.text));
+    if (missingBlocks.length === 0) {
+      this.suggestedBlock = null;
+      return;
+    }
+    // Elegir uno al azar
+    const randomIndex = Math.floor(Math.random() * missingBlocks.length);
+    this.suggestedBlock = missingBlocks[randomIndex];
   }
 }

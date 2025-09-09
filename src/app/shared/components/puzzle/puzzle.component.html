@@ -149,9 +149,36 @@
       </div>
     </div>
     <!-- Drop: Matriz -->
-    <div class="drop-box w-1/2">
+    <div class="drop-box w-1/2" style="position:relative;">
       <h3 class="mb-2 text-center"><b>Soltar Bloques</b></h3>
-      <div class="matrix mt-[1002px] grid gap-x-2"
+      <ng-container *ngIf="isExercise">
+        <div class="absolute" style="top:-50px; right:24px; z-index:20;">
+          <div class="relative group"
+               (mouseenter)="suggestMissingBlock(); showSuggestionToast = true"
+               (mouseleave)="showSuggestionToast = false">
+            <button type="button"
+              class="w-10 h-10 bg-yellow-400 hover:bg-yellow-500 text-white rounded-full shadow-lg flex items-center justify-center border-2 border-yellow-600 transition-all duration-300 ease-in-out text-2xl"
+              tabindex="-1">
+              💡
+            </button>
+            <div class="absolute -right-4 mt-2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+              Sugerencia
+            </div>
+            <!-- Toast flotante con el bloque sugerido -->
+      <div *ngIf="showSuggestionToast && suggestedBlock" class="absolute z-30 flex flex-col items-start"
+        style="bottom:43px; left:-180px;">
+              <div class="bg-white rounded-xl shadow-lg border border-blue-400 p-4 flex flex-col items-center justify-center min-w-[180px] max-w-xs animate-fade-in">
+                <!-- Bloque sugerido con el MISMO diseño y clases que los bloques de la matriz del drop -->
+                <div [class]="n === 4 ? 'cellblock small' : 'cellblock'" class="text-center flex items-center justify-center">
+                  <span class="w-full text-center">{{ suggestedBlock.text }}</span>
+                </div>
+                <span class="text-yellow-700 text-xs mt-2 w-full text-center">Este bloque es parte de la respuesta correcta</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="matrix mt-[1002px] grid gap-x-2" style="position:relative;"
         [ngStyle]="{'grid-template-columns': 'repeat(' + n + ', 1fr)', 'justify-content': 'center', 'margin': '0 auto', 'width': 'max-content'}">
         <div *ngFor="let row of dropMatrix; let i = index">
           <div class="flex flex-row" style="gap: 8px; margin-bottom: 0;">
