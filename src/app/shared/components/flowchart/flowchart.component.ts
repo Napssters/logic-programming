@@ -523,8 +523,14 @@ export class FlowchartComponent implements OnChanges {
   get progressText(): string {
     const currentStep = this.getStepById(this.currentStepId!);
     if (!currentStep) return '';
-    const totalSteps = this.steps.length;
+    let totalSteps: number;
     const currentIndex = this.history.length;
+    // Si el paso actual es 'end', el total de pasos es el recorrido real
+    if (currentStep.type === 'end') {
+      totalSteps = this.history.length;
+    } else {
+      totalSteps = Math.max(this.steps.length, this.history.length);
+    }
     return `Paso ${currentIndex} de ${totalSteps}`;
   }
 

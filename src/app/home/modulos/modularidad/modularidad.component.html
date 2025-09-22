@@ -28,8 +28,12 @@
         </div>
         <div class="bg-cyan-50 p-3 rounded border-l-4 border-cyan-400">
           <p class="text-cyan-800 text-sm font-medium mb-2"><strong>Ejemplo cotidiano:</strong></p>
-          <p class="text-gray-700 text-sm">Pedir comida por una app: tú envías el pedido (parámetro), la app procesa la
-            orden (instrucciones) y recibes la comida (resultado).</p>
+          <p class="text-gray-700 text-sm">
+            <b>Pedir comida por una app:</b> Imagina que usas una aplicación para pedir tu almuerzo.<br>
+            <span class="ml-2">• El pedido que envías es el <b>parámetro</b> (la información que das a la función).</span><br>
+            <span class="ml-2">• La app procesa tu orden siguiendo una serie de <b>instrucciones</b> (la función ejecuta pasos internos).</span><br>
+            <span class="ml-2">• Finalmente, recibes la comida en tu casa: ese es el <b>resultado</b> (valor de retorno de la función).</span>
+          </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
@@ -65,15 +69,10 @@
           <div class="p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
             <h3 class="text-lg font-semibold text-yellow-600 mb-2">🌅 Ejemplos en la vida cotidiana</h3>
             <div class="bg-white p-3 rounded border text-sm">
-              <p class="text-gray-700 mb-2"><strong>📞 Llamar por teléfono:</strong> función que recibe el número y
-                conecta la llamada.</p>
-              <p class="text-gray-700 mb-2"><strong>🚗 Usar GPS:</strong> función que recibe destino y muestra la ruta.
-              </p>
-              <p class="text-gray-700 mb-2"><strong>🧺 Lavar ropa:</strong> función que recibe ropa sucia y devuelve
-                ropa
-                limpia.</p>
-              <p class="text-gray-700 mb-2"><strong>🍳 Cocinar:</strong> función que recibe ingredientes y devuelve un
-                platillo.</p>
+              <p class="text-gray-700 mb-2"><strong>📞 Llamar por teléfono:</strong> Función que recibe el número y conecta la llamada.</p>
+              <p class="text-gray-700 mb-2"><strong>🚗 Usar GPS:</strong> Función que recibe destino y muestra la ruta.</p>
+              <p class="text-gray-700 mb-2"><strong>🧺 Lavar ropa:</strong> Función que recibe ropa sucia y devuelve ropa limpia.</p>
+              <p class="text-gray-700 mb-2"><strong>🍳 Cocinar:</strong> Función que recibe ingredientes y devuelve un platillo.</p>
             </div>
           </div>
           <div class="p-4 bg-teal-50 rounded-lg border-l-4 border-teal-400">
@@ -90,9 +89,8 @@
             </div>
           </div>
           <div class="p-4 bg-indigo-50 rounded-lg border-l-4 border-indigo-400">
-            <h3 class="text-lg font-semibold text-indigo-600 mb-2">🧪 Errores y curiosidades</h3>
+            <h3 class="text-lg font-semibold text-indigo-600 mb-2">🧪 Curiosidades</h3>
             <div class="bg-white p-3 rounded border text-sm space-y-2">
-              <p class="text-gray-700">• Olvidar el <code>return</code> puede hacer que la función no devuelva nada.</p>
               <p class="text-gray-700">• Puedes tener funciones dentro de funciones (anidadas).</p>
               <p class="text-gray-700">• Las funciones pueden recibir cero, uno o muchos parámetros.</p>
               <p class="text-gray-700">• En algunos lenguajes, las funciones pueden devolver más de un valor (tuplas,
@@ -138,12 +136,12 @@
             <h3 class="text-lg font-semibold text-green-600 mb-2">✅ Buenas prácticas y errores comunes</h3>
             <div class="bg-white p-3 rounded border text-sm">
               <ul class="list-disc pl-6 mb-2">
-                <li>Usa nombres descriptivos para tus funciones.</li>
-                <li>No hagas funciones demasiado largas o con muchas responsabilidades.</li>
-                <li>Documenta lo que hace cada función.</li>
-                <li>Olvidar el <code>return</code> cuando se espera un resultado.</li>
-                <li>Confundir los parámetros con las variables internas.</li>
-                <li>Usar nombres poco claros.</li>
+                <li>✅ Usa nombres descriptivos para tus funciones.</li>
+                <li>❌ No hagas funciones demasiado largas o con muchas responsabilidades.</li>
+                <li>✅ Documenta lo que hace cada función.</li>
+                <li>❌ Olvidar el <code>return</code> cuando se espera un resultado.</li>
+                <li>❌ Confundir los parámetros con las variables internas.</li>
+                <li>❌ Usar nombres poco claros.</li>
               </ul>
               <div class="bg-cyan-100 p-2 rounded mt-2 text-xs font-mono">
                 <code>function saludar(nombre) {{ '{' }}<br/>  return "Hola, " + nombre + "!";<br/>{{ '}' }}<br/><br/>let mensaje = saludar("Ana"); // mensaje = "Hola, Ana!"</code>

@@ -81,7 +81,7 @@
         "id": "conditional-1",
         "title": "Mi Primer Condicional",
         "description": "Aprende a crear tu primera estructura condicional.",
-        "instructions": "Crea una variable \"edad\" con valor 18. Usa un condicional para mostrar \"Mayor de edad\" si la edad es mayor o igual a 18, sino mostrar \"Menor de edad\".",
+        "instructions": "Crea una variable \"edad\" con valor 18. Usa un condicional para mostrar \"Mayor de edad\" si la edad es mayor o igual a 18, en caso contrario, mostrar \"Menor de edad\".",
         "expectedCode": "var edad = 18;\nif (edad >= 18) {\n  print(\"Mayor de edad\");\n} else {\n  print(\"Menor de edad\");\n}",
         "difficulty": "easy",
         "category": "condicionales"

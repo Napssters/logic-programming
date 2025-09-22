@@ -9,6 +9,8 @@ import * as Blockly from 'blockly';
   styleUrls: ['./blockly-exercise.component.css']
 })
 export class BlocklyExerciseComponent implements OnInit, OnDestroy, AfterViewInit {
+  isLoadingBlockly = true;
+  loadingPercent = 0;
   @HostListener('document:keydown.escape', ['$event'])
   onEscapeKey(event: KeyboardEvent) {
     if (this.showGifModal) {
@@ -47,9 +49,27 @@ export class BlocklyExerciseComponent implements OnInit, OnDestroy, AfterViewIni
   }
 
   ngAfterViewInit() {
+    this.isLoadingBlockly = true;
+    this.loadingPercent = 0;
+    // Simular carga progresiva (puedes ajustar el tiempo real si lo deseas)
+    const interval = setInterval(() => {
+      if (this.loadingPercent < 90) {
+        this.loadingPercent += Math.floor(Math.random() * 10) + 1;
+        if (this.loadingPercent > 90) this.loadingPercent = 90;
+      }
+    }, 30);
     setTimeout(() => {
       this.initializeBlockly();
-    }, 100);
+      setTimeout(() => {
+        this.loadingPercent = 100;
+        this.isLoadingBlockly = false;
+        clearInterval(interval);
+        // Forzar resize para evitar render en blanco
+        if (this.workspace) {
+          Blockly.svgResize(this.workspace);
+        }
+      }, 400);
+    }, 600);
   }
 
   ngOnDestroy() {
@@ -80,6 +100,13 @@ export class BlocklyExerciseComponent implements OnInit, OnDestroy, AfterViewIni
       setTimeout(() => {
         this.hideBlocklyScrollbars();
       }, 100);
+
+      // Forzar resize de Blockly tras inicialización
+      setTimeout(() => {
+        if (this.workspace) {
+          Blockly.svgResize(this.workspace);
+        }
+      }, 200);
 
       // Escuchar cambios en el workspace para ocultar scrollbars
       if (this.workspace) {
@@ -216,6 +243,13 @@ export class BlocklyExerciseComponent implements OnInit, OnDestroy, AfterViewIni
     setTimeout(() => {
       this.hideBlocklyScrollbars();
     }, 100);
+
+    // Forzar resize tras reset
+    setTimeout(() => {
+      if (this.workspace) {
+        Blockly.svgResize(this.workspace);
+      }
+    }, 200);
   }
 
   getDifficultyColor(difficulty: string): string {

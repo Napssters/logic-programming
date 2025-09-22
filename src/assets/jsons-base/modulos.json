@@ -302,7 +302,7 @@
       },
       {
         "title": "Ejemplo 7: Freír un huevo",
-        "description": "Sebastián quería algo rápido antes de salir al gimnasio. Rompió un huevo sobre el sartén caliente, le echó sal y lo frió mientras se ponía los tenis.",
+        "description": "Sebastián quería algo rápido antes de salir al gimnasio. Rompió un huevo sobre la sartén caliente, le echó sal y lo frio mientras se ponía los tenis.",
         "question": "👉 ¿Qué acciones realiza Sebastián para freír un huevo correctamente?",
         "steps": [
           { "id": 1, "text": "Inicio", "type": "start", "next": 2 },

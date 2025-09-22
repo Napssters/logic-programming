@@ -82,7 +82,16 @@
 
     <!-- Segunda columna: Área de Blockly -->
     <div class="col-span-8 relative">
-      <div class="overflow-hidden blockly-container" style="height: 600px; overflow: hidden !important;">
+      <!-- Spinner de carga -->
+      <div *ngIf="isLoadingBlockly" class="absolute inset-0 flex flex-col items-center justify-center bg-white bg-opacity-80 z-50">
+        <svg class="animate-spin -ml-1 mr-3 h-16 w-16 text-blue-500" viewBox="0 0 50 50">
+          <circle class="opacity-25" cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="6"></circle>
+          <circle class="opacity-75" cx="25" cy="25" r="20" fill="none" stroke="#3b82f6" stroke-width="6" stroke-dasharray="90" stroke-dashoffset="60"></circle>
+        </svg>
+        <div class="mt-4 text-blue-700 font-bold text-lg">Cargando Blockly... {{ loadingPercent }}%</div>
+      </div>
+      <!-- Área de Blockly solo visible cuando termina la carga -->
+      <div class="overflow-hidden blockly-container" style="height: 600px; overflow: hidden !important;" [class.opacity-0]="isLoadingBlockly" [class.pointer-events-none]="isLoadingBlockly">
         <div #blocklyDiv id="blocklyDiv" class="w-full h-full blockly-workspace"
           style="margin: 0; padding: 0; display: block; overflow: hidden !important; scrollbar-width: none; -ms-overflow-style: none;">
         </div>

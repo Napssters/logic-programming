@@ -407,7 +407,7 @@
     {
       "id": 3,
       "titulo": "El Semáforo Inteligente",
-      "enunciado": "Programa un semáforo inteligente que reaccione a carros, peatones y bicicletas. Tu objetivo es evitar accidentes y optimizar el tráfico. Usa condiciones lógicas para decidir cuándo cambiar las luces.",
+      "enunciado": "Programa un semáforo inteligente que reaccione a vehiculos, peatones y bicicletas. Tu objetivo es evitar accidentes y optimizar el tráfico. Usa condiciones lógicas para decidir cuándo cambiar las luces.",
       "preguntas": [
         {
           "pregunta": "Hay carros esperando en la avenida principal y peatones en la esquina. ¿Qué debe hacer el semáforo?",
@@ -1559,7 +1559,7 @@
     {
       "id": 2,
       "titulo": "La Enfermera y los Pacientes",
-      "enunciado": "Eres una enfermera en un centro de salud y debes decidir cómo atender a los pacientes según sus síntomas y los recursos disponibles. Cada decisión afecta la salud de los pacientes y la eficiencia del centro. Usa pensamiento lógico para priorizar casos y optimizar el uso de medicamentos y tiempo.",
+      "enunciado": "Eres una enfermera en un centro de salud y debes decidir cómo atender a los pacientes según sus síntomas y los recursos disponibles. Cada decisión afecta la salud de los pacientes y la eficiencia del centro. Usa pensamiento lógico para priorizar casos y optimizar el uso de medicamentos y del tiempo.",
       "preguntas": [
         {
           "pregunta": "Un paciente llega con fiebre alta y dolor de cabeza. Tienes paracetamol y termómetros. ¿Qué debes hacer?",
